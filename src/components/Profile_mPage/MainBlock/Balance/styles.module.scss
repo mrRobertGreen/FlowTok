@@ -1,0 +1,42 @@
+.wrapper {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 0 10px 0;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1 1 50%;
+}
+
+.header {
+  color: #8D9593;
+  font-size: 15px;
+  margin: 0 0 10px 0;
+}
+
+.balance {
+  display: flex;
+  align-items: flex-end;
+  text-transform: uppercase;
+}
+.balance_grey {
+  @extend .balance;
+  color: #8D9593;
+}
+.rub {
+  font-size: 40px;
+  font-weight: 600;
+}
+.kop {
+  font-size: 24px;
+  padding-bottom: 3.5px;
+}
+
+.btn {
+  margin: 20px 0 0;
+}

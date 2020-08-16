@@ -1,0 +1,163 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+  margin: 0 0 10px 0;
+}
+
+.topBlock {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  .menuBtn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 15px;
+    top: 10px;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    margin: 20px 0 10px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+  }
+  .fullName {
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .login {
+    font-size: 14px;
+    color: #8D9593;
+  }
+}
+
+.bottomBlock {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border-right: 1px solid #8D9593;
+    .value {
+      font-weight: 600;
+      font-size: 28px;
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+    }
+    .label {
+      font-size: 12px;
+    }
+  }
+  &__item:nth-child(2) {
+    border-right: none;
+  }
+}
+
+///* Breakpoints */
+//// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) {}
+//
+//// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) {
+//  .wrapper {
+//    margin: 0 0 20px 0;
+//  }
+//  .topBlock {
+//    padding: 20px;
+//    .menuBtn {
+//      width: 40px;
+//      height: 40px;
+//      right: 20px;
+//      top: 15px;
+//    }
+//    .avatar {
+//      width: 140px;
+//      height: 140px;
+//      margin: 20px 0 20px;
+//    }
+//    .fullName {
+//      margin: 0 0 10px;
+//      font-size: 26px;
+//    }
+//    .login {
+//      font-size: 20px;
+//    }
+//}
+//  .bottomBlock {
+//    padding: 30px;
+//    &__item {
+//      .value {
+//        font-size: 36px;
+//        margin: 0 0 8px 0;
+//      }
+//      .label {
+//        font-size: 16px;
+//      }
+//    }
+//  }
+//}
+
+//// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) {
+//  .wrapper {
+//    margin: 0 0 30px 0;
+//  }
+//  .topBlock {
+//    padding: 30px;
+//    .menuBtn {
+//      width: 50px;
+//      height: 50px;
+//      right: 25px;
+//      top: 20px;
+//    }
+//    .avatar {
+//      width: 180px;
+//      height: 180px;
+//      margin: 30px 0 30px;
+//    }
+//    .fullName {
+//      margin: 0 0 15px;
+//      font-size: 32px;
+//    }
+//    .login {
+//      font-size: 26px;
+//    }
+//  }
+//  .bottomBlock {
+//    padding: 30px;
+//    &__item {
+//      .value {
+//        font-weight: 600;
+//        font-size: 48px;
+//        margin: 0 0 10px 0;
+//      }
+//      .label {
+//        font-size: 22px;
+//      }
+//    }
+//  }
+//}
+//
+//// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) {
+//
+//}
+

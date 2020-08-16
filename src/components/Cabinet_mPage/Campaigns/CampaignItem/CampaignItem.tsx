@@ -1,0 +1,95 @@
+import React, {FC} from "react";
+import styles from "./styles.module.scss"
+import playIcon from "../../../../media/icons/play_icon.png"
+import pauseIcon from "../../../../media/icons/pause_icon.png"
+import replyIcon from "../../../../media/icons/reply_icon.png"
+import likeIcon from "../../../../media/icons/like_icon.png"
+import eyeIcon from "../../../../media/icons/eye_icon.png"
+import {AdvTaskStatusType, TaskStatusType} from "../../../../redux/user-reducer";
+
+type PropsType = {
+   title: string
+   info: string
+   value: number
+   clips: number
+   reposts: string
+   views: string
+   likes: string
+   id: string
+   state: "play" | "pause"
+   changeAdvTaskStatus: (taskId: string, taskStatus: AdvTaskStatusType) => Promise<void>
+}
+
+const CampaignItem: FC<PropsType> = ({
+                                        value,
+                                        state,
+                                        info,
+                                        clips,
+                                        likes,
+                                        reposts,
+                                        title,
+                                        views,
+                                        changeAdvTaskStatus,
+                                        id
+                                     }) => {
+   const onChangeTaskStatus = async () => {
+      if (state === "pause") {
+         await changeAdvTaskStatus(id, "play")
+      } else {
+         await changeAdvTaskStatus(id, "pause")
+      }
+   }
+
+   return (
+      <div className={styles.wrapper}>
+         <div className={styles.topBlock}>
+            <div className={styles.label}>
+               {title}
+            </div>
+            <div className={styles.description}>
+               {info}
+            </div>
+            <div className={styles.control}
+                 style={{background: `url(${state === "play" ? pauseIcon : playIcon}) center no-repeat`}}
+                 onClick={onChangeTaskStatus}
+            >
+            </div>
+         </div>
+         <div className={styles.bottomBlock}>
+            <div className={styles.detail}>
+               <div className={styles.label}>
+                  Оставшийся баланс:
+               </div>
+               <div className={styles.number}>
+                  {value}₽
+               </div>
+            </div>
+            <div className={styles.line}/>
+            <div className={styles.detail}>
+               <div className={styles.label}>
+                  Снято клипов:
+               </div>
+               <div className={styles.number}>
+                  {clips}
+               </div>
+            </div>
+            <div className={styles.stats}>
+               <div className={styles.item}>
+                  <img src={replyIcon} alt="" className={styles.icon}/>
+                  <div>{reposts}</div>
+               </div>
+               <div className={styles.item}>
+                  <img src={eyeIcon} alt="" className={styles.icon}/>
+                  <div>{views}</div>
+               </div>
+               <div className={styles.item}>
+                  <img src={likeIcon} alt="" className={styles.icon}/>
+                  <div>{likes}</div>
+               </div>
+            </div>
+         </div>
+      </div>
+   )
+}
+
+export default CampaignItem

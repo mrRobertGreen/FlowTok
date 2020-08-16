@@ -1,0 +1,188 @@
+import {BaseThunkType, InferActionsType} from "./store";
+import {authApi, AuthMeReqDataType} from "../api/auth-api";
+import {getUserData, userActions} from "./user-reducer";
+import {checkMessageNotification} from "../utils/checkMessageNotification";
+import randomStringGenerator from "../utils/randomStringGenerator";
+import {appActions, initialize} from "./app-reducer";
+
+const initialState = {
+   isNew: false,
+   isAuth: false,
+   role: "Nobody" as UserRolesType,
+   loginStep: 1 as LoginStepType,
+   firstSuccess: false,
+   secondSuccess: false,
+}
+const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
+   switch (action.type) {
+      case "auth/SET_IS_NEW":
+         return {
+            ...state,
+            isNew: action.isNew
+         }
+      case "auth/SET_IS_AUTH":
+         return {
+            ...state,
+            isAuth: action.isAuth
+         }
+      case "auth/SET_LOGIN_STEP":
+         return {
+            ...state,
+            loginStep: action.loginStep
+         }
+      case "auth/SET_USER_ROLE":
+         return {
+            ...state,
+            role: action.role
+         }
+      case "auth/SET_FIRST_SUCCESS":
+         return {
+            ...state,
+            firstSuccess: action.success
+         }
+      case "auth/SET_SECOND_SUCCESS":
+         return {
+            ...state,
+            secondSuccess: action.success
+         }
+      case "auth/CLEAR":
+         return {
+            ...state,
+            role: "Nobody",
+            secondSuccess: false,
+            firstSuccess: false,
+            loginStep: 1,
+            isAuth: false,
+            isNew: false,
+         }
+      default:
+         return state
+   }
+}
+export default authReducer
+
+export const authActions = {
+   setIsNew: (isNew: boolean) => ({type: "auth/SET_IS_NEW", isNew} as const),
+   setIsAuth: (isAuth: boolean) => ({type: "auth/SET_IS_AUTH", isAuth} as const),
+   setLoginStep: (loginStep: LoginStepType) => ({type: "auth/SET_LOGIN_STEP", loginStep} as const),
+   setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
+   setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
+   setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),
+   clear: () => ({type: "auth/CLEAR"} as const),
+}
+
+export const callbackVk = () => {
+   const vkApiPath = "https://oauth.vk.com/authorize?client_id=7565076&display=popup&redirect_uri=https://flowtok.com/login/1&response_type=code"
+   document.location.href = vkApiPath
+}
+
+export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): ThunkType => {
+   return async (dispatch) => {
+      if (localStorage.getItem("token")) { // if token already received do nothing
+         return
+      }
+
+      const ref = localStorage.getItem("ref")
+
+      // create authMe request body
+      let reqBody: AuthMeReqDataType = {}
+
+      if (ref) {
+         reqBody.ref = ref
+      }
+      if (auth) {
+         reqBody.auth = auth
+      } else if (vkCode) {
+         reqBody.vkCode = vkCode
+      }
+
+      const advKey = "Helldlllooo"
+      const blogKey = "H"
+      const fakeReqBody = {
+         auth: blogKey,
+      }
+      dispatch(appActions.toggleIsFetching(true))
+      // if we have auth key we send this else we send vkCode
+      const data = await authApi.authMe(fakeReqBody)
+
+      if (data.success) {
+         // if token received set it
+         localStorage.setItem("token", data.data.token)
+         // dispatch flag isNew
+         dispatch(authActions.setIsNew(data.data.isNew))
+         if (!data.data.isNew) {
+            // if user already registered (isNew === false) try to get and set user data
+            await dispatch(getUserData())
+            // if getting and setting data is successful authorization finished
+         } else {
+            // if user is new continue registration
+            dispatch(authActions.setFirstSuccess(true))
+         }
+      } else {
+         console.error("goToSecondLoginStep error")
+      }
+      dispatch(appActions.toggleIsFetching(false))
+      checkMessageNotification(data)
+   }
+}
+
+export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
+   return async (dispatch, getState) => {
+      if (role === "Advertiser") {
+         dispatch(appActions.toggleIsFetching(true))
+         dispatch(authActions.setUserRole("Advertiser"))
+         // say to server that user is advertiser and in response we get user data (advProfile)
+         const data = await authApi.setAdv()
+         if (data.success) {
+            // if we get advProfile set data and finish authorization
+            dispatch(userActions.setAdvProfile(data.data))
+            dispatch(authActions.setIsAuth(true))
+         } else {
+            if (data.error && data.error.message === "JsonWebTokenError: jwt must be provided") {
+               dispatch(authActions.clear())
+            }
+            console.error("setAdv error")
+         }
+         dispatch(appActions.toggleIsFetching(false))
+         checkMessageNotification(data)
+      } else if (role === "Blogger") {
+         // we need to continue authorization
+         dispatch(authActions.setUserRole("Blogger"))
+         dispatch(authActions.setSecondSuccess(true))
+      }
+   }
+}
+
+export const setTikTok = (tikTokUrl: string): ThunkType => {
+   return async (dispatch) => {
+      // send link to blogger's tiktok account
+      dispatch(appActions.toggleIsFetching(true))
+      const data = await authApi.setTikTokProfile(tikTokUrl)
+      if (data.success) {
+         await dispatch(getUserData())
+      } else {
+         console.error("setTikTok error")
+      }
+      dispatch(appActions.toggleIsFetching(false))
+      checkMessageNotification(data)
+   }
+}
+
+export const exit = (): ThunkType => {
+   return async (dispatch) => {
+      // log out and clear all
+      localStorage.setItem("token", "")
+      localStorage.setItem("ref", "")
+      dispatch(authActions.clear())
+      dispatch(userActions.clear())
+      dispatch(appActions.clear())
+      await dispatch(initialize())
+   }
+}
+
+
+type ActionsType = InferActionsType<typeof authActions>
+type InitialStateType = typeof initialState
+type ThunkType = BaseThunkType
+export type UserRolesType = "Blogger" | "Advertiser" | "Nobody"
+export type LoginStepType = 1 | 2 | 3

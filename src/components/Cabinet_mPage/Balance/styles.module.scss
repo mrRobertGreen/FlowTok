@@ -1,0 +1,74 @@
+.wrapper {
+  width: 100%;
+  padding: 25px 15px 0;
+}
+.title {
+  font-weight: 600;
+  text-align: center;
+  font-size: 20px;
+  margin: 0 0 25px 0;
+}
+.payInBlock {
+  background-color: #fff;
+  margin: 0 0 30px 0;
+  display: flex;
+  border-radius: 10px;
+  .balance {
+    color: #00cf7b;
+    padding: 0 15px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+  }
+  .btn {
+    width: 50%;
+  }
+}
+
+///* Breakpoints */
+//// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) {}
+//
+//// Medium devices (tablets, 768px and up)
+//@media (min-width: 767px) {
+//  .wrapper {
+//    padding: 30px 25px 0;
+//  }
+//  .title {
+//    font-size: 28px;
+//    margin: 0 0 30px 0;
+//  }
+//  .payInBlock {
+//    margin: 0 0 35px 0;
+//    border-radius: 20px;
+//    .balance {
+//      padding: 0 15px;
+//      font-size: 26px;
+//    }
+//  }
+//}
+
+//// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) {
+//  .wrapper {
+//    padding: 35px 30px 0;
+//  }
+//  .title {
+//    font-size: 34px;
+//    margin: 0 0 35px 0;
+//  }
+//  .payInBlock {
+//    margin: 0 0 40px 0;
+//    border-radius: 30px;
+//    .balance {
+//      padding: 0 15px;
+//      font-size: 32px;
+//    }
+//  }
+//}
+//
+//// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) {}

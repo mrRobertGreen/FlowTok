@@ -1,0 +1,102 @@
+.wrapper {
+  margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0 0 15px 0;
+}
+.close {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 13px;
+  right: 10px;
+  border-radius: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.item {
+  padding: 20px 15px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  .arrow {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+///* Breakpoints */
+//// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) {}
+//
+//// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) {
+//  .wrapper {
+//    border-top-left-radius: 20px;
+//    border-top-right-radius: 20px;
+//    padding: 0 0 25px 0;
+//  }
+//  .close {
+//    width: 42px;
+//    height: 42px;
+//    top: 19px;
+//    right: 20px;
+//  }
+//  .title {
+//    font-size: 28px;
+//  }
+//  .item {
+//    padding: 25px 20px;
+//    font-size: 26px;
+//    .arrow {
+//      width: 20px;
+//      height: 20px;
+//    }
+//  }
+//}
+
+//// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) {
+//  .wrapper {
+//    border-top-left-radius: 25px;
+//    border-top-right-radius: 25px;
+//    padding: 0 0 35px 0;
+//  }
+//  .close {
+//    padding: 12px;
+//    width: 50px;
+//    height: 50px;
+//    top: 23px;
+//    right: 25px;
+//  }
+//  .title {
+//    font-size: 38px;
+//  }
+//  .item {
+//    padding: 30px 25px;
+//    font-size: 34px;
+//    .arrow {
+//      width: 25px;
+//      height: 25px;
+//    }
+//  }
+//}
+//
+//// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) {}

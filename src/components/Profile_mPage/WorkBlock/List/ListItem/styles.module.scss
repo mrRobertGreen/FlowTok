@@ -1,0 +1,46 @@
+.wrapper {
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  margin: 0 0 5px 0;
+}
+.title {
+  font-weight: 500;
+  font-size: 21px;
+  margin: 0 0 10px 0;
+}
+.description {
+  font-size: 15px;
+  color: #8D9593;
+  margin: 0 0 15px 0;
+}
+.bottomBlock {
+  position: relative;
+  display: flex;
+  margin: 0 0 10px 0;
+  .btn {
+    flex: 1 1 70%;
+  }
+  .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 30%;
+    margin: 0 0 0 15px;
+    .rub {
+      text-transform: uppercase;
+      color: #67CE8C;
+      font-size: 24px;
+    }
+    .label {
+      font-size: 14px;
+    }
+  }
+}
+.mainBtn {
+  width: 100%;
+}
+.doneBtn {
+  margin: 0 0 0 7px;
+}
