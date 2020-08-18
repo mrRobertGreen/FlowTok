@@ -13,8 +13,7 @@ import {extractVkCode} from "../../../utils/extractVkCode";
 import GoogleLogin from "react-google-login";
 import Preloader from "../../../components/common/Preloader/Preloader";
 
-type PropsType = {
-}
+type PropsType = {}
 
 const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                                                                             callbackVk,
@@ -67,7 +66,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
             <div className={styles.header}>Войти через:</div>
             <div className={styles.buttons}>
                <div className={styles.btn}>
-                  <Button onButtonClick={onFakeLogin}>
+                  <Button onButtonClick={onVkButtonClick}>
                      Вконтакте
                   </Button>
                </div>
@@ -104,6 +103,11 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                      )}
                   />
                </div>
+            </div>
+            <div className={styles.text}>
+               <p>Нажимая кнопки выше, вы подтвержадете, что соглашаетесь с <a target="_blank" rel="noopener noreferrer"
+                                                                              href="/user_terms">Пользовательским
+                  соглашением</a></p>
             </div>
          </div>
       </div>

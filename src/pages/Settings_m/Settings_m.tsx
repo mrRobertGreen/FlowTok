@@ -3,7 +3,7 @@ import React from "react";
 const Settings_m = () => {
    return (
       <div>
-         Settings
+         здесь должны быть настройки
       </div>
    )
 }

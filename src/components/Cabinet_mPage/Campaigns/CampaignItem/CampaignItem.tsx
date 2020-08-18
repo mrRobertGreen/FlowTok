@@ -1,11 +1,11 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
-import playIcon from "../../../../media/icons/play_icon.png"
-import pauseIcon from "../../../../media/icons/pause_icon.png"
-import replyIcon from "../../../../media/icons/reply_icon.png"
-import likeIcon from "../../../../media/icons/like_icon.png"
-import eyeIcon from "../../../../media/icons/eye_icon.png"
-import {AdvTaskStatusType, TaskStatusType} from "../../../../redux/user-reducer";
+import playIcon from "../../../../media/icons/play_icon.svg"
+import pauseIcon from "../../../../media/icons/pause_icon.svg"
+import replyIcon from "../../../../media/icons/reply_icon.svg"
+import likeIcon from "../../../../media/icons/like_icon.svg"
+import eyeIcon from "../../../../media/icons/eye_icon.svg"
+import {AdvTaskStatusType} from "../../../../redux/user-reducer";
 
 type PropsType = {
    title: string
@@ -49,11 +49,10 @@ const CampaignItem: FC<PropsType> = ({
             <div className={styles.description}>
                {info}
             </div>
-            <div className={styles.control}
-                 style={{background: `url(${state === "play" ? pauseIcon : playIcon}) center no-repeat`}}
-                 onClick={onChangeTaskStatus}
-            >
-            </div>
+            <img src={state === "play" ? pauseIcon : playIcon}
+                 alt=""
+                 className={styles.control}
+                 onClick={onChangeTaskStatus}/>
          </div>
          <div className={styles.bottomBlock}>
             <div className={styles.detail}>

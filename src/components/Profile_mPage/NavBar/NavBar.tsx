@@ -6,6 +6,8 @@ import homeIconActive from "../../../media/icons/home_icon_active.svg"
 import workIconActive from "../../../media/icons/work_icon_active.svg"
 import {NavLink} from "react-router-dom";
 import {PageNamesType} from "../../../pages/Profile_m/Profile_m";
+import {useDispatch} from "react-redux";
+import {getUserData} from "../../../redux/user-reducer";
 
 type PropsType = {
    isDesktop: boolean
@@ -14,10 +16,13 @@ type PropsType = {
 }
 
 const NavBar: FC<PropsType> = ({isDesktop, pageName, newTasksNumber}) => {
+
+   const dispatch = useDispatch()
+
    return (
       <nav className={styles.wrapper}
            style={{width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`}}>
-         <NavLink to={"/profile"} className={styles.item}>
+         <NavLink to={"/profile"} className={styles.item} onClick={() => dispatch(getUserData())}>
             <div className={styles.icon}
                  style={{background: `url(${pageName === "Profile" ? homeIconActive : homeIcon}) 0 0/100% 100% no-repeat`}}/>
             <div

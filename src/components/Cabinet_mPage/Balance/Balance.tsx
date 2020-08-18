@@ -2,14 +2,27 @@ import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import {NavLink} from "react-router-dom";
+import menuBtn from "../../../media/icons/menu_btn.svg";
 
 type PropsType = {
    value: number
+   setMenuVisible: (flag: boolean) => void
+   isMenuVisible: boolean
 }
 
-const Balance: FC<PropsType> = ({value}) => {
+const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
+
+   const onMenuClick = () => {
+      setMenuVisible(!isMenuVisible)
+   }
+
    return (
       <div className={styles.wrapper}>
+         <div
+            onClick={onMenuClick}
+            className={styles.menuBtn}
+            style={{background: `url(${menuBtn}) 0 0/100% 100% no-repeat`}}
+         />
          <div className={styles.title}>
             Текущий баланс
          </div>

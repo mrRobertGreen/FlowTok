@@ -2,7 +2,6 @@ import {BaseThunkType, InferActionsType} from "./store";
 import {authApi, AuthMeReqDataType} from "../api/auth-api";
 import {getUserData, userActions} from "./user-reducer";
 import {checkMessageNotification} from "../utils/checkMessageNotification";
-import randomStringGenerator from "../utils/randomStringGenerator";
 import {appActions, initialize} from "./app-reducer";
 
 const initialState = {
@@ -82,7 +81,7 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
          return
       }
 
-      const ref = localStorage.getItem("ref")
+      const ref = localStorage.getItem("ref") // get ref link
 
       // create authMe request body
       let reqBody: AuthMeReqDataType = {}
@@ -97,13 +96,14 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
       }
 
       const advKey = "Helldlllooo"
-      const blogKey = "H"
+      const blogKey = "q12345"
       const fakeReqBody = {
          auth: blogKey,
       }
       dispatch(appActions.toggleIsFetching(true))
+
       // if we have auth key we send this else we send vkCode
-      const data = await authApi.authMe(fakeReqBody)
+      const data = await authApi.authMe(reqBody)
 
       if (data.success) {
          // if token received set it
@@ -138,9 +138,7 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
             dispatch(userActions.setAdvProfile(data.data))
             dispatch(authActions.setIsAuth(true))
          } else {
-            if (data.error && data.error.message === "JsonWebTokenError: jwt must be provided") {
-               dispatch(authActions.clear())
-            }
+            await dispatch(exit())
             console.error("setAdv error")
          }
          dispatch(appActions.toggleIsFetching(false))
@@ -155,12 +153,13 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
 
 export const setTikTok = (tikTokUrl: string): ThunkType => {
    return async (dispatch) => {
-      // send link to blogger's tiktok account
+      // send blogger's tiktok account link to api
       dispatch(appActions.toggleIsFetching(true))
       const data = await authApi.setTikTokProfile(tikTokUrl)
       if (data.success) {
          await dispatch(getUserData())
       } else {
+         await dispatch(exit())
          console.error("setTikTok error")
       }
       dispatch(appActions.toggleIsFetching(false))

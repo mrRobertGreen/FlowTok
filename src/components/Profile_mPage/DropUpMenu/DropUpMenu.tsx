@@ -3,6 +3,8 @@ import styles from "./styles.module.scss"
 import closeIcon from "../../../media/icons/close_icon.svg"
 import ArrowRightIcon from "../../../media/icons/arrow_right_icon.svg"
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../../redux/store";
 
 type PropsType = {
    hideMenu: () => void
@@ -11,6 +13,8 @@ type PropsType = {
 }
 
 const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
+
+   const userRole = useSelector((state: RootStateType) => state.auth.role)
 
    return (
       <div className={styles.wrapper} style={
@@ -33,16 +37,20 @@ const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
          {/*      <img className={styles.arrow} src={ArrowRightIcon} alt=""/>*/}
          {/*   </div>*/}
          {/*</NavLink>*/}
-         <NavLink to={"/refs"}>
+         {userRole === "Blogger" &&
+			<NavLink to={"/refs"}>
+				<div className={styles.item}>
+					<div>Реферальная программа</div>
+				</div>
+			</NavLink>}
+         <NavLink to={"/user_terms"}>
             <div className={styles.item}>
-               <div>Реферальная программа</div>
-               <img className={styles.arrow} src={ArrowRightIcon} alt=""/>
+               <div>Пользовательское соглашение</div>
             </div>
          </NavLink>
          <NavLink to={"/login/1"}>
             <div className={styles.item} onClick={() => exit()}>
                <div style={{color: "red"}}>Выйти</div>
-               <img className={styles.arrow} src={ArrowRightIcon} alt=""/>
             </div>
          </NavLink>
       </div>

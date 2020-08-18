@@ -6,9 +6,11 @@ import {NavLink} from "react-router-dom";
 type PropsType = {
    valueUp: number
    valueDown: number
+   holdUp: number
+   holdDown: number
 }
 
-const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
+const Balance: FC<PropsType> = ({valueUp, valueDown, holdUp, holdDown}) => {
 
    return (
       <div className={styles.wrapper}>
@@ -21,24 +23,23 @@ const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
                   <div className={styles.rub}>
                      {valueUp}
                   </div>
-                  {valueDown &&
                   <div className={styles.kop}>
-	                  ,{valueDown}₽
-                  </div>}
+                     ,{valueDown}₽
+                  </div>
                </div>
             </div>
             <div className={styles.column}>
-               <div className={styles.header}>
-                  В холде
-               </div>
-               <div className={styles.balance_grey}>
-                  <div className={styles.rub}>
-                     {valueUp}
-                  </div>
-                  <div className={styles.kop}>
-                     ,{valueDown} ₽
-                  </div>
-               </div>
+               {/*<div className={styles.header}>*/}
+               {/*   В холде*/}
+               {/*</div>*/}
+               {/*<div className={styles.balance_grey}>*/}
+               {/*   <div className={styles.rub}>*/}
+               {/*      {holdUp}*/}
+               {/*   </div>*/}
+               {/*   <div className={styles.kop}>*/}
+               {/*      ,{holdDown} ₽*/}
+               {/*   </div>*/}
+               {/*</div>*/}
             </div>
          </div>
          <div className={styles.btn}>

@@ -1,0 +1,41 @@
+.wrapper {
+  width: 100%;
+  background-color: #eeffe8;
+}
+.block {
+  width: 100%;
+  margin: 0 auto;
+  .image {
+    width: 100%;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+  }
+  .label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 38px;
+    padding: 35px;
+  }
+}
+.btn {
+  padding-bottom: 40px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (max-width: 376px) {
+  .image {
+    img {
+      width: 100%;
+    }
+  }
+  .block {
+    .label {
+      line-height: 1.2;
+      font-size: 30px;
+    }
+  }
+}

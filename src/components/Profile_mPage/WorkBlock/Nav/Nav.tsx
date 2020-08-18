@@ -11,19 +11,16 @@ type PropsType = {
    setCurrentSection: (section: SectionNames) => void
 }
 
-const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection, deleteAllBlogTasks}) => {
+const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection}) => {
 
    const onClickNewSection = () => {
       setCurrentSection("new")
-      deleteAllBlogTasks()
    }
    const onClickDoneSection = () => {
       setCurrentSection("done")
-      deleteAllBlogTasks()
    }
    const onClickWaitingSection = () => {
       setCurrentSection("wait")
-      deleteAllBlogTasks()
    }
 
    return (
@@ -54,7 +51,6 @@ const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection,
 }
 
 const mapDispatchToProps = {
-   deleteAllBlogTasks: userActions.deleteAllBlogTasks
 }
 
 const connector = connect(null, mapDispatchToProps)

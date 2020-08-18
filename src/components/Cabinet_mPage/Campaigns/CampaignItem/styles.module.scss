@@ -19,8 +19,9 @@
     margin: 0 0 15px 0;
   }
   .control {
-    width: 30px;
-    height: 30px;
+    display: block;
+    width: 28px;
+    height: 28px;
     margin: 0 auto 15px;
   }
 }
@@ -64,121 +65,8 @@
       .icon {
         width: 30px;
         height: 22px;
-        margin-right: 7px;
+        margin-right: 2px;
       }
     }
   }
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 767px) {
-//  .wrapper {
-//    border-radius: 20px;
-//    margin: 0 0 20px;
-//  }
-//  .topBlock {
-//    padding: 20px 15px 0;
-//    .label {
-//      font-size: 24px;
-//      margin: 0 0 10px 0;
-//    }
-//    .description {
-//      font-size: 20px;
-//      margin: 0 0 15px 0;
-//    }
-//    .control {
-//      width: 40px;
-//      height: 40px;
-//      margin: 0 auto 15px;
-//    }
-//  }
-//  .bottomBlock {
-//    padding: 10px 0;
-//    .detail {
-//      font-size: 22px;
-//      padding: 5px 0;
-//      .label {
-//        padding: 0 15px;
-//      }
-//      .number {
-//        padding: 5px 10px;
-//        border-top-left-radius: 15px;
-//        border-bottom-left-radius: 15px;
-//      }
-//    }
-//    .line {
-//      height: 1px;
-//    }
-//    .stats {
-//      padding: 10px 0 10px;
-//      .item {
-//        font-size: 18px;
-//        .icon {
-//          width: 40px;
-//          height: 30px;
-//          margin-right: 10px;
-//        }
-//      }
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .wrapper {
-//    border-radius: 30px;
-//    margin: 0 0 25px;
-//  }
-//  .topBlock {
-//    padding: 25px 20px 0;
-//    .label {
-//      font-size: 30px;
-//      margin: 0 0 10px 0;
-//    }
-//    .description {
-//      font-size: 24px;
-//      margin: 0 0 15px 0;
-//    }
-//    .control {
-//      width: 45px;
-//      height: 45px;
-//      margin: 0 auto 15px;
-//    }
-//  }
-//  .bottomBlock {
-//    padding: 10px 0;
-//    .detail {
-//      font-size: 26px;
-//      padding: 5px 0;
-//      .label {
-//        padding: 0 20px;
-//      }
-//      .number {
-//        padding: 5px 10px;
-//        border-top-left-radius: 15px;
-//        border-bottom-left-radius: 15px;
-//      }
-//    }
-//    .line {
-//      height: 1px;
-//    }
-//    .stats {
-//      padding: 12px 0 12px;
-//      .item {
-//        font-size: 22px;
-//        .icon {
-//          width: 45px;
-//          height: 35px;
-//          margin-right: 12px;
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {}

@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   padding: 25px 15px 0;
+  position: relative;
 }
 .title {
   font-weight: 600;
@@ -27,48 +28,10 @@
     width: 50%;
   }
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 767px) {
-//  .wrapper {
-//    padding: 30px 25px 0;
-//  }
-//  .title {
-//    font-size: 28px;
-//    margin: 0 0 30px 0;
-//  }
-//  .payInBlock {
-//    margin: 0 0 35px 0;
-//    border-radius: 20px;
-//    .balance {
-//      padding: 0 15px;
-//      font-size: 26px;
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .wrapper {
-//    padding: 35px 30px 0;
-//  }
-//  .title {
-//    font-size: 34px;
-//    margin: 0 0 35px 0;
-//  }
-//  .payInBlock {
-//    margin: 0 0 40px 0;
-//    border-radius: 30px;
-//    .balance {
-//      padding: 0 15px;
-//      font-size: 32px;
-//    }
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {}
+.menuBtn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 15px;
+  top: 10px;
+}

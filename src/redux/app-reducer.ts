@@ -48,7 +48,6 @@ export const appActions = {
 export const initialize = (): ThunkType => { // initialization of app
    return async (dispatch) => {
       // const initData = await authApi.initMe()
-
       if (localStorage.getItem("token")) {
          // try to get user profile data with cached token
          await dispatch(getUserData())

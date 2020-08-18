@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {withUserAgent} from "react-useragent";
-import {Redirect, Route} from 'react-router-dom'
+import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile_m/Profile_m";
 import Refs_m from "./pages/Refs_m/Refs_m";
 import Settings_m from "./pages/Settings_m/Settings_m";
@@ -18,6 +18,8 @@ import {goToThirdLoginStep, setTikTok} from "./redux/auth-reducer";
 import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
+import {UserTerms} from "./pages/UserTerms/UserTerms";
+import {Landing} from "./pages/Landing/Landing";
 
 const App = ({ua, initialize, isInit}) => {
 	useEffect(() => {
@@ -30,12 +32,12 @@ const App = ({ua, initialize, isInit}) => {
 
 	if (ua.phone) {
 		return (
-			<>
-				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
+			<Switch>
+				<Route exact path="/" component={Landing}/>
 				<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
 				<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
-				<Route exact path="/login/3" component={() => <ThirdStep isDesktop={false} />}/>
+				<Route exact path="/login/3" component={() => <ThirdStep isDesktop={false}/>}/>
 				<Route path="/profile" component={() => <Profile_m isDesktop={false}/>}/>
 				<Route path="/work" component={() => <Work_m isDesktop={false}/>}/>
 				<Route path="/cabinet" component={Cabinet_m}/>
@@ -45,35 +47,39 @@ const App = ({ua, initialize, isInit}) => {
 				<Route path="/settings" component={Settings_m}/>
 				<Route exact path="/withdraw" component={WithdrawTypes_m}/>
 				<Route path="/withdraw/:type" component={Withdraw_m}/>
-			</>
+				<Route path="/user_terms" component={UserTerms}/>
+			</Switch>
 		);
 	} else {
 		return (
-			<div style={{
-				width: `${document.body.clientHeight * 0.47229219}px`,
-				margin: "0 auto",
-				height: "100%",
-				/* we need this for remove layout jumping when vertical scroll appears */
-				// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
-				/* but we have problems with drop up menu =(( */
-			}}>
-				<>
-					<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
-					<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
-					<Route exact path="/login/1" component={() => <FirstStep />}/>
-					<Route exact path="/login/2" component={() => <SecondStep />}/>
-					<Route exact path="/login/3" component={() => <ThirdStep />}/>
-					<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
-					<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
-					<Route path="/cabinet" component={Cabinet_m}/>
-					<Route path="/task_form" component={TaskForm_m}/>
-					<Route path="/refs" component={Refs_m}/>
-					<Route path="/ref/:refId" component={RefRedirect}/>
-					<Route path="/settings" component={Settings_m}/>
-					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
-					<Route path="/withdraw/:type" component={Withdraw_m}/>
-				</>
-			</div>
+			<Switch>
+				<Route exact path="/" component={Landing}/>
+				<div style={{
+					width: `${document.body.clientHeight * 0.47229219}px`,
+					margin: "0 auto",
+					height: "100%",
+					/* we need this for remove layout jumping when vertical scroll appears */
+					// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
+					/* but we have problems with drop up menu =(( */
+				}}>
+					<>
+						<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
+						<Route exact path="/login/1" component={() => <FirstStep/>}/>
+						<Route exact path="/login/2" component={() => <SecondStep/>}/>
+						<Route exact path="/login/3" component={() => <ThirdStep/>}/>
+						<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
+						<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
+						<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
+						<Route path="/task_form" component={TaskForm_m}/>
+						<Route path="/refs" component={Refs_m}/>
+						<Route path="/ref/:refId" component={RefRedirect}/>
+						<Route path="/settings" component={Settings_m}/>
+						<Route exact path="/withdraw" component={WithdrawTypes_m}/>
+						<Route path="/withdraw/:type" component={Withdraw_m}/>
+						<Route path="/user_terms" component={UserTerms}/>
+					</>
+				</div>
+			</Switch>
 		);
 	}
 }

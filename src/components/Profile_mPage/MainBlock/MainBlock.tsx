@@ -1,14 +1,14 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Info from "./Info/Info";
 import Balance from "./Balance/Balance";
 import Stats from "./Stats/Stats";
 import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import classNames from "classnames";
-import {disablePageScroll, enablePageScroll} from 'scroll-lock';
-import {Nullable} from "../../../redux/store";
+import {Nullable, RootStateType} from "../../../redux/store";
 import {BlogProfileDataType} from "../../../redux/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
+import {useSelector} from "react-redux";
 
 type PropsType = {
    isDesktop: boolean
@@ -22,15 +22,12 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
       if (isMenuVisible) setMenuVisible(false)
    }
 
-   useEffect(() => {
-      if (isMenuVisible) {
-         disablePageScroll()
-      } else {
-         enablePageScroll()
-      }
-   }, [isMenuVisible])
+   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
    if (!profileData) {
+      return <Preloader/>
+   }
+   if (isFetching) {
       return <Preloader/>
    }
 
@@ -45,8 +42,8 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
       valueUp,
       valueDown,
       rating,
-      tiktok,
-      type
+      holdUp,
+      holdDown,
    } = profileData
 
    return (
@@ -64,7 +61,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                login={login}
                name={name}
          />
-         <Balance valueDown={valueDown} valueUp={valueUp}/>
+         <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
          <Stats medianViews={medianViews} rate={rate} rating={rating}/>
          {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}
       </div>

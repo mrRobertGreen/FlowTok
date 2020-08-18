@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Nav from "./Nav/Nav";
-import List from "./List/List";
+import {List} from "./List/List";
 
 type PropsType = {}
 export type SectionNames = "new" | "wait" | "done"

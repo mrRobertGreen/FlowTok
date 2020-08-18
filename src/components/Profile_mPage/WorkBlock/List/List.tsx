@@ -3,10 +3,9 @@ import styles from "./styles.module.scss"
 import ListItem from "./ListItem/ListItem";
 import {SectionNames} from "../WorkBlock";
 import {RootStateType} from "../../../../redux/store";
-import {connect, ConnectedProps} from "react-redux";
-import {compose} from "redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router";
-import {doBlogTask, finishBlogTask, getBlogTasks, userActions} from "../../../../redux/user-reducer";
+import {BlogTaskType, doBlogTask, finishBlogTask, getBlogTasks} from "../../../../redux/user-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
 
 type PropsType = {
@@ -14,32 +13,59 @@ type PropsType = {
    setCurrentSection: (section: SectionNames) => void
 }
 
-const List: FC<PropsType & PropsFromRedux> = ({
+export const List: FC<PropsType> = ({
                                                  currentSection,
-                                                 tasks,
-                                                 getTasks,
-                                                 isAuth,
-                                                 doBlogTask,
-                                                 finishBlogTask,
                                                  setCurrentSection
                                               }) => {
-   useEffect(() => {
-      getTasks(currentSection)
-   }, [currentSection, getTasks])
+   const dispatch = useDispatch()
+   const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
+   const waitTasks = useSelector((state: RootStateType) => state.user.blogWaitTasks)
+   const doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
+   const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
+
+   useEffect(() => { // if current section is changed get necessary tasks
+      dispatch(getBlogTasks(currentSection))
+   }, [currentSection, dispatch])
 
    if (!isAuth) {
       return <Redirect to="/login/1"/>
    }
-   if (!tasks) {
+   if (currentSection === "new" && !newTasks) {
       return <Preloader/>
    }
-   if (tasks.length === 0) {
+   if (currentSection === "wait" && !waitTasks) {
+      return <Preloader/>
+   }
+   if (currentSection === "done" && !doneTasks) {
+      return <Preloader/>
+   }
+
+   if (newTasks && currentSection === "new" && newTasks.length === 0) {
       return <div className={styles.message}>Заданий пока нет...</div>
+   }
+   if (waitTasks && currentSection === "wait" && waitTasks.length === 0) {
+      return <div className={styles.message}>Заданий пока нет...</div>
+   }
+   if (doneTasks && currentSection === "done" && doneTasks.length === 0) {
+      return <div className={styles.message}>Заданий пока нет...</div>
+   }
+
+   const getTasks = () => {
+      if (currentSection === "new" && newTasks) {
+         return newTasks
+      }
+      if (currentSection === "wait" && waitTasks) {
+         return waitTasks
+      }
+      if (currentSection === "done" && doneTasks) {
+         return doneTasks
+      }
+      return [] as Array<BlogTaskType>
    }
 
    return (
       <div className={styles.wrapper}>
-         {tasks.map(task => (
+         {getTasks().map(task => (
             <ListItem
                key={task.id}
                id={task.id}
@@ -48,30 +74,11 @@ const List: FC<PropsType & PropsFromRedux> = ({
                rate={task.rate}
                link={task.link}
                currentSection={currentSection}
-               doBlogTask={doBlogTask}
-               finishBlogTask={finishBlogTask}
+               doBlogTask={(id: string) => dispatch(doBlogTask(id))}
+               finishBlogTask={(id: string, inputValue: string) => dispatch(finishBlogTask(id, inputValue))}
                setCurrentSection={setCurrentSection}
             />
          ))}
       </div>
    )
 }
-
-const mapStateToProps = (state: RootStateType) => ({
-   tasks: state.user.blogTasks,
-   isAuth: state.auth.isAuth
-})
-
-const mapDispatchToProps = {
-   setTasksData: userActions.setBlogTasks,
-   getTasks: getBlogTasks,
-   doBlogTask,
-   finishBlogTask
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-export default compose(
-   connector,
-)(List)

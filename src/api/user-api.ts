@@ -1,12 +1,12 @@
 import {BaseDataType, BaseResponseType, instance} from "./api";
-import {TaskStatusType, BlogTaskType, AdvTaskStatusType, AdvTaskType} from "../redux/user-reducer";
+import {BlogTaskStatusType, BlogTaskType, AdvTaskStatusType, AdvTaskType} from "../redux/user-reducer";
 import {AdvProfileDataType, BlogProfileDataType} from "../redux/user-reducer";
 
 export const userApi = {
    getUserData() {
       return instance.get<BaseResponseType<UserDataType>>("/users/user/profile").then(res => res.data)
    },
-   getBlogTasks(taskStatus: TaskStatusType) {
+   getBlogTasks(taskStatus: BlogTaskStatusType) {
       return instance.get<BaseResponseType<BlogTasksType>>(`/tasks/type/${taskStatus}`).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {

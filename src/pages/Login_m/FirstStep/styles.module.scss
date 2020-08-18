@@ -37,35 +37,13 @@
   width: 100%;
   margin: 15px;
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {
-//  .wrapper {
-//    font-size: 24px;
-//  }
-//}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) {
-//  .wrapper {
-//    font-size: 28px;
-//    .btn {
-//      margin: 25px;
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .wrapper {
-//    font-size: 40px;
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {
-//  .wrapper {
-//    font-size: 42px;
-//  }
-//}
+.text {
+  text-align: center;
+  width: 80%;
+  font-size: 12px;
+  margin-bottom: 40px;
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
+}
