@@ -20,6 +20,7 @@ import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
 import {UserTerms} from "./pages/UserTerms/UserTerms";
 import {Landing} from "./pages/Landing/Landing";
+import {TopupForm} from "./pages/Topup/Topup";
 
 const App = ({ua, initialize, isInit}) => {
 	useEffect(() => {
@@ -48,6 +49,7 @@ const App = ({ua, initialize, isInit}) => {
 				<Route exact path="/withdraw" component={WithdrawTypes_m}/>
 				<Route path="/withdraw/:type" component={Withdraw_m}/>
 				<Route path="/user_terms" component={UserTerms}/>
+				<Route path="/topup" component={TopupForm}/>
 			</Switch>
 		);
 	} else {
@@ -77,6 +79,7 @@ const App = ({ua, initialize, isInit}) => {
 						<Route exact path="/withdraw" component={WithdrawTypes_m}/>
 						<Route path="/withdraw/:type" component={Withdraw_m}/>
 						<Route path="/user_terms" component={UserTerms}/>
+						<Route path="/topup" component={TopupForm}/>
 					</>
 				</div>
 			</Switch>

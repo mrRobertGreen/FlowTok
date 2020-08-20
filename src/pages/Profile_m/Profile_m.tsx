@@ -4,8 +4,8 @@ import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
 import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
 import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getUserData, userActions} from "../../redux/user-reducer"
-import { compose } from 'redux'
+import {userActions} from "../../redux/user-reducer"
+import {compose} from 'redux'
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
 import {exit} from "../../redux/auth-reducer";
 

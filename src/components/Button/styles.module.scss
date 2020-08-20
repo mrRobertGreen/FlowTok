@@ -8,7 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 17px;
+
   img {
     width: 22px;
     height: 22px;
@@ -20,54 +21,57 @@
   color: rgba(42, 52, 50, 0.5);
   background-color: #EAF4F2;
 }
+
 .btn_grey {
   @extend .btn;
   color: white;
   background-color: #C5CAC9;
 }
+
 .btn_black {
   @extend .btn;
   color: white;
   background: black;
 }
+
 .btn_bright {
   @extend .btn;
   color: black;
   background: linear-gradient(45deg, #00f0ff, #00cf7b);
   font-weight: 600;
+  position: relative;
+  overflow: hidden;
 }
+
+.btn_bright:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  animation: move-light 8s infinite;
+}
+
+@keyframes move-light {
+  0% {
+    transform: translateX(-80em) skewX(-45deg)
+  }
+  100% {
+    transform: translateX(80em) skewX(-45deg)
+  }
+}
+
+
 .btn_tiktok {
   @extend .btn;
   color: white;
   background: black;
   font-weight: 600;
+
   img {
     width: 26px;
     height: 26px;
   }
 }
-
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) {
-//  .btn, .btn_light{
-//    border-radius: 20px;
-//    padding: 20px;
-//    font-size: 26px;
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .btn, .btn_light{
-//    border-radius: 30px;
-//    padding: 30px;
-//    font-size: 32px;
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {
-//
-//}

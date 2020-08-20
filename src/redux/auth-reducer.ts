@@ -96,7 +96,7 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
       }
 
       const advKey = "Helldlllooo"
-      const blogKey = "q12345"
+      const blogKey = "oo232o"
       const fakeReqBody = {
          auth: blogKey,
       }

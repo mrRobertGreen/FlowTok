@@ -5,6 +5,7 @@ import second from "../../media/images/2.png"
 import third from "../../media/images/3.png"
 import Button from "../../components/Button/Button";
 import {NavLink} from "react-router-dom";
+import * as JivoSite from "react-jivosite";
 
 export const Landing = () => {
    return (
@@ -17,6 +18,11 @@ export const Landing = () => {
                <NavLink to={"/login/1"}>
                   <Button>Начать зарабатывать</Button>
                </NavLink>
+               <div className={styles.text}>
+                  <p>Нажимая кнопку выше, вы подтвержадете, что соглашаетесь с <a target="_blank" rel="noopener noreferrer"
+                                                                                  href="/user_terms">Пользовательским
+                     соглашением</a></p>
+               </div>
             </div>
             <div className={styles.image}>
                <img src={first} alt=""/>
@@ -30,6 +36,11 @@ export const Landing = () => {
                <NavLink to={"/login/1"}>
                   <Button>Начать зарабатывать</Button>
                </NavLink>
+               <div className={styles.text}>
+                  <p>Нажимая кнопку выше, вы подтвержадете, что соглашаетесь с <a target="_blank" rel="noopener noreferrer"
+                                                                                  href="/user_terms">Пользовательским
+                     соглашением</a></p>
+               </div>
             </div>
             <div className={styles.image}>
                <img src={second} alt=""/>
@@ -43,10 +54,17 @@ export const Landing = () => {
                <NavLink to={"/login/1"}>
                   <Button>Начать зарабатывать</Button>
                </NavLink>
+               <div className={styles.text}>
+                  <p>Нажимая кнопку выше, вы подтвержадете, что соглашаетесь с <a target="_blank" rel="noopener noreferrer"
+                                                                                  href="/user_terms">Пользовательским
+                     соглашением</a></p>
+               </div>
             </div>
             <div className={styles.image}>
                <img src={third} alt=""/>
             </div>
+            <JivoSite.Widget id="IWfuuFCaXR" />
+
          </div>
       </div>
    )

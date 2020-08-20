@@ -1,6 +1,13 @@
 import {BaseDataType, BaseResponseType, instance} from "./api";
-import {BlogTaskStatusType, BlogTaskType, AdvTaskStatusType, AdvTaskType} from "../redux/user-reducer";
-import {AdvProfileDataType, BlogProfileDataType} from "../redux/user-reducer";
+import {
+   AdvProfileDataType,
+   AdvTaskStatusType,
+   AdvTaskType,
+   BlogProfileDataType,
+   BlogTaskStatusType,
+   BlogTaskType
+} from "../redux/user-reducer";
+import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 
 export const userApi = {
    getUserData() {
@@ -24,9 +31,10 @@ export const userApi = {
    checkBlogTask(taskId: string, videoLink: string) {
       return instance.put<BaseResponseType<ChangeBlogTaskDataType>>(`/tasks/${taskId}/check`, {videoLink}).then(res => res.data)
    },
+   withdraw(payload: WithdrawPayloadType) {
+      return instance.put<BaseResponseType<BaseDataType>>(`/pay/get`, payload).then(res => res.data)
+   },
 };
-
-
 
 export type UserDataType = AdvProfileDataType | BlogProfileDataType
 export type BlogTasksType = BaseDataType & Array<BlogTaskType>
@@ -47,4 +55,9 @@ export type RefDataType = {
 export type ChangeBlogTaskDataType = {
    message: string
    messageNotification?:  string
+}
+export type WithdrawPayloadType = {
+   money: number
+   type: WithdrawTypes
+   purse: string
 }

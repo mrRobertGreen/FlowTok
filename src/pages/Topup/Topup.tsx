@@ -1,63 +1,51 @@
-import styles from "./styles.module.scss";
+import React, {FC, useState} from "react";
 import {Field, Form, Formik, FormikValues} from "formik";
-import React, {FC, useEffect, useState} from "react";
-import Button from "../../../Button/Button";
+import styles from "../../components/Cabinet_mPage/CreateTask/CreateTaskForm/styles.module.scss";
+import Preloader from "../../components/common/Preloader/Preloader";
 import classNames from "classnames";
-import Slider from "./Slider/Slider";
-import {AdvCreateTaskType} from "../../../../api/user-api";
-import {Redirect} from "react-router";
-import Preloader from "../../../common/Preloader/Preloader";
-import {validateRequiredField} from "../../../../utils/validators";
+import {validateRequiredField} from "../../utils/validators";
+import Button from "../../components/Button/Button";
+import {sha256} from 'js-sha256';
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
+import {Redirect} from "react-router-dom";
 
-type CampaignType = {
-   title: string
-   info: string
-   link: string
-   value: string
-}
+type PropsType = {}
 
-type PropsType = {
-   createAdvTask: (task: AdvCreateTaskType) => void
-   isAdvTaskCreated: boolean
-   setIsAdvTaskCreated: (flag: boolean) => void
-   isFetching: boolean
-}
+export const TopupForm: FC<PropsType> = () => {
 
-export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, isFetching, setIsAdvTaskCreated}) => {
-   useEffect(() => {
-      setIsAdvTaskCreated(false)
-   }, [setIsAdvTaskCreated])
+   const callback = (amount: number) => {
+      const token = localStorage.getItem("token");
+      if (amount !== 0) {
+         let desc = "Пополнение";
+         let account = token
+         let sha = sha256(`${account}{up}${desc}{up}${amount}{up}d4ebb2dbaf23d5ef7089da19236d3986`);
+         window.location.href = `https://unitpay.ru/pay/310431-23184/card?sum=${amount}&account=${account}&desc=${desc}&signature=${sha}&код_системы=card`;
+         setIsSubmit(true)
 
-   const onSubmit = (values: CampaignType, {resetForm}: FormikValues) => {
-      const taskPayload = {
-         title: values.title,
-         info: values.info,
-         link: values.link,
-         value: +values.value,
-         quantity: 100,
-         quality: 0,
+      } else {
+         alert("Введите правильную сумму");
       }
-      createAdvTask(taskPayload)
-      if (isAdvTaskCreated) {
-         resetForm()
-      }
+   }
+
+   const onSubmit = async (values: { value: string }, {resetForm}: FormikValues) => {
+      await callback(+values.value)
+      resetForm()
    }
 
    type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
-   // const [sliderValue, setSliderValue] = useState(0);
+   const [isSubmit, setIsSubmit] = useState(false)
+   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
    return (
       <Formik
-         validate={(values: CampaignType) => {
+         validate={(values: { value: string }) => {
             if (+values.value !== activeBtn) {
                setActiveBtn(0)
             }
          }}
          initialValues={{
-            title: "",
-            info: "",
-            link: "",
             value: "",
          }}
          onSubmit={onSubmit}
@@ -66,25 +54,9 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
          {
             ({setFieldValue, errors, touched}) =>
                <Form className={styles.wrapper}>
-                  {isAdvTaskCreated && !isFetching && <Redirect to={"/cabinet"}/>}
                   {isFetching && <Preloader/>}
+                  {isSubmit && <Redirect to={"/cabinet"}/>}
                   <div>
-                     <Field className={classNames(styles.input, {[styles.error]: errors.title && touched.title})}
-                            name={"title"}
-                            placeholder={"Название кампании"}
-                            validate={validateRequiredField}
-                     />
-                     <Field placeholder={"Описание"}
-                            className={classNames(styles.textarea, {[styles.error]: errors.info && touched.info})}
-                            name={"info"}
-                            as={"textarea"}
-                            validate={validateRequiredField}
-                            rows={6}
-                     />
-                     <Field placeholder={"Вставьте ссылку на звук"}
-                            name={"link"}
-                            validate={validateRequiredField}
-                            className={classNames(styles.input, {[styles.error]: errors.link && touched.link})}/>
                      <div className={styles.label}>Выберите сумму</div>
                      <div className={styles.btnGroup}>
                         <div className={classNames(styles.btn, {
@@ -124,12 +96,10 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
                             validate={validateRequiredField}
                             className={classNames(styles.input, {[styles.error]: errors.value && touched.value})}
                      />
-                     {/*<Slider value={sliderValue} setValue={setSliderValue}/>*/}
                   </div>
-
                   <div className={styles.submitBtn}>
                      <Button type="submit">
-                        Создать кампанию
+                        Пополнить
                      </Button>
                   </div>
                </Form>}

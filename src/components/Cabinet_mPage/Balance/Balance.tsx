@@ -31,10 +31,12 @@ const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
                {value}₽
             </div>
             <div className={styles.btn}>
-               <Button onButtonClick={() => {
-               }} mod={"bright"}>
-                  Пополнить
-               </Button>
+               <NavLink to={"/topup"}>
+                  <Button onButtonClick={() => {
+                  }} mod={"bright"}>
+                     Пополнить
+                  </Button>
+               </NavLink>
             </div>
          </div>
          <NavLink to={"/task_form"}>

@@ -70,25 +70,25 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                      Вконтакте
                   </Button>
                </div>
-               <div className={styles.btn}>
-                  {!isAllowedFb && <Button onButtonClick={() => setIsAllowedFb(true)}>
-							Facebook
-						</Button>}
-                  {isAllowedFb && <FacebookLogin
-							autoLoad={true}
-							appId="323763088677207"
-							callback={onFbButtonClick}
-							onFailure={() => {
-                        alert("Что-то пошло не так... Попробуйте снова!")
-                        setIsAllowedFb(false)
-                     }}
-							render={(renderProps: any) => (
-                        <Button onButtonClick={renderProps.onClick}>
-                           Facebook
-                        </Button>
-                     )}
-						/>}
-               </div>
+               {/*<div className={styles.btn}>*/}
+               {/*   {!isAllowedFb && <Button onButtonClick={() => setIsAllowedFb(true)}>*/}
+					{/*		Facebook*/}
+					{/*	</Button>}*/}
+               {/*   {isAllowedFb && <FacebookLogin*/}
+					{/*		autoLoad={true}*/}
+					{/*		appId="323763088677207"*/}
+					{/*		callback={onFbButtonClick}*/}
+					{/*		onFailure={() => {*/}
+               {/*         alert("Что-то пошло не так... Попробуйте снова!")*/}
+               {/*         setIsAllowedFb(false)*/}
+               {/*      }}*/}
+					{/*		render={(renderProps: any) => (*/}
+               {/*         <Button onButtonClick={renderProps.onClick}>*/}
+               {/*            Facebook*/}
+               {/*         </Button>*/}
+               {/*      )}*/}
+					{/*	/>}*/}
+               {/*</div>*/}
                <div className={styles.btn}>
                   <GoogleLogin
                      clientId="224348627605-9d3vp1ee0pp05558495ird5njsbtindh.apps.googleusercontent.com"

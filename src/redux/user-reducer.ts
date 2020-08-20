@@ -1,5 +1,12 @@
 import {BaseThunkType, InferActionsType, Nullable} from "./store";
-import {AdvCreateTaskType, BlogTasksType, RefDataType, userApi, UserDataType} from "../api/user-api";
+import {
+   AdvCreateTaskType,
+   BlogTasksType,
+   RefDataType,
+   userApi,
+   UserDataType,
+   WithdrawPayloadType
+} from "../api/user-api";
 import {Dispatch} from "react";
 import {authActions, exit} from "./auth-reducer";
 import {detectUserRole} from "../utils/detectUserRole";
@@ -260,6 +267,20 @@ export const finishBlogTask = (taskId: string, videoLink: string): ThunkType => 
       } else {
          console.error("finishBlogTask error")
       }
+      checkMessageNotification(data)
+   }
+}
+export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
+   // send blogger's task to done section
+   return async (dispatch) => {
+      dispatch(appActions.toggleIsFetching(true))
+      const data = await userApi.withdraw(payload)
+      if (data.success) {
+         alert("Операция успешно завершена")
+      } else {
+         console.error("finishBlogTask error")
+      }
+      dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data)
    }
 }
