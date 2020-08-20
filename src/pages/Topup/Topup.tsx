@@ -22,7 +22,6 @@ export const TopupForm: FC<PropsType> = () => {
          let sha = sha256(`${account}{up}${desc}{up}${amount}{up}d4ebb2dbaf23d5ef7089da19236d3986`);
          window.location.href = `https://unitpay.ru/pay/310431-23184/card?sum=${amount}&account=${account}&desc=${desc}&signature=${sha}&код_системы=card`;
          setIsSubmit(true)
-
       } else {
          alert("Введите правильную сумму");
       }
