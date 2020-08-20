@@ -3,8 +3,6 @@ import styles from "./styles.module.scss"
 import classNames from "classnames";
 import {SectionNames} from "../WorkBlock";
 import {connect, ConnectedProps} from "react-redux";
-import {doBlogTask, finishBlogTask, getBlogTasks, userActions} from "../../../../redux/user-reducer";
-import {RootStateType} from "../../../../redux/store";
 
 type PropsType = {
    currentSection: SectionNames

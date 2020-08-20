@@ -6,8 +6,10 @@ import third from "../../media/images/3.png"
 import Button from "../../components/Button/Button";
 import {NavLink} from "react-router-dom";
 import * as JivoSite from "react-jivosite";
+import { compose } from "redux";
+import {withCabinetRedirect, withProfileRedirect} from "../../hocs/hocs";
 
-export const Landing = () => {
+const Landing = () => {
    return (
       <div className={styles.wrapper}>
          <div className={styles.block}>
@@ -69,3 +71,8 @@ export const Landing = () => {
       </div>
    )
 }
+
+export default compose(
+   withCabinetRedirect,
+   withProfileRedirect
+)(Landing)

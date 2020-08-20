@@ -29,7 +29,7 @@ const Button: FC<PropsType> = ({
             {[styles.btn_tiktok]: mod === "tiktok"},
          )}
          onClick={onButtonClick}>
-         {mod === "tiktok" && <img src={tikTokIcon} alt=""/>}
+         {mod === "tiktok" && "Перейти в TikTok"}
          {mod === "done" && <img src={doneIcon} alt=""/>}
          {children}
       </button>

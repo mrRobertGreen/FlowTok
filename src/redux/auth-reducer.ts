@@ -3,6 +3,7 @@ import {authApi, AuthMeReqDataType} from "../api/auth-api";
 import {getUserData, userActions} from "./user-reducer";
 import {checkMessageNotification} from "../utils/checkMessageNotification";
 import {appActions, initialize} from "./app-reducer";
+import {tikTokUrlParser} from "../utils/tikTokUrlParser";
 
 const initialState = {
    isNew: false,
@@ -96,7 +97,7 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
       }
 
       const advKey = "Helldlllooo"
-      const blogKey = "oo232o"
+      const blogKey = "1"
       const fakeReqBody = {
          auth: blogKey,
       }
@@ -155,7 +156,8 @@ export const setTikTok = (tikTokUrl: string): ThunkType => {
    return async (dispatch) => {
       // send blogger's tiktok account link to api
       dispatch(appActions.toggleIsFetching(true))
-      const data = await authApi.setTikTokProfile(tikTokUrl)
+
+      const data = await authApi.setTikTokProfile(tikTokUrlParser(tikTokUrl))
       if (data.success) {
          await dispatch(getUserData())
       } else {

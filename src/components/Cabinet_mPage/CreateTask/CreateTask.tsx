@@ -1,4 +1,4 @@
-import React, {ComponentType, FC} from "react";
+import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import backArrowIcon from "../../../media/icons/back_arrow_icon.svg"
 import {CreateTaskForm} from "./CreateTaskForm/CreateTaskForm";

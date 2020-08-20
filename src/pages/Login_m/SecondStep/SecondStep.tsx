@@ -42,15 +42,15 @@ const SecondStep: FC<PropsType & PropsFromRedux> = ({
                Войти как
             </div>
             <div className={styles.cards}>
-               <div
-                  className={styles.cards__item}
-                  style={{background: `url(${advertiserBg}) 0 0/100% 100% no-repeat`}}
-                  onClick={onClickAdvertiser}
-               >
-                  <div className={styles.cards__label}>
-                     Рекламодатель
-                  </div>
-               </div>
+               {/*<div*/}
+               {/*   className={styles.cards__item}*/}
+               {/*   style={{background: `url(${advertiserBg}) 0 0/100% 100% no-repeat`}}*/}
+               {/*   onClick={onClickAdvertiser}*/}
+               {/*>*/}
+               {/*   <div className={styles.cards__label}>*/}
+               {/*      Рекламодатель*/}
+               {/*   </div>*/}
+               {/*</div>*/}
                <div
                   className={styles.cards__item}
                   style={{background: `url(${bloggerBg}) 0 0/100% 100% no-repeat`}}

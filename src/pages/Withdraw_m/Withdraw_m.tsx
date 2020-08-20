@@ -12,6 +12,7 @@ import Input from "../../components/Input/Input";
 import {withdraw} from "../../redux/user-reducer";
 import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
+import {WithdrawForm} from "../../components/forms/WithdrawForm";
 
 type PropsType = {}
 
@@ -108,6 +109,7 @@ const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
                   Заказать выплату
                </Button>
             </div>
+            {/*<WithdrawForm type={type}/>*/}
          </div>
       </Page_m>
    )

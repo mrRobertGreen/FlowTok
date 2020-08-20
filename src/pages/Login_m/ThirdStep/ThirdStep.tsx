@@ -13,9 +13,10 @@ import Preloader from "../../../components/common/Preloader/Preloader";
 import {strictEqual} from "assert";
 
 type PropsType = {
+   isDesktop: boolean
 }
 
-const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetching}) => {
+const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetching, isDesktop}) => {
    const [inputValue, setInputValue] = useState("")
 
    if (!localStorage.getItem("token")) { // if there isn't token go to the 1st step
@@ -53,7 +54,7 @@ const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetch
                      onChangeValue={onChangeValue}
                   />
                </div>
-               <a href="https://www.tiktok.com/ru/" target="_blank" rel="noopener noreferrer">
+               <a href={isDesktop ? "https://www.tiktok.com/ru/" : "tiktok://"} target="_blank" rel="noopener noreferrer">
                   <div className={styles.btn}>
                      <Button mod="tiktok"/>
                   </div>
@@ -61,8 +62,8 @@ const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetch
             </div>
             <div className={styles.btn}>
                <Button
-                  mod={parseStringTikTok(inputValue) ? undefined : "grey"}
-                  disabled={!parseStringTikTok(inputValue)}
+                  mod={!!inputValue.trim() ? undefined : "grey"}
+                  disabled={!inputValue.trim()}
                   onButtonClick={onButtonClick}
                >
                   Продолжить</Button>

@@ -19,7 +19,7 @@ import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
 import {UserTerms} from "./pages/UserTerms/UserTerms";
-import {Landing} from "./pages/Landing/Landing";
+import Landing from "./pages/Landing/Landing";
 import {TopupForm} from "./pages/Topup/Topup";
 
 const App = ({ua, initialize, isInit}) => {
@@ -68,7 +68,7 @@ const App = ({ua, initialize, isInit}) => {
 						<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
 						<Route exact path="/login/1" component={() => <FirstStep/>}/>
 						<Route exact path="/login/2" component={() => <SecondStep/>}/>
-						<Route exact path="/login/3" component={() => <ThirdStep/>}/>
+						<Route exact path="/login/3" component={() => <ThirdStep isDesktop={true}/>}/>
 						<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
 						<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
 						<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
