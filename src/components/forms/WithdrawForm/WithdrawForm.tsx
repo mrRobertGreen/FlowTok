@@ -1,13 +1,13 @@
 import React, {FC, FormEvent, useState} from "react";
-import {Field, FieldProps, Form, Formik, FormikProps, FormikValues} from "formik";
-import styles from "../Cabinet_mPage/CreateTask/CreateTaskForm/styles.module.scss";
+import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
+import styles from "./styles.module.scss";
 import classNames from "classnames";
-import {validateRequiredField} from "../../utils/validators";
-import Button from "../Button/Button";
-import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
+import {validateRequiredField, createWithdrawAmountValidator} from "../../../utils/validators";
+import Button from "../../Button/Button";
+import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import MaskedInput from 'react-text-mask'
-import {WithdrawPayloadType} from "../../api/user-api";
-import {withdraw} from "../../redux/user-reducer";
+import {WithdrawPayloadType} from "../../../api/user-api";
+import {withdraw} from "../../../redux/user-reducer";
 import {useDispatch} from "react-redux";
 
 
@@ -15,15 +15,16 @@ type PropsType = {
    withdrawType: WithdrawTypes
    onChange: (e: FormEvent<HTMLInputElement>) => void
    className: string
+   id: string
 }
 
-const InputWithMask: FC<PropsType> = ({withdrawType, onChange, className, ...rest}) => {
-   debugger
+const InputWithMask: FC<PropsType> = ({withdrawType, onChange, className, id}) => {
    return <MaskedInput
       mask={withdrawTypes[withdrawType].mask as Array<RegExp | string>}
       placeholder={withdrawTypes[withdrawType].placeholder as string}
       className={className}
       onChange={onChange}
+      id={id}
    />
 }
 
@@ -51,6 +52,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
 
    type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
+   const amountValidator = createWithdrawAmountValidator(type)
 
    return (
       <Formik
@@ -67,8 +69,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
          className={styles.formik}
       >
          {
-            ({setFieldValue, errors, touched, handleChange,}) =>
-
+            ({setFieldValue, errors, touched}) =>
                <Form className={styles.wrapper}>
                   <div>
                      <div className={styles.label}>
@@ -76,13 +77,15 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
                      </div>
                      <Field name={"wallet"}
                             validate={validateRequiredField}
-                            render={(props: FieldProps) => <InputWithMask
-                               {...props}
-                               onChange={handleChange}
+                            render={({field}: FieldProps) => <InputWithMask
+                               {...field}
+                               onChange={(e) => setFieldValue("wallet", e.currentTarget.value)}
+                               id={"wallet"}
                                withdrawType={type}
                                className={classNames(styles.input, {[styles.error]: errors.wallet && touched.wallet})}
                             />}
                      />
+                     <div className={styles.subLabel}>Выберите сумму</div>
                      <div className={styles.btnGroup}>
                         <div className={classNames(styles.btn, {
                            [styles.activeBtn]: activeBtn === 100,
@@ -118,7 +121,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
                      <Field name={"amount"}
                             placeholder={"Ввести свою сумму"}
                             type={"number"}
-                            validate={validateRequiredField}
+                            validate={amountValidator}
                             className={classNames(styles.input, {[styles.error]: errors.amount && touched.amount})}
                      />
                   </div>

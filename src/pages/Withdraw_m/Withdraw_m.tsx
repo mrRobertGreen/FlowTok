@@ -12,7 +12,7 @@ import Input from "../../components/Input/Input";
 import {withdraw} from "../../redux/user-reducer";
 import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
-import {WithdrawForm} from "../../components/forms/WithdrawForm";
+import {WithdrawForm} from "../../components/forms/WithdrawForm/WithdrawForm";
 
 type PropsType = {}
 
@@ -87,29 +87,29 @@ const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
    return (
       <Page_m>
          <div className={styles.container}>
-            <div className={styles.blockTop}>
-               <div className={styles.blockTop__header}>
-                  {withdrawTypes[type].label}
-               </div>
-               <div className={styles.blockTop__input}>
-                  <MaskedInput
-                     mask={withdrawTypes[type].mask as Array<RegExp | string>}
-                     onChange={onChangeInputValue}
-                     value={inputValue}
-                     placeholder={withdrawTypes[type].placeholder as string}
-                     className={styles.input}
-                  />
-                  <div>
-                     <Input type={"number"} value={value} onChangeValue={onChangeValue} placeholder={"Введите сумму"}/>
-                  </div>
-               </div>
-            </div>
-            <div className={styles.btn}>
-               <Button onButtonClick={onWithdraw}>
-                  Заказать выплату
-               </Button>
-            </div>
-            {/*<WithdrawForm type={type}/>*/}
+            {/*<div className={styles.blockTop}>*/}
+            {/*   <div className={styles.blockTop__header}>*/}
+            {/*      {withdrawTypes[type].label}*/}
+            {/*   </div>*/}
+            {/*   <div className={styles.blockTop__input}>*/}
+            {/*      <MaskedInput*/}
+            {/*         mask={withdrawTypes[type].mask as Array<RegExp | string>}*/}
+            {/*         onChange={onChangeInputValue}*/}
+            {/*         value={inputValue}*/}
+            {/*         placeholder={withdrawTypes[type].placeholder as string}*/}
+            {/*         className={styles.input}*/}
+            {/*      />*/}
+            {/*      <div>*/}
+            {/*         <Input type={"number"} value={value} onChangeValue={onChangeValue} placeholder={"Введите сумму"}/>*/}
+            {/*      </div>*/}
+            {/*   </div>*/}
+            {/*</div>*/}
+            {/*<div className={styles.btn}>*/}
+            {/*   <Button onButtonClick={onWithdraw}>*/}
+            {/*      Заказать выплату*/}
+            {/*   </Button>*/}
+            {/*</div>*/}
+            <WithdrawForm type={type}/>
          </div>
       </Page_m>
    )

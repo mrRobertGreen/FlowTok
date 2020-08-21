@@ -6,7 +6,7 @@ export const checkMessageNotification = (data: BaseResponseType<BaseDataType>) =
       alert(data.error.messageNotification)
       if (data.error && data.error.telegram) {
          // eslint-disable-next-line no-restricted-globals
-         let confirmResult = confirm("Подключить Telegram бота чтобы получать новые задания?")
+         let confirmResult = confirm("Подключить Telegram бота, чтобы получать новые задания?")
          if (confirmResult) {
             window.location.href = data.error.telegram
          }
@@ -14,7 +14,7 @@ export const checkMessageNotification = (data: BaseResponseType<BaseDataType>) =
    } else {
       if (data.error && data.error.telegram) {
          // eslint-disable-next-line no-restricted-globals
-         let confirmResult = confirm("Подключить Telegram бота чтобы получать новые задания?")
+         let confirmResult = confirm("Подключить Telegram бота, чтобы получать новые задания?")
          if (confirmResult) {
             window.location.href = data.error.telegram
          }
@@ -24,7 +24,7 @@ export const checkMessageNotification = (data: BaseResponseType<BaseDataType>) =
       alert(data.data.messageNotification)
       if (data.data && data.data.telegram) {
          // eslint-disable-next-line no-restricted-globals
-         let confirmResult = confirm("Подключить Telegram бота чтобы получать новые задания?")
+         let confirmResult = confirm("Подключить Telegram бота, чтобы получать новые задания?")
          if (confirmResult) {
             window.location.href = data.data.telegram
          }
@@ -32,7 +32,7 @@ export const checkMessageNotification = (data: BaseResponseType<BaseDataType>) =
    } else {
       if (data.data && data.data.telegram) {
          // eslint-disable-next-line no-restricted-globals
-         let confirmResult = confirm("Подключить Telegram бота чтобы получать новые задания?")
+         let confirmResult = confirm("Подключить Telegram бота, чтобы получать новые задания?")
          if (confirmResult) {
             window.location.href = data.data.telegram
          }
