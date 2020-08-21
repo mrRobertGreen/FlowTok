@@ -67,7 +67,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
             <div className={styles.buttons}>
                <div className={styles.btn}>
                   <Button onButtonClick={onVkButtonClick}>
-                     Вконтакте
+                     ВКонтакте
                   </Button>
                </div>
                {/*<div className={styles.btn}>*/}
@@ -98,7 +98,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                      }}
                      render={renderProps => (
                         <Button onButtonClick={renderProps.onClick} disabled={renderProps.disabled}>
-                           Gmail
+                           Google
                         </Button>
                      )}
                   />

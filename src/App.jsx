@@ -34,7 +34,7 @@ const App = ({ua, initialize, isInit}) => {
 	if (ua.phone) {
 		return (
 			<Switch>
-				<Route exact path="/" component={Landing}/>
+				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
 				<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
@@ -55,7 +55,7 @@ const App = ({ua, initialize, isInit}) => {
 	} else {
 		return (
 			<Switch>
-				<Route exact path="/" component={Landing}/>
+				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				<div style={{
 					width: `${document.body.clientHeight * 0.47229219}px`,
 					margin: "0 auto",

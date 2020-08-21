@@ -30,9 +30,11 @@ export type BaseResponseType<D> = {
 
 export type BaseDataType = {
    messageNotification?: string
+   telegram?: string
 }
 export type ErrorType = {
    message: string
    name?: string
    messageNotification?: string
+   telegram?: string
 }
