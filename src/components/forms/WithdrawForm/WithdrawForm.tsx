@@ -124,6 +124,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
                             validate={amountValidator}
                             className={classNames(styles.input, {[styles.error]: errors.amount && touched.amount})}
                      />
+                     {touched.amount && <div className={styles.errorMsg}>{errors.amount}</div>}
                   </div>
                   <div className={styles.submitBtn}>
                      <Button type="submit">

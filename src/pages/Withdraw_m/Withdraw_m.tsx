@@ -60,55 +60,13 @@ const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
 
    //@ts-ignore
    const type = match.params.type as WithdrawTypes
-
-   const [inputValue, setInputValue] = useState("")
-   const [value, setValue] = useState("")
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
-
-   const onChangeInputValue = (e: React.FormEvent<HTMLInputElement>) => {
-      setInputValue(e.currentTarget.value)
-   }
-   const onChangeValue = (e: React.FormEvent<HTMLInputElement>) => {
-      setValue(e.currentTarget.value)
-   }
-   const dispatch = useDispatch()
-
-   const onWithdraw = () => {
-      const payload: WithdrawPayloadType = {
-         money: +value,
-         purse: inputValue,
-         type: type,
-      }
-      dispatch(withdraw(payload))
-   }
 
    if (isFetching) return <Preloader/>
 
    return (
       <Page_m>
          <div className={styles.container}>
-            {/*<div className={styles.blockTop}>*/}
-            {/*   <div className={styles.blockTop__header}>*/}
-            {/*      {withdrawTypes[type].label}*/}
-            {/*   </div>*/}
-            {/*   <div className={styles.blockTop__input}>*/}
-            {/*      <MaskedInput*/}
-            {/*         mask={withdrawTypes[type].mask as Array<RegExp | string>}*/}
-            {/*         onChange={onChangeInputValue}*/}
-            {/*         value={inputValue}*/}
-            {/*         placeholder={withdrawTypes[type].placeholder as string}*/}
-            {/*         className={styles.input}*/}
-            {/*      />*/}
-            {/*      <div>*/}
-            {/*         <Input type={"number"} value={value} onChangeValue={onChangeValue} placeholder={"Введите сумму"}/>*/}
-            {/*      </div>*/}
-            {/*   </div>*/}
-            {/*</div>*/}
-            {/*<div className={styles.btn}>*/}
-            {/*   <Button onButtonClick={onWithdraw}>*/}
-            {/*      Заказать выплату*/}
-            {/*   </Button>*/}
-            {/*</div>*/}
             <WithdrawForm type={type}/>
          </div>
       </Page_m>

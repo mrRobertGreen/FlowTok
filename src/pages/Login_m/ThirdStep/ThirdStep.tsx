@@ -2,7 +2,6 @@ import React, {FC, useState} from 'react';
 import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import Input from "../../../components/Input/Input";
-import {parseStringTikTok} from "../../../utils/parseString";
 import {setTikTok} from "../../../redux/auth-reducer";
 import {RootStateType} from "../../../redux/store";
 import {connect, ConnectedProps} from "react-redux";
@@ -10,7 +9,6 @@ import {compose} from "redux";
 import {withCabinetRedirect, withProfileRedirect} from "../../../hocs/hocs";
 import {Redirect} from "react-router";
 import Preloader from "../../../components/common/Preloader/Preloader";
-import {strictEqual} from "assert";
 
 type PropsType = {
    isDesktop: boolean

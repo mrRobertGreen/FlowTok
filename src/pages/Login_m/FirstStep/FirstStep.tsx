@@ -33,7 +33,6 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
       }
    }, [history.location.search, goToSecondLoginStep]) // depends on history.location.search
 
-
    if (firstSuccess) { // if 1st step is finished successfully go to the 2nd step
       return <Redirect to={"/login/2"}/>
    }

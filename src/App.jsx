@@ -19,7 +19,6 @@ import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
 import {UserTerms} from "./pages/UserTerms/UserTerms";
-import Landing from "./pages/Landing/Landing";
 import {TopupForm} from "./pages/Topup/Topup";
 
 const App = ({ua, initialize, isInit}) => {
@@ -35,10 +34,10 @@ const App = ({ua, initialize, isInit}) => {
 		return (
 			<Switch>
 				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
-				<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
 				<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
 				<Route exact path="/login/3" component={() => <ThirdStep isDesktop={false}/>}/>
+				<Route path="/login" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route path="/profile" component={() => <Profile_m isDesktop={false}/>}/>
 				<Route path="/work" component={() => <Work_m isDesktop={false}/>}/>
 				<Route path="/cabinet" component={Cabinet_m}/>
@@ -55,7 +54,6 @@ const App = ({ua, initialize, isInit}) => {
 	} else {
 		return (
 			<Switch>
-				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				<div style={{
 					width: `${document.body.clientHeight * 0.47229219}px`,
 					margin: "0 auto",
@@ -64,23 +62,22 @@ const App = ({ua, initialize, isInit}) => {
 					// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
 					/* but we have problems with drop up menu =(( */
 				}}>
-					<>
-						<Route exact path="/login" component={() => <Redirect to={"/login/1"}/>}/>
-						<Route exact path="/login/1" component={() => <FirstStep/>}/>
-						<Route exact path="/login/2" component={() => <SecondStep/>}/>
-						<Route exact path="/login/3" component={() => <ThirdStep isDesktop={true}/>}/>
-						<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
-						<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
-						<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
-						<Route path="/task_form" component={TaskForm_m}/>
-						<Route path="/refs" component={Refs_m}/>
-						<Route path="/ref/:refId" component={RefRedirect}/>
-						<Route path="/settings" component={Settings_m}/>
-						<Route exact path="/withdraw" component={WithdrawTypes_m}/>
-						<Route path="/withdraw/:type" component={Withdraw_m}/>
-						<Route path="/user_terms" component={UserTerms}/>
-						<Route path="/topup" component={TopupForm}/>
-					</>
+					<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
+					<Route exact path="/login/1" component={() => <FirstStep/>}/>
+					<Route exact path="/login/2" component={() => <SecondStep/>}/>
+					<Route exact path="/login/3" component={() => <ThirdStep isDesktop={true}/>}/>
+					<Route path="/login" component={() => <Redirect to={"/login/1"}/>}/>
+					<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
+					<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
+					<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
+					<Route path="/task_form" component={TaskForm_m}/>
+					<Route path="/refs" component={Refs_m}/>
+					<Route path="/ref/:refId" component={RefRedirect}/>
+					<Route path="/settings" component={Settings_m}/>
+					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
+					<Route path="/withdraw/:type" component={Withdraw_m}/>
+					<Route path="/user_terms" component={UserTerms}/>
+					<Route path="/topup" component={TopupForm}/>
 				</div>
 			</Switch>
 		);

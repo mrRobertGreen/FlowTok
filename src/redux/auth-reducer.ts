@@ -25,11 +25,11 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
             ...state,
             isAuth: action.isAuth
          }
-      case "auth/SET_LOGIN_STEP":
-         return {
-            ...state,
-            loginStep: action.loginStep
-         }
+      // case "auth/SET_LOGIN_STEP":
+      //    return {
+      //       ...state,
+      //       loginStep: action.loginStep
+      //    }
       case "auth/SET_USER_ROLE":
          return {
             ...state,
@@ -64,7 +64,7 @@ export default authReducer
 export const authActions = {
    setIsNew: (isNew: boolean) => ({type: "auth/SET_IS_NEW", isNew} as const),
    setIsAuth: (isAuth: boolean) => ({type: "auth/SET_IS_AUTH", isAuth} as const),
-   setLoginStep: (loginStep: LoginStepType) => ({type: "auth/SET_LOGIN_STEP", loginStep} as const),
+   // setLoginStep: (loginStep: LoginStepType) => ({type: "auth/SET_LOGIN_STEP", loginStep} as const),
    setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
    setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
    setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),
@@ -118,9 +118,11 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
          } else {
             // if user is new continue registration
             dispatch(authActions.setFirstSuccess(true))
+            // it's temporary, because we turn off advertiser
+            await dispatch(goToThirdLoginStep("Blogger"))
          }
       } else {
-         console.error("goToSecondLoginStep error")
+         await dispatch(exit())
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data)
@@ -140,7 +142,6 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
             dispatch(authActions.setIsAuth(true))
          } else {
             await dispatch(exit())
-            console.error("setAdv error")
          }
          dispatch(appActions.toggleIsFetching(false))
          checkMessageNotification(data)
@@ -162,7 +163,6 @@ export const setTikTok = (tikTokUrl: string): ThunkType => {
          await dispatch(getUserData())
       } else {
          await dispatch(exit())
-         console.error("setTikTok error")
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data)
