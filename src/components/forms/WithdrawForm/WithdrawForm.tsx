@@ -9,6 +9,8 @@ import MaskedInput from 'react-text-mask'
 import {WithdrawPayloadType} from "../../../api/user-api";
 import {withdraw} from "../../../redux/user-reducer";
 import {useDispatch} from "react-redux";
+import Input from "../../Input/Input";
+import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
 
 
 type PropsType = {
@@ -28,7 +30,7 @@ const InputWithMask: FC<PropsType> = ({withdrawType, onChange, className, id}) =
    />
 }
 
-type WithdrawFormValuesType = {
+export type WithdrawFormValuesType = {
    wallet: string
    amount: string
 }
@@ -37,7 +39,7 @@ type WithdrawFormPropsType = {
    type: WithdrawTypes
 }
 
-export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
+export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
    const dispatch = useDispatch()
 
    const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
@@ -63,13 +65,13 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
          }}
          initialValues={{
             wallet: "",
-            amount: ""
+            amount: "",
          }}
          onSubmit={onSubmit}
          className={styles.formik}
       >
          {
-            ({setFieldValue, errors, touched}) =>
+            ({setFieldValue, errors, touched, values}) =>
                <Form className={styles.wrapper}>
                   <div>
                      <div className={styles.label}>
@@ -85,39 +87,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type, }) => {
                                className={classNames(styles.input, {[styles.error]: errors.wallet && touched.wallet})}
                             />}
                      />
-                     <div className={styles.subLabel}>Выберите сумму</div>
-                     <div className={styles.btnGroup}>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 100,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(100)
-                                setFieldValue("amount", 100)
-                             }}
-                        >
-                           100₽
-                        </div>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 500,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(500)
-                                setFieldValue("amount", 500)
-                             }}
-                        >
-                           500₽
-                        </div>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 1000,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(1000)
-                                setFieldValue("amount", 1000)
-                             }}
-                        >
-                           1000₽
-                        </div>
-                     </div>
+                     <ChooseAmount setFieldValue={setFieldValue} amount={values.amount} field={"amount"}/>
                      <Field name={"amount"}
                             placeholder={"Ввести свою сумму"}
                             type={"number"}

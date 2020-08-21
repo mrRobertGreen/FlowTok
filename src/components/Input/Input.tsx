@@ -8,6 +8,7 @@ type PropsType = {
    placeholder?: string
    readOnly?: boolean
    withMask?: boolean
+   id?: string
 }
 
 const Input: FC<PropsType> = ({onChangeValue,
@@ -15,11 +16,13 @@ const Input: FC<PropsType> = ({onChangeValue,
                                  type,
                                  placeholder,
                                  readOnly,
-                                 withMask}) => {
+                                 withMask,
+                                 id}) => {
 
    return (
       <>
          {!withMask && <input
+            id={id}
 		      className={styles.input}
 		      placeholder={placeholder}
 		      onChange={onChangeValue}

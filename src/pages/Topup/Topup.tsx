@@ -9,6 +9,7 @@ import {sha256} from 'js-sha256';
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {Redirect} from "react-router-dom";
+import {ChooseAmount} from "../../components/forms/common/ChooseAmount/ChooseAmount";
 
 type PropsType = {}
 
@@ -51,44 +52,13 @@ export const TopupForm: FC<PropsType> = () => {
          className={styles.formik}
       >
          {
-            ({setFieldValue, errors, touched}) =>
+            ({setFieldValue, errors, touched, values}) =>
                <Form className={styles.wrapper}>
                   {isFetching && <Preloader/>}
                   {isSubmit && <Redirect to={"/cabinet"}/>}
                   <div>
-                     <div className={styles.label}>Выберите сумму</div>
-                     <div className={styles.btnGroup}>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 100,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(100)
-                                setFieldValue("value", 100)
-                             }}
-                        >
-                           100₽
-                        </div>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 500,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(500)
-                                setFieldValue("value", 500)
-                             }}
-                        >
-                           500₽
-                        </div>
-                        <div className={classNames(styles.btn, {
-                           [styles.activeBtn]: activeBtn === 1000,
-                        })}
-                             onClick={async () => {
-                                await setActiveBtn(1000)
-                                setFieldValue("value", 1000)
-                             }}
-                        >
-                           1000₽
-                        </div>
-                     </div>
+                     <ChooseAmount setFieldValue={setFieldValue} amount={values.value} field={"value"}/>
+
                      <Field name={"value"}
                             placeholder={"Ввести свою сумму"}
                             type={"number"}

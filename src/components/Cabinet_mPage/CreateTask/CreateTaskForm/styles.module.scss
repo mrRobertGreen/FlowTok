@@ -26,38 +26,6 @@
   @extend .input;
   resize:none
 }
-.label {
-  text-align: center;
-  margin: 0 0 20px;
-  font-weight: 600;
-}
-.btnGroup {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0 20px;
-  .btn {
-    border: 1px solid #c5e8e1;
-    padding: 10px;
-    background-color: #e6f9f5;
-    text-align: center;
-    width: 70px;
-    border-radius: 10px;
-    color: #b5c3c0;
-    font-size: 14px;
-  }
-  .activeBtn {
-    @extend .btn;
-    background-color: #00cf7b;
-    color: #394d39;
-  }
-  .disabledBtn {
-    @extend .btn;
-    color: white;
-    background-color: #C5CAC9;
-    border: none;
-  }
-}
 .submitBtn {
   margin: 0 0 10px;
 }
