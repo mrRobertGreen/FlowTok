@@ -21,8 +21,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 90%;
   .item {
-    width: 100px;
+    flex: 1 1 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,10 +39,6 @@
     border-right: none;
   }
   .item:nth-child(2) {
-    border-right: none;
-    border-left: none;
-  }
-  .item:nth-child(3) {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: none;
@@ -53,74 +50,4 @@
     border: 1px solid #67CE8C;
   }
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) {
-//  .wrapper {
-//    padding: 20px 60px;
-//    border-bottom: 2px solid rgba(0, 0, 0, 0.04);
-//  }
-//  .backBtn {
-//    width: 50px;
-//    height: 50px;
-//    left: 0;
-//  }
-//  .sections {
-//    .item {
-//      width: 115px;
-//      padding: 12px 12px;
-//      font-size: 14px;
-//      border: 2px solid #8D9593;
-//    }
-//    .item:nth-child(1) {
-//      border-top-left-radius: 17px;
-//      border-bottom-left-radius: 17px;
-//    }
-//    .item:nth-child(3) {
-//      border-top-right-radius: 17px;
-//      border-bottom-right-radius: 17px;
-//    }
-//    .active {
-//      border: 2px solid #67CE8C;
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .wrapper {
-//    padding: 30px 70px;
-//    border-bottom: 2px solid rgba(0, 0, 0, 0.04);
-//  }
-//  .backBtn {
-//    width: 60px;
-//    height: 60px;
-//    left: 0;
-//  }
-//  .sections {
-//    .item {
-//      padding: 16px 16px;
-//      font-size: 26px;
-//      border: 2px solid #8D9593;
-//    }
-//    .item:first-child {
-//      border-top-left-radius: 18px;
-//      border-bottom-left-radius: 18px;
-//    }
-//    .item:last-child {
-//      border-top-right-radius: 18px;
-//      border-bottom-right-radius: 18px;
-//    }
-//    .active {
-//      border: 2px solid #67CE8C;
-//    }
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {}
 

@@ -4,7 +4,7 @@ import Nav from "./Nav/Nav";
 import {List} from "./List/List";
 
 type PropsType = {}
-export type SectionNames = "new" | "wait" | "done"
+export type SectionNames = "new" | "done"
 
 const WorkBlock: FC<PropsType> = () => {
 

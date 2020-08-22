@@ -17,9 +17,6 @@ const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection}
    const onClickDoneSection = () => {
       setCurrentSection("done")
    }
-   const onClickWaitingSection = () => {
-      setCurrentSection("wait")
-   }
 
    return (
       <nav className={styles.wrapper}>
@@ -29,12 +26,6 @@ const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection}
                onClick={onClickNewSection}
             >
                <div>Активные</div>
-            </div>
-            <div
-               className={classNames(styles.item, {[styles.active]: currentSection === "wait"})}
-               onClick={onClickWaitingSection}
-            >
-               <div>Ожидают</div>
             </div>
             <div
                className={classNames(styles.item, {[styles.active]: currentSection === "done"})}

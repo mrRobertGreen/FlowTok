@@ -9,7 +9,6 @@ const initialState = {
    isNew: false,
    isAuth: false,
    role: "Nobody" as UserRolesType,
-   loginStep: 1 as LoginStepType,
    firstSuccess: false,
    secondSuccess: false,
 }
@@ -25,11 +24,6 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
             ...state,
             isAuth: action.isAuth
          }
-      // case "auth/SET_LOGIN_STEP":
-      //    return {
-      //       ...state,
-      //       loginStep: action.loginStep
-      //    }
       case "auth/SET_USER_ROLE":
          return {
             ...state,
@@ -51,7 +45,6 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
             role: "Nobody",
             secondSuccess: false,
             firstSuccess: false,
-            loginStep: 1,
             isAuth: false,
             isNew: false,
          }
@@ -64,7 +57,6 @@ export default authReducer
 export const authActions = {
    setIsNew: (isNew: boolean) => ({type: "auth/SET_IS_NEW", isNew} as const),
    setIsAuth: (isAuth: boolean) => ({type: "auth/SET_IS_AUTH", isAuth} as const),
-   // setLoginStep: (loginStep: LoginStepType) => ({type: "auth/SET_LOGIN_STEP", loginStep} as const),
    setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
    setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
    setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),

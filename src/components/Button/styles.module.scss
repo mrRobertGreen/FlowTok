@@ -34,6 +34,12 @@
   background: black;
 }
 
+.btn_red {
+  @extend .btn;
+  color: white;
+  background: #CE6767;
+}
+
 .btn_bright {
   @extend .btn;
   color: black;

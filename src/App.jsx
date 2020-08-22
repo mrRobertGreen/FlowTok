@@ -20,6 +20,7 @@ import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
 import {UserTerms} from "./pages/UserTerms/UserTerms";
 import {TopupForm} from "./pages/Topup/Topup";
+import {Task_m} from "./pages/Task_m/Task_m";
 
 const App = ({ua, initialize, isInit}) => {
 	useEffect(() => {
@@ -33,7 +34,6 @@ const App = ({ua, initialize, isInit}) => {
 	if (ua.phone) {
 		return (
 			<Switch>
-				<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
 				<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
 				<Route exact path="/login/3" component={() => <ThirdStep isDesktop={false}/>}/>
@@ -49,20 +49,21 @@ const App = ({ua, initialize, isInit}) => {
 				<Route path="/withdraw/:type" component={Withdraw_m}/>
 				<Route path="/user_terms" component={UserTerms}/>
 				<Route path="/topup" component={TopupForm}/>
+				<Route path="/task" component={Task_m}/>
+				<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
 			</Switch>
 		);
 	} else {
 		return (
-			<Switch>
-				<div style={{
-					width: `${document.body.clientHeight * 0.47229219}px`,
-					margin: "0 auto",
-					height: "100%",
-					/* we need this for remove layout jumping when vertical scroll appears */
-					// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
-					/* but we have problems with drop up menu =(( */
-				}}>
-					<Route exact path="/" component={() => <Redirect to={"/login/1"}/>}/>
+			<div style={{
+				width: `${document.body.clientHeight * 0.47229219}px`,
+				margin: "0 auto",
+				height: "100%",
+				/* we need this for remove layout jumping when vertical scroll appears */
+				// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
+				/* but we have problems with drop up menu =(( */
+			}}>
+				<Switch>
 					<Route exact path="/login/1" component={() => <FirstStep/>}/>
 					<Route exact path="/login/2" component={() => <SecondStep/>}/>
 					<Route exact path="/login/3" component={() => <ThirdStep isDesktop={true}/>}/>
@@ -78,8 +79,10 @@ const App = ({ua, initialize, isInit}) => {
 					<Route path="/withdraw/:type" component={Withdraw_m}/>
 					<Route path="/user_terms" component={UserTerms}/>
 					<Route path="/topup" component={TopupForm}/>
-				</div>
-			</Switch>
+					<Route path="/task" component={Task_m}/>
+					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
+				</Switch>
+			</div>
 		);
 	}
 }

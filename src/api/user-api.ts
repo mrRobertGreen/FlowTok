@@ -28,8 +28,11 @@ export const userApi = {
    doBlogTask(taskId: string) {
       return instance.put<BaseResponseType<ChangeBlogTaskDataType>>(`/tasks/${taskId}/wait`).then(res => res.data)
    },
-   checkBlogTask(taskId: string, videoLink: string) {
-      return instance.put<BaseResponseType<ChangeBlogTaskDataType>>(`/tasks/${taskId}/check`, {videoLink}).then(res => res.data)
+   cancelBlogTask(taskId: string) {
+      return instance.put<BaseResponseType<Array<BlogTaskType>>>(`/tasks/${taskId}/cancel`).then(res => res.data)
+   },
+   checkBlogTask(taskId: string) {
+      return instance.put<BaseResponseType<ChangeBlogTaskDataType>>(`/tasks/${taskId}/check`).then(res => res.data)
    },
    withdraw(payload: WithdrawPayloadType) {
       return instance.put<BaseResponseType<BaseDataType>>(`/pay/get`, payload).then(res => res.data)

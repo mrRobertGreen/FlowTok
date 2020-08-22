@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import styles from "./styles.module.scss"
 import WorkBlock from "../../components/Profile_mPage/WorkBlock/WorkBlock";
 import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
+import { compose } from 'redux';
+import {withTaskRedirect} from "../../hocs/hocs";
 
 type PropsType = {
    isDesktop: boolean
@@ -18,4 +20,6 @@ const Work_m: FC<PropsType> = ({isDesktop}) => {
 
 }
 
-export default Work_m
+export default compose(
+   withTaskRedirect
+)(Work_m)

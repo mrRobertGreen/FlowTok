@@ -3,13 +3,10 @@ import styles from "./styles.module.scss"
 import Button from "../../../../Button/Button";
 import {SectionNames} from "../../WorkBlock";
 import {BlogTaskType} from "../../../../../redux/user-reducer";
-import Input from "../../../../Input/Input";
 
 type PropsType = {
    currentSection: SectionNames
    doBlogTask: (id: string) => void
-   finishBlogTask: (id: string, link: string) => void
-   setCurrentSection: (section: SectionNames) => void
 } & BlogTaskType
 
 const ListItem: FC<PropsType> = ({
@@ -20,23 +17,10 @@ const ListItem: FC<PropsType> = ({
                                     link,
                                     currentSection,
                                     doBlogTask,
-                                    finishBlogTask,
-                                    setCurrentSection
                                  }) => {
 
    const doTask = () => {
       doBlogTask(id)
-      setCurrentSection("wait")
-   }
-
-   const finishTask = () => {
-      finishBlogTask(id, inputValue)
-      setInputValue("")
-   }
-
-   const [inputValue, setInputValue] = useState("")
-   const onChangeValue = (e: React.FormEvent<HTMLInputElement>) => {
-      setInputValue(e.currentTarget.value)
    }
 
    return (
@@ -69,30 +53,14 @@ const ListItem: FC<PropsType> = ({
          </div>
          <div className={styles.bottomBlock}>
             <div className={styles.mainBtn}>
-               {currentSection !== "wait" &&
 					<Button
 						disabled={currentSection === "done"}
 						mod={currentSection === "new" ? undefined : "grey"}
 						onButtonClick={currentSection === "new" ? doTask : undefined}>
                   {currentSection === "new" && "Выполнить"}
                   {currentSection === "done" && "Выполнено"}
-					</Button>}
-               {currentSection === "wait" &&
-					<Input
-						type={"text"}
-						value={inputValue}
-						placeholder={"Вставьте ссылку на видео"}
-						onChangeValue={onChangeValue}
-					/>}
-            </div>
-            {currentSection === "wait" &&
-				<div className={styles.doneBtn}>
-					<Button
-						mod={"done"}
-						onButtonClick={finishTask}>
 					</Button>
-				</div>
-            }
+            </div>
          </div>
 
       </div>

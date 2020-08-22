@@ -1,22 +1,46 @@
-.wrapper {
-  width: 100%;
-  padding: 16px;
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 18px;
   background-color: #fff;
-  margin: 0 0 5px 0;
 }
 .title {
+  width: 100%;
   font-weight: 500;
   font-size: 21px;
   margin: 0 0 10px 0;
 }
 .description {
   line-height: 1.2;
+  width: 100%;
   font-size: 15px;
   color: #8D9593;
   margin: 0 0 15px 0;
 }
-.bottomBlock {
-  position: relative;
+
+.instruction {
+  width: 100%;
+  padding: 25px 5px 15px;
+  .title {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .item {
+    font-size: 19px;
+    padding: 10px 0 0 ;
+    &:first-letter{
+      font-weight: 600;
+    }
+  }
+}
+.btnGroup {
+  width: 100%;
+}
+.btnItem {
+  width: 100%;
   display: flex;
   margin: 0 0 10px 0;
   .btn {
@@ -38,10 +62,4 @@
       font-size: 14px;
     }
   }
-}
-.mainBtn {
-  width: 100%;
-}
-.doneBtn {
-  margin: 0 0 0 7px;
 }

@@ -6,7 +6,7 @@ import {connect, ConnectedProps} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {userActions} from "../../redux/user-reducer"
 import {compose} from 'redux'
-import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
+import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {exit} from "../../redux/auth-reducer";
 
 type PropsType = {
@@ -42,6 +42,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 export default compose(
    connector,
-   withAuthRedirect,
+   withTaskRedirect,
    withCabinetRedirect,
+   withAuthRedirect,
 )(Profile_m)

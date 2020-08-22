@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import {compose} from "redux";
 import {withRouter} from "react-router";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
-import {withdrawTypes} from "../Withdraw_m/Withdraw_m";
+import {WithdrawTypes, withdrawTypes} from "../Withdraw_m/Withdraw_m";
 
 type PropsType = {}
 
@@ -20,7 +20,7 @@ const WithdrawTypes_m: FC<PropsType> = () => {
                <div className={styles.btn} key={idx}>
                   <NavLink to={`/withdraw/${key}`}>
                      <Button>
-                        {withdrawTypes[key].label}
+                        {withdrawTypes[key as WithdrawTypes].label}
                      </Button>
                   </NavLink>
                </div>

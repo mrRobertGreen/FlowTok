@@ -1,22 +1,17 @@
-import React, {ComponentType, FC, useState} from "react";
+import React, {ComponentType, FC} from "react";
 import {Page_m} from "../../components/Page/Page_m";
 import {RouteComponentProps, withRouter} from "react-router";
 import styles from "./styles.module.scss"
-import Button from "../../components/Button/Button";
-import MaskedInput from 'react-text-mask'
 import {compose} from "redux";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
-import {useDispatch, useSelector} from "react-redux";
-import {WithdrawPayloadType} from "../../api/user-api";
-import Input from "../../components/Input/Input";
-import {withdraw} from "../../redux/user-reducer";
+import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
 import {WithdrawForm} from "../../components/forms/WithdrawForm/WithdrawForm";
 
 type PropsType = {}
 
-export const withdrawTypes: { [key: string]: { [key: string]: string | Array<RegExp | string> } } = {
+export const withdrawTypes: { [key in WithdrawTypes]: { [key: string]: string | Array<RegExp | string> } } = {
    qiwi: {
       label: "Qiwi кошелек",
       placeholder: "Введите номер кошелька",

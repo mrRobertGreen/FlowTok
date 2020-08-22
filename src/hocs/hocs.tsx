@@ -1,7 +1,7 @@
 import * as React from "react";
 import {ComponentType, FC} from "react";
 import {Redirect} from "react-router";
-import {connect, ConnectedProps} from "react-redux";
+import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../redux/store";
 
 export function withAuthRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
@@ -21,6 +21,20 @@ export function withAuthRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Com
    type PropsFromRedux = ConnectedProps<typeof connector>
 
    return connector(withAuthRedirectComponent)
+
+}
+export function withTaskRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
+   const withTaskRedirectComponent:ComponentType = (props) => {
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const task = useSelector((state: RootStateType) => state.user.task)
+
+      if (task) {
+         return <Redirect to="/task"/>
+      }
+      return <WrappedComponent {...props as WCP}/>
+   }
+   return withTaskRedirectComponent
 
 }
 

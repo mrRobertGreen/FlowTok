@@ -6,7 +6,7 @@ import doneIcon from "../../media/icons/done_icon.svg"
 
 type PropsType = {
    onButtonClick?: () => void,
-   mod?: "bright" | "light" | "grey" | "tiktok" | "black" | "done" |undefined
+   mod?: "bright" | "light" | "grey" | "tiktok" | "black" | "done" | "red" | undefined
    disabled?: boolean
    type?: string
 }
@@ -27,6 +27,7 @@ const Button: FC<PropsType> = ({
             {[styles.btn_black]: mod === "black"},
             {[styles.btn_bright]: mod === "bright"},
             {[styles.btn_tiktok]: mod === "tiktok"},
+            {[styles.btn_red]: mod === "red"},
          )}
          onClick={onButtonClick}>
          {mod === "tiktok" && "Перейти в TikTok"}
