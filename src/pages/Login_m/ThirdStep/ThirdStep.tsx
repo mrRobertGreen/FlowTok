@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
-import Input from "../../../components/Input/Input";
+import {Input} from "../../../components/Input/Input";
 import {setTikTok} from "../../../redux/auth-reducer";
 import {RootStateType} from "../../../redux/store";
 import {connect, ConnectedProps} from "react-redux";
@@ -49,7 +49,7 @@ const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetch
                      type={"text"}
                      value={inputValue}
                      placeholder={"Вставьте ссылку на ваш аккаунт"}
-                     onChangeValue={onChangeValue}
+                     onChange={onChangeValue}
                   />
                </div>
                <a href={isDesktop ? "https://www.tiktok.com/ru/" : "tiktok://"} target="_blank" rel="noopener noreferrer">

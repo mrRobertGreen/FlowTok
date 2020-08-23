@@ -3,18 +3,18 @@ import {getUserData} from "./user-reducer";
 
 
 const initialState = {
-   isError: false,
    isFetching: false,
-   isInit: false
+   isInit: false,
+   notification: null as null | string,
 }
 export type InitialStateType = typeof initialState
 
 export default function appReducer(state = initialState, action: ActionsType): InitialStateType {
    switch (action.type) {
-      case "app/TOGGLE_IS_ERROR":
+      case "app/SET_NOTIFICATION":
          return {
             ...state,
-            isError: action.isError
+            notification: action.notification
          }
       case "app/TOGGLE_IS_FETCHING":
          return {
@@ -31,7 +31,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
             ...state,
             isFetching: false,
             isInit: false,
-            isError: false
+            notification: null,
          }
       default:
          return state
@@ -39,7 +39,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
 }
 
 export const appActions = {
-   toggleIsError: (isError: boolean) => ({type: "app/TOGGLE_IS_ERROR", isError} as const),
+   setNotification: (notification: string | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
    toggleIsFetching: (isFetching: boolean) => ({type: "app/TOGGLE_IS_FETCHING", isFetching} as const),
    toggleIsInit: (isInit: boolean) => ({type: "app/TOGGLE_IS_INTI", isInit} as const),
    clear: () => ({type: "app/CLEAR"} as const),

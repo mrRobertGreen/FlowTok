@@ -1,8 +1,11 @@
 import {BaseDataType, BaseResponseType} from "../api/api";
+import {appActions} from "../redux/app-reducer";
+import {Dispatch} from "react";
 
 export const checkMessageNotification = (data: BaseResponseType<BaseDataType>) => {
    // searches for and displays possible message notifications from the api
    if (data.error && data.error.messageNotification) {
+      // dispatch(appActions.setNotification(data.error.messageNotification))
       alert(data.error.messageNotification)
       if (data.error && data.error.telegram) {
          // eslint-disable-next-line no-restricted-globals

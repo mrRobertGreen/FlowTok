@@ -1,42 +1,70 @@
-import React, {FC} from 'react';
+import React, {FC, HTMLProps} from 'react';
 import styles from "./styles.module.scss"
+import classNames from "classnames";
+import {FormikErrors} from "formik";
+import MaskedInput, {MaskedInputProps} from "react-text-mask";
+import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
+
 
 type PropsType = {
-   onChangeValue?: (e: React.FormEvent<HTMLInputElement>) => void
-   value?: string
-   type: string
-   placeholder?: string
-   readOnly?: boolean
-   withMask?: boolean
-   id?: string
+   isError?: boolean
+   mod?: "blue"
+   errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
 }
 
-const Input: FC<PropsType> = ({onChangeValue,
-                                 value,
-                                 type,
-                                 placeholder,
-                                 readOnly,
-                                 withMask,
-                                 id}) => {
-
+export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
+                                                                      isError,
+                                                                      mod,
+                                                                      errorMessage,
+                                                                      ...rest
+                                                                   }) => {
    return (
-      <>
-         {!withMask && <input
-            id={id}
-		      className={styles.input}
-		      placeholder={placeholder}
-		      onChange={onChangeValue}
-		      value={value}
-		      type={type}
-		      readOnly={readOnly}
-	      />}
-         {withMask && <input
-		      className={styles.input}
-		      placeholder={placeholder}
-		      type={type}
-	      />}
-      </>
+      <div className={styles.wrapper}>
+         <input
+            {...rest}
+            className={classNames(styles.input, {
+               [styles.error]: isError,
+               [styles.blue]: mod === "blue"
+            })}
+         />
+         <div className={styles.errorMsg}
+              style={{visibility: `${isError ? "visible" : "hidden"}` as "hidden" | "visible"}}
+         >
+            {errorMessage ? errorMessage : "hidden"}
+         </div>
+      </div>
+
    )
 }
+type InputWithMaskPropsType = {
+   withdrawType: WithdrawTypes
+   mod?: "blue"
+   isError?: boolean
+   errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
+}
 
-export default Input
+export const InputWithMask: FC<InputWithMaskPropsType & MaskedInputProps> = ({
+                                                                                withdrawType,
+                                                                                mod,
+                                                                                isError,
+                                                                                errorMessage,
+                                                                                ...rest
+                                                                             }) => {
+   return (
+      <div className={styles.wrapper}>
+         <MaskedInput
+            mask={withdrawTypes[withdrawType].mask as Array<RegExp | string>}
+            className={classNames(styles.input, {
+               [styles.error]: isError,
+               [styles.blue]: mod === "blue"
+            })}
+            {...rest}
+         />
+         <div className={styles.errorMsg}
+              style={{visibility: `${isError ? "visible" : "hidden"}` as "hidden" | "visible"}}
+         >
+            {errorMessage ? errorMessage : "hidden"}
+         </div>
+      </div>
+   )
+}

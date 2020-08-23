@@ -1,7 +1,7 @@
 import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import {Input} from "../../components/Input/Input";
 import BackArrowIcon from "../../media/icons/back_arrow_icon.svg";
 import {NavLink} from "react-router-dom";
 import {connect, ConnectedProps} from "react-redux";
