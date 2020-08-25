@@ -117,7 +117,7 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
          await dispatch(exit())
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 
@@ -136,7 +136,7 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
             await dispatch(exit())
          }
          dispatch(appActions.toggleIsFetching(false))
-         checkMessageNotification(data)
+         checkMessageNotification(data, dispatch)
       } else if (role === "Blogger") {
          // we need to continue authorization
          dispatch(authActions.setUserRole("Blogger"))
@@ -157,7 +157,7 @@ export const setTikTok = (tikTokUrl: string): ThunkType => {
          await dispatch(exit())
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 

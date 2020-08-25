@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  z-index: 10;
   bottom: 0;
   height: 60px;
 }
@@ -36,59 +37,4 @@
     font-size: 12px;
     margin: 0 0 8px 0;
   }
-
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) {
-//  .wrapper {
-//    height: 90px;
-//  }
-//  .item {
-//    .icon {
-//      width: 50px;
-//      height: 50px;
-//      margin: 8px 0;
-//      .notification {
-//        right: -10px;
-//        top: 0;
-//        font-size: 15px;
-//        width: 24px;
-//        height: 24px;
-//      }
-//    }
-//    .label {
-//      font-size: 18px;
-//      margin: 0 0 10px 0;
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .item {
-//    .icon {
-//      width: 70px;
-//      height: 70px;
-//      margin: 15px 0;
-//      .notification {
-//        right: -12px;
-//        top: 0;
-//        font-size: 20px;
-//        width: 30px;
-//        height: 30px;
-//      }
-//    }
-//    .label {
-//      font-size: 24px;
-//      margin: 0 0 15px 0;
-//    }
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {}

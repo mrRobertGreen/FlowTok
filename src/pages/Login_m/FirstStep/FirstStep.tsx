@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import {callbackVk, goToSecondLoginStep} from "../../../redux/auth-reducer";
 import {RootStateType} from "../../../redux/store";
-import {connect, ConnectedProps} from "react-redux";
+import {connect, ConnectedProps, useDispatch} from "react-redux";
 import {compose} from "redux";
 import {withCabinetRedirect, withProfileRedirect} from "../../../hocs/hocs";
 import {Redirect, RouteComponentProps, withRouter} from "react-router";
@@ -12,6 +12,7 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import {extractVkCode} from "../../../utils/extractVkCode";
 import GoogleLogin from "react-google-login";
 import Preloader from "../../../components/common/Preloader/Preloader";
+import {appActions} from "../../../redux/app-reducer";
 
 type PropsType = {}
 
@@ -23,6 +24,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                                                                             isFetching
                                                                          }) => {
    const [isAllowedFb, setIsAllowedFb] = useState(false) // this is crutch for facebook login
+   const dispatch = useDispatch()
 
    useEffect(() => { // check "search" in url - part of url which is after ?
       if (history.location.search) {
@@ -93,7 +95,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                      clientId="224348627605-9d3vp1ee0pp05558495ird5njsbtindh.apps.googleusercontent.com"
                      onSuccess={onGmButtonClick}
                      onFailure={() => {
-                        alert("Что-то пошло не так... Попробуйте снова!")
+                        dispatch(appActions.setError("Что-то пошло не так...\n Попробуйте снова"))
                      }}
                      render={renderProps => (
                         <Button onButtonClick={renderProps.onClick} disabled={renderProps.disabled}>

@@ -8,14 +8,14 @@ import mockStore from 'redux-mock-store'
 let initialState: InitialStateType
 beforeEach(() => {
    initialState = {
-      isError: false,
+      notification: null,
       isFetching: false,
       isInit: false
    }
 })
 test("toggleIsError work correctly", () => {
-   const newState = appReducer(initialState, appActions.toggleIsError(true))
-   expect(newState.isError).toBeTruthy()
+   const newState = appReducer(initialState, appActions.setNotification("message"))
+   expect(newState.notification).toBeTruthy()
 })
 test("toggleIsInit work correctly", () => {
    const newState = appReducer(initialState, appActions.toggleIsInit(true))

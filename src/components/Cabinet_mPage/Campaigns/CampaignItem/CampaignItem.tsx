@@ -5,7 +5,9 @@ import pauseIcon from "../../../../media/icons/pause_icon.svg"
 import replyIcon from "../../../../media/icons/reply_icon.svg"
 import likeIcon from "../../../../media/icons/like_icon.svg"
 import eyeIcon from "../../../../media/icons/eye_icon.svg"
+import plusIcon from "../../../../media/icons/plus_icon.svg"
 import {AdvTaskStatusType} from "../../../../redux/user-reducer";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
    title: string
@@ -61,7 +63,11 @@ const CampaignItem: FC<PropsType> = ({
                </div>
                <div className={styles.number}>
                   {value}₽
+                  <NavLink to={`/push_balance/${id}`}>
+                     <img className={styles.plus} src={plusIcon} alt=""/>
+                  </NavLink>
                </div>
+
             </div>
             <div className={styles.line}/>
             <div className={styles.detail}>

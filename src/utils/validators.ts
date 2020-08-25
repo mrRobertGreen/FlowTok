@@ -3,6 +3,11 @@ import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 export const validateRequiredField = (value: string) => {
    return value.length === 0 ? "Это поле не может быть пустым" : undefined
 }
+export const createMinSumValidator = (minSum: number) => {
+   return (value: string) => {
+      return +value < minSum ? `Сумма не может быть меньше ${minSum} руб`  : undefined
+   }
+}
 
 export const createWithdrawAmountValidator = (type: WithdrawTypes) => {
    return (value: string) => {

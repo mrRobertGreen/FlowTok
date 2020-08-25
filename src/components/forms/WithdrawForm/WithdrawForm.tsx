@@ -7,9 +7,11 @@ import Button from "../../Button/Button";
 import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {WithdrawPayloadType} from "../../../api/user-api";
 import {withdraw} from "../../../redux/user-reducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Input, InputWithMask} from "../../Input/Input";
 import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
+import {RootStateType} from "../../../redux/store";
+import Preloader from "../../common/Preloader/Preloader";
 
 export type WithdrawFormValuesType = {
    wallet: string
@@ -22,20 +24,23 @@ type WithdrawFormPropsType = {
 
 export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
    const dispatch = useDispatch()
+   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
-   const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
+   const onSubmit = async (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
       const payload: WithdrawPayloadType = {
          money: +values.amount,
          purse: values.wallet,
          type: type,
       }
-      dispatch(withdraw(payload))
+      await dispatch(withdraw(payload))
       resetForm()
    }
 
    type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
    const amountValidator = createWithdrawAmountValidator(type)
+
+   if (isFetching) return <Preloader/>
 
    return (
       <Formik

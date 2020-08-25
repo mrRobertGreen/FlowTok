@@ -7,14 +7,17 @@ import {compose} from "redux";
 import {withRouter} from "react-router";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
 import {WithdrawTypes, withdrawTypes} from "../Withdraw_m/Withdraw_m";
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
-type PropsType = {}
+type PropsType = {
+   isDesktop: boolean
+}
 
-
-const WithdrawTypes_m: FC<PropsType> = () => {
+const WithdrawTypes_m: FC<PropsType> = ({isDesktop}) => {
 
    return (
-      <Page_m>
+      <div className={styles.wrapper}>
+         <TopNavbar isDesktop={isDesktop} label={"Вывод средств"} isMenu={false}/>
          <div className={styles.container}>
             {Object.keys(withdrawTypes).map((key: string, idx: number) => (
                <div className={styles.btn} key={idx}>
@@ -26,7 +29,7 @@ const WithdrawTypes_m: FC<PropsType> = () => {
                </div>
             ))}
          </div>
-      </Page_m>
+      </div>
    )
 }
 

@@ -14,6 +14,7 @@ const Campaigns: FC<PropsType> = ({tasks, changeAdvTaskStatus}) => {
          <div className={styles.title}>
             Активные кампании
          </div>
+         {tasks.length===0 && <div className={styles.message}>Активных кампаний пока нет</div>}
          {tasks.map((t) => (
             <CampaignItem
                id={t.id}

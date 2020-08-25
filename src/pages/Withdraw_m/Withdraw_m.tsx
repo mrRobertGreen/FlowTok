@@ -1,5 +1,4 @@
 import React, {ComponentType, FC} from "react";
-import {Page_m} from "../../components/Page/Page_m";
 import {RouteComponentProps, withRouter} from "react-router";
 import styles from "./styles.module.scss"
 import {compose} from "redux";
@@ -8,8 +7,11 @@ import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
 import {WithdrawForm} from "../../components/forms/WithdrawForm/WithdrawForm";
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
-type PropsType = {}
+type PropsType = {
+   isDesktop: boolean
+}
 
 export const withdrawTypes: { [key in WithdrawTypes]: { [key: string]: string | Array<RegExp | string> } } = {
    qiwi: {
@@ -51,20 +53,16 @@ export type WithdrawTypes =
    | "yandex"
    | "qiwi"
 
-const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
+const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match, isDesktop}) => {
 
    //@ts-ignore
    const type = match.params.type as WithdrawTypes
-   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
-
-   if (isFetching) return <Preloader/>
 
    return (
-      <Page_m>
-         <div className={styles.container}>
-            <WithdrawForm type={type}/>
-         </div>
-      </Page_m>
+      <div className={styles.wrapper}>
+         <TopNavbar isDesktop={isDesktop} isMenu={false} label={"Вывод средств"}/>
+         <WithdrawForm type={type}/>
+      </div>
    )
 }
 

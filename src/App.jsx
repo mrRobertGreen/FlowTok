@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {withUserAgent} from "react-useragent";
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile_m/Profile_m";
@@ -7,40 +7,52 @@ import Settings_m from "./pages/Settings_m/Settings_m";
 import Cabinet_m from "./pages/Cabinet_m/Cabinet_m";
 import Work_m from "./pages/Work_m/Work_m";
 import TaskForm_m from "./pages/TaskForm_m/TaskForm_m";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import {compose} from "redux";
 import FirstStep from "./pages/Login_m/FirstStep/FirstStep";
 import SecondStep from "./pages/Login_m/SecondStep/SecondStep";
 import ThirdStep from "./pages/Login_m/ThirdStep/ThirdStep";
-import {goToThirdLoginStep, setTikTok} from "./redux/auth-reducer";
 import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
 import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
 import {UserTerms} from "./pages/UserTerms/UserTerms";
-import {TopupForm} from "./pages/Topup/Topup";
+import {Topup} from "./pages/Topup/Topup";
 import {Task_m} from "./pages/Task_m/Task_m";
-import Modal from "./components/common/Portal";
-import Notification from "./components/common/Notification";
+import Modal from "./components/common/Modal/Modal";
+import Alert from "./components/common/Alert/Alert";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
+import PushBalance from "./pages/PushBalance/PushBalance";
 
-const App = ({ua, initialize, isInit, notification, setNotification}) => {
+const App = ({ua}) => {
+	const dispatch = useDispatch()
+	const isInit = useSelector((state) => state.app.isInit)
+	const notification = useSelector((state) => state.app.notification)
+	const error = useSelector((state) => state.app.error)
 
 	useEffect(() => {
-		initialize()
-	}, [initialize])
+		dispatch(initialize())
+	}, [])
 
-	const close = () => setNotification(null);
+	const closeError = () => dispatch(appActions.setError(null));
+	const closeNotification = () => dispatch(appActions.setNotification(null));
 
 	if (!isInit) { // show preloader while app initialized
 		return <Preloader/>
 	}
 
 	if (ua.phone) {
+		dispatch(appActions.setIsDesktop(false))
 		return (
 			<>
-				<Modal isOpen={!!notification}
-				       children={() => <Notification close={close} notificationText={notification}/>}/>
+				{error ?
+					<Modal isOpen={true}
+					       children={<Alert close={closeError} message={error} title={"Ошибка"} isError={true}/>}/> :
+					<Modal isOpen={!!notification}
+					       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+					                        isError={false}/>}/>
+				}
 				<Switch>
 					<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
 					<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
@@ -56,13 +68,16 @@ const App = ({ua, initialize, isInit, notification, setNotification}) => {
 					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
 					<Route path="/withdraw/:type" component={Withdraw_m}/>
 					<Route path="/user_terms" component={UserTerms}/>
-					<Route path="/topup" component={TopupForm}/>
+					<Route path="/topup" component={() => <Topup isDesktop={false}/>}/>
 					<Route path="/task" component={Task_m}/>
+					<Route path="/admin" component={AdminPanel}/>
+					<Route path="/push_balance/:id" component={PushBalance}/>
 					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				</Switch>
 			</>
 		);
 	} else {
+		dispatch(appActions.setIsDesktop(true))
 		return (
 			<div style={{
 				width: `${document.body.clientHeight * 0.47229219}px`,
@@ -72,8 +87,15 @@ const App = ({ua, initialize, isInit, notification, setNotification}) => {
 				// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
 				/* but we have problems with drop up menu =(( */
 			}}>
-				<Modal isOpen={!!notification}
-				       children={<Notification close={close} notificationText={notification}/>}/>
+
+				{error ?
+					<Modal isOpen={true}
+					       children={<Alert close={closeError} message={error} title={"Ошибка"}
+					                        isError={true}/>}/> :
+					<Modal isOpen={!!notification}
+					       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+					                        isError={false}/>}/>
+				}
 				<Switch>
 					<Route exact path="/login/1" component={() => <FirstStep/>}/>
 					<Route exact path="/login/2" component={() => <SecondStep/>}/>
@@ -82,15 +104,17 @@ const App = ({ua, initialize, isInit, notification, setNotification}) => {
 					<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
 					<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
 					<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
-					<Route path="/task_form" component={TaskForm_m}/>
+					<Route path="/task_form" component={() => <TaskForm_m isDesktop={true}/>}/>
 					<Route path="/refs" component={Refs_m}/>
 					<Route path="/ref/:refId" component={RefRedirect}/>
 					<Route path="/settings" component={Settings_m}/>
-					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
-					<Route path="/withdraw/:type" component={Withdraw_m}/>
-					<Route path="/user_terms" component={UserTerms}/>
-					<Route path="/topup" component={TopupForm}/>
+					<Route exact path="/withdraw" component={() => <WithdrawTypes_m isDesktop={true}/>}/>
+					<Route path="/withdraw/:type" component={() => <Withdraw_m isDesktop={true}/>}/>
+					<Route path="/user_terms" component={() => <UserTerms isDesktop={true}/>}/>
+					<Route path="/topup" component={() => <Topup isDesktop={true}/>}/>
 					<Route path="/task" component={Task_m}/>
+					<Route path="/admin" component={AdminPanel}/>
+					<Route path="/push_balance/:id" component={PushBalance}/>
 					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				</Switch>
 			</div>
@@ -98,18 +122,6 @@ const App = ({ua, initialize, isInit, notification, setNotification}) => {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	isInit: state.app.isInit,
-	notification: state.app.notification,
-});
-const mapDispatchToProps = {
-	initialize,
-	goToThirdLoginStep,
-	setTikTok,
-	setNotification: appActions.setNotification,
-};
-
 export default compose(
-	connect(mapStateToProps, mapDispatchToProps),
 	withUserAgent,
 )(App)

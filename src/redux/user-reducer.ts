@@ -2,7 +2,7 @@ import {BaseThunkType, InferActionsType, Nullable} from "./store";
 import {
    AdvCreateTaskType,
    BlogTasksType,
-   RefDataType,
+   RefDataType, StatsType,
    userApi,
    UserDataType,
    WithdrawPayloadType
@@ -19,11 +19,11 @@ const initialState = {
    blogProfile: null as BlogProfileDataType | null,
    advProfile: null as AdvProfileDataType | null,
    blogNewTasks: null as BlogTasksType | null,
-   // blogWaitTasks: null as BlogTasksType | null,
    blogDoneTasks: null as BlogTasksType | null,
    refData: null as RefDataType | null,
    task: null as null | BlogTaskType,
-   isAdvTaskCreated: false
+   isAdvTaskCreated: false,
+   stats: null as null | StatsType
 }
 
 export default function userReducer(state = initialState, action: ActionsType): InitialStateType {
@@ -48,25 +48,6 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             blogNewTasks: action.payload
          }
-      // case "user/SET_BLOG_WAIT_TASKS":
-      //    return {
-      //       ...state,
-      //       blogWaitTasks: action.payload
-      //    }
-      // case "user/MOVE_BLOG_TASK":
-      //    const {to, from, taskId} = action
-      //    if (from === "new" && to === "wait" && state.blogNewTasks && state.blogWaitTasks) {
-      //       let blogNewTasksCopy = [...state.blogNewTasks]
-      //       let blogWaitTasksCopy = [...state.blogWaitTasks]
-      //       const taskIndex = blogNewTasksCopy.findIndex(t => t.id === taskId)
-      //       const task = blogNewTasksCopy.splice(taskIndex, 1)
-      //       return {
-      //          ...state,
-      //          blogNewTasks: blogNewTasksCopy,
-      //          blogWaitTasks: [...task, ...blogWaitTasksCopy]
-      //       }
-      //    }
-      //    return state
       case "user/SET_REF_DATA":
          return {
             ...state,
@@ -108,30 +89,27 @@ export default function userReducer(state = initialState, action: ActionsType): 
             }
          }
          return state
-      // case "user/DELETE_BLOG_WAIT_TASK":
-      //    if (state.blogWaitTasks) {
-      //       return {
-      //          ...state,
-      //          blogWaitTasks: [...state.blogWaitTasks.filter(task => task.id !== action.taskId)]
-      //       }
-      //    }
-      //    return state
       case "user/SET_TASK":
          return {
             ...state,
             task: action.task
+         }
+      case "user/SET_STATS":
+         return {
+            ...state,
+            stats: action.stats
          }
       case "user/CLEAR":
          return {
             ...state,
             blogDoneTasks: null,
             blogNewTasks: null,
-            // blogWaitTasks: null,
             isAdvTaskCreated: false,
             refData: null,
             advProfile: null,
             blogProfile: null,
             task: null,
+            stats: null,
          }
       default:
          return state
@@ -142,14 +120,7 @@ export const userActions = {
    setBlogProfile: (payload: BlogProfileDataType) => ({type: "user/SET_BLOG_PROFILE", payload} as const),
    setAdvProfile: (payload: AdvProfileDataType) => ({type: "user/SET_ADV_PROFILE", payload} as const),
    setBlogNewTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_NEW_TASKS", payload} as const),
-   // setBlogWaitTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_WAIT_TASKS", payload} as const),
    setBlogDoneTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_DONE_TASKS", payload} as const),
-   // moveBlogTask: (taskId: string, from: BlogTaskStatusType, to: BlogTaskStatusType) => ({
-   //    type: "user/MOVE_BLOG_TASK",
-   //    taskId,
-   //    from,
-   //    to
-   // } as const),
    setRefData: (payload: RefDataType) => ({type: "user/SET_REF_DATA", payload} as const),
    changeAdvTask: (task: AdvTaskType) => ({type: "user/CHANGE_ADV_TASK", task} as const),
    createAdvTask: (task: AdvTaskType) => ({type: "user/CREATE_ADV_TASK", task} as const),
@@ -157,6 +128,7 @@ export const userActions = {
    deleteBlogWaitTask: (taskId: string) => ({type: "user/DELETE_BLOG_WAIT_TASK", taskId} as const),
    clear: () => ({type: "user/CLEAR"} as const),
    setTask: (task: BlogTaskType | null) => ({type: "user/SET_TASK", task} as const),
+   setStats: (stats: StatsType | null) => ({type: "user/SET_STATS", stats} as const),
 }
 
 export const getUserData = (): ThunkType => { // getting and setting user data
@@ -167,15 +139,15 @@ export const getUserData = (): ThunkType => { // getting and setting user data
       if (data.success) { // if token is true
          setUserData(data.data, dispatch)
          const role = detectUserRole(data.data, dispatch)
-         if (role === "Blogger") {
-            //@ts-ignore
-            if (data.data.task) {
+            if (role === "Blogger") {
                //@ts-ignore
-               dispatch(userActions.setTask(data.data.task))
-            } else if (!getState().user.refData) {
-               await dispatch(getRefData())
+               if (data.data.task) {
+                  //@ts-ignore
+                  dispatch(userActions.setTask(data.data.task))
+               } else if (!getState().user.refData) {
+                  await dispatch(getRefData())
+               }
             }
-         }
          // after all i can say, that user is authenticated
          dispatch(authActions.setIsAuth(true))
       } else if (data.error) {
@@ -184,7 +156,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          console.error("getUserData error")
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const setUserData = (userData: UserDataType, dispatch: Dispatch<ActionsType>) => {
@@ -207,14 +179,11 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
             case "new":
                dispatch(userActions.setBlogNewTasks(data.data))
                break
-            // case "wait":
-            //    dispatch(userActions.setBlogWaitTasks(data.data))
-            //    break
          }
       } else if (data.error) {
          console.error("getBlogTasks error")
       }
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const getRefData = (): ThunkType => {
@@ -227,8 +196,22 @@ export const getRefData = (): ThunkType => {
          } else if (data.error) {
             console.error("getBlogTasks error")
          }
-         checkMessageNotification(data)
+         checkMessageNotification(data, dispatch)
       }
+   }
+}
+export const getStatsData = (): ThunkType => {
+   return async (dispatch, getState) => {
+      // get admin stats
+      dispatch(appActions.toggleIsFetching(true))
+      const data = await userApi.getStats()
+      if (data.success) {
+         dispatch(userActions.setStats(data.data))
+      } else if (data.error) {
+         console.error("getStatsData error")
+      }
+      dispatch(appActions.toggleIsFetching(false))
+      checkMessageNotification(data, dispatch)
    }
 }
 export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
@@ -243,7 +226,7 @@ export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
          console.error("createAdvTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const changeAdvTaskStatus = (taskId: string, taskStatus: AdvTaskStatusType): ThunkType => {
@@ -255,7 +238,7 @@ export const changeAdvTaskStatus = (taskId: string, taskStatus: AdvTaskStatusTyp
       } else {
          console.error("changeTaskStatus error")
       }
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const doBlogTask = (taskId: string): ThunkType => {
@@ -268,7 +251,7 @@ export const doBlogTask = (taskId: string): ThunkType => {
       } else {
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const cancelBlogTask = (taskId: string): ThunkType => {
@@ -279,9 +262,9 @@ export const cancelBlogTask = (taskId: string): ThunkType => {
       if (data.success) {
          dispatch(userActions.setBlogNewTasks(data.data))
          dispatch(userActions.setTask(null))
-         alert("Задание отменено")
+         dispatch(appActions.setNotification("Вы успешно отменили задание"))
       } else {
-         alert("Что-то пошло не так, попробуйте снова")
+         dispatch(appActions.setError("Что-то пошло не так, попробуйте снова"))
       }
       dispatch(appActions.toggleIsFetching(false))
    }
@@ -298,7 +281,7 @@ export const checkBlogTask = (taskId: string): ThunkType => {
          console.error("checkBlogTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
    }
 }
 export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
@@ -307,12 +290,27 @@ export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.withdraw(payload)
       if (data.success) {
-         alert("Операция успешно завершена")
+         appActions.setNotification("Операция успешно завершена")
       } else {
          console.error("finishBlogTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data)
+      checkMessageNotification(data, dispatch)
+   }
+}
+export const pushTaskBalance = (money: number, taskId: string): ThunkType => {
+   // add money to blogger's task balance
+   return async (dispatch) => {
+      dispatch(appActions.toggleIsFetching(true))
+      const data = await userApi.pushTaskBalance(money, taskId)
+      if (data.success) {
+         dispatch(appActions.setNotification("Вы успешно пополнили бюджет кампании!"))
+         await dispatch(getUserData())
+      } else {
+         console.error("pushTaskBalance error")
+      }
+      dispatch(appActions.toggleIsFetching(false))
+      checkMessageNotification(data, dispatch)
    }
 }
 
@@ -322,6 +320,7 @@ type ActionsType = InferActionsType<typeof userActions>
 export type AdvProfileDataType = {
    value: number
    tasks: Array<AdvTaskType>
+   admin: boolean
    type: "ad"
    messageNotification?: string
 }
@@ -351,6 +350,7 @@ export type BlogProfileDataType = {
    holdDown: number
    rating: number
    type: "blog"
+   admin: boolean
    newTask: Nullable<number>
    messageNotification?: string
    task?: BlogTaskType
@@ -361,7 +361,9 @@ export type BlogTaskType = {
    info: string
    rate: number
    messageNotification?: string
-   link: string
+   link?: string
+   url?: string
+   text?: string
 }
 export type BlogTaskStatusType = "wait" | "new" | "done"
 export type AdvTaskStatusType = "play" | "pause"

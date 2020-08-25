@@ -15,6 +15,8 @@ type PropsType = {
 const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
 
    const userRole = useSelector((state: RootStateType) => state.auth.role)
+   const blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
+   const advProfile = useSelector((state: RootStateType) => state.user.advProfile)
 
    return (
       <div className={styles.wrapper} style={
@@ -37,6 +39,14 @@ const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
          {/*      <img className={styles.arrow} src={ArrowRightIcon} alt=""/>*/}
          {/*   </div>*/}
          {/*</NavLink>*/}
+         {(
+            (userRole === "Blogger" && blogProfile && blogProfile.admin) ||
+            (userRole === "Advertiser" && advProfile && advProfile.admin)) &&
+			<NavLink to={"/admin"}>
+				<div className={styles.item}>
+					<div>Панель администратора</div>
+				</div>
+			</NavLink>}
          {userRole === "Blogger" &&
 			<NavLink to={"/refs"}>
 				<div className={styles.item}>

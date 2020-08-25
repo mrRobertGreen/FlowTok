@@ -1,6 +1,7 @@
 .container {
   padding: 10px 8px;
   line-height: 17px;
+  background-color: #fff;
   h1 {
     font-size: 18px;
     font-weight: 600;
@@ -17,4 +18,9 @@
   b {
     font-weight: 600;
   }
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
 }

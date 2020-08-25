@@ -67,6 +67,8 @@ export const List: FC<PropsType> = ({
                info={task.info}
                rate={task.rate}
                link={task.link}
+               text={task.text}
+               url={task.url}
                currentSection={currentSection}
                doBlogTask={(id: string) => dispatch(doBlogTask(id))}
             />

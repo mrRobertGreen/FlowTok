@@ -14,12 +14,12 @@ type PropsType = {}
 const CreateTask: FC<PropsType & PropsFromRedux> = ({createAdvTask, isFetching, isAdvTaskCreated, setIsAdvTaskCreated}) => {
    return (
       <div className={styles.wrapper}>
-         <div className={styles.header}>
-            <NavLink to={"/cabinet"}>
-               <img onClick={() => {}} className={styles.backBtn} src={backArrowIcon} alt="back"/>
-            </NavLink>
-            <div className={styles.title}>Создание кампании</div>
-         </div>
+         {/*<div className={styles.header}>*/}
+         {/*   <NavLink to={"/cabinet"}>*/}
+         {/*      <img onClick={() => {}} className={styles.backBtn} src={backArrowIcon} alt="back"/>*/}
+         {/*   </NavLink>*/}
+         {/*   <div className={styles.title}>Создание кампании</div>*/}
+         {/*</div>*/}
          <CreateTaskForm createAdvTask={createAdvTask}
                          isFetching={isFetching}
                          isAdvTaskCreated={isAdvTaskCreated}

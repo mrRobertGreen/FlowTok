@@ -25,6 +25,9 @@ export const userApi = {
    getRef() {
       return instance.get<BaseResponseType<RefDataType>>(`/users/user/ref`).then(res => res.data)
    },
+   getStats() {
+      return instance.get<BaseResponseType<StatsType>>(`/users/stat`).then(res => res.data)
+   },
    doBlogTask(taskId: string) {
       return instance.put<BaseResponseType<ChangeBlogTaskDataType>>(`/tasks/${taskId}/wait`).then(res => res.data)
    },
@@ -37,10 +40,14 @@ export const userApi = {
    withdraw(payload: WithdrawPayloadType) {
       return instance.put<BaseResponseType<BaseDataType>>(`/pay/get`, payload).then(res => res.data)
    },
+   pushTaskBalance(money: number, taskId: string) {
+      return instance.put<BaseResponseType<BaseDataType>>(`/tasks/${taskId}/money`, {money}).then(res => res.data)
+   },
 };
 
 export type UserDataType = AdvProfileDataType | BlogProfileDataType
 export type BlogTasksType = BaseDataType & Array<BlogTaskType>
+export type StatsType = BaseDataType & Array<StatItemType>
 export type AdvCreateTaskType = {
    title: string
    info: string
@@ -63,4 +70,8 @@ export type WithdrawPayloadType = {
    money: number
    type: WithdrawTypes
    purse: string
+}
+export type StatItemType = {
+   name: string
+   value: string
 }

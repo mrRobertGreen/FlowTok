@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../../Button/Button";
 import {SectionNames} from "../../WorkBlock";
@@ -17,6 +17,8 @@ const ListItem: FC<PropsType> = ({
                                     link,
                                     currentSection,
                                     doBlogTask,
+                                    url,
+                                    text
                                  }) => {
 
    const doTask = () => {
@@ -33,12 +35,12 @@ const ListItem: FC<PropsType> = ({
          </div>
          <div className={styles.bottomBlock}>
             <div className={styles.btn}>
-               <a href={link} target="_blank" rel="noopener noreferrer">
+               <a href={link ? link : url} target="_blank" rel="noopener noreferrer">
                   <Button
                      disabled={currentSection === "done"}
                      mod={"black"}
                   >
-                     Перейти к звуку
+                     {link ? "Перейти к звуку" : text}
                   </Button>
                </a>
             </div>
@@ -53,13 +55,13 @@ const ListItem: FC<PropsType> = ({
          </div>
          <div className={styles.bottomBlock}>
             <div className={styles.mainBtn}>
-					<Button
-						disabled={currentSection === "done"}
-						mod={currentSection === "new" ? undefined : "grey"}
-						onButtonClick={currentSection === "new" ? doTask : undefined}>
+               <Button
+                  disabled={currentSection === "done"}
+                  mod={currentSection === "new" ? undefined : "grey"}
+                  onButtonClick={currentSection === "new" ? doTask : undefined}>
                   {currentSection === "new" && "Выполнить"}
                   {currentSection === "done" && "Выполнено"}
-					</Button>
+               </Button>
             </div>
          </div>
 

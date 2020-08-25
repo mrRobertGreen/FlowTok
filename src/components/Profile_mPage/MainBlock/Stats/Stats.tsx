@@ -8,7 +8,6 @@ type PropsType = {
 }
 
 const Stats: FC<PropsType> = ({rate, medianViews, rating}) => {
-
    return (
       <div className={styles.wrapper}>
          <div className={styles.header}>

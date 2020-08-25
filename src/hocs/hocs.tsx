@@ -37,6 +37,25 @@ export function withTaskRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Com
    return withTaskRedirectComponent
 
 }
+export function withAdminRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
+   return (props) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const role = useSelector((state: RootStateType) => state.auth.role)
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const advProfile = useSelector((state: RootStateType) => state.user.advProfile)
+
+      if (role === "Blogger" && blogProfile && !blogProfile.admin) {
+         return <Redirect to="/profile"/>
+      }
+      if (role === "Advertiser" && advProfile && !advProfile.admin) {
+         return <Redirect to="/cabinet"/>
+      }
+      return <WrappedComponent {...props as WCP}/>
+   }
+
+}
 
 export function withProfileRedirect<WCP>(WrappedComponent: ComponentType<WCP>) {
    const withAuthRedirectComponent: FC<PropsFromRedux> = (props) => {

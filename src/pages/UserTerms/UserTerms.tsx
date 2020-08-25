@@ -1,10 +1,15 @@
-import React from "react";
-import {Page_m} from "../../components/Page/Page_m";
+import React, {FC} from "react";
 import styles from "./styles.module.scss"
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
-export const UserTerms = () => {
+type PropsType = {
+   isDesktop: boolean
+}
+
+export const UserTerms:FC<PropsType> = ({isDesktop}) => {
    return (
-      <Page_m>
+      <div className={styles.wrapper}>
+         <TopNavbar isDesktop={isDesktop} isMenu={false} label={"Публичная оферта"}/>
          <div className={styles.container}>
             {/*<h1>Пользовательское соглашение сервиса и защита персональных данных пользователей</h1>*/}
             {/*<p>Добро пожаловать на сайт FlowTok.com. Пожалуйста, ознакомьтесь с пользовательским соглашением сервиса*/}
@@ -433,7 +438,6 @@ export const UserTerms = () => {
             {/*   Настоящей*/}
             {/*   Оферты, Заказчик уплачивает Администрации сайта вознаграждение в размере 25% от стоимости всех заказов,*/}
             {/*   размещаемых Заказчиком на Сайте как в адрес Исполнителей, так и в адрес Администрации сайта.</p>*/}
-            <h1>Публичная оферта</h1>
             <h1>1. ТЕРМИНЫ, ИСПОЛЬЗУЕМЫЕ В ОФЕРТЕ</h1>
             <p>1.1. Для целей настоящей Оферты нижеприведенные термины
                используются в следующем значении:</p>
@@ -727,6 +731,6 @@ export const UserTerms = () => {
                Заказчика путем публикации соответствующей новости на сайте
                flowtok.com</p>
          </div>
-      </Page_m>
+      </div>
    )
 }
