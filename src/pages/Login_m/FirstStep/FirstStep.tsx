@@ -63,6 +63,11 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
 
    return (
       <div className={styles.wrapper}>
+         <div className={styles.info}>
+            <p>По всем вопросам обращаться в службу поддержки</p>
+            <p>Почта: <a href="https://flowtokcom@gmail.com">flowtokcom@gmail.com</a></p>
+            <p>Телеграм: <a href="https://t.me/flowtokcom">flowtokcom</a></p>
+         </div>
          <div className={styles.block}>
             <div className={styles.header}>Войти через:</div>
             <div className={styles.buttons}>

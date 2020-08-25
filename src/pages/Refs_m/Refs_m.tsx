@@ -60,7 +60,7 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
 			<div className={styles.taskBlock}>
 				<p className={styles.title}>Зарабатывай на рефералах!</p>
 				<p className={styles.label}>
-					Пригласите первых 5 <span className={styles.underline}>активных</span> рефералов и получите <b>15</b> рублей!
+					Пригласите 5 <span className={styles.underline}>активных</span> рефералов и получите <b>15</b> рублей!
 				</p>
 				<p className={styles.label}>
 					Вам осталось всего <span className={styles.refsCount}>{5 - refData.refs}</span> рефералов

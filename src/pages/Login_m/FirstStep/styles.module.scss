@@ -17,6 +17,17 @@
   position: absolute;
   bottom: 0;
 }
+.info {
+  background-color: #fff;
+  margin: 30px 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  a {
+    text-decoration: underline;
+    color: blue;
+  }
+}
 
 .header {
   text-align: center;
