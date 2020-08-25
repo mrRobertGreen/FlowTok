@@ -19,13 +19,18 @@ export const List: FC<PropsType> = ({
                                               }) => {
    const dispatch = useDispatch()
    const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
-   const doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
+   let doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
+   let doneTasksCache = localStorage.getItem("blogDoneTasks")
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
    useEffect(() => { // if current section is changed get necessary tasks
       dispatch(getBlogTasks(currentSection))
    }, [currentSection, dispatch])
+
+   if (!doneTasks && doneTasksCache) {
+      doneTasks = JSON.parse(doneTasksCache)
+   }
 
    if (!isAuth) {
       return <Redirect to="/login/1"/>

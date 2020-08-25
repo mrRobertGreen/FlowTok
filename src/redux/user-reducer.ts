@@ -140,6 +140,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          setUserData(data.data, dispatch)
          const role = detectUserRole(data.data, dispatch)
             if (role === "Blogger") {
+               localStorage.setItem("blogData", JSON.stringify(data.data))
                //@ts-ignore
                if (data.data.task) {
                   //@ts-ignore
@@ -174,6 +175,7 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
       if (data.success) {
          switch (taskStatus) {
             case "done":
+               localStorage.setItem("blogDoneTasks", JSON.stringify(data.data))
                dispatch(userActions.setBlogDoneTasks(data.data))
                break
             case "new":
@@ -192,6 +194,7 @@ export const getRefData = (): ThunkType => {
       if (getState().auth.role === "Blogger") {
          const data = await userApi.getRef()
          if (data.success) {
+            localStorage.setItem("refData", JSON.stringify(data.data))
             dispatch(userActions.setRefData(data.data))
          } else if (data.error) {
             console.error("getBlogTasks error")

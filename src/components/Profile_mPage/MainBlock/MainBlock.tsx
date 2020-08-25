@@ -25,12 +25,17 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
    }
 
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
-   const refData = useSelector((state: RootStateType) => state.user.refData)
+   let refData = useSelector((state: RootStateType) => state.user.refData)
+   const blogCacheData = localStorage.getItem("blogData")
+   const refCacheData = localStorage.getItem("refData")
 
-   if (!profileData || !refData) {
-      return <Preloader/>
+   if (blogCacheData && !profileData) {
+      profileData = JSON.parse(blogCacheData)
    }
-   if (isFetching) {
+   if (refCacheData && !refData) {
+      refData = JSON.parse(refCacheData)
+   }
+   if (!profileData || !refData) {
       return <Preloader/>
    }
 
@@ -74,7 +79,6 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
          {/*      </NavLink>*/}
          {/*   </div>*/}
          {/*}*/}
-
          <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
          <Stats medianViews={medianViews} rate={rate} rating={rating}/>
          {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}

@@ -43,6 +43,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
             isFetching: false,
             isInit: false,
             notification: null,
+            error: null,
             isDesktop: false,
          }
       default:
