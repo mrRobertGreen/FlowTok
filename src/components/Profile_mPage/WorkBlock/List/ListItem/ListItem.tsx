@@ -49,7 +49,7 @@ const ListItem: FC<PropsType> = ({
                   {rate}₽
                </div>
                <div className={styles.label}>
-                  За ролик
+                  {text ? "За задание" : "За ролик" }
                </div>
             </div>
          </div>

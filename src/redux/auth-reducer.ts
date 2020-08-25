@@ -11,6 +11,7 @@ const initialState = {
    role: "Nobody" as UserRolesType,
    firstSuccess: false,
    secondSuccess: false,
+   isAdv: false
 }
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
    switch (action.type) {
@@ -23,6 +24,11 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
          return {
             ...state,
             isAuth: action.isAuth
+         }
+      case "auth/SET_IS_ADV":
+         return {
+            ...state,
+            isAdv: action.isAdv
          }
       case "auth/SET_USER_ROLE":
          return {
@@ -57,6 +63,7 @@ export default authReducer
 export const authActions = {
    setIsNew: (isNew: boolean) => ({type: "auth/SET_IS_NEW", isNew} as const),
    setIsAuth: (isAuth: boolean) => ({type: "auth/SET_IS_AUTH", isAuth} as const),
+   setIsAdv: (isAdv: boolean) => ({type: "auth/SET_IS_ADV", isAdv} as const),
    setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
    setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
    setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),
@@ -69,7 +76,7 @@ export const callbackVk = () => {
 }
 
 export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): ThunkType => {
-   return async (dispatch) => {
+   return async (dispatch, getState) => {
       if (localStorage.getItem("token")) { // if token already received do nothing
          return
       }
@@ -111,7 +118,11 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
             // if user is new continue registration
             dispatch(authActions.setFirstSuccess(true))
             // it's temporary, because we turn off advertiser
-            await dispatch(goToThirdLoginStep("Blogger"))
+            if (getState().auth.isAdv) {
+               await dispatch(goToThirdLoginStep("Advertiser"))
+            } else {
+               await dispatch(goToThirdLoginStep("Blogger"))
+            }
          }
       } else {
          await dispatch(exit())

@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {getStatsData} from "../../redux/user-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
 createTheme('light', {
    text: {
@@ -67,18 +68,20 @@ const columns = [
 function AdminPanel() {
    const data = useSelector((state: RootStateType) => state.user.stats)
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    const dispatch = useDispatch()
 
    useEffect(() => {
       if (!data) {
          dispatch(getStatsData())
       }
-   },[data, dispatch])
+   }, [data, dispatch])
 
    if (isFetching) return <Preloader/>
 
    return (
-      <div style={{height: "100%", width: "100%"}}>
+      <div style={{height: "100%", width: "100%", paddingTop: "50px"}}>
+         <TopNavbar isMenu={false} label={"Панель админа"} isDesktop={isDesktop}/>
          <DataTable
             theme={"light"}
             title="Статистика"
@@ -87,6 +90,7 @@ function AdminPanel() {
             customStyles={customStyles}
          />
       </div>
+
 
    )
 }

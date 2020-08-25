@@ -24,6 +24,7 @@ import Modal from "./components/common/Modal/Modal";
 import Alert from "./components/common/Alert/Alert";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import PushBalance from "./pages/PushBalance/PushBalance";
+import AdvRedirect from "./pages/AdvRedirect/AdvRedirect";
 
 const App = ({ua}) => {
 	const dispatch = useDispatch()
@@ -33,7 +34,7 @@ const App = ({ua}) => {
 
 	useEffect(() => {
 		dispatch(initialize())
-	}, [])
+	}, [dispatch])
 
 	const closeError = () => dispatch(appActions.setError(null));
 	const closeNotification = () => dispatch(appActions.setNotification(null));
@@ -71,6 +72,7 @@ const App = ({ua}) => {
 					<Route path="/topup" component={() => <Topup isDesktop={false}/>}/>
 					<Route path="/task" component={Task_m}/>
 					<Route path="/admin" component={AdminPanel}/>
+					<Route path="/ad" component={AdvRedirect}/>
 					<Route path="/push_balance/:id" component={PushBalance}/>
 					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				</Switch>
@@ -114,6 +116,7 @@ const App = ({ua}) => {
 					<Route path="/topup" component={() => <Topup isDesktop={true}/>}/>
 					<Route path="/task" component={Task_m}/>
 					<Route path="/admin" component={AdminPanel}/>
+					<Route path="/ad" component={AdvRedirect}/>
 					<Route path="/push_balance/:id" component={PushBalance}/>
 					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
 				</Switch>

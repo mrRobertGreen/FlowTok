@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss";
-import {Field, Form, Formik, FormikValues} from "formik";
+import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import React, {FC, useEffect, useState} from "react";
 import Button from "../../Button/Button";
 import classNames from "classnames";
@@ -7,8 +7,9 @@ import Slider from "./Slider/Slider";
 import {AdvCreateTaskType} from "../../../api/user-api";
 import {Redirect} from "react-router";
 import Preloader from "../../common/Preloader/Preloader";
-import {validateRequiredField} from "../../../utils/validators";
+import {createMinSumValidator, validateRequiredField} from "../../../utils/validators";
 import {ChooseAmount} from "../../forms/common/ChooseAmount/ChooseAmount";
+import {Input} from "../../Input/Input";
 
 type CampaignType = {
    title: string
@@ -47,9 +48,10 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
    type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
    // const [sliderValue, setSliderValue] = useState(0);
+   const validateMinSum = createMinSumValidator(1)
 
    if (isFetching) return <Preloader/>
-   if (isAdvTaskCreated && !isFetching) return  <Redirect to={"/cabinet"}/>
+   if (isAdvTaskCreated && !isFetching) return <Redirect to={"/cabinet"}/>
 
    return (
       <Formik
@@ -88,12 +90,21 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
                             validate={validateRequiredField}
                             className={classNames(styles.input, {[styles.error]: errors.link && touched.link})}/>
                      <ChooseAmount setFieldValue={setFieldValue} amount={values.value} field={"value"}/>
-                     <Field name={"value"}
-                            placeholder={"Ввести свою сумму"}
-                            type={"number"}
-                            validate={validateRequiredField}
-                            className={classNames(styles.input, {[styles.error]: errors.value && touched.value})}
-                     />
+                     <Field name={"value"} validate={validateMinSum}>
+                        {({
+                             field,
+                             form: {touched, errors}
+                          }: FieldProps) => (
+                           <Input
+                              mod={"blue"}
+                              type={"number"}
+                              placeholder={"Ввести свою сумму"}
+                              isError={!!(errors.value && touched.value)}
+                              errorMessage={errors.value}
+                              {...field}
+                           />
+                        )}
+                     </Field>
                      {/*<Slider value={sliderValue} setValue={setSliderValue}/>*/}
                   </div>
                   <div className={styles.submitBtn}>

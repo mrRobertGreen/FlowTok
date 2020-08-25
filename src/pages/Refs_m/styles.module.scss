@@ -24,7 +24,7 @@
 .refBlock {
   background-color: #fff;
   width: 90%;
-  margin: 70px auto;
+  margin: 70px auto 0;
   padding: 20px 15px;
   border-radius: 15px;
   .title {
@@ -33,11 +33,11 @@
     margin: 0 0 20px 0;
   }
   .input {
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
   }
 }
 .statsBlock {
-  margin: 0 auto;
+  margin: 30px auto 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -57,86 +57,35 @@
     }
     .label {
       font-size: 16px;
+
     }
   }
   .item:nth-child(1) {
     margin: 0 10% 0 0;
   }
 }
-
-///* Breakpoints */
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) {}
-//
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) {
-//  .backBtn {
-//    top: -75px;
-//    left: 8px;
-//    width: 50px;
-//    height: 50px;
-//    padding: 13px;
-//  }
-//  .refBlock {
-//    margin: 100px auto;
-//    padding: 30px 20px;
-//    border-radius: 20px;
-//    .title {
-//      font-size: 28px;
-//      margin: 0 0 25px 0;
-//    }
-//    .input {
-//      margin: 0 0 25px 0;
-//    }
-//  }
-//  .statsBlock {
-//    .item {
-//      padding: 25px 20px;
-//      border-radius: 20px;
-//      .numbers {
-//        font-size: 34px;
-//      }
-//      .label {
-//        font-size: 22px;
-//      }
-//    }
-//  }
-//}
-
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) {
-//  .backBtn {
-//    top: 25px;
-//    left: 15px;
-//    width: 60px;
-//    height: 60px;
-//    padding: 15px;
-//  }
-//  .refBlock {
-//    margin: 125px auto;
-//    padding: 35px 25px;
-//    border-radius: 25px;
-//    .title {
-//      font-size: 34px;
-//      margin: 0 0 30px 0;
-//    }
-//    .input {
-//      margin: 0 0 30px 0;
-//    }
-//  }
-//  .statsBlock {
-//    .item {
-//      padding: 30px 25px;
-//      border-radius: 25px;
-//      .numbers {
-//        font-size: 46px;
-//      }
-//      .label {
-//        font-size: 30px;
-//      }
-//    }
-//  }
-//}
-//
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {}
+.taskBlock {
+  background-color: #fff;
+  width: 90%;
+  margin: 30px auto 0;
+  padding: 20px 15px;
+  border-radius: 15px;
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .label {
+    font-size: 16px;
+    margin: 0 0 10px;
+    line-height: 1.1;
+    span {
+      font-weight: 600;
+      color: #00cf7b;
+    }
+    b {
+      color: red;
+      font-size: 18px;
+    }
+  }
+}

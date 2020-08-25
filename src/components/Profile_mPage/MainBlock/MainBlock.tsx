@@ -25,13 +25,16 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
    }
 
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
+   const refData = useSelector((state: RootStateType) => state.user.refData)
 
-   if (!profileData) {
+   if (!profileData || !refData) {
       return <Preloader/>
    }
    if (isFetching) {
       return <Preloader/>
    }
+
+   const {refs} = refData
 
    const {
       rate,
@@ -64,11 +67,14 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                login={login}
                name={name}
          />
-         {/*<div className={styles.btn}>*/}
-         {/*   <NavLink to={"/refs"}>*/}
-         {/*      <Button mod={"bright"}>Заработать на рефералах</Button>*/}
-         {/*   </NavLink>*/}
-         {/*</div>*/}
+         {/*{ refs < 5 &&*/}
+         {/*   <div className={styles.btn}>*/}
+         {/*      <NavLink to={"/refs"}>*/}
+         {/*         <Button mod={"bright"}>Заработать на рефералах</Button>*/}
+         {/*      </NavLink>*/}
+         {/*   </div>*/}
+         {/*}*/}
+
          <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
          <Stats medianViews={medianViews} rate={rate} rating={rating}/>
          {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}
