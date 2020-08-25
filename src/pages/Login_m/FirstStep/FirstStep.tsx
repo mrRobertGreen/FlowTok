@@ -65,8 +65,9 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
       <div className={styles.wrapper}>
          <div className={styles.info}>
             <p>По всем вопросам обращаться в службу поддержки</p>
-            <p>Почта: <a href="https://flowtokcom@gmail.com">flowtokcom@gmail.com</a></p>
-            <p>Телеграм: <a href="https://t.me/flowtokcom">flowtokcom</a></p>
+            <p>Почта: <a href="https://flowtokcom@gmail.com" target="_blank"
+                         rel="noopener noreferrer">flowtokcom@gmail.com</a></p>
+            <p>Телеграм: <a href="https://t.me/flowtokcom" target="_blank" rel="noopener noreferrer">flowtokcom</a></p>
          </div>
          <div className={styles.block}>
             <div className={styles.header}>Войти через:</div>
@@ -78,22 +79,22 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                </div>
                {/*<div className={styles.btn}>*/}
                {/*   {!isAllowedFb && <Button onButtonClick={() => setIsAllowedFb(true)}>*/}
-					{/*		Facebook*/}
-					{/*	</Button>}*/}
+               {/*		Facebook*/}
+               {/*	</Button>}*/}
                {/*   {isAllowedFb && <FacebookLogin*/}
-					{/*		autoLoad={true}*/}
-					{/*		appId="323763088677207"*/}
-					{/*		callback={onFbButtonClick}*/}
-					{/*		onFailure={() => {*/}
+               {/*		autoLoad={true}*/}
+               {/*		appId="323763088677207"*/}
+               {/*		callback={onFbButtonClick}*/}
+               {/*		onFailure={() => {*/}
                {/*         alert("Что-то пошло не так... Попробуйте снова!")*/}
                {/*         setIsAllowedFb(false)*/}
                {/*      }}*/}
-					{/*		render={(renderProps: any) => (*/}
+               {/*		render={(renderProps: any) => (*/}
                {/*         <Button onButtonClick={renderProps.onClick}>*/}
                {/*            Facebook*/}
                {/*         </Button>*/}
                {/*      )}*/}
-					{/*	/>}*/}
+               {/*	/>}*/}
                {/*</div>*/}
                <div className={styles.btn}>
                   <GoogleLogin
@@ -112,7 +113,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
             </div>
             <div className={styles.text}>
                <p>Нажимая кнопки выше, вы подтвержадете, что соглашаетесь с <a target="_blank" rel="noopener noreferrer"
-                                                                              href="/user_terms">Пользовательским
+                                                                               href="/user_terms">Пользовательским
                   соглашением</a></p>
             </div>
          </div>

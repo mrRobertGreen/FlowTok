@@ -25,6 +25,7 @@ import Alert from "./components/common/Alert/Alert";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import PushBalance from "./pages/PushBalance/PushBalance";
 import AdvRedirect from "./pages/AdvRedirect/AdvRedirect";
+import {Support} from "./pages/Support/Support";
 
 const App = ({ua}) => {
 	const dispatch = useDispatch()
@@ -69,6 +70,7 @@ const App = ({ua}) => {
 					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
 					<Route path="/withdraw/:type" component={Withdraw_m}/>
 					<Route path="/user_terms" component={UserTerms}/>
+					<Route path="/support" component={Support}/>
 					<Route path="/topup" component={() => <Topup isDesktop={false}/>}/>
 					<Route path="/task" component={Task_m}/>
 					<Route path="/admin" component={AdminPanel}/>
@@ -113,6 +115,7 @@ const App = ({ua}) => {
 					<Route exact path="/withdraw" component={() => <WithdrawTypes_m isDesktop={true}/>}/>
 					<Route path="/withdraw/:type" component={() => <Withdraw_m isDesktop={true}/>}/>
 					<Route path="/user_terms" component={() => <UserTerms isDesktop={true}/>}/>
+					<Route path="/support" component={Support}/>
 					<Route path="/topup" component={() => <Topup isDesktop={true}/>}/>
 					<Route path="/task" component={Task_m}/>
 					<Route path="/admin" component={AdminPanel}/>

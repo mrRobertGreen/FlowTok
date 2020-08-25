@@ -58,6 +58,11 @@ const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
                <div>Пользовательское соглашение</div>
             </div>
          </NavLink>
+         <NavLink to={"/support"}>
+            <div className={styles.item}>
+               <div>Служба поддержки</div>
+            </div>
+         </NavLink>
          <NavLink to={"/login/1"}>
             <div className={styles.item} onClick={() => exit()}>
                <div style={{color: "red"}}>Выйти</div>
