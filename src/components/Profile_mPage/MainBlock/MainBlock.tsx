@@ -72,13 +72,13 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                login={login}
                name={name}
          />
-         {/*{ refs < 5 &&*/}
-         {/*   <div className={styles.btn}>*/}
-         {/*      <NavLink to={"/refs"}>*/}
-         {/*         <Button mod={"bright"}>Заработать на рефералах</Button>*/}
-         {/*      </NavLink>*/}
-         {/*   </div>*/}
-         {/*}*/}
+         { refs < 5 &&
+            <div className={styles.btn}>
+               <NavLink to={"/refs"}>
+                  <Button mod={"bright"}>Заработать на рефералах</Button>
+               </NavLink>
+            </div>
+         }
          <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
          <Stats medianViews={medianViews} rate={rate} rating={rating}/>
          {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}

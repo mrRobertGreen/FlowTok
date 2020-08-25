@@ -78,8 +78,9 @@
   .label {
     font-size: 16px;
     margin: 0 0 10px;
-    line-height: 1.1;
-    span {
+    line-height: 1.2;
+
+    .refsCount {
       font-weight: 600;
       color: #00cf7b;
     }
@@ -88,4 +89,13 @@
       font-size: 18px;
     }
   }
+  .note {
+    margin: 20px 0 0;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+}
+.underline {
+  text-decoration: underline;
 }

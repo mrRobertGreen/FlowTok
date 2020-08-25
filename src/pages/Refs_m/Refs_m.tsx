@@ -56,17 +56,20 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
                </Button>
             </div>
          </div>
-         {/*{refData.refs < 5 &&*/}
-			{/*<div className={styles.taskBlock}>*/}
-			{/*	<p className={styles.title}>Зарабатывай на рефералах!</p>*/}
-			{/*	<p className={styles.label}>*/}
-			{/*		Пригласите первых 5 рефералов и получите <b>15</b> рублей!*/}
-			{/*	</p>*/}
-			{/*	<p className={styles.label}>*/}
-			{/*		Вам осталось всего <span>{5 - refData.refs}</span> рефералов*/}
-			{/*	</p>*/}
-			{/*</div>*/}
-         {/*}*/}
+         {refData.refs < 5 &&
+			<div className={styles.taskBlock}>
+				<p className={styles.title}>Зарабатывай на рефералах!</p>
+				<p className={styles.label}>
+					Пригласите первых 5 <span className={styles.underline}>активных</span> рефералов и получите <b>15</b> рублей!
+				</p>
+				<p className={styles.label}>
+					Вам осталось всего <span className={styles.refsCount}>{5 - refData.refs}</span> рефералов
+				</p>
+            <p className={styles.note}>
+               <span className={styles.underline}><b>Активным</b></span> считается пользователь, выполнивший хотя бы одно видео-задание.
+            </p>
+			</div>
+         }
          <div className={styles.statsBlock}>
             <div className={styles.item}>
                <div className={styles.numbers}>
