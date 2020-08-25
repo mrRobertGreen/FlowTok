@@ -144,8 +144,6 @@ export const getUserData = (): ThunkType => { // getting and setting user data
                if (data.data.task) {
                   //@ts-ignore
                   dispatch(userActions.setTask(data.data.task))
-               } else if (!getState().user.refData) {
-                  await dispatch(getRefData())
                }
             }
          // after all i can say, that user is authenticated

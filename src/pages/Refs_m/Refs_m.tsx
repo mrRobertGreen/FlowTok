@@ -1,20 +1,30 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
 import {Input} from "../../components/Input/Input";
 import BackArrowIcon from "../../media/icons/back_arrow_icon.svg";
-import {NavLink} from "react-router-dom";
-import {connect, ConnectedProps} from "react-redux";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
-import { compose } from "redux";
+import {compose} from "redux";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
+import {getRefData} from "../../redux/user-reducer";
 
 type PropsType = {}
 
-const Refs_m: FC<PropsType & PropsFromRedux> = ({refData}) => {
+const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
+   const goBack = () => {
+      history.goBack()
+   }
+   const dispatch = useDispatch()
+   const refData = useSelector((state: RootStateType) => state.user.refData)
 
-   const [isCopied, setIsCopied] = useState( false)
+   useEffect(() => {
+      if (!refData) dispatch(getRefData())
+   }, [refData, dispatch])
+
+   const [isCopied, setIsCopied] = useState(false)
 
    if (!refData) return <Preloader/>
 
@@ -25,11 +35,9 @@ const Refs_m: FC<PropsType & PropsFromRedux> = ({refData}) => {
 
    return (
       <div className={styles.wrapper}>
-         <NavLink to={"/profile"}>
-            <div className={styles.backBtn}>
-               <img src={BackArrowIcon} alt="back"/>
-            </div>
-         </NavLink>
+         <div className={styles.backBtn} onClick={goBack}>
+            <img src={BackArrowIcon} alt="back"/>
+         </div>
          <div className={styles.refBlock}>
             <div className={styles.title}>
                Ваша реферальная ссылка
@@ -70,15 +78,8 @@ const Refs_m: FC<PropsType & PropsFromRedux> = ({refData}) => {
    )
 }
 
-const mapStateToProps = (state: RootStateType) => ({
-   refData: state.user.refData
-})
-
-const connector = connect(mapStateToProps, {})
-type PropsFromRedux = ConnectedProps<typeof connector>
-
 export default compose(
-   connector,
    withCabinetRedirect,
-   withAuthRedirect
+   withAuthRedirect,
+   withRouter
 )(Refs_m)

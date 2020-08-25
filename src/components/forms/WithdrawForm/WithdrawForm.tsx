@@ -1,7 +1,6 @@
-import React, {FC, FormEvent, useState} from "react";
+import React, {FC, useState} from "react";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import styles from "./styles.module.scss";
-import classNames from "classnames";
 import {createWithdrawAmountValidator, validateRequiredField} from "../../../utils/validators";
 import Button from "../../Button/Button";
 import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";

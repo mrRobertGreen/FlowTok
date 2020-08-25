@@ -2,8 +2,8 @@ import React from "react";
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import RangeSlider from 'react-bootstrap-range-slider';
 import styles from "./styles.module.scss"
-import usersIcon from "../../../../../media/icons/users_icon.png"
-import brilliantIcon from "../../../../../media/icons/brilliant_icon.png"
+import usersIcon from "../../../../media/icons/users_icon.png"
+import brilliantIcon from "../../../../media/icons/brilliant_icon.png"
 
 const Slider = ({value, setValue}) => {
 

@@ -1,14 +1,14 @@
 import styles from "./styles.module.scss";
 import {Field, Form, Formik, FormikValues} from "formik";
 import React, {FC, useEffect, useState} from "react";
-import Button from "../../../Button/Button";
+import Button from "../../Button/Button";
 import classNames from "classnames";
 import Slider from "./Slider/Slider";
-import {AdvCreateTaskType} from "../../../../api/user-api";
+import {AdvCreateTaskType} from "../../../api/user-api";
 import {Redirect} from "react-router";
-import Preloader from "../../../common/Preloader/Preloader";
-import {validateRequiredField} from "../../../../utils/validators";
-import {ChooseAmount} from "../../../forms/common/ChooseAmount/ChooseAmount";
+import Preloader from "../../common/Preloader/Preloader";
+import {validateRequiredField} from "../../../utils/validators";
+import {ChooseAmount} from "../../forms/common/ChooseAmount/ChooseAmount";
 
 type CampaignType = {
    title: string
@@ -48,6 +48,9 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
    // const [sliderValue, setSliderValue] = useState(0);
 
+   if (isFetching) return <Preloader/>
+   if (isAdvTaskCreated && !isFetching) return  <Redirect to={"/cabinet"}/>
+
    return (
       <Formik
          validate={(values: CampaignType) => {
@@ -67,8 +70,6 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
          {
             ({setFieldValue, errors, touched, values}) =>
                <Form className={styles.wrapper}>
-                  {isAdvTaskCreated && !isFetching && <Redirect to={"/cabinet"}/>}
-                  {isFetching && <Preloader/>}
                   <div>
                      <Field className={classNames(styles.input, {[styles.error]: errors.title && touched.title})}
                             name={"title"}

@@ -9,6 +9,8 @@ import {Nullable, RootStateType} from "../../../redux/store";
 import {BlogProfileDataType} from "../../../redux/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import {useSelector} from "react-redux";
+import Button from "../../Button/Button";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
    isDesktop: boolean
@@ -53,6 +55,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
 				className={classNames({[styles.dark]: isMenuVisible})}
 				onClick={hideMenu}
 			/>}
+
          <Info setMenuVisible={setMenuVisible}
                isMenuVisible={isMenuVisible}
                fans={fans}
@@ -61,6 +64,11 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                login={login}
                name={name}
          />
+         {/*<div className={styles.btn}>*/}
+         {/*   <NavLink to={"/refs"}>*/}
+         {/*      <Button mod={"bright"}>Заработать на рефералах</Button>*/}
+         {/*   </NavLink>*/}
+         {/*</div>*/}
          <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
          <Stats medianViews={medianViews} rate={rate} rating={rating}/>
          {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}

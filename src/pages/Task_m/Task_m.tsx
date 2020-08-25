@@ -16,7 +16,7 @@ export const Task_m = () => {
    if (!task) return <Redirect to={"/work"}/>
    if (isFetching) return <Preloader/>
 
-   const {id, info, link, rate, title} = task
+   const {id, info, link, rate, title, url, text} = task
 
    const onCancelTask = () => {
       dispatch(cancelBlogTask(id))
@@ -40,11 +40,10 @@ export const Task_m = () => {
                      Как выполнить задание?
                   </div>
                   <div className={styles.item}>
-                     1. Жмете кнопку "Перейти к звуку"
+                     1. Жмете кнопку {link ? `"Перейти к звуку"` : `"${text}"`}
                   </div>
                   <div className={styles.item}>
-                     2. Снимаете ролик с открывшимся
-                     звуком
+                     2. {link ? "Снимаете ролик с открывшимся звуком" : "Выполняете задание"}
                   </div>
                   <div className={styles.item}>
                      3. В течение одного часа возвращаетесь на сайт и жмете
@@ -58,11 +57,11 @@ export const Task_m = () => {
             <div className={styles.btnGroup}>
                <div className={styles.btnItem}>
                   <div className={styles.btn}>
-                     <a href={link} target="_blank" rel="noopener noreferrer">
+                     <a href={link ? link : url} target="_blank" rel="noopener noreferrer">
                         <Button
                            mod={"black"}
                         >
-                           Перейти к звуку
+                           {link ? "Перейти к звуку" : text}
                         </Button>
                      </a>
                   </div>
