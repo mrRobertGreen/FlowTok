@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import Balance from "../../components/Cabinet_mPage/Balance/Balance";
 import Campaigns from "../../components/Cabinet_mPage/Campaigns/Campaigns";
 import {RootStateType} from "../../redux/store";
-import {connect, ConnectedProps} from "react-redux";
+import {connect, ConnectedProps, useSelector} from "react-redux";
 import {compose} from "redux";
 import {withAuthRedirect, withProfileRedirect} from "../../hocs/hocs";
 import {changeAdvTaskStatus, getUserData} from "../../redux/user-reducer";
@@ -12,10 +12,11 @@ import classNames from "classnames";
 import DropUpMenu from "../../components/Profile_mPage/DropUpMenu/DropUpMenu";
 import {exit} from "../../redux/auth-reducer";
 
-type PropsType = {isDesktop: boolean}
+type PropsType = {}
 
-const Cabinet_m: FC<PropsType & PropsFromRedux> = ({advProfile, changeAdvTaskStatus, isDesktop, exit}) => {
+const Cabinet_m: FC<PropsType & PropsFromRedux> = ({advProfile, changeAdvTaskStatus, exit}) => {
    const [isMenuVisible, setMenuVisible] = useState(false)
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    const hideMenu = () => {
       if (isMenuVisible) setMenuVisible(false)
    }

@@ -46,86 +46,53 @@ const App = ({ua}) => {
 
 	if (ua.phone) {
 		dispatch(appActions.setIsDesktop(false))
-		return (
-			<>
-				{error ?
-					<Modal isOpen={true}
-					       children={<Alert close={closeError} message={error} title={"Ошибка"} isError={true}/>}/> :
-					<Modal isOpen={!!notification}
-					       children={<Alert close={closeNotification} message={notification} title={"Успех"}
-					                        isError={false}/>}/>
-				}
-				<Switch>
-					<Route exact path="/login/1" component={() => <FirstStep isDesktop={false}/>}/>
-					<Route exact path="/login/2" component={() => <SecondStep isDesktop={false}/>}/>
-					<Route exact path="/login/3" component={() => <ThirdStep isDesktop={false}/>}/>
-					<Route path="/login" component={() => <Redirect to={"/login/1"}/>}/>
-					<Route path="/profile" component={() => <Profile_m isDesktop={false}/>}/>
-					<Route path="/work" component={() => <Work_m isDesktop={false}/>}/>
-					<Route path="/cabinet" component={Cabinet_m}/>
-					<Route path="/task_form" component={TaskForm_m}/>
-					<Route path="/refs" component={Refs_m}/>
-					<Route path="/ref/:refId" component={RefRedirect}/>
-					<Route path="/settings" component={Settings_m}/>
-					<Route exact path="/withdraw" component={WithdrawTypes_m}/>
-					<Route path="/withdraw/:type" component={Withdraw_m}/>
-					<Route path="/user_terms" component={UserTerms}/>
-					<Route path="/support" component={Support}/>
-					<Route path="/topup" component={() => <Topup isDesktop={false}/>}/>
-					<Route path="/task" component={Task_m}/>
-					<Route path="/admin" component={AdminPanel}/>
-					<Route path="/ad" component={AdvRedirect}/>
-					<Route path="/push_balance/:id" component={PushBalance}/>
-					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
-				</Switch>
-			</>
-		);
 	} else {
 		dispatch(appActions.setIsDesktop(true))
-		return (
-			<div style={{
-				width: `${document.body.clientHeight * 0.47229219}px`,
-				margin: "0 auto",
-				height: "100%",
-				/* we need this for remove layout jumping when vertical scroll appears */
-				// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
-				/* but we have problems with drop up menu =(( */
-			}}>
-
-				{error ?
-					<Modal isOpen={true}
-					       children={<Alert close={closeError} message={error} title={"Ошибка"}
-					                        isError={true}/>}/> :
-					<Modal isOpen={!!notification}
-					       children={<Alert close={closeNotification} message={notification} title={"Успех"}
-					                        isError={false}/>}/>
-				}
-				<Switch>
-					<Route exact path="/login/1" component={() => <FirstStep/>}/>
-					<Route exact path="/login/2" component={() => <SecondStep/>}/>
-					<Route exact path="/login/3" component={() => <ThirdStep isDesktop={true}/>}/>
-					<Route path="/login" component={() => <Redirect to={"/login/1"}/>}/>
-					<Route path="/profile" component={() => <Profile_m isDesktop={true}/>}/>
-					<Route path="/work" component={() => <Work_m isDesktop={true}/>}/>
-					<Route path="/cabinet" component={() => <Cabinet_m isDesktop={true}/>}/>
-					<Route path="/task_form" component={() => <TaskForm_m isDesktop={true}/>}/>
-					<Route path="/refs" component={Refs_m}/>
-					<Route path="/ref/:refId" component={RefRedirect}/>
-					<Route path="/settings" component={Settings_m}/>
-					<Route exact path="/withdraw" component={() => <WithdrawTypes_m isDesktop={true}/>}/>
-					<Route path="/withdraw/:type" component={() => <Withdraw_m isDesktop={true}/>}/>
-					<Route path="/user_terms" component={() => <UserTerms isDesktop={true}/>}/>
-					<Route path="/support" component={Support}/>
-					<Route path="/topup" component={() => <Topup isDesktop={true}/>}/>
-					<Route path="/task" component={Task_m}/>
-					<Route path="/admin" component={AdminPanel}/>
-					<Route path="/ad" component={AdvRedirect}/>
-					<Route path="/push_balance/:id" component={PushBalance}/>
-					<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
-				</Switch>
-			</div>
-		);
 	}
+
+	const desktopStyle = {
+		width: `${document.body.clientHeight * 0.47229219}px`,
+		margin: "0 auto",
+		height: "100%",
+		/* we need this for remove layout jumping when vertical scroll appears */
+		// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
+		/* but we have problems with drop up menu =(( */
+	}
+
+	return (
+		<div style={ua.phone ? undefined : desktopStyle}>
+			{error ?
+				<Modal isOpen={true}
+				       children={<Alert close={closeError} message={error} title={"Ошибка"}
+				                        isError={true}/>}/> :
+				<Modal isOpen={!!notification}
+				       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+				                        isError={false}/>}/>
+			}
+			<Switch>
+				<Route exact path="/login/1" component={FirstStep}/>
+				<Route exact path="/login/2" component={SecondStep}/>
+				<Route exact path="/login/3" component={ThirdStep}/>
+				<Route path="/profile" component={Profile_m}/>
+				<Route path="/work" component={Work_m}/>
+				<Route path="/cabinet" component={Cabinet_m}/>
+				<Route path="/task_form" component={TaskForm_m}/>
+				<Route path="/refs" component={Refs_m}/>
+				<Route path="/ref/:refId" component={RefRedirect}/>
+				<Route path="/settings" component={Settings_m}/>
+				<Route exact path="/withdraw" component={WithdrawTypes_m}/>
+				<Route path="/withdraw/:type" component={Withdraw_m}/>
+				<Route path="/user_terms" component={UserTerms}/>
+				<Route path="/support" component={Support}/>
+				<Route path="/topup" component={Topup}/>
+				<Route path="/task" component={Task_m}/>
+				<Route path="/admin" component={AdminPanel}/>
+				<Route path="/ad" component={AdvRedirect}/>
+				<Route path="/push_balance/:id" component={PushBalance}/>
+				<Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
+			</Switch>
+		</div>
+	);
 }
 
 export default compose(

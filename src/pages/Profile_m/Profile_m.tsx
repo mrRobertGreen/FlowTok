@@ -2,21 +2,19 @@ import React, {FC} from 'react';
 import styles from "./styles.module.scss"
 import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
 import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
-import {connect, ConnectedProps} from "react-redux";
+import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {userActions} from "../../redux/user-reducer"
 import {compose} from 'redux'
 import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {exit} from "../../redux/auth-reducer";
 
-type PropsType = {
-   isDesktop: boolean
-}
+type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work"
 
-const Profile_m: FC<PropsType & PropsFromRedux> = ({isDesktop, blogProfile, exit}) => {
-
+const Profile_m: FC<PropsType & PropsFromRedux> = ({ blogProfile, exit}) => {
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
          <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>

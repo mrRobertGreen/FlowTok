@@ -5,13 +5,10 @@ import {compose} from "redux";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import Preloader from "../../components/common/Preloader/Preloader";
 import {WithdrawForm} from "../../components/forms/WithdrawForm/WithdrawForm";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
-type PropsType = {
-   isDesktop: boolean
-}
+type PropsType = {}
 
 export const withdrawTypes: { [key in WithdrawTypes]: { [key: string]: string | Array<RegExp | string> } } = {
    qiwi: {
@@ -53,8 +50,8 @@ export type WithdrawTypes =
    | "yandex"
    | "qiwi"
 
-const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match, isDesktop}) => {
-
+const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    //@ts-ignore
    const type = match.params.type as WithdrawTypes
 

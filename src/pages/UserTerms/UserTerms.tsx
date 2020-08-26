@@ -1,12 +1,14 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
 type PropsType = {
-   isDesktop: boolean
 }
 
-export const UserTerms:FC<PropsType> = ({isDesktop}) => {
+export const UserTerms:FC<PropsType> = () => {
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
          <TopNavbar isDesktop={isDesktop} isMenu={false} label={"Публичная оферта"}/>
