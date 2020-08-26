@@ -61,13 +61,14 @@ const App = ({ua}) => {
 
 	return (
 		<div style={ua.phone ? undefined : desktopStyle}>
-			{error ?
-				<Modal isOpen={true}
-				       children={<Alert close={closeError} message={error} title={"Ошибка"}
-				                        isError={true}/>}/> :
-				<Modal isOpen={!!notification}
-				       children={<Alert close={closeNotification} message={notification} title={"Успех"}
-				                        isError={false}/>}/>
+			{error &&
+			<Modal isOpen={true}
+			       children={<Alert close={closeError} message={error} title={"Ошибка"}
+			                        isError={true}/>}/>}
+			{notification &&
+			<Modal isOpen={!!notification}
+			       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+			                        isError={false}/>}/>
 			}
 			<Switch>
 				<Route exact path="/login/1" component={FirstStep}/>

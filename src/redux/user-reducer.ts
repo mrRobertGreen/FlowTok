@@ -12,6 +12,7 @@ import {authActions, exit} from "./auth-reducer";
 import {detectUserRole} from "../utils/detectUserRole";
 import {checkMessageNotification} from "../utils/checkMessageNotification";
 import {appActions} from "./app-reducer";
+import {commonThunkHandler} from "../utils/commonThunkHandler";
 
 // userReducer is responsible for main user's information (profile, tasks)
 
@@ -133,29 +134,30 @@ export const userActions = {
 
 export const getUserData = (): ThunkType => { // getting and setting user data
    return async (dispatch, getState) => {
-      // this thunk is called only if there is a token
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.getUserData()
-      if (data.success) { // if token is true
-         setUserData(data.data, dispatch)
-         const role = detectUserRole(data.data, dispatch)
+      await commonThunkHandler(async () => {
+         // this thunk is called only if there is a token
+         const data = await userApi.getUserData()
+         if (data.success) { // if token is true
+            setUserData(data.data, dispatch)
+            const role = detectUserRole(data.data, dispatch)
             if (role === "Blogger") {
                localStorage.setItem("blogProfile", JSON.stringify(data.data))
                //@ts-ignore
-               if (data.data.task) {
+               if (data.data && data.data.task) {
                   //@ts-ignore
                   dispatch(userActions.setTask(data.data.task))
                }
             }
-         // after all i can say, that user is authenticated
-         dispatch(authActions.setIsAuth(true))
-      } else if (data.error) {
-         // exit app
-         await dispatch(exit())
-         console.error("getUserData error")
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
+            // after all i can say, that user is authenticated
+            dispatch(authActions.setIsAuth(true))
+         } else if (data.error) {
+            // exit app
+            await dispatch(exit())
+            console.error("getUserData error")
+         }
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
+
    }
 }
 export const setUserData = (userData: UserDataType, dispatch: Dispatch<ActionsType>) => {
@@ -189,30 +191,33 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
 export const getRefData = (): ThunkType => {
    return async (dispatch, getState) => {
       // get ref data for blogger
-      if (getState().auth.role === "Blogger") {
-         const data = await userApi.getRef()
-         if (data.success) {
-            localStorage.setItem("refData", JSON.stringify(data.data))
-            dispatch(userActions.setRefData(data.data))
-         } else if (data.error) {
-            console.error("getBlogTasks error")
+      await commonThunkHandler(async () => {
+         if (getState().auth.role === "Blogger") {
+            const data = await userApi.getRef()
+            if (data.success) {
+               localStorage.setItem("refData", JSON.stringify(data.data))
+               dispatch(userActions.setRefData(data.data))
+            } else if (data.error) {
+               console.error("getBlogTasks error")
+            }
+            checkMessageNotification(data, dispatch)
          }
-         checkMessageNotification(data, dispatch)
-      }
+      }, dispatch)
    }
 }
+
 export const getStatsData = (): ThunkType => {
    return async (dispatch, getState) => {
-      // get admin stats
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.getStats()
-      if (data.success) {
-         dispatch(userActions.setStats(data.data))
-      } else if (data.error) {
-         console.error("getStatsData error")
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
+      await commonThunkHandler(async () => {
+         // get admin stats
+         const data = await userApi.getStats()
+         if (data.success) {
+            dispatch(userActions.setStats(data.data))
+         } else if (data.error) {
+            console.error("getStatsData error")
+         }
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
    }
 }
 export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
