@@ -58,7 +58,6 @@ const App = ({ua}) => {
 		// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
 		/* but we have problems with drop up menu =(( */
 	}
-
 	return (
 		<div style={ua.phone ? undefined : desktopStyle}>
 			{error &&

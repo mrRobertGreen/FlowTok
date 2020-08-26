@@ -29,17 +29,17 @@ const Balance: FC<PropsType> = ({valueUp, valueDown, holdUp, holdDown}) => {
                </div>
             </div>
             <div className={styles.column}>
-               {/*<div className={styles.header}>*/}
-               {/*   В холде*/}
-               {/*</div>*/}
-               {/*<div className={styles.balance_grey}>*/}
-               {/*   <div className={styles.rub}>*/}
-               {/*      {holdUp}*/}
-               {/*   </div>*/}
-               {/*   <div className={styles.kop}>*/}
-               {/*      ,{holdDown} ₽*/}
-               {/*   </div>*/}
-               {/*</div>*/}
+               <div className={styles.header}>
+                  В холде
+               </div>
+               <div className={styles.balance_grey}>
+                  <div className={styles.rub}>
+                     {holdUp}
+                  </div>
+                  <div className={styles.kop}>
+                     ,{holdDown} ₽
+                  </div>
+               </div>
             </div>
          </div>
          <div className={styles.btn}>

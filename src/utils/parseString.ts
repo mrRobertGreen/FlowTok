@@ -4,5 +4,5 @@ export const parseStringTikTok = (string: string) => {
 }
 
 export const cleanPhoneNumber = (phone: string) => {
-   return phone.replace(/[^\d]/g, '')
+   return phone.replace(/[^+\d]/g, '')
 }
