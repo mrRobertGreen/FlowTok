@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router";
 import {BlogTaskType, doBlogTask, getBlogTasks} from "../../../../redux/user-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
+import {useCache} from "../../../../hooks/useCache";
 
 type PropsType = {
    currentSection: SectionNames
@@ -20,7 +21,7 @@ export const List: FC<PropsType> = ({
    const dispatch = useDispatch()
    const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
    let doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
-   let doneTasksCache = localStorage.getItem("blogDoneTasks")
+   const doneTasksCache = useCache("blogDoneTasks")
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
@@ -29,7 +30,7 @@ export const List: FC<PropsType> = ({
    }, [currentSection, dispatch])
 
    if (!doneTasks && doneTasksCache) {
-      doneTasks = JSON.parse(doneTasksCache)
+      doneTasks = doneTasksCache
    }
 
    if (!isAuth) {

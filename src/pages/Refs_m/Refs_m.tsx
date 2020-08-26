@@ -10,6 +10,7 @@ import Preloader from "../../components/common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
 import {getRefData} from "../../redux/user-reducer";
+import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
 
@@ -19,6 +20,12 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
    }
    const dispatch = useDispatch()
    const refData = useSelector((state: RootStateType) => state.user.refData)
+   let blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
+   const blogProfileCache = useCache("blogProfile")
+
+   if (blogProfileCache && !blogProfile) {
+      blogProfile = blogProfileCache
+   }
 
    useEffect(() => {
       if (!refData) dispatch(getRefData())
@@ -56,14 +63,14 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
                </Button>
             </div>
          </div>
-         {refData.refs < 5 &&
+         {blogProfile && blogProfile.isOffer &&
 			<div className={styles.taskBlock}>
 				<p className={styles.title}>Зарабатывай на рефералах!</p>
 				<p className={styles.label}>
 					Пригласите 5 <span className={styles.underline}>активных</span> рефералов и получите <b>15</b> рублей!
 				</p>
 				<p className={styles.label}>
-					Вам осталось всего <span className={styles.refsCount}>{5 - refData.refs}</span> рефералов
+					Вам осталось всего <span className={styles.refsCount}>{blogProfile.usersForMoney}</span> рефералов
 				</p>
             <p className={styles.note}>
                <span className={styles.underline}><b>Активным</b></span> считается пользователь, выполнивший хотя бы одно видео-задание.

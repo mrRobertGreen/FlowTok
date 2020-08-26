@@ -64,6 +64,8 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
    return (
       <div className={styles.wrapper}>
          <div className={styles.info}>
+            <p>Официальный новостной канал: <a href="https://t.me/flowtok" target="_blank" rel="noopener noreferrer">flowtok</a></p>
+            <br/>
             <p>По всем вопросам обращаться в службу поддержки</p>
             <p>Почта: <a href="https://flowtokcom@gmail.com" target="_blank"
                          rel="noopener noreferrer">flowtokcom@gmail.com</a></p>
@@ -98,6 +100,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                {/*</div>*/}
                <div className={styles.btn}>
                   <GoogleLogin
+
                      clientId="224348627605-9d3vp1ee0pp05558495ird5njsbtindh.apps.googleusercontent.com"
                      onSuccess={onGmButtonClick}
                      onFailure={() => {

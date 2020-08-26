@@ -5,12 +5,12 @@ import Balance from "./Balance/Balance";
 import Stats from "./Stats/Stats";
 import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import classNames from "classnames";
-import {Nullable, RootStateType} from "../../../redux/store";
+import {Nullable} from "../../../redux/store";
 import {BlogProfileDataType} from "../../../redux/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
-import {useSelector} from "react-redux";
 import Button from "../../Button/Button";
 import {NavLink} from "react-router-dom";
+import {useCache} from "../../../hooks/useCache";
 
 type PropsType = {
    isDesktop: boolean
@@ -24,23 +24,15 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
       if (isMenuVisible) setMenuVisible(false)
    }
 
-   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
-   let refData = useSelector((state: RootStateType) => state.user.refData)
-   const blogCacheData = localStorage.getItem("blogData")
-   const refCacheData = localStorage.getItem("refData")
+   const blogProfileCache = useCache("blogProfile")
 
-   if (blogCacheData && !profileData) {
-      profileData = JSON.parse(blogCacheData)
+   if (blogProfileCache && !profileData) {
+      profileData = blogProfileCache
    }
-   if (refCacheData && !refData) {
-      refData = JSON.parse(refCacheData)
-   }
-   if (!profileData || !refData) {
+
+   if (!profileData) {
       return <Preloader/>
    }
-
-   const {refs} = refData
-
    const {
       rate,
       name,
@@ -54,6 +46,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
       rating,
       holdUp,
       holdDown,
+      isOffer
    } = profileData
 
    return (
@@ -72,7 +65,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                login={login}
                name={name}
          />
-         { refs < 5 &&
+         { isOffer &&
             <div className={styles.btn}>
                <NavLink to={"/refs"}>
                   <Button mod={"bright"}>Заработать на рефералах</Button>

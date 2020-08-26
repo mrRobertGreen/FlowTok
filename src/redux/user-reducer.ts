@@ -140,13 +140,11 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          setUserData(data.data, dispatch)
          const role = detectUserRole(data.data, dispatch)
             if (role === "Blogger") {
-               localStorage.setItem("blogData", JSON.stringify(data.data))
+               localStorage.setItem("blogProfile", JSON.stringify(data.data))
                //@ts-ignore
                if (data.data.task) {
                   //@ts-ignore
                   dispatch(userActions.setTask(data.data.task))
-               } else if (!getState().user.refData) {
-                  await dispatch(getRefData())
                }
             }
          // after all i can say, that user is authenticated
@@ -354,6 +352,8 @@ export type BlogProfileDataType = {
    rating: number
    type: "blog"
    admin: boolean
+   isOffer: boolean
+   usersForMoney: number
    newTask: Nullable<number>
    messageNotification?: string
    task?: BlogTaskType

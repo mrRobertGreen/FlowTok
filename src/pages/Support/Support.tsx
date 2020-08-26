@@ -10,6 +10,8 @@ export const Support: FC = () => {
       <div>
          <TopNavbar isDesktop={isDesktop} label={"Служба поддержки"} isMenu={false}/>
          <div className={styles.info}>
+            <p>Официальный новостной канал: <a href="https://t.me/flowtok" target="_blank" rel="noopener noreferrer">flowtok</a></p>
+            <br/>
             <p>По всем вопросам обращаться в службу поддержки</p>
             <p>Почта: <a href="https://flowtokcom@gmail.com" target="_blank"
                          rel="noopener noreferrer">flowtokcom@gmail.com</a></p>
