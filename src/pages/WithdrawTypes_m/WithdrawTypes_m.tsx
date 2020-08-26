@@ -8,13 +8,13 @@ import {withRouter} from "react-router";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
 import {WithdrawTypes, withdrawTypes} from "../Withdraw_m/Withdraw_m";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
-type PropsType = {
-   isDesktop: boolean
-}
+type PropsType = {}
 
-const WithdrawTypes_m: FC<PropsType> = ({isDesktop}) => {
-
+const WithdrawTypes_m: FC<PropsType> = () => {
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
          <TopNavbar isDesktop={isDesktop} label={"Вывод средств"} isMenu={false}/>

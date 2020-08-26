@@ -4,13 +4,14 @@ import WorkBlock from "../../components/Profile_mPage/WorkBlock/WorkBlock";
 import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
 import {compose} from 'redux';
 import {withAuthRedirect, withTaskRedirect} from "../../hocs/hocs";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
 type PropsType = {
-   isDesktop: boolean
 }
 
-const Work_m: FC<PropsType> = ({isDesktop}) => {
-
+const Work_m: FC<PropsType> = () => {
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
          <WorkBlock/>

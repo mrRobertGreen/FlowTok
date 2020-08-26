@@ -4,18 +4,17 @@ import Button from "../../../components/Button/Button";
 import {Input} from "../../../components/Input/Input";
 import {setTikTok} from "../../../redux/auth-reducer";
 import {RootStateType} from "../../../redux/store";
-import {connect, ConnectedProps} from "react-redux";
+import {connect, ConnectedProps, useSelector} from "react-redux";
 import {compose} from "redux";
 import {withCabinetRedirect, withProfileRedirect} from "../../../hocs/hocs";
 import {Redirect} from "react-router";
 import Preloader from "../../../components/common/Preloader/Preloader";
 
-type PropsType = {
-   isDesktop: boolean
-}
+type PropsType = {}
 
-const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetching, isDesktop}) => {
+const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetching, }) => {
    const [inputValue, setInputValue] = useState("")
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    if (!localStorage.getItem("token")) { // if there isn't token go to the 1st step
       return <Redirect to={"/login/1"}/>
