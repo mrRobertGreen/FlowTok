@@ -1,13 +1,14 @@
-import {Action, applyMiddleware, compose, createStore} from "redux";
-import thunkMiddleware, {ThunkAction} from "redux-thunk";
+import {Action, createStore, applyMiddleware} from "redux";
+import {ThunkAction} from "redux-thunk";
 import createRootReducer from './reducers'
+import thunkMiddleware from "redux-thunk"
 
 
 const rootReducer = createRootReducer()
 
 //@ts-ignore
 // composeEnhancers = compose for redux devtools
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const store = createStore(
    rootReducer, // root reducer with router state
