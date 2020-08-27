@@ -11,6 +11,7 @@ import {Input, InputWithMask} from "../../Input/Input";
 import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
+import {cleanPhoneNumber} from "../../../utils/parseString";
 
 export type WithdrawFormValuesType = {
    wallet: string
@@ -28,7 +29,7 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
    const onSubmit = async (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
       const payload: WithdrawPayloadType = {
          money: +values.amount,
-         purse: values.wallet,
+         purse: type === "qiwi" ? cleanPhoneNumber(values.wallet) : values.wallet,
          type: type,
       }
       await dispatch(withdraw(payload))

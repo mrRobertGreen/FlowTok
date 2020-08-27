@@ -58,16 +58,16 @@ const App = ({ua}) => {
 		// padding: `${!ua.tablet ? "0 calc(20px - (100vw - 100%)) 0 0": "0"}`
 		/* but we have problems with drop up menu =(( */
 	}
-
 	return (
 		<div style={ua.phone ? undefined : desktopStyle}>
-			{error ?
-				<Modal isOpen={true}
-				       children={<Alert close={closeError} message={error} title={"Ошибка"}
-				                        isError={true}/>}/> :
-				<Modal isOpen={!!notification}
-				       children={<Alert close={closeNotification} message={notification} title={"Успех"}
-				                        isError={false}/>}/>
+			{error &&
+			<Modal isOpen={true}
+			       children={<Alert close={closeError} message={error} title={"Ошибка"}
+			                        isError={true}/>}/>}
+			{notification &&
+			<Modal isOpen={!!notification}
+			       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+			                        isError={false}/>}/>
 			}
 			<Switch>
 				<Route exact path="/login/1" component={FirstStep}/>

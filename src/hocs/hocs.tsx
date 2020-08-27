@@ -21,8 +21,8 @@ export function withAuthRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Com
    type PropsFromRedux = ConnectedProps<typeof connector>
 
    return connector(withAuthRedirectComponent)
-
 }
+
 export function withTaskRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
    const withTaskRedirectComponent:ComponentType = (props) => {
 
@@ -35,8 +35,8 @@ export function withTaskRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Com
       return <WrappedComponent {...props as WCP}/>
    }
    return withTaskRedirectComponent
-
 }
+
 export function withAdminRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
    return (props) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -54,7 +54,6 @@ export function withAdminRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Co
       }
       return <WrappedComponent {...props as WCP}/>
    }
-
 }
 
 export function withProfileRedirect<WCP>(WrappedComponent: ComponentType<WCP>) {

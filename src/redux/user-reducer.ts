@@ -12,6 +12,7 @@ import {authActions, exit} from "./auth-reducer";
 import {detectUserRole} from "../utils/detectUserRole";
 import {checkMessageNotification} from "../utils/checkMessageNotification";
 import {appActions} from "./app-reducer";
+import {commonThunkHandler} from "../utils/commonThunkHandler";
 
 // userReducer is responsible for main user's information (profile, tasks)
 
@@ -132,30 +133,30 @@ export const userActions = {
 }
 
 export const getUserData = (): ThunkType => { // getting and setting user data
-   return async (dispatch, getState) => {
-      // this thunk is called only if there is a token
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.getUserData()
-      if (data.success) { // if token is true
-         setUserData(data.data, dispatch)
-         const role = detectUserRole(data.data, dispatch)
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         // this thunk is called only if there is a token
+         const data = await userApi.getUserData()
+         if (data.success) { // if token is true
+            setUserData(data.data, dispatch)
+            const role = detectUserRole(data.data, dispatch)
             if (role === "Blogger") {
                localStorage.setItem("blogProfile", JSON.stringify(data.data))
                //@ts-ignore
-               if (data.data.task) {
+               if (data.data && data.data.task) {
                   //@ts-ignore
                   dispatch(userActions.setTask(data.data.task))
                }
             }
-         // after all i can say, that user is authenticated
-         dispatch(authActions.setIsAuth(true))
-      } else if (data.error) {
-         // exit app
-         await dispatch(exit())
-         console.error("getUserData error")
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
+            // after all i can say, that user is authenticated
+            dispatch(authActions.setIsAuth(true))
+         } else if (data.error) {
+            // exit app
+            await dispatch(exit())
+         }
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
+
    }
 }
 export const setUserData = (userData: UserDataType, dispatch: Dispatch<ActionsType>) => {
@@ -180,8 +181,6 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
                dispatch(userActions.setBlogNewTasks(data.data))
                break
          }
-      } else if (data.error) {
-         console.error("getBlogTasks error")
       }
       checkMessageNotification(data, dispatch)
    }
@@ -189,30 +188,29 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
 export const getRefData = (): ThunkType => {
    return async (dispatch, getState) => {
       // get ref data for blogger
-      if (getState().auth.role === "Blogger") {
-         const data = await userApi.getRef()
-         if (data.success) {
-            localStorage.setItem("refData", JSON.stringify(data.data))
-            dispatch(userActions.setRefData(data.data))
-         } else if (data.error) {
-            console.error("getBlogTasks error")
+      await commonThunkHandler(async () => {
+         if (getState().auth.role === "Blogger") {
+            const data = await userApi.getRef()
+            if (data.success) {
+               localStorage.setItem("refData", JSON.stringify(data.data))
+               dispatch(userActions.setRefData(data.data))
+            }
+            checkMessageNotification(data, dispatch)
          }
-         checkMessageNotification(data, dispatch)
-      }
+      }, dispatch)
    }
 }
+
 export const getStatsData = (): ThunkType => {
-   return async (dispatch, getState) => {
-      // get admin stats
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.getStats()
-      if (data.success) {
-         dispatch(userActions.setStats(data.data))
-      } else if (data.error) {
-         console.error("getStatsData error")
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         // get admin stats
+         const data = await userApi.getStats()
+         if (data.success) {
+            dispatch(userActions.setStats(data.data))
+         }
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
    }
 }
 export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
@@ -223,8 +221,6 @@ export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
       if (data.success) {
          dispatch(userActions.createAdvTask(data.data))
          dispatch(userActions.setIsAdvTaskCreated(true))
-      } else {
-         console.error("createAdvTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
@@ -236,20 +232,17 @@ export const changeAdvTaskStatus = (taskId: string, taskStatus: AdvTaskStatusTyp
       const data = await userApi.changeAdvTaskStatus(taskId, taskStatus)
       if (data.success) {
          dispatch(userActions.changeAdvTask(data.data))
-      } else {
-         console.error("changeTaskStatus error")
       }
       checkMessageNotification(data, dispatch)
    }
 }
 export const doBlogTask = (taskId: string): ThunkType => {
-   // send blogger's task to wait section
+   // start doing task
    return async (dispatch) => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.doBlogTask(taskId)
       if (data.success) {
          await dispatch(getUserData())
-      } else {
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
@@ -278,8 +271,6 @@ export const checkBlogTask = (taskId: string): ThunkType => {
       if (data.success) {
          await dispatch(getUserData())
          dispatch(userActions.setTask(null))
-      } else {
-         console.error("checkBlogTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
@@ -292,8 +283,6 @@ export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
       const data = await userApi.withdraw(payload)
       if (data.success) {
          appActions.setNotification("Операция успешно завершена")
-      } else {
-         console.error("finishBlogTask error")
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
@@ -307,8 +296,6 @@ export const pushTaskBalance = (money: number, taskId: string): ThunkType => {
       if (data.success) {
          dispatch(appActions.setNotification("Вы успешно пополнили бюджет кампании!"))
          await dispatch(getUserData())
-      } else {
-         console.error("pushTaskBalance error")
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
