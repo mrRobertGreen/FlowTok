@@ -178,10 +178,10 @@ export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
             case "done":
                localStorage.setItem("blogDoneTasks", JSON.stringify(data.data))
                dispatch(userActions.setBlogDoneTasks(data.data))
-               break
+               return
             case "new":
                dispatch(userActions.setBlogNewTasks(data.data))
-               break
+               return
          }
       }
       checkMessageNotification(data, dispatch)

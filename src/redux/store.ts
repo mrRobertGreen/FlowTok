@@ -1,4 +1,4 @@
-import {Action, createStore, applyMiddleware} from "redux";
+import {Action, createStore, applyMiddleware, compose} from "redux";
 import {ThunkAction} from "redux-thunk";
 import createRootReducer from './reducers'
 import thunkMiddleware from "redux-thunk"

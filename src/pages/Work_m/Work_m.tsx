@@ -7,8 +7,7 @@ import {withAuthRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 
-type PropsType = {
-}
+type PropsType = {}
 
 const Work_m: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)

@@ -108,43 +108,43 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
                            />
                         )}
                      </Field>
-                     <div className={styles.label}>Стоимость одного видеоролика</div>
-                     <div className={styles.flexbox}>
-                        <div className={styles.word}>От</div>
-                        <Field name={"minSum"}
-                               validate={createMaxMinSumValidator(0.1, +values.maxSum)}>
-                           {({
-                                field,
-                                form: {touched, errors}
-                             }: FieldProps) => (
-                              <Input
-                                 mod={"blue"}
-                                 type={"number"}
-                                 placeholder={"Сумма"}
-                                 isError={!!(errors.minSum && touched.minSum && touched.maxSum)}
-                                 {...field}
-                              />
-                           )}
-                        </Field>
-                        <div className={styles.rub}>₽</div>
-                        <div className={styles.word}>до</div>
-                        <Field name={"maxSum"}
-                               validate={createMaxMinSumValidator(+values.minSum, Infinity)}>
-                           {({
-                                field,
-                                form: {touched, errors}
-                             }: FieldProps) => (
-                              <Input
-                                 mod={"blue"}
-                                 type={"number"}
-                                 placeholder={"Сумма"}
-                                 isError={!!(errors.maxSum && touched.maxSum && touched.minSum)}
-                                 {...field}
-                              />
-                           )}
-                        </Field>
-                        <div className={styles.rub}>₽</div>
-                     </div>
+                     {/*<div className={styles.label}>Стоимость одного видеоролика</div>*/}
+                     {/*<div className={styles.flexbox}>*/}
+                     {/*   <div className={styles.word}>От</div>*/}
+                     {/*   <Field name={"minSum"}*/}
+                     {/*          validate={createMaxMinSumValidator(0.1, +values.maxSum)}>*/}
+                     {/*      {({*/}
+                     {/*           field,*/}
+                     {/*           form: {touched, errors}*/}
+                     {/*        }: FieldProps) => (*/}
+                     {/*         <Input*/}
+                     {/*            mod={"blue"}*/}
+                     {/*            type={"number"}*/}
+                     {/*            placeholder={"Сумма"}*/}
+                     {/*            isError={!!(errors.minSum && touched.minSum && touched.maxSum)}*/}
+                     {/*            {...field}*/}
+                     {/*         />*/}
+                     {/*      )}*/}
+                     {/*   </Field>*/}
+                     {/*   <div className={styles.rub}>₽</div>*/}
+                     {/*   <div className={styles.word}>до</div>*/}
+                     {/*   <Field name={"maxSum"}*/}
+                     {/*          validate={createMaxMinSumValidator(+values.minSum, Infinity)}>*/}
+                     {/*      {({*/}
+                     {/*           field,*/}
+                     {/*           form: {touched, errors}*/}
+                     {/*        }: FieldProps) => (*/}
+                     {/*         <Input*/}
+                     {/*            mod={"blue"}*/}
+                     {/*            type={"number"}*/}
+                     {/*            placeholder={"Сумма"}*/}
+                     {/*            isError={!!(errors.maxSum && touched.maxSum && touched.minSum)}*/}
+                     {/*            {...field}*/}
+                     {/*         />*/}
+                     {/*      )}*/}
+                     {/*   </Field>*/}
+                     {/*   <div className={styles.rub}>₽</div>*/}
+                     {/*</div>*/}
                      {/*<Slider value={sliderValue} setValue={setSliderValue}/>*/}
                   </div>
                   <div className={styles.submitBtn}>
