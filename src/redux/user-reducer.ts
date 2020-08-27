@@ -9,10 +9,11 @@ import {
 } from "../api/user-api";
 import {Dispatch} from "react";
 import {authActions, exit} from "./auth-reducer";
-import {detectUserRole} from "../utils/detectUserRole";
+import {isBlog} from "../utils/detectUserRole";
 import {checkMessageNotification} from "../utils/checkMessageNotification";
 import {appActions} from "./app-reducer";
 import {commonThunkHandler} from "../utils/commonThunkHandler";
+import { Action } from "redux";
 
 // userReducer is responsible for main user's information (profile, tasks)
 
@@ -139,11 +140,9 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          const data = await userApi.getUserData()
          if (data.success) { // if token is true
             setUserData(data.data, dispatch)
-            const role = detectUserRole(data.data, dispatch)
-            if (role === "Blogger") {
-               //@ts-ignore
-               if (data.data && data.data.task) {
-                  //@ts-ignore
+            // detectUserRole(data.data, dispatch)
+            if (isBlog(data.data)) {
+               if (data.data.task) {
                   dispatch(userActions.setTask(data.data.task))
                }
             }
@@ -158,13 +157,15 @@ export const getUserData = (): ThunkType => { // getting and setting user data
 
    }
 }
-export const setUserData = (userData: UserDataType, dispatch: Dispatch<ActionsType>) => {
+export const setUserData = (userData: UserDataType, dispatch: Dispatch<Action>) => {
    // set user data correctly
-   if (userData.type === "blog") {
+   if (isBlog(userData)) {
       dispatch(userActions.setBlogProfile(userData))
+      dispatch(authActions.setUserRole("Blogger"))
       localStorage.setItem("blogProfile", JSON.stringify(userData))
    } else {
       dispatch(userActions.setAdvProfile(userData))
+      dispatch(authActions.setUserRole("Advertiser"))
       localStorage.setItem("advProfile", JSON.stringify(userData))
    }
 }

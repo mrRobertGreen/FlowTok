@@ -1,14 +1,9 @@
 import {UserDataType} from "../api/user-api";
-import {Dispatch} from "react";
-import {Action} from "redux";
-import {authActions} from "../redux/auth-reducer";
+import {AdvProfileDataType, BlogProfileDataType} from "../redux/user-reducer";
 
-export const detectUserRole = (userData: UserDataType, dispatch: Dispatch<Action>) => {
-   if (userData.type === "blog") {
-      dispatch(authActions.setUserRole("Blogger"))
-      return "Blogger"
-   } else {
-      dispatch(authActions.setUserRole("Advertiser"))
-      return "Advertiser"
-   }
+export function isBlog(user: UserDataType): user is BlogProfileDataType {
+   return user.type === "blog";
+}
+export function isAdv(user: UserDataType): user is AdvProfileDataType {
+   return user.type === "ad";
 }
