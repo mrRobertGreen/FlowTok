@@ -8,6 +8,13 @@ export const createMinSumValidator = (minSum: number) => {
       return +value < minSum ? `Сумма не может быть меньше ${minSum} руб`  : undefined
    }
 }
+export const createMaxMinSumValidator = (minSum: number, maxSum: number) => {
+   return (value: string) => {
+      if (+value < minSum) return `Сумма не может быть меньше ${minSum} руб`
+      if (+value > maxSum) return `Сумма не может быть больше ${maxSum} руб`
+      return
+   }
+}
 
 export const createWithdrawAmountValidator = (type: WithdrawTypes) => {
    return (value: string) => {

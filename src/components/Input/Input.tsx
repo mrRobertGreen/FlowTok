@@ -28,9 +28,9 @@ export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
             })}
          />
          <div className={styles.errorMsg}
-              style={{visibility: `${isError ? "visible" : "hidden"}` as "hidden" | "visible"}}
+              style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}
          >
-            {errorMessage ? errorMessage : "hidden"}
+            {errorMessage ? errorMessage : null}
          </div>
       </div>
 

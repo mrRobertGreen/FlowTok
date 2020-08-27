@@ -141,7 +141,6 @@ export const getUserData = (): ThunkType => { // getting and setting user data
             setUserData(data.data, dispatch)
             const role = detectUserRole(data.data, dispatch)
             if (role === "Blogger") {
-               localStorage.setItem("blogProfile", JSON.stringify(data.data))
                //@ts-ignore
                if (data.data && data.data.task) {
                   //@ts-ignore
@@ -163,8 +162,10 @@ export const setUserData = (userData: UserDataType, dispatch: Dispatch<ActionsTy
    // set user data correctly
    if (userData.type === "blog") {
       dispatch(userActions.setBlogProfile(userData))
+      localStorage.setItem("blogProfile", JSON.stringify(userData))
    } else {
       dispatch(userActions.setAdvProfile(userData))
+      localStorage.setItem("advProfile", JSON.stringify(userData))
    }
 }
 export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
@@ -192,7 +193,6 @@ export const getRefData = (): ThunkType => {
          if (getState().auth.role === "Blogger") {
             const data = await userApi.getRef()
             if (data.success) {
-               localStorage.setItem("refData", JSON.stringify(data.data))
                dispatch(userActions.setRefData(data.data))
             }
             checkMessageNotification(data, dispatch)
@@ -221,6 +221,7 @@ export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
       if (data.success) {
          dispatch(userActions.createAdvTask(data.data))
          dispatch(userActions.setIsAdvTaskCreated(true))
+         await dispatch(getUserData())
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)

@@ -44,16 +44,16 @@ const Info: FC<PropsType> = ({
                {login}
             </div>
          </div>
-         <div className={styles.bottomBlock}>
-            <div className={styles.bottomBlock__item}>
-               <div className={styles.value}>{fans}</div>
-               <div className={styles.label}>Подписчиков</div>
-            </div>
-            <div className={styles.bottomBlock__item}>
-               <div className={styles.value}>{heart}</div>
-               <div className={styles.label}>Лайков</div>
-            </div>
-         </div>
+         {/*<div className={styles.bottomBlock}>*/}
+         {/*   <div className={styles.bottomBlock__item}>*/}
+         {/*      <div className={styles.value}>{fans}</div>*/}
+         {/*      <div className={styles.label}>Подписчиков</div>*/}
+         {/*   </div>*/}
+         {/*   <div className={styles.bottomBlock__item}>*/}
+         {/*      <div className={styles.value}>{heart}</div>*/}
+         {/*      <div className={styles.label}>Лайков</div>*/}
+         {/*   </div>*/}
+         {/*</div>*/}
       </div>
    )
 }

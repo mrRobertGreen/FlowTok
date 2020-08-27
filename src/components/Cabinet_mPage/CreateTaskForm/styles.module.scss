@@ -27,5 +27,28 @@
   resize:none
 }
 .submitBtn {
-  margin: 0 0 10px;
+  margin: 20px 0 0;
+}
+.label {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600;
+  padding: 20px 0 20px;
+}
+.flexbox {
+  //background-color: red;
+  padding: 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  * {
+    margin: 0 5px;
+  }
+  .word {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .rub {
+    font-size: 22px;
+  }
 }

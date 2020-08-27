@@ -11,6 +11,7 @@ import Preloader from "../../components/common/Preloader/Preloader";
 import classNames from "classnames";
 import DropUpMenu from "../../components/Profile_mPage/DropUpMenu/DropUpMenu";
 import {exit} from "../../redux/auth-reducer";
+import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
 
@@ -19,6 +20,11 @@ const Cabinet_m: FC<PropsType & PropsFromRedux> = ({advProfile, changeAdvTaskSta
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    const hideMenu = () => {
       if (isMenuVisible) setMenuVisible(false)
+   }
+   const advProfileCache = useCache("advProfile")
+
+   if (!advProfile && advProfileCache) {
+      advProfile = advProfileCache
    }
 
    if (!advProfile) {

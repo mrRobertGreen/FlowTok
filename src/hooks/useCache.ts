@@ -4,9 +4,9 @@ export const useCache = (dataName: CashedDataNames) => {
          const blogProfileCache = localStorage.getItem("blogProfile")
          if (blogProfileCache) return JSON.parse(blogProfileCache)
          break
-      case "refData":
-         const refDataCache = localStorage.getItem("refData")
-         if (refDataCache) return JSON.parse(refDataCache)
+      case "advProfile":
+         const advProfileCache = localStorage.getItem("advProfile")
+         if (advProfileCache) return JSON.parse(advProfileCache)
          break
       case "blogDoneTasks":
          const blogDoneTasksCache = localStorage.getItem("blogDoneTasks")
@@ -17,4 +17,4 @@ export const useCache = (dataName: CashedDataNames) => {
    }
 }
 
-export type CashedDataNames = "blogProfile" | "refData" | "blogDoneTasks"
+export type CashedDataNames = "blogProfile" | "blogDoneTasks" | "advProfile"

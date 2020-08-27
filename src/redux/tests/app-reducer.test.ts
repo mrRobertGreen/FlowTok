@@ -10,20 +10,38 @@ beforeEach(() => {
    initialState = {
       notification: null,
       isFetching: false,
-      isInit: false
+      isInit: false,
+      error: null,
+      isDesktop: false
    }
 })
-test("toggleIsError work correctly", () => {
-   const newState = appReducer(initialState, appActions.setNotification("message"))
-   expect(newState.notification).toBeTruthy()
-})
-test("toggleIsInit work correctly", () => {
+test("toggleIsInit works correctly", () => {
    const newState = appReducer(initialState, appActions.toggleIsInit(true))
    expect(newState.isInit).toBeTruthy()
 })
-test("toggleIsFetching work correctly", () => {
+test("toggleIsFetching works correctly", () => {
    const newState = appReducer(initialState, appActions.toggleIsFetching(true))
    expect(newState.isFetching).toBeTruthy()
+})
+test("setIsDesktop works correctly", () => {
+   const newState = appReducer(initialState, appActions.setIsDesktop(true))
+   expect(newState.isDesktop).toBeTruthy()
+})
+test("setNotification works correctly", () => {
+   const newState = appReducer(initialState, appActions.setNotification("message"))
+   expect(newState.notification).toBe("message")
+})
+test("setError works correctly", () => {
+   const newState = appReducer(initialState, appActions.setError("error"))
+   expect(newState.error).toBe("error")
+})
+test("clear works correctly", () => {
+   const newState = appReducer(initialState, appActions.clear())
+   expect(newState.error).toBe(null)
+   expect(newState.notification).toBe(null)
+   expect(newState.isFetching).toBeFalsy()
+   expect(newState.isInit).toBeFalsy()
+   expect(newState.isDesktop).toBeFalsy()
 })
 
 // --- thunks ---
@@ -53,9 +71,12 @@ test("should be initialize with token and success blogProfile", async () => {
    const thunk = initialize()
    await thunk(dispatchMock, getStateMock, {})
 
+   const thunk_2 = getUserData()
+
    expect(dispatchMock).toBeCalledTimes(2)
-   expect(dispatchMock).toHaveBeenNthCalledWith(1, getUserData())
-   expect(dispatchMock).toHaveBeenNthCalledWith(2, appActions.toggleIsInit(true))
+   expect(dispatchMock.mock.calls[0]).toBe(thunk_2)
+   // expect(dispatchMock).toHaveBeenNthCalledWith(1, getUserData())
+   // expect(dispatchMock).toHaveBeenNthCalledWith(2, appActions.toggleIsInit(true))
 
 })
 test("shouldn't be initialize without token", async () => {
@@ -64,7 +85,8 @@ test("shouldn't be initialize without token", async () => {
    const thunk = initialize()
    await thunk(dispatchMock, getStateMock, {})
 
-   expect(dispatchMock).toBeCalledTimes(0)
+   expect(dispatchMock).toBeCalledTimes(1)
+   expect(dispatchMock).toHaveBeenNthCalledWith(1, appActions.toggleIsInit(true))
 })
 
 
