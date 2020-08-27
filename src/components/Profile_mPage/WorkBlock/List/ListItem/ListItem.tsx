@@ -1,11 +1,10 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../../Button/Button";
-import {SectionNames} from "../../WorkBlock";
-import {BlogTaskType} from "../../../../../redux/user-reducer";
+import {BlogTaskStatusType, BlogTaskType} from "../../../../../redux/user-reducer";
 
 type PropsType = {
-   currentSection: SectionNames
+   taskType: BlogTaskStatusType
    doBlogTask: (id: string) => void
 } & BlogTaskType
 
@@ -15,7 +14,7 @@ const ListItem: FC<PropsType> = ({
                                     info,
                                     id,
                                     link,
-                                    currentSection,
+                                    taskType,
                                     doBlogTask,
                                     url,
                                     text
@@ -37,7 +36,7 @@ const ListItem: FC<PropsType> = ({
             <div className={styles.btn}>
                <a href={link ? link : url} target="_blank" rel="noopener noreferrer">
                   <Button
-                     disabled={currentSection === "done"}
+                     disabled={taskType === "done"}
                      mod={"black"}
                   >
                      {link ? "Перейти к звуку" : text}
@@ -56,11 +55,11 @@ const ListItem: FC<PropsType> = ({
          <div className={styles.bottomBlock}>
             <div className={styles.mainBtn}>
                <Button
-                  disabled={currentSection === "done"}
-                  mod={currentSection === "new" ? undefined : "grey"}
-                  onButtonClick={currentSection === "new" ? doTask : undefined}>
-                  {currentSection === "new" && "Выполнить"}
-                  {currentSection === "done" && "Выполнено"}
+                  disabled={taskType === "done"}
+                  mod={taskType === "new" ? undefined : "grey"}
+                  onButtonClick={taskType === "new" ? doTask : undefined}>
+                  {taskType === "new" && "Выполнить"}
+                  {taskType === "done" && "Выполнено"}
                </Button>
             </div>
          </div>

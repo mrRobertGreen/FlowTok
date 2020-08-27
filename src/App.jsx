@@ -74,7 +74,8 @@ const App = ({ua}) => {
 				<Route exact path="/login/2" component={SecondStep}/>
 				<Route exact path="/login/3" component={ThirdStep}/>
 				<Route path="/profile" component={Profile_m}/>
-				<Route path="/work" component={Work_m}/>
+				<Route path="/work/:type" component={Work_m}/>
+				<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
 				<Route path="/cabinet" component={Cabinet_m}/>
 				<Route path="/task_form" component={TaskForm_m}/>
 				<Route path="/refs" component={Refs_m}/>

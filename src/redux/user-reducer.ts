@@ -355,5 +355,5 @@ export type BlogTaskType = {
    url?: string
    text?: string
 }
-export type BlogTaskStatusType = "wait" | "new" | "done"
+export type BlogTaskStatusType = "new" | "done"
 export type AdvTaskStatusType = "play" | "pause"

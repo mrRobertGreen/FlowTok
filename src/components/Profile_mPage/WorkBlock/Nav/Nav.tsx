@@ -1,23 +1,17 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import classNames from "classnames";
-import {SectionNames} from "../WorkBlock";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
+import {NavLink} from "react-router-dom";
+import {BlogTaskStatusType} from "../../../../redux/user-reducer";
 
 type PropsType = {
-   currentSection: SectionNames
-   setCurrentSection: (section: SectionNames) => void
+   taskType: BlogTaskStatusType
 }
 
-const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection}) => {
+const Nav: FC<PropsType & PropsFromRedux> = ({taskType}) => {
 
-   const onClickNewSection = () => {
-      setCurrentSection("new")
-   }
-   const onClickDoneSection = () => {
-      setCurrentSection("done")
-   }
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
@@ -25,26 +19,20 @@ const Nav: FC<PropsType & PropsFromRedux> = ({setCurrentSection, currentSection}
            style={{width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`}}
       >
          <div className={styles.sections}>
-            <div
-               className={classNames(styles.item, {[styles.active]: currentSection === "new"})}
-               onClick={onClickNewSection}
-            >
+            <NavLink to={"/work/new"} className={classNames(styles.item, {[styles.active]: taskType === "new"})}>
                <div>Активные</div>
-            </div>
-            <div
-               className={classNames(styles.item, {[styles.active]: currentSection === "done"})}
-               onClick={onClickDoneSection}
-            >
+            </NavLink>
+            <NavLink to={"/work/done"}
+                     className={classNames(styles.item, {[styles.active]: taskType === "done"})}>
                <div>Выполненные</div>
-            </div>
+            </NavLink>
          </div>
       </nav>
    )
 
 }
 
-const mapDispatchToProps = {
-}
+const mapDispatchToProps = {}
 
 const connector = connect(null, mapDispatchToProps)
 type PropsFromRedux = ConnectedProps<typeof connector>
