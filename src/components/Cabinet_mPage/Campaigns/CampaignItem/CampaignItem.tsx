@@ -18,6 +18,8 @@ type PropsType = {
    views: string
    likes: string
    id: string
+   min: string
+   max: string
    state: "play" | "pause"
    changeAdvTaskStatus: (taskId: string, taskStatus: AdvTaskStatusType) => Promise<void>
 }
@@ -31,6 +33,8 @@ const CampaignItem: FC<PropsType> = ({
                                         reposts,
                                         title,
                                         views,
+                                        min,
+                                        max,
                                         changeAdvTaskStatus,
                                         id
                                      }) => {
@@ -78,6 +82,18 @@ const CampaignItem: FC<PropsType> = ({
                   {clips}
                </div>
             </div>
+            {(min || max) &&
+				<>
+					<div className={styles.line}/>
+					<div className={styles.detail}>
+						<div className={styles.label}>
+							Стоимость клипа:
+						</div>
+						<div className={styles.number}>
+							от {min} до {max}
+						</div>
+					</div>
+				</>}
             <div className={styles.stats}>
                <div className={styles.item}>
                   <img src={replyIcon} alt="" className={styles.icon}/>
@@ -94,7 +110,7 @@ const CampaignItem: FC<PropsType> = ({
             </div>
          </div>
       </div>
-   )
+   );
 }
 
 export default CampaignItem

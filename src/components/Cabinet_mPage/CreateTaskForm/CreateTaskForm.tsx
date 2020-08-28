@@ -7,7 +7,7 @@ import Slider from "./Slider/Slider";
 import {AdvCreateTaskType} from "../../../api/user-api";
 import {Redirect} from "react-router";
 import Preloader from "../../common/Preloader/Preloader";
-import {createMaxMinSumValidator, createMinSumValidator, validateRequiredField} from "../../../utils/validators";
+import {createMinMaxSumValidator, createMinSumValidator, validateRequiredField} from "../../../utils/validators";
 import {ChooseAmount} from "../../forms/common/ChooseAmount/ChooseAmount";
 import {Input} from "../../Input/Input";
 
@@ -16,6 +16,8 @@ type CampaignType = {
    info: string
    link: string
    value: string
+   min: string
+   max: string
 }
 
 type PropsType = {
@@ -31,13 +33,15 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
    }, [setIsAdvTaskCreated])
 
    const onSubmit = (values: CampaignType, {resetForm}: FormikValues) => {
-      const taskPayload = {
+      const taskPayload: AdvCreateTaskType= {
          title: values.title,
          info: values.info,
          link: values.link,
          value: +values.value,
          quantity: 100,
          quality: 0,
+         max: values.max ? +values.max : null,
+         min: values.min ? +values.min : null,
       }
       createAdvTask(taskPayload)
       if (isAdvTaskCreated) {
@@ -66,8 +70,8 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
             info: "",
             link: "",
             value: "",
-            maxSum: "",
-            minSum: "",
+            max: "",
+            min: "",
          }}
          onSubmit={onSubmit}
          className={styles.formik}
@@ -108,43 +112,45 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
                            />
                         )}
                      </Field>
-                     {/*<div className={styles.label}>Стоимость одного видеоролика</div>*/}
-                     {/*<div className={styles.flexbox}>*/}
-                     {/*   <div className={styles.word}>От</div>*/}
-                     {/*   <Field name={"minSum"}*/}
-                     {/*          validate={createMaxMinSumValidator(0.1, +values.maxSum)}>*/}
-                     {/*      {({*/}
-                     {/*           field,*/}
-                     {/*           form: {touched, errors}*/}
-                     {/*        }: FieldProps) => (*/}
-                     {/*         <Input*/}
-                     {/*            mod={"blue"}*/}
-                     {/*            type={"number"}*/}
-                     {/*            placeholder={"Сумма"}*/}
-                     {/*            isError={!!(errors.minSum && touched.minSum && touched.maxSum)}*/}
-                     {/*            {...field}*/}
-                     {/*         />*/}
-                     {/*      )}*/}
-                     {/*   </Field>*/}
-                     {/*   <div className={styles.rub}>₽</div>*/}
-                     {/*   <div className={styles.word}>до</div>*/}
-                     {/*   <Field name={"maxSum"}*/}
-                     {/*          validate={createMaxMinSumValidator(+values.minSum, Infinity)}>*/}
-                     {/*      {({*/}
-                     {/*           field,*/}
-                     {/*           form: {touched, errors}*/}
-                     {/*        }: FieldProps) => (*/}
-                     {/*         <Input*/}
-                     {/*            mod={"blue"}*/}
-                     {/*            type={"number"}*/}
-                     {/*            placeholder={"Сумма"}*/}
-                     {/*            isError={!!(errors.maxSum && touched.maxSum && touched.minSum)}*/}
-                     {/*            {...field}*/}
-                     {/*         />*/}
-                     {/*      )}*/}
-                     {/*   </Field>*/}
-                     {/*   <div className={styles.rub}>₽</div>*/}
-                     {/*</div>*/}
+                     <div className={styles.label}>Стоимость одного видеоролика</div>
+                     <div className={styles.flexbox}>
+                        <div className={styles.word}>От</div>
+                        <Field name={"min"}
+                               validate={createMinMaxSumValidator(0, values.max ? +values.max : Infinity)}>
+                           {({
+                                field,
+                                form: {touched, errors}
+                             }: FieldProps) => (
+                              <Input
+                                 mod={"blue"}
+                                 type={"number"}
+                                 step="any"
+                                 placeholder={"Сумма"}
+                                 isError={!!(errors.min && touched.min)}
+                                 {...field}
+                              />
+                           )}
+                        </Field>
+                        <div className={styles.rub}>₽</div>
+                        <div className={styles.word}>до</div>
+                        <Field name={"max"}
+                               validate={createMinMaxSumValidator(values.min ? +values.min : 0.1, Infinity)}>
+                           {({
+                                field,
+                                form: {touched, errors}
+                             }: FieldProps) => (
+                              <Input
+                                 mod={"blue"}
+                                 type={"number"}
+                                 step="any"
+                                 placeholder={"Сумма"}
+                                 isError={!!(errors.max && touched.max)}
+                                 {...field}
+                              />
+                           )}
+                        </Field>
+                        <div className={styles.rub}>₽</div>
+                     </div>
                      {/*<Slider value={sliderValue} setValue={setSliderValue}/>*/}
                   </div>
                   <div className={styles.submitBtn}>

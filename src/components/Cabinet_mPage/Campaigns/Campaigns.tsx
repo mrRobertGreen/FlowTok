@@ -27,6 +27,8 @@ const Campaigns: FC<PropsType> = ({tasks, changeAdvTaskStatus}) => {
                reposts={t.reposts}
                state={t.state}
                views={t.views}
+               max={t.max}
+               min={t.min}
                changeAdvTaskStatus={changeAdvTaskStatus}
             />
          ))}

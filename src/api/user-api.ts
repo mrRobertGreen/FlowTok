@@ -55,6 +55,8 @@ export type AdvCreateTaskType = {
    value: number
    quantity: number
    quality: number
+   max: number | null
+   min: number | null
 }
 export type RefDataType = {
    link: string
@@ -64,7 +66,7 @@ export type RefDataType = {
 }
 export type ChangeBlogTaskDataType = {
    message: string
-   messageNotification?:  string
+   messageNotification?: string
 }
 export type WithdrawPayloadType = {
    money: number

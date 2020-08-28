@@ -323,6 +323,8 @@ export type AdvTaskType = {
    reposts: string
    views: string
    likes: string
+   min: string
+   max: string
    state: "play" | "pause"
    messageNotification?: string
 }

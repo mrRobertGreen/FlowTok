@@ -16,6 +16,17 @@
     opacity: 0.5;
     vertical-align: middle;
   }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 .error {
   border: 1px solid rgba(255, 0, 0, 0.3);
