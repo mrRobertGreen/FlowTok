@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
 import {NavLink} from "react-router-dom";
 
-type PropsType = {
+export type PropsType = {
    valueUp: number
    valueDown: number
    holdUp: number

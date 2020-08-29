@@ -20,33 +20,35 @@ const NavBar: FC<PropsType> = ({isDesktop, pageName, newTasksNumber}) => {
    const dispatch = useDispatch()
 
    return (
-      <nav className={styles.wrapper}
-           style={{width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`}}>
-         <NavLink to={"/profile"} className={styles.item} onClick={() => dispatch(getUserData())}>
-            <div className={styles.icon}
-                 style={{background: `url(${pageName === "Profile" ? homeIconActive : homeIcon}) 0 0/100% 100% no-repeat`}}/>
-            <div
-               className={styles.label}
-               style={{color: `${pageName === "Profile" ? "#67CE8C" : "#C5CAC9"}`}}
-            >
-               Главная
-            </div>
-         </NavLink>
-         <NavLink to={"/work"} className={styles.item}>
-            <div className={styles.icon}
-                 style={{background: `url(${pageName === "Work" ? workIconActive : workIcon}) 0 0/100% 100% no-repeat`}}>
-               {pageName === "Profile" && newTasksNumber &&
-               <div className={styles.notification}>
-                  {newTasksNumber}
-               </div>}
-            </div>
-            <div
-               className={styles.label}
-               style={{color: `${pageName === "Work" ? "#67CE8C" : "#C5CAC9"}`}}
-            >
-               Работа
-            </div>
-         </NavLink>
+      <nav className={styles.wrapper}>
+         <div className={styles.navbar}
+              style={{width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`}}>
+            <NavLink to={"/profile"} className={styles.item} onClick={() => dispatch(getUserData())}>
+               <div className={styles.icon}
+                    style={{background: `url(${pageName === "Profile" ? homeIconActive : homeIcon}) 0 0/100% 100% no-repeat`}}/>
+               <div
+                  className={styles.label}
+                  style={{color: `${pageName === "Profile" ? "#67CE8C" : "#C5CAC9"}`}}
+               >
+                  Главная
+               </div>
+            </NavLink>
+            <NavLink to={"/work"} className={styles.item}>
+               <div className={styles.icon}
+                    style={{background: `url(${pageName === "Work" ? workIconActive : workIcon}) 0 0/100% 100% no-repeat`}}>
+                  {pageName === "Profile" && newTasksNumber &&
+			         <div className={styles.notification}>
+                     {newTasksNumber}
+			         </div>}
+               </div>
+               <div
+                  className={styles.label}
+                  style={{color: `${pageName === "Work" ? "#67CE8C" : "#C5CAC9"}`}}
+               >
+                  Работа
+               </div>
+            </NavLink>
+         </div>
       </nav>
    )
 

@@ -12,7 +12,7 @@ const WorkBlock: FC<PropsType> = () => {
 
    return (
       <div className={styles.wrapper}>
-            <Nav taskType={type as BlogTaskStatusType}/>
+         <Nav taskType={type as BlogTaskStatusType}/>
          <List taskType={type as BlogTaskStatusType}/>
       </div>
    )

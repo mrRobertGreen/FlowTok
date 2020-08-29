@@ -27,7 +27,6 @@ describe("Test App Thunks", () => {
 
       const actualAction = store.getActions();
       expect(actualAction).toEqual(expectedActions);
-
    });
 })
 

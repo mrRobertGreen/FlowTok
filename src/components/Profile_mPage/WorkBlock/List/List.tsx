@@ -14,7 +14,7 @@ type PropsType = {
 
 export const List: FC<PropsType> = ({
                                        taskType,
-                                              }) => {
+                                    }) => {
    const dispatch = useDispatch()
    const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
    let doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
@@ -44,7 +44,14 @@ export const List: FC<PropsType> = ({
    }
 
    if (newTasks && taskType === "new" && newTasks.length === 0) {
-      return <div className={styles.message}>Заданий пока нет...</div>
+      return (
+         <div className={styles.message}>
+            <p>Заданий пока нет...</p>
+            <br/>
+            <p>Подпишись на наш <a href="https://t.me/flowtok" target="_blank"
+                                   rel="noopener noreferrer">Телеграм</a>, чтобы первым узнавать о новых заданиях!</p>
+         </div>
+      )
    }
    if (doneTasks && taskType === "done" && doneTasks.length === 0) {
       return <div className={styles.message}>Заданий пока нет...</div>
