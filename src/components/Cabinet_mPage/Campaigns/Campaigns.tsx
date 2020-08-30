@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import CampaignItem from "./CampaignItem/CampaignItem";
-import {AdvTaskStatusType, AdvTaskType} from "../../../redux/user-reducer";
+import {AdvTaskStatusType, AdvTaskType} from "../../../redux/user/user-reducer";
 
 type PropsType = {
    tasks: Array<AdvTaskType>

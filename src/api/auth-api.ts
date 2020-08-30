@@ -1,5 +1,5 @@
 import {BaseResponseType, instance} from "./api";
-import {AdvProfileDataType, BlogProfileDataType} from "../redux/user-reducer";
+import {AdvProfileDataType, BlogProfileDataType} from "../redux/user/user-reducer";
 
 
 export const authApi = {

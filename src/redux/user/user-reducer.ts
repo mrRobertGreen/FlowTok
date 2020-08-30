@@ -1,19 +1,19 @@
-import {BaseThunkType, InferActionsType, Nullable} from "./store";
+import {BaseThunkType, InferActionsType, Nullable} from "../store";
 import {
    AdvCreateTaskType,
    BlogTasksType,
    RefDataType, StatsType,
    userApi,
-   UserDataType,
+   UserDataType, VerifyPayloadType,
    WithdrawPayloadType
-} from "../api/user-api";
+} from "../../api/user-api";
 import {Dispatch} from "react";
-import {authActions, exit} from "./auth-reducer";
-import {isBlog} from "../utils/detectUserRole";
-import {checkMessageNotification} from "../utils/checkMessageNotification";
-import {appActions} from "./app-reducer";
-import {commonThunkHandler} from "../utils/commonThunkHandler";
-import { Action } from "redux";
+import {authActions, exit} from "../auth/auth-reducer";
+import {isBlog} from "../../utils/detectUserRole";
+import {checkMessageNotification} from "../../utils/checkMessageNotification";
+import {appActions} from "../app/app-reducer";
+import {commonThunkHandler} from "../../utils/commonThunkHandler";
+import {Action} from "redux";
 
 // userReducer is responsible for main user's information (profile, tasks)
 
@@ -25,7 +25,8 @@ const initialState = {
    refData: null as RefDataType | null,
    task: null as null | BlogTaskType,
    isAdvTaskCreated: false,
-   stats: null as null | StatsType
+   stats: null as null | StatsType,
+   isVerify: false
 }
 
 export default function userReducer(state = initialState, action: ActionsType): InitialStateType {
@@ -61,6 +62,7 @@ export default function userReducer(state = initialState, action: ActionsType): 
             isAdvTaskCreated: action.flag
          }
       case "user/CHANGE_ADV_TASK":
+         // replace adv task with action.task.id by action.task
          if (state.advProfile) {
             let copyAdvTasks = [...state.advProfile.tasks]
             copyAdvTasks = copyAdvTasks.map(t => {
@@ -101,6 +103,11 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             stats: action.stats
          }
+      case "user/SET_IS_VERIFY":
+         return {
+            ...state,
+            isVerify: action.isVerify
+         }
       case "user/CLEAR":
          return {
             ...state,
@@ -127,10 +134,10 @@ export const userActions = {
    changeAdvTask: (task: AdvTaskType) => ({type: "user/CHANGE_ADV_TASK", task} as const),
    createAdvTask: (task: AdvTaskType) => ({type: "user/CREATE_ADV_TASK", task} as const),
    setIsAdvTaskCreated: (flag: boolean) => ({type: "user/SET_IS_ADV_TASK_CREATED", flag} as const),
-   deleteBlogWaitTask: (taskId: string) => ({type: "user/DELETE_BLOG_WAIT_TASK", taskId} as const),
    clear: () => ({type: "user/CLEAR"} as const),
    setTask: (task: BlogTaskType | null) => ({type: "user/SET_TASK", task} as const),
    setStats: (stats: StatsType | null) => ({type: "user/SET_STATS", stats} as const),
+   setVerify: (isVerify: boolean) => ({type: "user/SET_IS_VERIFY", isVerify} as const),
 }
 
 export const getUserData = (): ThunkType => { // getting and setting user data
@@ -154,7 +161,6 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          }
          checkMessageNotification(data, dispatch)
       }, dispatch)
-
    }
 }
 export const setUserData = (userData: UserDataType, dispatch: Dispatch<Action>) => {
@@ -201,7 +207,6 @@ export const getRefData = (): ThunkType => {
       }, dispatch)
    }
 }
-
 export const getStatsData = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
@@ -283,10 +288,10 @@ export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
    return async (dispatch) => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.withdraw(payload)
+      dispatch(appActions.toggleIsFetching(false))
       if (data.success) {
          appActions.setNotification("Операция успешно завершена")
       }
-      dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
    }
 }
@@ -303,9 +308,23 @@ export const pushTaskBalance = (money: number, taskId: string): ThunkType => {
       checkMessageNotification(data, dispatch)
    }
 }
+export const verifyMe = (payload: VerifyPayloadType, handleReset: () => void, push: (link: string) => void): ThunkType => {
+   // send verification data to api server
+   return async (dispatch) => {
+      dispatch(appActions.toggleIsFetching(true))
+      const data = await userApi.verifyMe(payload)
+      if (data.success) {
+         handleReset()
+         dispatch(userActions.setVerify(true))
+         push("/profile")
+      }
+      dispatch(appActions.toggleIsFetching(false))
+      checkMessageNotification(data, dispatch)
+   }
+}
 
 type ThunkType = BaseThunkType
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 type ActionsType = InferActionsType<typeof userActions>
 export type AdvProfileDataType = {
    value: number
@@ -344,6 +363,7 @@ export type BlogProfileDataType = {
    type: "blog"
    admin: boolean
    isOffer: boolean
+   needVerification: boolean
    usersForMoney: number
    newTask: Nullable<number>
    messageNotification?: string

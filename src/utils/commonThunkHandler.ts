@@ -1,5 +1,5 @@
 import {Dispatch} from "react";
-import {appActions} from "../redux/app-reducer";
+import {appActions} from "../redux/app/app-reducer";
 
 export const commonThunkHandler = async (operation: any, dispatch: Dispatch<any>) => {
    try {

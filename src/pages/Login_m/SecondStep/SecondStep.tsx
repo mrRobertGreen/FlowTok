@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from "./styles.module.scss"
 import bloggerBg from "../../../media/images/bloger_bg.jpg"
-import {goToThirdLoginStep} from "../../../redux/auth-reducer";
+import {goToThirdLoginStep} from "../../../redux/auth/auth-reducer";
 import {RootStateType} from "../../../redux/store";
 import {connect, ConnectedProps} from "react-redux";
 import {compose} from "redux";

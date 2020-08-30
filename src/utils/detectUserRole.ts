@@ -1,5 +1,5 @@
 import {UserDataType} from "../api/user-api";
-import {AdvProfileDataType, BlogProfileDataType} from "../redux/user-reducer";
+import {AdvProfileDataType, BlogProfileDataType} from "../redux/user/user-reducer";
 
 export function isBlog(user: UserDataType): user is BlogProfileDataType {
    return user.type === "blog";

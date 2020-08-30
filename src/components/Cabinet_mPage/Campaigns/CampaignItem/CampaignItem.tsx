@@ -6,7 +6,7 @@ import replyIcon from "../../../../media/icons/reply_icon.svg"
 import likeIcon from "../../../../media/icons/like_icon.svg"
 import eyeIcon from "../../../../media/icons/eye_icon.svg"
 import plusIcon from "../../../../media/icons/plus_icon.svg"
-import {AdvTaskStatusType} from "../../../../redux/user-reducer";
+import {AdvTaskStatusType} from "../../../../redux/user/user-reducer";
 import {NavLink} from "react-router-dom";
 
 type PropsType = {
@@ -90,7 +90,7 @@ const CampaignItem: FC<PropsType> = ({
 							Стоимость клипа:
 						</div>
 						<div className={styles.number}>
-							от {min} до {max}
+                     {min && `от ${min}`}{max && `до ${max}`}₽
 						</div>
 					</div>
 				</>}

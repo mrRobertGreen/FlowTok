@@ -7,4 +7,4 @@ const randomStringGenerator = ():string => {
    return word
 };
 
-export  default randomStringGenerator
+export default randomStringGenerator

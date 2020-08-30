@@ -5,7 +5,7 @@ import {createWithdrawAmountValidator, validateRequiredField} from "../../../uti
 import Button from "../../Button/Button";
 import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {WithdrawPayloadType} from "../../../api/user-api";
-import {withdraw} from "../../../redux/user-reducer";
+import {withdraw} from "../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {Input, InputWithMask} from "../../Input/Input";
 import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
@@ -23,6 +23,7 @@ type WithdrawFormPropsType = {
 }
 
 export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
+   debugger
    const dispatch = useDispatch()
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 

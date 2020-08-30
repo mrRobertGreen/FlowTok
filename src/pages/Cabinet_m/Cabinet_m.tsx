@@ -6,11 +6,11 @@ import {RootStateType} from "../../redux/store";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {compose} from "redux";
 import {withAuthRedirect, withProfileRedirect} from "../../hocs/hocs";
-import {changeAdvTaskStatus, getUserData} from "../../redux/user-reducer";
+import {changeAdvTaskStatus, getUserData} from "../../redux/user/user-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
 import classNames from "classnames";
 import DropUpMenu from "../../components/Profile_mPage/DropUpMenu/DropUpMenu";
-import {exit} from "../../redux/auth-reducer";
+import {exit} from "../../redux/auth/auth-reducer";
 import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
@@ -58,7 +58,7 @@ const mapStateToProps = (state: RootStateType) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps)
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default compose(
+export default compose<FC>(
    withAuthRedirect,
    withProfileRedirect,
    connector,

@@ -1,11 +1,11 @@
-import React, {useEffect} from "react";
+import React, {FC, useEffect} from "react";
 
 import DataTable, {createTheme} from 'react-data-table-component';
 import {compose} from "redux";
 import {withAdminRedirect, withAuthRedirect, withProfileRedirect} from "../../hocs/hocs";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getStatsData} from "../../redux/user-reducer";
+import {getStatsData} from "../../redux/user/user-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
@@ -95,7 +95,7 @@ function AdminPanel() {
    )
 }
 
-export default compose(
+export default compose<FC>(
    withAuthRedirect,
    withAdminRedirect,
 )(AdminPanel)

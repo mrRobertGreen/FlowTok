@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 import {ChooseAmount} from "../../../components/forms/common/ChooseAmount/ChooseAmount";
 import {Input} from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
-import {pushTaskBalance} from "../../../redux/user-reducer";
+import {pushTaskBalance} from "../../../redux/user/user-reducer";
 
 type PropsType = {
    taskId: string

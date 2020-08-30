@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
 import {NavLink} from "react-router-dom";
-import {BlogTaskStatusType} from "../../../../redux/user-reducer";
+import {BlogTaskStatusType} from "../../../../redux/user/user-reducer";
 
 type PropsType = {
    taskType: BlogTaskStatusType

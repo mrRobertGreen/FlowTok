@@ -6,7 +6,7 @@ import {
    BlogProfileDataType,
    BlogTaskStatusType,
    BlogTaskType
-} from "../redux/user-reducer";
+} from "../redux/user/user-reducer";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 
 export const userApi = {
@@ -43,6 +43,9 @@ export const userApi = {
    pushTaskBalance(money: number, taskId: string) {
       return instance.put<BaseResponseType<BaseDataType>>(`/tasks/${taskId}/money`, {money}).then(res => res.data)
    },
+   verifyMe(payload: VerifyPayloadType) {
+      return instance.put<BaseResponseType<BaseDataType>>(`/users/verification`, payload).then(res => res.data)
+   },
 };
 
 export type UserDataType = AdvProfileDataType | BlogProfileDataType
@@ -76,4 +79,10 @@ export type WithdrawPayloadType = {
 export type StatItemType = {
    name: string
    value: string
+}
+export type VerifyPayloadType = {
+   country: string
+   age: number
+   sex: string
+   platform: string
 }

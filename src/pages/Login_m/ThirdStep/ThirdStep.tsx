@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import {Input} from "../../../components/Input/Input";
-import {setTikTok} from "../../../redux/auth-reducer";
+import {setTikTok} from "../../../redux/auth/auth-reducer";
 import {RootStateType} from "../../../redux/store";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {compose} from "redux";

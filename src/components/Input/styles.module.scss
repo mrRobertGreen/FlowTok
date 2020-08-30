@@ -28,6 +28,20 @@
     margin: 0;
   }
 }
+
+.select {
+  background-color: #e6f9f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #c5e8e1;
+  font-size: 17px;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+
 .error {
   border: 1px solid rgba(255, 0, 0, 0.3);
   -webkit-box-shadow: 0px 0px 6px 0px rgba(255, 0, 0, 0.5);

@@ -6,7 +6,7 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import {CreateTaskForm} from "../../components/Cabinet_mPage/CreateTaskForm/CreateTaskForm";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {createAdvTask, userActions} from "../../redux/user-reducer";
+import {createAdvTask, userActions} from "../../redux/user/user-reducer";
 
 type PropsType = {}
 
@@ -28,7 +28,7 @@ const TaskForm_m: FC<PropsType> = () => {
    )
 }
 
-export default compose(
+export default compose<FC>(
    withAuthRedirect,
    withProfileRedirect
 )(TaskForm_m)

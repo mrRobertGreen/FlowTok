@@ -9,7 +9,7 @@ import {RootStateType} from "../../redux/store";
 import Preloader from "../../components/common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect, withCabinetRedirect} from "../../hocs/hocs";
-import {getRefData} from "../../redux/user-reducer";
+import {getRefData} from "../../redux/user/user-reducer";
 import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
@@ -63,6 +63,13 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
                </Button>
             </div>
          </div>
+
+         {/*<div className={styles.percentBlock}>*/}
+         {/*   <p className={styles.label}>*/}
+         {/*      Сейчас вы получаете <span className={styles.refsCount}>5%</span> дохода рефералов*/}
+         {/*   </p>*/}
+         {/*</div>*/}
+
          {blogProfile && blogProfile.isOffer &&
 			<div className={styles.taskBlock}>
 				<p className={styles.title}>Зарабатывай на рефералах!</p>
@@ -99,7 +106,7 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
    )
 }
 
-export default compose(
+export default compose<FC>(
    withCabinetRedirect,
    withAuthRedirect,
    withRouter

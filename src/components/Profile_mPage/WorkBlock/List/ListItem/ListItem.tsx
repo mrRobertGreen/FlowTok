@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../../Button/Button";
-import {BlogTaskStatusType, BlogTaskType} from "../../../../../redux/user-reducer";
+import {BlogTaskStatusType, BlogTaskType} from "../../../../../redux/user/user-reducer";
 
 type PropsType = {
    taskType: BlogTaskStatusType

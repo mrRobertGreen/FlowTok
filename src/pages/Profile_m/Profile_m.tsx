@@ -4,10 +4,10 @@ import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
 import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {userActions} from "../../redux/user-reducer"
+import {userActions} from "../../redux/user/user-reducer"
 import {compose} from 'redux'
 import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hocs/hocs";
-import {exit} from "../../redux/auth-reducer";
+import {exit} from "../../redux/auth/auth-reducer";
 
 type PropsType = {}
 
@@ -38,7 +38,7 @@ const mapStateToProps = (state: RootStateType) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps)
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default compose(
+export default compose<FC>(
    connector,
    withTaskRedirect,
    withCabinetRedirect,

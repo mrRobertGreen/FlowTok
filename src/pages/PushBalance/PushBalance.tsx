@@ -21,7 +21,7 @@ const PushBalance: FC<RouteComponentProps> = ({match}) => {
    )
 }
 
-export default compose(
+export default compose<FC>(
    withAuthRedirect,
    withProfileRedirect,
    withRouter

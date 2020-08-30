@@ -1,0 +1,41 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  padding-top: 50px;
+  background-color: #fff;
+}
+.btn {
+  padding: 10px;
+}
+
+.info {
+  padding: 0 15px;
+  .mainLabel {
+    font-weight: 600;
+    font-size: 22px;
+    color: #00cf7b;
+    text-align: center;
+    padding: 15px 0;
+  }
+  .label {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 7px 0;
+  }
+  .message {
+    span {
+      color: red;
+    }
+    padding: 10px 0 10px;
+    font-weight: 600;
+  }
+  .subLabel {
+    padding-left: 8px;
+    line-height: 1.1;
+  }
+  .note {
+    padding: 15px 0 0;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+}

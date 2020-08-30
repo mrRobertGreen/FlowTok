@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import Nav from "./Nav/Nav";
 import {List} from "./List/List";
 import {useParams} from "react-router";
-import {BlogTaskStatusType} from "../../../redux/user-reducer";
+import {BlogTaskStatusType} from "../../../redux/user/user-reducer";
 
 type PropsType = {}
 

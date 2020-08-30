@@ -1,5 +1,5 @@
 import {BaseDataType, BaseResponseType} from "../api/api";
-import {appActions} from "../redux/app-reducer";
+import {appActions} from "../redux/app/app-reducer";
 import {Dispatch} from "react";
 
 export const checkMessageNotification = (data: BaseResponseType<BaseDataType>, dispatch: Dispatch<any>) => {

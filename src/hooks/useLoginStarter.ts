@@ -1,4 +1,4 @@
-import {authActions, LoginStepType} from "../redux/auth-reducer";
+import {authActions, LoginStepType} from "../redux/auth/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../redux/store";
 

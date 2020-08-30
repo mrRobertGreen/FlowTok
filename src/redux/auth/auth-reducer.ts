@@ -1,9 +1,9 @@
-import {BaseThunkType, InferActionsType} from "./store";
-import {authApi, AuthMeReqDataType} from "../api/auth-api";
-import {getUserData, userActions} from "./user-reducer";
-import {checkMessageNotification} from "../utils/checkMessageNotification";
-import {appActions, initialize} from "./app-reducer";
-import {tikTokUrlParser} from "../utils/tikTokUrlParser";
+import {BaseThunkType, InferActionsType} from "../store";
+import {authApi, AuthMeReqDataType} from "../../api/auth-api";
+import {getUserData, userActions} from "../user/user-reducer";
+import {checkMessageNotification} from "../../utils/checkMessageNotification";
+import {appActions, initialize} from "../app/app-reducer";
+import {tikTokUrlParser} from "../../utils/tikTokUrlParser";
 
 const initialState = {
    isNew: false,
@@ -186,7 +186,7 @@ export const exit = (): ThunkType => {
 
 
 type ActionsType = InferActionsType<typeof authActions>
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 type ThunkType = BaseThunkType
 export type UserRolesType = "Blogger" | "Advertiser" | "Nobody"
 export type LoginStepType = 1 | 2 | 3

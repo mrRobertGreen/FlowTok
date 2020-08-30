@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {cancelBlogTask, checkBlogTask} from "../../redux/user-reducer";
+import {cancelBlogTask, checkBlogTask} from "../../redux/user/user-reducer";
 import {Redirect} from "react-router";
 import Preloader from "../../components/common/Preloader/Preloader";
 

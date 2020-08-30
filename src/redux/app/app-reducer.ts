@@ -1,5 +1,5 @@
-import {BaseThunkType, InferActionsType} from "./store";
-import {getUserData} from "./user-reducer";
+import {BaseThunkType, InferActionsType} from "../store";
+import {getUserData} from "../user/user-reducer";
 
 const initialState = {
    isFetching: false,

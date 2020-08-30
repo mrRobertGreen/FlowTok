@@ -7,7 +7,7 @@ import workIconActive from "../../../media/icons/work_icon_active.svg"
 import {NavLink} from "react-router-dom";
 import {PageNamesType} from "../../../pages/Profile_m/Profile_m";
 import {useDispatch} from "react-redux";
-import {getUserData} from "../../../redux/user-reducer";
+import {getUserData} from "../../../redux/user/user-reducer";
 
 type PropsType = {
    isDesktop: boolean

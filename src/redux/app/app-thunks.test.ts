@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import {appActions, initialize, InitialStateType} from "../app-reducer";
-import {getUserData} from "../user-reducer";
+import {appActions, initialize, InitialStateType} from "./app-reducer";
+import {getUserData} from "../user/user-reducer";
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);

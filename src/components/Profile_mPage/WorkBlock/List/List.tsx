@@ -4,7 +4,7 @@ import ListItem from "./ListItem/ListItem";
 import {RootStateType} from "../../../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router";
-import {BlogTaskStatusType, BlogTaskType, doBlogTask, getBlogTasks} from "../../../../redux/user-reducer";
+import {BlogTaskStatusType, BlogTaskType, doBlogTask, getBlogTasks} from "../../../../redux/user/user-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
 import {useCache} from "../../../../hooks/useCache";
 

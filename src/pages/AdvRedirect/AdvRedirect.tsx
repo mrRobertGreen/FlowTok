@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from "react";
 import {Redirect, RouteComponentProps} from "react-router";
 import {useDispatch} from "react-redux";
-import {authActions} from "../../redux/auth-reducer";
+import {authActions} from "../../redux/auth/auth-reducer";
 
 const AdvRedirect: FC<RouteComponentProps>= () => {
 

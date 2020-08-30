@@ -20,7 +20,6 @@ const Alert: FC<PropsType> = ({close, message, title, isError}) => {
 				<p className={styles.header}>{title}</p>
 				<p className={styles.txt}>{message}</p>
 			</div>
-
 			<div>
 				<button className={styles.button} onClick={close}>Закрыть</button>
 			</div>
