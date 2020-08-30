@@ -12,6 +12,9 @@ import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {cleanPhoneNumber} from "../../../utils/parseString";
+import Modal from "../../common/Modal/Modal";
+import Alert from "../../common/Alert/Alert";
+import {appActions} from "../../../redux/app/app-reducer";
 
 export type WithdrawFormValuesType = {
    wallet: string
@@ -23,7 +26,6 @@ type WithdrawFormPropsType = {
 }
 
 export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
-   debugger
    const dispatch = useDispatch()
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
@@ -77,33 +79,34 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
                                      errorMessage={errors.wallet}
                                   />
                                </div>
-                               )}
-                  />
-                  <ChooseAmount setFieldValue={setFieldValue} amount={values.amount} field={"amount"}/>
-                  <Field name={"amount"} validate={amountValidator}>
-                     {({
-                          field,
-                          form: {touched, errors}
-                       }: FieldProps) => (
-                        <div>
-                           <Input
-                              mod={"blue"}
-                              type={"number"}
-                              placeholder={"Ввести свою сумму"}
-                              isError={!!(errors.amount && touched.amount)}
-                              errorMessage={errors.amount}
-                              {...field}
-                           />
-                        </div>
-                     )}
-                  </Field>
-               </div>
-            <div className={styles.submitBtn}>
-            <Button type="submit">
-            Заказать выплату
-            </Button>
-            </div>
-            </Form>}
+                            )}
+                     />
+                     <ChooseAmount setFieldValue={setFieldValue} amount={values.amount} field={"amount"}/>
+                     <Field name={"amount"} validate={amountValidator}>
+                        {({
+                             field,
+                             form: {touched, errors}
+                          }: FieldProps) => (
+                           <div>
+                              <Input
+                                 mod={"blue"}
+                                 type={"number"}
+                                 placeholder={"Ввести свою сумму"}
+                                 isError={!!(errors.amount && touched.amount)}
+                                 errorMessage={errors.amount}
+                                 {...field}
+                              />
+                           </div>
+                        )}
+                     </Field>
+                  </div>
+                  <div className={styles.submitBtn}>
+                     <Button type="submit">
+                        Заказать выплату
+                     </Button>
+                  </div>
+
+               </Form>}
       </Formik>
    )
 }

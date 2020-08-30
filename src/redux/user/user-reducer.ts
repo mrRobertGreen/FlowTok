@@ -288,10 +288,10 @@ export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
    return async (dispatch) => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.withdraw(payload)
-      dispatch(appActions.toggleIsFetching(false))
       if (data.success) {
          appActions.setNotification("Операция успешно завершена")
       }
+      dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
    }
 }
