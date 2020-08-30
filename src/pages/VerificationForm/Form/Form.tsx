@@ -78,7 +78,7 @@ export const VerifyForm: FC = () => {
                                  placeholder={"0"}
                                      type={"number"}
                                      min={0}
-                                     max={999}
+                                     max={125}
                                      mod={"blue"}
                                      isError={!!(errors.age && touched.age)}/>
                            </div>
