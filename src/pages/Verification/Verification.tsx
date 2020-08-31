@@ -16,7 +16,7 @@ export const Verification: FC = () => {
             <p className={styles.label}>Пользователь с верифицированным аккаунтом:</p>
             <p className={styles.subLabel}>• Не имеет ограничений по стоимости каждого ролика</p>
             <p className={styles.subLabel}>•	Имеет доступ к большему количеству заданий</p>
-            <p className={styles.subLabel}>• Получает аж 10% дохода рефералов</p>
+            {/*<p className={styles.subLabel}>• Получает аж 10% дохода рефералов</p>*/}
             <p className={styles.subLabel}>• Получает личный респект от создателей сервиса ;)</p>
             <p className={styles.label}>Чтобы пройти верификацию, вам нужно:</p>
             <p className={styles.subLabel}>• Снимать качественный и интересный контент*</p>
