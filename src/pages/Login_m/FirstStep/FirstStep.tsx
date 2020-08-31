@@ -13,6 +13,7 @@ import {extractVkCode} from "../../../utils/extractVkCode";
 import GoogleLogin from "react-google-login";
 import Preloader from "../../../components/common/Preloader/Preloader";
 import {appActions} from "../../../redux/app/app-reducer";
+import {LoginVK} from "./VK/LoginVK";
 
 type PropsType = {}
 
@@ -79,6 +80,8 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                      ВКонтакте
                   </Button>
                </div>
+               {/*<LoginVK/>*/}
+
                {/*<div className={styles.btn}>*/}
                {/*   {!isAllowedFb && <Button onButtonClick={() => setIsAllowedFb(true)}>*/}
                {/*		Facebook*/}

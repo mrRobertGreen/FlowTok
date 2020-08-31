@@ -3,13 +3,13 @@ import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import React, {FC, useEffect, useState} from "react";
 import Button from "../../Button/Button";
 import classNames from "classnames";
-import Slider from "./Slider/Slider";
 import {AdvCreateTaskType} from "../../../api/user-api";
 import {Redirect} from "react-router";
 import Preloader from "../../common/Preloader/Preloader";
 import {createMinMaxSumValidator, createMinSumValidator, validateRequiredField} from "../../../utils/validators";
 import {ChooseAmount} from "../../forms/common/ChooseAmount/ChooseAmount";
 import {Input} from "../../Input/Input";
+import {DatePicker} from "./DatePicker/DatePicker";
 
 type CampaignType = {
    title: string
@@ -33,7 +33,7 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
    }, [setIsAdvTaskCreated])
 
    const onSubmit = (values: CampaignType, {resetForm}: FormikValues) => {
-      const taskPayload: AdvCreateTaskType= {
+      const taskPayload: AdvCreateTaskType = {
          title: values.title,
          info: values.info,
          link: values.link,
@@ -52,6 +52,9 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
 
    type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
    const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
+   const [startDate, setStartDate] = useState(null as Date | null)
+   const [endDate, setEndDate] = useState(null as Date | null)
+
    // const [sliderValue, setSliderValue] = useState(0);
 
 
@@ -151,6 +154,14 @@ export const CreateTaskForm: FC<PropsType> = ({createAdvTask, isAdvTaskCreated, 
                         </Field>
                         <div className={styles.rub}>₽</div>
                      </div>
+                     <div className={styles.datePicker}>
+                        <DatePicker setStartDate={setStartDate}
+                                    setEndDate={setEndDate}
+                                    endDate={endDate}
+                                    startDate={startDate}
+                        />
+                     </div>
+
                      {/*<Slider value={sliderValue} setValue={setSliderValue}/>*/}
                   </div>
                   <div className={styles.submitBtn}>
