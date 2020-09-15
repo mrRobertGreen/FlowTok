@@ -3,13 +3,14 @@ import styles from "./styles.module.scss"
 import { Header } from "./Header/Header";
 import {Main} from "./Main/Main";
 import {Stats} from "./Stats/Stats";
+import {Page} from "../../components/Page/Page";
 
 export const Landing = () => {
    return (
-      <div className={styles.wrapper}>
+      <Page>
          <Header/>
          <Main/>
          <Stats/>
-      </div>
+      </Page>
    )
 }

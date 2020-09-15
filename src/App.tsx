@@ -29,6 +29,7 @@ import {VerificationForm} from "./pages/VerificationForm/VerificationForm";
 import {isMobileOnly} from "react-device-detect"
 import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
+import {Landing} from "./pages/Landing/Landing";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -76,7 +77,7 @@ const App: FC = () => {
             {/*<Route exact path="/login/1" component={FirstStep}/>*/}
             {/*<Route exact path="/login/2" component={SecondStep}/>*/}
             {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
-            <Route exact path="/login" component={Login}/>
+            {/*<Route exact path="/login" component={Login}/>*/}
             {/*<Route path="/profile" component={Profile_m}/>*/}
             {/*<Route path="/work/:type" component={Work_m}/>*/}
             {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}
@@ -96,7 +97,8 @@ const App: FC = () => {
             {/*<Route path="/admin" component={AdminPanel}/>*/}
             {/*<Route path="/ad" component={AdvRedirect}/>*/}
             {/*<Route path="/push_balance/:id" component={PushBalance}/>*/}
-            <Route path="/" component={() => <Redirect to={"/login"}/>}/>
+            <Route path="/" component={Landing}/>
+            {/*<Route path="/" component={() => <Redirect to={"/login"}/>}/>*/}
          </Switch>
       </div>
    );
