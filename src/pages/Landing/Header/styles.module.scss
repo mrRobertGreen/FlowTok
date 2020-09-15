@@ -1,0 +1,43 @@
+@import "src/styles/vars";
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  padding-left: 70px;
+  padding-top: 60px;
+}
+
+.buttons {
+  display: flex;
+  padding-right: 66px;
+  align-items: center;
+  padding-top: 59px;
+
+  font-size: 19px;
+
+  &__telegram {
+    padding-right: 79px;
+  }
+
+  &__mail {
+    padding-right: 70px;
+  }
+
+  &__createAcc {
+    border-radius: 29px;
+    border: 2px solid #1934F2; // вот тут не работает градиент
+
+    width: 198px;
+    height: 52px;
+
+    text-align: center;
+    justify-content: center;
+
+    padding-top: 15px;
+  }
+
+}

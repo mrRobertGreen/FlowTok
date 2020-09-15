@@ -8,8 +8,8 @@ import  styles from "./styles.module.scss"
 
 export const Logo = () => {
    return (
-      <div>
-         <img src={logoIcon} alt=""/>
+      <div className={styles.wrapper}>
+         <img src={logoIcon} alt="" className={styles.image}/>
          <div className={styles.name}>
             FlowTok
          </div>

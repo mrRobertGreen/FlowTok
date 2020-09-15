@@ -1,7 +1,18 @@
 @import "../../styles/fonts";
 
+.wrapper {
+  display: flex;
+}
+.image {
+  width: 28px;
+  height: 35px;
+  margin-right: 5px;
+}
+
 .name {
   font-family: 'Riffic', sans-serif;
   font-weight: normal;
   font-style: normal;
+
+
 }
