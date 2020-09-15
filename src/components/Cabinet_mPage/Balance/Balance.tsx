@@ -32,15 +32,15 @@ const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
             </div>
             <div className={styles.btn}>
                <NavLink to={"/topup"}>
-                  <Button onButtonClick={() => {
-                  }} mod={"bright"}>
-                     Пополнить
-                  </Button>
+                  {/*<Button onButtonClick={() => {*/}
+                  {/*}} mod={"bright"}>*/}
+                  {/*   Пополнить*/}
+                  {/*</Button>*/}
                </NavLink>
             </div>
          </div>
          <NavLink to={"/task_form"}>
-            <Button onButtonClick={() => {}}>Создать кампанию</Button>
+            {/*<Button onButtonClick={() => {}}>Создать кампанию</Button>*/}
          </NavLink>
       </div>
    )

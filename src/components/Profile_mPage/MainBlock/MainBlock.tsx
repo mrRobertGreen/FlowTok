@@ -76,7 +76,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
          {needVerification && !isVerify &&
          <div className={styles.btn}>
             <NavLink to={"/verification"}>
-               <Button mod={"bright"}>Пройти верификацию</Button>
+               <Button>Пройти верификацию</Button>
             </NavLink>
          </div>}
          <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>

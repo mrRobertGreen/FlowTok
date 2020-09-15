@@ -28,6 +28,7 @@ import {Verification} from "./pages/Verification/Verification";
 import {VerificationForm} from "./pages/VerificationForm/VerificationForm";
 import {isMobileOnly} from "react-device-detect"
 import {RootStateType} from "./redux/store";
+import {Login} from "./pages/Login/Login";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -53,8 +54,8 @@ const App: FC = () => {
    }
 
    const desktopStyle = {
-      width: `${document.body.clientHeight * 0.47229219}px`,
-      margin: "0 auto",
+      // width: `${document.body.clientHeight * 0.47229219}px`,
+      // margin: "0 auto",
       height: "100%",
    }
    const mobileStyle = {
@@ -72,29 +73,30 @@ const App: FC = () => {
                                  isError={false}/>}/>
          }
          <Switch>
-            <Route exact path="/login/1" component={FirstStep}/>
-            <Route exact path="/login/2" component={SecondStep}/>
-            <Route exact path="/login/3" component={ThirdStep}/>
-            <Route path="/profile" component={Profile_m}/>
-            <Route path="/work/:type" component={Work_m}/>
-            <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
-            <Route path="/cabinet" component={Cabinet_m}/>
-            <Route path="/task_form" component={TaskForm_m}/>
-            <Route path="/refs" component={Refs_m}/>
-            <Route path="/ref/:refId" component={RefRedirect}/>
-            <Route path="/settings" component={Settings_m}/>
-            <Route exact path="/withdraw" component={WithdrawTypes_m}/>
-            <Route path="/withdraw/:type" component={Withdraw_m}/>
-            <Route path="/user_terms" component={UserTerms}/>
-            <Route path="/support" component={Support}/>
-            <Route path="/topup" component={Topup}/>
-            <Route path="/task" component={Task_m}/>
-            <Route exact path="/verification" component={Verification}/>
-            <Route exact path="/verification/form" component={VerificationForm}/>
-            <Route path="/admin" component={AdminPanel}/>
-            <Route path="/ad" component={AdvRedirect}/>
-            <Route path="/push_balance/:id" component={PushBalance}/>
-            <Route path="/" component={() => <Redirect to={"/login/1"}/>}/>
+            {/*<Route exact path="/login/1" component={FirstStep}/>*/}
+            {/*<Route exact path="/login/2" component={SecondStep}/>*/}
+            {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
+            <Route exact path="/login" component={Login}/>
+            {/*<Route path="/profile" component={Profile_m}/>*/}
+            {/*<Route path="/work/:type" component={Work_m}/>*/}
+            {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}
+            {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
+            {/*<Route path="/task_form" component={TaskForm_m}/>*/}
+            {/*<Route path="/refs" component={Refs_m}/>*/}
+            {/*<Route path="/ref/:refId" component={RefRedirect}/>*/}
+            {/*<Route path="/settings" component={Settings_m}/>*/}
+            {/*<Route exact path="/withdraw" component={WithdrawTypes_m}/>*/}
+            {/*<Route path="/withdraw/:type" component={Withdraw_m}/>*/}
+            {/*<Route path="/user_terms" component={UserTerms}/>*/}
+            {/*<Route path="/support" component={Support}/>*/}
+            {/*<Route path="/topup" component={Topup}/>*/}
+            {/*<Route path="/task" component={Task_m}/>*/}
+            {/*<Route exact path="/verification" component={Verification}/>*/}
+            {/*<Route exact path="/verification/form" component={VerificationForm}/>*/}
+            {/*<Route path="/admin" component={AdminPanel}/>*/}
+            {/*<Route path="/ad" component={AdvRedirect}/>*/}
+            {/*<Route path="/push_balance/:id" component={PushBalance}/>*/}
+            <Route path="/" component={() => <Redirect to={"/login"}/>}/>
          </Switch>
       </div>
    );

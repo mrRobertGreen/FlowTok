@@ -27,7 +27,7 @@ export const LoginVK: FC = () => {
 
    return (
       <div className={styles.btn}>
-         <Button onButtonClick={onVkButtonClick}>
+         <Button onClick={onVkButtonClick}>
             ВКонтакте
          </Button>
       </div>

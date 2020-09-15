@@ -53,15 +53,14 @@ const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetch
                </div>
                <a href={isDesktop ? "https://www.tiktok.com/ru/" : "tiktok://"} target="_blank" rel="noopener noreferrer">
                   <div className={styles.btn}>
-                     <Button mod="tiktok"/>
+                     <Button/>
                   </div>
                </a>
             </div>
             <div className={styles.btn}>
                <Button
-                  mod={!!inputValue.trim() ? undefined : "grey"}
                   disabled={!inputValue.trim()}
-                  onButtonClick={onButtonClick}
+                  onClick={onButtonClick}
                >
                   Продолжить</Button>
             </div>

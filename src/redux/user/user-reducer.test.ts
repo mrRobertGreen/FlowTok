@@ -19,7 +19,8 @@ describe("user-reducer", () => {
          refData: null as RefDataType | null,
          task: null as null | BlogTaskType,
          isAdvTaskCreated: false,
-         stats: null as null | StatsType
+         stats: null as null | StatsType,
+         isVerify: false
       }
    })
 
@@ -169,6 +170,7 @@ describe("user-reducer", () => {
          image: "jsdf",
          messageNotification: "msg",
          usersForMoney: 23,
+         needVerification: false
       }
       const newState = userReducer(initialState, userActions.setBlogProfile(profile))
       expect(newState.blogProfile).toEqual(profile)

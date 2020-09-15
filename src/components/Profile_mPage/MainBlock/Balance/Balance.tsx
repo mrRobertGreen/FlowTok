@@ -44,7 +44,7 @@ const Balance: FC<PropsType> = ({valueUp, valueDown, holdUp, holdDown}) => {
          </div>
          <div className={styles.btn} data-test={"btn"}>
             <NavLink to={"/withdraw"}>
-               <Button mod="light" data-test={"button"}>Вывести</Button>
+               <Button data-test={"button"}>Вывести</Button>
             </NavLink>
          </div>
       </div>

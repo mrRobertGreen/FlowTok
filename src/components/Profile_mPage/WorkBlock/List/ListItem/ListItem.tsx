@@ -56,8 +56,7 @@ const ListItem: FC<PropsType> = ({
             <div className={styles.mainBtn}>
                <Button
                   disabled={taskType === "done"}
-                  mod={taskType === "new" ? undefined : "grey"}
-                  onButtonClick={taskType === "new" ? doTask : undefined}>
+                  onClick={taskType === "new" ? doTask : undefined}>
                   {taskType === "new" && "Выполнить"}
                   {taskType === "done" && "Выполнено"}
                </Button>

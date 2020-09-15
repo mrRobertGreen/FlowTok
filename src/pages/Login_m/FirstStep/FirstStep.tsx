@@ -76,7 +76,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
             <div className={styles.header}>Войти через:</div>
             <div className={styles.buttons}>
                <div className={styles.btn}>
-                  <Button onButtonClick={onVkButtonClick}>
+                  <Button onClick={onVkButtonClick}>
                      ВКонтакте
                   </Button>
                </div>
@@ -110,7 +110,7 @@ const FirstStep: FC<PropsType & PropsFromRedux & RouteComponentProps> = ({
                         dispatch(appActions.setError("Что-то пошло не так...\n Попробуйте снова"))
                      }}
                      render={renderProps => (
-                        <Button onButtonClick={renderProps.onClick} disabled={renderProps.disabled}>
+                        <Button onClick={renderProps.onClick} disabled={renderProps.disabled}>
                            Google
                         </Button>
                      )}

@@ -75,10 +75,10 @@ export const Task_m = () => {
                   </div>
                </div>
                <div className={styles.btnItem}>
-                  <Button onButtonClick={onCheckTask}>Проверить</Button>
+                  <Button onClick={onCheckTask}>Проверить</Button>
                </div>
                <div className={styles.btnItem}>
-                  <Button mod={"red"} onButtonClick={onCancelTask}>Отменить</Button>
+                  <Button mod={"red"} onClick={onCancelTask}>Отменить</Button>
                </div>
             </div>
          </div>

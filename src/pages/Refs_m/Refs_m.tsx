@@ -54,8 +54,7 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
             </div>
             <div className={styles.btn}>
                <Button
-                  onButtonClick={() => onCopy(refData.link)}
-                  mod={isCopied ? "grey" : undefined}
+                  onClick={() => onCopy(refData.link)}
                   disabled={isCopied}
                >
                   {!isCopied && "Копировать"}

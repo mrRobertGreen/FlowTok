@@ -1,37 +1,40 @@
-import React, {FC} from "react";
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, FC} from "react";
 import styles from "./styles.module.scss"
 import cn from "classnames/bind"
-import tikTokIcon from "../../media/icons/tiktok.svg"
-import doneIcon from "../../media/icons/done_icon.svg"
 
-type PropsType = {
-   onButtonClick?: () => void,
-   mod?: "bright" | "light" | "grey" | "tiktok" | "black" | "done" | "red" | undefined
-   disabled?: boolean
-   type?: string
+/*
+* Кнопки на сайте все одинаковые, отличие только в цвете.
+* Я тебе буду передавать mod, который означает цвет.
+* По умолчанию делай кнопку с синим градиентом.
+*
+* В качестве чилда я буду передавать подпись для кнопки.
+*
+* Также я могу передавать все пропсы, как для обычной кнопки. Их я собираю в ...rest и потом
+* прокидываю внутрь кнопки.
+*
+* СДЕЛАЙ У КНОПКИ width: 100%
+* */
+
+
+type PropsT = {
+   mod?: "black" | "gradient" | "red"
 }
 
-const Button: FC<PropsType> = ({
-                                  onButtonClick,
-                                  children,
-                                  mod,
-                                  disabled,
-                               }) => {
+const Button: FC<PropsT &
+   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
+                                                                                        mod,
+                                                                                        children,
+                                                                                        ...rest
+                                                                                     }) => {
    return (
       <button
-         disabled={disabled}
          className={cn(
             styles.btn,
-            {[styles.btn_light]: mod === "light"},
-            {[styles.btn_grey]: mod === "grey"},
-            {[styles.btn_black]: mod === "black"},
-            {[styles.btn_bright]: mod === "bright"},
-            {[styles.btn_tiktok]: mod === "tiktok"},
+            {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
+            {[styles.btn_gradient]: mod === "gradient"},
             {[styles.btn_red]: mod === "red"},
          )}
-         onClick={onButtonClick}>
-         {mod === "tiktok" && "Перейти в TikTok"}
-         {mod === "done" && <img src={doneIcon} alt=""/>}
+         {...rest}>
          {children}
       </button>
    )
