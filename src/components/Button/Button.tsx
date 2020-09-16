@@ -17,22 +17,29 @@ import cn from "classnames/bind"
 
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK"
+   m?: string
+   br?: string
 }
 
 const Button: FC<PropsT &
    DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>> = ({
                                                                                         mod,
+                                                                                        m,
+                                                                                        br,
                                                                                         children,
                                                                                         ...rest
                                                                                      }) => {
    return (
       <button
+         style={{margin: m, borderRadius: br}}
          className={cn(
             styles.btn,
             {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
             {[styles.btn_gradient]: mod === "gradient"},
             {[styles.btn_red]: mod === "red"},
+            {[styles.btn_vk]: mod === "VK"},
+            {[styles.btn_google]: mod === "Google"},
          )}
          {...rest}>
          {children}

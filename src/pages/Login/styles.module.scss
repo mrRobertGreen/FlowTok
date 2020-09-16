@@ -1,0 +1,23 @@
+.video {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  max-width: 33.3%;
+  object-fit: cover;
+  &__item {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    height: 100%;
+  }
+}
+.form {
+  height: 100%;
+  padding: 370px;
+}
+.container {
+  height: 100%;
+  max-width: 66.6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
