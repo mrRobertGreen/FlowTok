@@ -2,6 +2,10 @@
 
 .wrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 142px;
+  height: 36px;
 }
 .image {
   width: 28px;
@@ -13,6 +17,5 @@
   font-family: 'Riffic', sans-serif;
   font-weight: normal;
   font-style: normal;
-
-
+  font-size: 28px;
 }
