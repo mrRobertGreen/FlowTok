@@ -1,5 +1,7 @@
 import React, {FC} from "react";
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
+import {NavLink} from "react-router-dom";
+import Button from "../../../components/Button/Button";
 
 /*
 * Это основной блок лендинга.
@@ -15,14 +17,22 @@ import styles from "./styles.module.scss"
 * */
 
 export const Main: FC = () => {
-   return (
-      <div className={styles.wrapper}>
-         <div>
-            Тут левая часть
-         </div>
-         <div>
-            Тут правая
-         </div>
-      </div>
-   )
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.mainText}>
+                <div className={styles.mainText__earn}>
+                    <p>Зарабатывай с FlowTok</p>
+                </div>
+                <div>
+                    <p>Создавай потрясающий контент и получай за него деньги</p>
+                </div>
+                <NavLink to={"/"}>
+                    <Button mod={"gradient"} children={"Создать"}></Button>
+                </NavLink>
+            </div>
+            <div>
+                Тут правая
+            </div>
+        </div>
+    )
 }

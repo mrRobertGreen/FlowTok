@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import {Logo} from "../../../components/Logo/Logo";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 /*
 * Это шапка сайта. Делай так: объедини все кнопки в один блок и разнеси его и логотип по разным
@@ -25,7 +25,6 @@ export const Header: FC = () => {
                 <a href="#" className={styles.buttons__telegram}>Telegram</a>
                 <a href="#" className={styles.buttons__mail}>Почта</a>
                 <NavLink to={"/"}>
-
                     <div className={ styles.buttons__createAcc}>
                         Создать аккаунт
                     </div>
