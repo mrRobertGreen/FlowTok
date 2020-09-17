@@ -23,16 +23,18 @@ export const Main: FC = () => {
                 <div className={styles.mainText__earn}>
                     <p>Зарабатывай с FlowTok</p>
                 </div>
-                <div>
+                <div className={styles.mainText__content}>
                     <p>Создавай потрясающий контент и получай за него деньги</p>
                 </div>
                 <NavLink to={"/"}>
-                    <Button mod={"gradient"} children={"Создать"}></Button>
+                    <div className={styles.mainText__createBtn}>
+                        <Button mod={"gradient"} children={"Создать"} br={"42px"}></Button>
+                    </div>
                 </NavLink>
-            </div>
-            <div>
-                Тут правая
-            </div>
         </div>
-    )
+    <div>
+        Тут правая
+    </div>
+</div>
+)
 }

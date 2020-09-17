@@ -40,6 +40,7 @@ const Button: FC<PropsT &
             {[styles.btn_red]: mod === "red"},
             {[styles.btn_vk]: mod === "VK"},
             {[styles.btn_google]: mod === "Google"},
+
          )}
          {...rest}>
          {children}

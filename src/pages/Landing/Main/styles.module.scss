@@ -2,3 +2,29 @@
   display: flex;
   padding-left: 220px;
 }
+
+.mainText {
+  width: 592px;
+  padding-top: 294px;
+
+  &__earn {
+    font-size: 92px;
+    line-height: 110px;
+    letter-spacing: -1px;
+  }
+  &__content {
+    font-size: 28px;
+    line-height: 33px;
+
+    width: 428px;
+    height: 66px;
+
+    color: #8E8E93;
+
+    padding-top: 25px;
+  }
+  &__createBtn {
+    width: 252px;
+    height: 72px;
+  }
+}
