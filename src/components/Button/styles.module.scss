@@ -4,18 +4,21 @@
   width: 100%;
   text-align: center;
 }
-
 .btn_gradient {
   @extend .btn;
   background: $gradient;
 }
-
 .btn_black {
   @extend .btn;
   background: black;
 }
-
 .btn_red {
   @extend .btn;
   background: $red_bg;
+}
+.btn_vk {
+  @extend .btn;
+}
+.btn_google {
+  @extend .btn;
 }
