@@ -15,7 +15,7 @@ const PushBalance: FC<RouteComponentProps> = ({match}) => {
 
    return (
       <div style={{height: "100%", paddingTop: "50px"}}>
-         <TopNavbar isMenu={false} label={"Баланс кампании"} isDesktop={isDesktop}/>
+         <TopNavbar label={"Баланс кампании"}/>
          <PushBalanceForm taskId={taskId}/>
       </div>
    )

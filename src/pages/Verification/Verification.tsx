@@ -10,7 +10,7 @@ export const Verification: FC = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
-         <TopNavbar isMenu={false} label={"Верификация"} isDesktop={isDesktop}/>
+         <TopNavbar label={"Верификация"} />
          <div className={styles.info}>
             <p className={styles.mainLabel}>Пройди верификацию и начни зарабатывать больше!</p>
             <p className={styles.label}>Пользователь с верифицированным аккаунтом:</p>

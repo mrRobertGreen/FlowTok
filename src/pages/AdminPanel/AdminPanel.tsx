@@ -81,7 +81,7 @@ function AdminPanel() {
 
    return (
       <div style={{height: "100%", width: "100%", paddingTop: "50px"}}>
-         <TopNavbar isMenu={false} label={"Панель админа"} isDesktop={isDesktop}/>
+         <TopNavbar label={"Панель админа"}/>
          <DataTable
             theme={"light"}
             title="Статистика"

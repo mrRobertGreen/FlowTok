@@ -17,7 +17,7 @@ const WithdrawTypes_m: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
-         <TopNavbar isDesktop={isDesktop} label={"Вывод средств"} isMenu={false}/>
+         <TopNavbar label={"Вывод средств"}/>
          <div className={styles.container}>
             {Object.keys(withdrawTypes).map((key: string, idx: number) => (
                <div className={styles.btn} key={idx}>

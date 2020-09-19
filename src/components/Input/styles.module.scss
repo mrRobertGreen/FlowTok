@@ -1,24 +1,26 @@
+@import "../../styles/vars";
+
 .wrapper {}
 
 .input {
-  background-color: #ffffff;
+  background: rgba(240, 240, 240, 0.0001);
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  border: 1px solid #c5e8e1;
-  font-size: 17px;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E5E5EA;
+  font-size: 15px;
+  line-height: 18px;
+  padding: 12px 16px;
   &::-webkit-input-placeholder {
-    font-size: 16px;
-    opacity: 0.5;
     vertical-align: middle;
+    color: #1D1D1D;
+    mix-blend-mode: normal;
+    opacity: 0.4;
   }
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
   }
@@ -30,23 +32,32 @@
 }
 
 .select {
-  background-color: #e6f9f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  border: 1px solid #c5e8e1;
-  font-size: 17px;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  @extend .input;
+  position: relative;
+}
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.select::after {
+  content: "";
+  background: red;
+  position: absolute;
+  right: 8px;
+  top: 4px;
+  z-index: 10;
+  text-align: center;
+  width: 10px;
+  height: 10px;
+}
+
+.active {
+  border: 1.5px solid $violet-blue;
 }
 
 .error {
-  border: 1px solid rgba(255, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(255, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(255, 0, 0, 0.5);
-  box-shadow: 0px 0px 6px 0px rgba(255, 0, 0, 0.5);
+  border: 1px solid $red_font;
 }
 
 .blue {
