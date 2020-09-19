@@ -5,7 +5,7 @@ import {validateRequiredField} from "../../../utils/validators";
 import Button from "../../Button/Button";
 import {WithdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {useDispatch, useSelector} from "react-redux";
-import {ChooseSex, Input, SelectCountry} from "../../Input/Input";
+import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 
@@ -93,8 +93,23 @@ export const UserDataForm: FC<PropsType> = () => {
                      />
                   </div>
                   <div className={styles.row}>
-                     <Button mod={"woman"}>Женский</Button>
-                     <Button mod={"man"}>Мужской</Button>
+                     <div className={styles.btn}>
+                        <Button mod={"woman"}>Женский</Button>
+                     </div>
+                     <div className={styles.btn}>
+                        <Button mod={"man"}>Мужской</Button>
+                     </div>
+                  </div>
+                  <div className={styles.row}>
+                     <div className={styles.column}>
+                        <div className={styles.label}>
+                           Включить уведомления в Telegram
+                        </div>
+                        <div className={styles.subLabel}>
+                           1₽ на счет и актуальные задания!
+                        </div>
+                     </div>
+                     <ToggleSwitch/>
                   </div>
                </Form>}
       </Formik>
