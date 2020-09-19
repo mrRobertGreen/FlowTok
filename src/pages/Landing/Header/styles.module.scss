@@ -4,17 +4,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
   padding-left: 70px;
   padding-top: 60px;
+
 }
 
 .buttons {
   display: flex;
   padding-right: 66px;
   align-items: center;
+  justify-content: center;
   padding-top: 59px;
 
   letter-spacing: -0.458235px;
@@ -41,4 +44,10 @@
     padding-top: 15px;
   }
 
+}
+
+@media (max-width: 950px) {
+  .buttons {
+    display: none;
+  }
 }

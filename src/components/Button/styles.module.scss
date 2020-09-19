@@ -12,6 +12,7 @@
 .btn_gradient {
   @extend .btn;
   background: $gradient;
+  color: #ffffff;
 }
 .btn_black {
   @extend .btn;
