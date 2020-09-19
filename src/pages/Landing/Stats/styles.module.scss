@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 81.14%);;
+}
+.bold {
+  font-size: 92px;
+  line-height: 110px;
+  letter-spacing: -1px;
+
+  color: #000000;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 35px;
+  }
+  .bold {
+    font-size: 32px;
+    line-height: 37px;
+    font-weight: bold;
+    letter-spacing: -0.771765px;
+    padding-top: 35px;
+
+    color: #1D1D1D;
+
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .little {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+    padding-top: 3px;
+
+    color: #8E8E93;
+  }
+}
