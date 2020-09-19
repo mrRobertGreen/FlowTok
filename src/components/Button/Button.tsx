@@ -1,6 +1,8 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps, FC} from "react";
 import styles from "./styles.module.scss"
 import cn from "classnames/bind"
+import GoogleIcon from "../../media/icons/google.svg"
+import VkIcon from "../../media/icons/vk.svg"
 
 /*
 * Кнопки на сайте все одинаковые, отличие только в цвете.
@@ -32,7 +34,7 @@ const Button: FC<PropsT &
                                                                                      }) => {
    return (
       <button
-         style={{margin: m, borderRadius: br}}
+         style={{margin: m, borderRadius: br,}}
          className={cn(
             styles.btn,
             {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
@@ -40,9 +42,10 @@ const Button: FC<PropsT &
             {[styles.btn_red]: mod === "red"},
             {[styles.btn_vk]: mod === "VK"},
             {[styles.btn_google]: mod === "Google"},
-
          )}
          {...rest}>
+         {mod === "Google" && <img src={GoogleIcon} className={styles.icon} alt=""/>}
+         {mod === "VK" && <img src={VkIcon} className={styles.icon} alt=""/>}
          {children}
       </button>
    )

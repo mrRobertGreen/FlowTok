@@ -4,11 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 142px;
-  height: 36px;
   position: absolute;
-  top: 60px;
-  left: 100px;
+  width: 20.33px;
+  height: 26.18px;
+  left: 20.65px;
+  top: 15.65px;
 }
 .image {
   width: 28px;
@@ -21,4 +21,27 @@
   font-weight: normal;
   font-style: normal;
   font-size: 28px;
+  display: none;
+}
+
+@media (min-width: 767px) {
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 142px;
+    height: 36px;
+    top: 60px;
+    left: 100px;
+  }
+  .name {
+    display: block;
+  }
 }

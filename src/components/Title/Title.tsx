@@ -1,11 +1,17 @@
 import React, {FC} from "react";
 import  styles from "./styles.module.scss"
 
-export const Title: FC = ({children}) => {
+type PropsT = {
+   fz?: string
+}
+
+export const Title: FC<PropsT> = ({children, fz}) => {
    return (
-      <div className={styles.wrapper}>
+      <div
+         style={{fontSize: fz}}
+         className={styles.wrapper}
+      >
          {children}
       </div>
-
    )
 }

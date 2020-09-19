@@ -28,7 +28,7 @@ export const Main: FC = () => {
                 </div>
                 <NavLink to={"/"}>
                     <div className={styles.mainText__createBtn}>
-                        <Button mod={"gradient"} children={"Создать"} br={"42px"}></Button>
+                        <Button mod={"gradient"} children={"Создать"} br={"42px"}/>
                     </div>
                 </NavLink>
         </div>

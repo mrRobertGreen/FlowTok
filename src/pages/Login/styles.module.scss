@@ -1,23 +1,60 @@
 .video {
   position: absolute;
-  right: 0;
   height: 100%;
-  max-width: 33.3%;
-  object-fit: cover;
+  width: 100%;
+  overflow: hidden;
   &__item {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    height: 100%;
+    width: 100%;
   }
 }
-.form {
-  height: 100%;
-  padding: 370px;
-}
 .container {
-  height: 100%;
-  max-width: 66.6%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  flex-direction: column;
+  border-radius: 20px 20px 0px 0px;
   justify-content: center;
   align-items: center;
+  padding: 30px 20px 46px;
+}
+.title {
+  font-size: 21px;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+
+}
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .title {
+    font-size: 42px;
+  }
+  .video {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    max-width: 40%;
+    overflow: hidden;
+    &__item {
+      width: 100%;
+    }
+  }
+  .container {
+    background-color: red;
+    height: 100%;
+    max-width: 60%;
+    position: static;
+    border-radius: 0;
+    padding: 30px 250px 46px;
+  }
 }

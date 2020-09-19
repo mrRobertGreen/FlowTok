@@ -3,6 +3,11 @@
 .btn {
   width: 100%;
   text-align: center;
+  padding: 15px 0;
+  border-radius: 30px;
+  font-size: 15px;
+  line-height: 18px;
+  position: relative;
 }
 .btn_gradient {
   @extend .btn;
@@ -11,6 +16,7 @@
 .btn_black {
   @extend .btn;
   background: black;
+  color: white;
 }
 .btn_red {
   @extend .btn;
@@ -18,7 +24,21 @@
 }
 .btn_vk {
   @extend .btn;
+  background-color: #fff;
+  border: 1.5px solid #E5E5EA;
+  .icon {
+    position: absolute;
+    left: 15px;
+    top: 14px;
+  }
 }
 .btn_google {
-  @extend .btn;
+  @extend .btn_vk;
+  .icon {
+    position: absolute;
+    left: 17px;
+    top: 11px;
+    width: 26px;
+    height: 26px;
+  }
 }
