@@ -18,7 +18,7 @@ const TaskForm_m: FC<PropsType> = () => {
 
    return (
       <div className={styles.wrapper}>
-         <TopNavbar label={"Создание кампании"} isMenu={false} isDesktop={isDesktop}/>
+         <TopNavbar label={"Создание кампании"}/>
          <CreateTaskForm createAdvTask={(task) => dispatch(createAdvTask(task))}
                          isFetching={isFetching}
                          isAdvTaskCreated={isAdvTaskCreated}

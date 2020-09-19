@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
 import {Input} from "../../components/Input/Input";
-import BackArrowIcon from "../../media/icons/back_arrow_icon.svg";
+import BackArrowIcon from "../../media/icons/back_arrow.svg";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";

@@ -10,7 +10,7 @@ export const VerificationForm: FC = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
-         <TopNavbar isMenu={false} label={"Верификация"} isDesktop={isDesktop}/>
+         <TopNavbar label={"Верификация"}/>
          <VerifyForm/>
       </div>
    )

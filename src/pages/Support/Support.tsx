@@ -8,7 +8,7 @@ export const Support: FC = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div>
-         <TopNavbar isDesktop={isDesktop} label={"Служба поддержки"} isMenu={false}/>
+         <TopNavbar label={"Служба поддержки"}/>
          <div className={styles.info}>
             <p>Официальный новостной канал: <a href="https://t.me/flowtok" target="_blank" rel="noopener noreferrer">flowtok</a></p>
             <br/>

@@ -8,7 +8,7 @@ import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
 
 type PropsType = {
    isError?: boolean
-   mod?: "blue"
+   mod?: "active" | "blue"
    errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
 }
 
@@ -24,14 +24,15 @@ export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
             {...rest}
             className={classNames(styles.input, {
                [styles.error]: isError,
-               [styles.blue]: mod === "blue"
+               [styles.blue]: mod === "blue",
+               [styles.active]: mod === "active",
             })}
          />
-         <div className={styles.errorMsg}
-              style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}
-         >
-            {errorMessage ? errorMessage : null}
-         </div>
+         {/*<div className={styles.errorMsg}*/}
+         {/*     style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}*/}
+         {/*>*/}
+         {/*   {errorMessage ? errorMessage : null}*/}
+         {/*</div>*/}
       </div>
 
    )

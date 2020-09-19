@@ -14,6 +14,11 @@
   background: $gradient;
   color: #ffffff;
 }
+.btn_white {
+  @extend .btn;
+  background-color: #fff;
+  border: 1.5px solid #E5E5EA;
+}
 .btn_black {
   @extend .btn;
   background: black;
@@ -27,19 +32,34 @@
   @extend .btn;
   background-color: #fff;
   border: 1.5px solid #E5E5EA;
-  .icon {
-    position: absolute;
-    left: 15px;
-    top: 14px;
-  }
+}
+.icon {
+  width: 26px;
+  height: 26px;
+  left: 17px;
+  position: absolute;
+  top: calc(50% - 13px);
 }
 .btn_google {
   @extend .btn_vk;
-  .icon {
-    position: absolute;
-    left: 17px;
-    top: 11px;
-    width: 26px;
-    height: 26px;
+}
+.btn_active {
+  border: 1.5px solid $violet-blue;
+}
+
+@media (min-width: 767px) {
+  .btn {
+    padding: 18px 0;
+    border-radius: 30px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .btn {
+    padding: 15px 0;
+    border-radius: 30px;
+    font-size: 15px;
+    line-height: 18px;
   }
 }

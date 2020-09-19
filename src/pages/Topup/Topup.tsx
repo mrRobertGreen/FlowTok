@@ -12,7 +12,7 @@ export const Topup: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
-         <TopNavbar label="Пополнение баланса" isMenu={false} isDesktop={isDesktop}/>
+         <TopNavbar label="Пополнение баланса" />
          <TopupForm/>
       </div>
    )

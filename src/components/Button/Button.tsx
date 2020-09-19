@@ -19,9 +19,10 @@ import VkIcon from "../../media/icons/vk.svg"
 
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red" | "Google" | "VK"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white"
    m?: string
    br?: string
+   isActive?: boolean
 }
 
 const Button: FC<PropsT &
@@ -30,6 +31,7 @@ const Button: FC<PropsT &
                                                                                         m,
                                                                                         br,
                                                                                         children,
+                                                                                        isActive,
                                                                                         ...rest
                                                                                      }) => {
    return (
@@ -39,6 +41,8 @@ const Button: FC<PropsT &
             styles.btn,
             {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
             {[styles.btn_gradient]: mod === "gradient"},
+            {[styles.btn_white]: mod === "white"},
+            {[styles.btn_active]: isActive},
             {[styles.btn_red]: mod === "red"},
             {[styles.btn_vk]: mod === "VK"},
             {[styles.btn_google]: mod === "Google"},

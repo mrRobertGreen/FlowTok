@@ -11,7 +11,7 @@ export const UserTerms:FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
-         <TopNavbar isDesktop={isDesktop} isMenu={false} label={"Публичная оферта"}/>
+         <TopNavbar label={"Публичная оферта"}/>
          <div className={styles.container}>
             {/*<h1>Пользовательское соглашение сервиса и защита персональных данных пользователей</h1>*/}
             {/*<p>Добро пожаловать на сайт FlowTok.com. Пожалуйста, ознакомьтесь с пользовательским соглашением сервиса*/}
