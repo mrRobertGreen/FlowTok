@@ -93,7 +93,8 @@ export const UserDataForm: FC<PropsType> = () => {
                      />
                   </div>
                   <div className={styles.row}>
-
+                     <Button mod={"woman"}>Женский</Button>
+                     <Button mod={"man"}>Мужской</Button>
                   </div>
                </Form>}
       </Formik>

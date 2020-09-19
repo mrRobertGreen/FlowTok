@@ -32,12 +32,25 @@
   background-color: #fff;
   border: 1.5px solid #E5E5EA;
 }
+.btn_sex {
+  @extend .btn;
+  background-color: #fff;
+  border: 1px solid #E5E5EA;
+  color: #A4A4A4;
+  .icon {
+    left: 20px;
+  }
+}
 .icon {
   width: 26px;
   height: 26px;
   left: 17px;
   position: absolute;
   top: calc(50% - 13px);
+}
+.icon_man {
+  @extend .icon;
+  top: calc(50% - 15px);
 }
 .btn_google {
   @extend .btn_vk;
