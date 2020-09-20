@@ -266,6 +266,24 @@ export const SelectCountry: FC<PropsType & HTMLProps<HTMLSelectElement>> = ({
    )
 }
 
+export const ToggleSwitch:FC<PropsType & HTMLProps<HTMLInputElement>> = () => {
+   return (
+      <div>
+         <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="switch"
+         />
+         <label
+            className={styles.label}
+            htmlFor="switch"
+         >
+            <span className={styles.switchBtn} />
+         </label>
+      </div>
+   )
+}
+
 export const ChooseSex: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                                                                            isError,
                                                                            mod,

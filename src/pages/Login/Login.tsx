@@ -1,9 +1,7 @@
 import React from "react";
 import {Page} from "../../components/Page/Page";
-import {Logo} from "../../components/Logo/Logo";
 import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
-import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
@@ -13,8 +11,6 @@ export const Login = () => {
 
    return (
       <Page>
-         <LoginVideo/>
-         <Logo/>
          <div className={styles.container}>
             <div className={styles.container__item}>
                <div className={styles.title}>Вход</div>
@@ -27,7 +23,7 @@ export const Login = () => {
                   </div>
                   <div className={styles.label}>Нет аккаунта в FLowTok? Зарегистрируйтесь!</div>
                   <div className={styles.btn_submit}>
-                     <NavLink to={"/registration"}>
+                     <NavLink to={"/reg"}>
                         <Button mod={"black"}>Зарегистрироваться</Button>
                      </NavLink>
                   </div>

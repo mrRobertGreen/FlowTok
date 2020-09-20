@@ -5,15 +5,16 @@ import {validateRequiredField} from "../../../utils/validators";
 import Button from "../../Button/Button";
 import {WithdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {useDispatch, useSelector} from "react-redux";
-import {ChooseSex, Input, SelectCountry} from "../../Input/Input";
+import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
+import {Separator} from "../../Separator/Separator";
 
 export type TikTokFormValuesType = {
    name: string
    age: string
    country: string
-   sex: string
+   sex: "woman" | "man" | ""
    turnOnTelegram: boolean
 }
 
@@ -24,7 +25,8 @@ export const UserDataForm: FC<PropsType> = () => {
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
    const onSubmit = async (values: TikTokFormValuesType, {resetForm}: FormikValues) => {
-      resetForm()
+      console.log(values)
+      // resetForm()
    }
 
    if (isFetching) return <Preloader/>
@@ -35,8 +37,8 @@ export const UserDataForm: FC<PropsType> = () => {
             name: "",
             age: "",
             country: "",
-            sex: "",
-            turnOnTelegram: false,
+            sex: "" as "woman" | "man" | "",
+            turnOnTelegram: false as boolean,
          }}
          validateOnChange={false}
          onSubmit={onSubmit}
@@ -45,55 +47,99 @@ export const UserDataForm: FC<PropsType> = () => {
          {
             ({setFieldValue, values}) =>
                <Form className={styles.wrapper}>
-                  <Field name={"name"}
-                         validate={validateRequiredField}
-                         render={({field, form: {touched, errors}}: FieldProps) => (
-                            <div className={styles.input}>
-                               <Input
-                                  mod={"active"}
-                                  type={"text"}
-                                  placeholder={"Вставьте ссылку"}
-                                  isError={!!(errors.link && touched.link)}
-                                  errorMessage={errors.link}
-                                  {...field}
-                               />
-                            </div>
-                         )}
-                  />
-                  <div className={styles.row}>
-                     <Field name={"age"}
+                  <div className={styles.block}>
+                     <Field name={"name"}
                             validate={validateRequiredField}
                             render={({field, form: {touched, errors}}: FieldProps) => (
                                <div className={styles.input}>
                                   <Input
-                                     mod={!!(errors.country) ? undefined : "active"}
-                                     type={"number"}
-                                     placeholder={"Вставьте ссылку"}
-                                     isError={!!(errors.age && touched.age)}
-                                     errorMessage={errors.age}
-                                     {...field}
-                                  />
-                               </div>
-                            )}
-                     />
-                     <Field name={"country"}
-                            validate={validateRequiredField}
-                            render={({field, form: {touched, errors}}: FieldProps) => (
-                               <div className={styles.input}>
-                                  <Input
-                                     mod={!!(errors.country) ? undefined : "active"}
+                                     mod={"active"}
                                      type={"text"}
-                                     placeholder={"Страна"}
-                                     isError={!!(errors.country && touched.country)}
-                                     errorMessage={errors.country}
+                                     placeholder={"Имя"}
+                                     isError={!!(errors.link && touched.link)}
+                                     errorMessage={errors.link}
                                      {...field}
                                   />
                                </div>
                             )}
                      />
+                     <div className={styles.row}>
+                        <Field name={"age"}
+                               validate={validateRequiredField}
+                               render={({field, form: {touched, errors}}: FieldProps) => (
+                                  <div className={styles.input}>
+                                     <Input
+                                        mod={!!(errors.country) ? undefined : "active"}
+                                        type={"number"}
+                                        placeholder={"Возраст"}
+                                        isError={!!(errors.age && touched.age)}
+                                        errorMessage={errors.age}
+                                        {...field}
+                                     />
+                                  </div>
+                               )}
+                        />
+                        <Field name={"country"}
+                               validate={validateRequiredField}
+                               render={({field, form: {touched, errors}}: FieldProps) => (
+                                  <div className={styles.input}>
+                                     <Input
+                                        mod={!!(errors.country) ? undefined : "active"}
+                                        type={"text"}
+                                        placeholder={"Страна"}
+                                        isError={!!(errors.country && touched.country)}
+                                        errorMessage={errors.country}
+                                        {...field}
+                                     />
+                                  </div>
+                               )}
+                        />
+                     </div>
+                     <div className={styles.row}>
+                        <div className={styles.btn}>
+                           <Button
+                              isActive={values.sex === "woman"}
+                              mod={"woman"}
+                              onClick={() => setFieldValue("sex", "woman")}>
+                              Женский
+                           </Button>
+                        </div>
+                        <div className={styles.btn}>
+                           <Button
+                              isActive={values.sex === "man"}
+                              mod={"man"}
+                              onClick={() => setFieldValue("sex", "man")}>
+                              Мужской
+                           </Button>
+                        </div>
+                     </div>
                   </div>
                   <div className={styles.row}>
-
+                     <div className={styles.column}>
+                        <div className={styles.label}>
+                           Включить уведомления в Telegram
+                        </div>
+                        <div className={styles.subLabel}>
+                           1₽ на счет и актуальные задания!
+                        </div>
+                     </div>
+                     <ToggleSwitch onClick={() => setFieldValue("turnOnTelegram", !values.turnOnTelegram)}/>
+                  </div>
+                  <Separator m={"0 0 8px"}/>
+                  <div className={styles.row}>
+                     <div className={styles.column}>
+                        <div className={styles.label}>
+                           Подтвердите свой аккаунт
+                        </div>
+                        <div className={styles.subLabel}>
+                           Нам нужно удостоверится, что это Ваш аккаунт
+                        </div>
+                     </div>
+                     <div className={styles.submitBtn}>
+                        <Button mod={"black"} type={"submit"}>
+                           Подвердить
+                        </Button>
+                     </div>
                   </div>
                </Form>}
       </Formik>
