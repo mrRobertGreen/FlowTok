@@ -26,7 +26,7 @@ import AdvRedirect from "./pages/AdvRedirect/AdvRedirect";
 import {Support} from "./pages/Support/Support";
 import {Verification} from "./pages/Verification/Verification";
 import {VerificationForm} from "./pages/VerificationForm/VerificationForm";
-import {isMobileOnly} from "react-device-detect"
+import {isMobile} from "react-device-detect"
 import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
@@ -49,7 +49,7 @@ const App: FC = () => {
       return <Preloader/>
    }
 
-   if (isMobileOnly) {
+   if (isMobile) {
       dispatch(appActions.setIsDesktop(false))
    } else {
       dispatch(appActions.setIsDesktop(true))
@@ -64,7 +64,7 @@ const App: FC = () => {
       height: "100%",
    }
    return (
-      <div style={isMobileOnly ? mobileStyle : desktopStyle}>
+      <div style={isMobile ? mobileStyle : desktopStyle}>
          {error &&
 			<Modal isOpen={true}
 			       children={<Alert close={closeError} message={error} title={"Ошибка"}

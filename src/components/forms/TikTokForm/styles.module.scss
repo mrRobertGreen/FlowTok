@@ -1,8 +1,17 @@
 .wrapper {
   width: 100%;
-  padding-bottom: 25px;
+  padding-bottom: 12px;
+  &:after {
+    content: "";
+    height: 1px;
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    background: linear-gradient(270deg, #FFFFFF 0%, #E5E5E5 49.52%, #FFFFFF 100%);
+    //background-color: blue;
+    border-radius: 31px;
+  }
 }
-
 .input {
   padding-bottom: 10px;
 }
@@ -10,9 +19,28 @@
   display: flex;
   .btn {
     flex: 1 1 60%;
-    margin-right:10px;
   }
   .submitBtn {
     flex: 1 1 40%;
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 767px) {
+  .wrapper {
+    padding-bottom: 12px;
+    &:after {
+      height: 1px;
+      width: 100%;
+      margin-top: 12px;
+    }
+  }
+  .input {
+    padding-bottom: 10px;
+  }
+  .row {
+    .submitBtn {
+      margin-left: 10px;
+    }
   }
 }

@@ -21,7 +21,7 @@ import womanIcon from "../../media/icons/woman.svg"
 
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey"
    m?: string
    br?: string
    isActive?: boolean
@@ -46,6 +46,7 @@ const Button: FC<PropsT &
             {[styles.btn_white]: mod === "white"},
             {[styles.btn_active]: isActive},
             {[styles.btn_red]: mod === "red"},
+            {[styles.btn_grey]: mod === "grey"},
             {[styles.btn_sex]: mod === "woman" || mod === "man"},
             {[styles.btn_vk]: mod === "VK"},
             {[styles.btn_google]: mod === "Google"},
