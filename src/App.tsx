@@ -31,6 +31,7 @@ import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
+import {Auth} from "./pages/Auth/Auth";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -78,8 +79,8 @@ const App: FC = () => {
             {/*<Route exact path="/login/1" component={FirstStep}/>*/}
             {/*<Route exact path="/login/2" component={SecondStep}/>*/}
             {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/registration" component={Registration}/>
+            <Route exact path="/login" component={Auth}/>
+            <Route exact path="/reg" component={Auth}/>
             {/*<Route path="/profile" component={Profile_m}/>*/}
             {/*<Route path="/work/:type" component={Work_m}/>*/}
             {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}

@@ -8,9 +8,7 @@ import {UserDataForm} from "../../components/forms/UserDataForm/UserDataForm";
 import {Separator} from "../../components/Separator/Separator";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {NavLink} from "react-router-dom";
-import {Logo} from "../../components/Logo/Logo";
 
 export const Registration = () => {
 
@@ -19,8 +17,6 @@ export const Registration = () => {
    return (
       <Page>
          {!isDesktop && <TopNavbar label={"Регистрация"}/>}
-         {isDesktop && <LoginVideo/>}
-         {isDesktop && <Logo/>}
          <div className={styles.container}>
             {isDesktop &&
             <div className={styles.title}>

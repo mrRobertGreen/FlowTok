@@ -3,13 +3,15 @@ import styles from "./styles.module.scss"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import loginImage from "../../media/images/login_image.svg"
+import {useLocation} from "react-router";
 
 export const LoginVideo = () => {
    const isDesktop = useSelector(((state: RootStateType) => state.app.isDesktop))
+   const pathname = useLocation().pathname
 
    return (
       <div className={styles.video}>
-         {!isDesktop && <img src={loginImage} alt=""/>}
+         {!isDesktop && pathname !== "/reg" &&<img src={loginImage} alt=""/>}
          {isDesktop &&
 			<video controls={false}
 			       loop

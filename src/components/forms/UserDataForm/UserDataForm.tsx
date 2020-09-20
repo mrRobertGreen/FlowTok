@@ -14,7 +14,7 @@ export type TikTokFormValuesType = {
    name: string
    age: string
    country: string
-   sex: string
+   sex: "woman" | "man" | ""
    turnOnTelegram: boolean
 }
 
@@ -25,7 +25,8 @@ export const UserDataForm: FC<PropsType> = () => {
    const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
 
    const onSubmit = async (values: TikTokFormValuesType, {resetForm}: FormikValues) => {
-      resetForm()
+      console.log(values)
+      // resetForm()
    }
 
    if (isFetching) return <Preloader/>
@@ -36,8 +37,8 @@ export const UserDataForm: FC<PropsType> = () => {
             name: "",
             age: "",
             country: "",
-            sex: "",
-            turnOnTelegram: false,
+            sex: "" as "woman" | "man" | "",
+            turnOnTelegram: false as boolean,
          }}
          validateOnChange={false}
          onSubmit={onSubmit}
@@ -54,7 +55,7 @@ export const UserDataForm: FC<PropsType> = () => {
                                   <Input
                                      mod={"active"}
                                      type={"text"}
-                                     placeholder={"Вставьте ссылку"}
+                                     placeholder={"Имя"}
                                      isError={!!(errors.link && touched.link)}
                                      errorMessage={errors.link}
                                      {...field}
@@ -96,10 +97,20 @@ export const UserDataForm: FC<PropsType> = () => {
                      </div>
                      <div className={styles.row}>
                         <div className={styles.btn}>
-                           <Button mod={"woman"}>Женский</Button>
+                           <Button
+                              isActive={values.sex === "woman"}
+                              mod={"woman"}
+                              onClick={() => setFieldValue("sex", "woman")}>
+                              Женский
+                           </Button>
                         </div>
                         <div className={styles.btn}>
-                           <Button mod={"man"}>Мужской</Button>
+                           <Button
+                              isActive={values.sex === "man"}
+                              mod={"man"}
+                              onClick={() => setFieldValue("sex", "man")}>
+                              Мужской
+                           </Button>
                         </div>
                      </div>
                   </div>
@@ -112,7 +123,7 @@ export const UserDataForm: FC<PropsType> = () => {
                            1₽ на счет и актуальные задания!
                         </div>
                      </div>
-                     <ToggleSwitch/>
+                     <ToggleSwitch onClick={() => setFieldValue("turnOnTelegram", !values.turnOnTelegram)}/>
                   </div>
                   <Separator m={"0 0 8px"}/>
                   <div className={styles.row}>
