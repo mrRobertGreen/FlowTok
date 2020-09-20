@@ -1,6 +1,14 @@
 .wrapper {
   display: flex;
+  justify-content: space-between;
   padding-left: 220px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 0;
 }
 
 .mainText {
@@ -9,8 +17,8 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 
   &__earn {
     font-size: 92px;
@@ -19,6 +27,7 @@
     justify-self: flex-start;
     font-weight: bold;
   }
+
   &__content {
     font-size: 28px;
     line-height: 33px;
@@ -32,6 +41,7 @@
 
     padding-top: 25px;
   }
+
   &__createBtn {
     width: 252px;
     height: 72px;
@@ -41,21 +51,21 @@
 }
 
 .mainPic {
-
-  width: 100%;
+  height: 100%;
+  width: 40%;
+  margin-bottom: 120px;
 }
 
-//middle
-@media (max-width: 1500px) {
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
 
   .mainText {
     padding-top: 150px;
   }
 }
 
-
 // mobile
-@media (max-width: 600px) {
+@media (max-width: 767.98px) {
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -67,7 +77,6 @@
     justify-content: center;
     align-items: center;
     padding-top: 0;
-
   }
 
   .mainText {
@@ -84,6 +93,7 @@
 
       height: 82px;
     }
+
     &__content {
       font-size: 15px;
       line-height: 18px;
@@ -93,6 +103,7 @@
       padding-top: 8px;
       padding-left: 0px;
     }
+
     &__createBtn {
       margin-top: 30px;
       justify-self: center;

@@ -2,17 +2,29 @@
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 81.14%);;
+  background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 81.14%);
+  padding-top: 100px;
+  padding-bottom: 127px;
 }
 .bold {
-  font-size: 92px;
-  line-height: 110px;
-  letter-spacing: -1px;
+  font-size: 76px;
+  line-height: 89px;
+  font-weight: 600;
+  letter-spacing: -1.83294px;
 
   color: #000000;
 }
+.little {
+  font-size: 26px;
+  line-height: 30px;
+  letter-spacing: -0.627059px;
 
-@media (max-width: 600px) {
+  padding-top: 19px;
+
+  color: #8E8E93;
+}
+
+@media (max-width: 991.98px) {
   .wrapper {
     flex-direction: column;
     align-items: center;
