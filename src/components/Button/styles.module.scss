@@ -64,6 +64,12 @@
 .btn_active {
   border: 1.5px solid $violet-blue;
 }
+.btn_white_gradient {
+  @extend .btn;
+  background: rgba(222, 222, 222, 0.0001);
+  border: 10px solid $gradient;
+}
+
 
 //@media (min-width: 767px) {
 //  .btn {

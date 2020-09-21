@@ -4,6 +4,8 @@ import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {BlogTaskStatusType, BlogTaskType} from "../../redux/user/user-reducer";
 import {Card} from "../Card/Card";
+import Button from "../Button/Button";
+import {Separator} from "../Separator/Separator";
 
 /*
 * Карточка задания
@@ -34,11 +36,20 @@ export const TaskCard_m: FC<PropsT> = ({
                 <p className={styles.title}>{title}</p>
                 <p className={styles.info}>{info}</p>
                 <hr color={"black"}/>
-                <div>
-                    <p className={styles.cost}>За задание</p>
+                <div className={styles.cost}>
+                    <p className={styles.cost__text}>За задание</p>
+                    <p>{rate}</p>
                 </div>
                 <hr color={"black"}/>
-
+                <div className={styles.btn}>
+                    <div className={styles.chanel}>
+                        <Button mod={"whiteGradient"} br={"11px"}>Канал</Button>
+                    </div>
+                    <div className={styles.check}>
+                        <Button mod={"gradient"} br={"11px"}>Проверить</Button>
+                    </div>
+                </div>
+                <button className={styles.cancel}>Отменить</button>
             </div>
         </Card>
     )

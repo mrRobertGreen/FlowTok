@@ -23,7 +23,8 @@ export const Card: FC<PropsT> = ({
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
     let MainStyle = {
-        padding: pad
+        padding: pad // for indent from border of phone
+                    // в мобилке это везде 10px
     }
 
     let TextStyle = {

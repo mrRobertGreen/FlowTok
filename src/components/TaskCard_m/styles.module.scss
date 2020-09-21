@@ -1,9 +1,31 @@
 @import "../../styles/vars";
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+
+}
+.title {
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 20px;
+  letter-spacing: -0.41px;
+
+  height: 20px;
+  color: #000000;
 }
 
+.cancel {
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.361765px;
+  height: 18px;
+
+  color: #FF3B30;
+  background-color: #FFFFFF;
+}
 
 @media (min-width: 767px) {
 
