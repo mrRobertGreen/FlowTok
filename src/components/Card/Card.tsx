@@ -1,7 +1,8 @@
-   import React, {FC} from "react";
+import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
+import {Main} from "../../pages/Landing/Main/Main";
 
 /*
 * Карточка для профиля
@@ -9,36 +10,42 @@ import {RootStateType} from "../../redux/store";
 
 
 type PropsT = {
-   size?: "small" | "big"
-   m?: string
+    size?: "small" | "big"
+    pad?: string
 }
 
 export const Card: FC<PropsT> = ({
-                                    m,
-                                    children,
-                                    size
+                                     pad,
+                                     children,
+                                     size
 
                                  }) => {
-   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
-   let style = {
-      margin: m,
-      padding: "61px 50px", // small desktop size
-      borderRadius: "30px",
-   }
+    let MainStyle = {
+        padding: pad
+    }
 
-   if (isDesktop && size === "big") {
-      style.padding= "65px 60px"
-   }
-   if (!isDesktop) {
-      style.padding = "20px 25px"
-      style.borderRadius = "14px"
-   }
+    let TextStyle = {
+        padding: "61px 50px", // small desktop size
+        borderRadius: "30px",
+    }
 
-   return (
-      <div style={style}
-           className={styles.wrapper}>
-         {children}
-      </div>
-   )
+    if (isDesktop && size === "big") {
+        TextStyle.padding = "65px 60px"
+    }
+    if (!isDesktop) {
+        TextStyle.padding = "20px 25px"
+        TextStyle.borderRadius = "14px"
+    }
+
+    return (
+        <div style={MainStyle}
+            className={styles.wrapper}>
+            <div style={TextStyle}
+                 className={styles.container}>
+                {children}
+            </div>
+        </div>
+    )
 }

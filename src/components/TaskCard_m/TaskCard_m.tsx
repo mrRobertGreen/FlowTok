@@ -29,11 +29,17 @@ export const TaskCard_m: FC<PropsT> = ({
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
     return (
-        <div className={styles.wrapper}>
-            <p>{ title }</p>
-            <p></p>
-            <hr color={"black"} />
-        </div>
+        <Card pad={"10px"}>
+            <div className={styles.wrapper}>
+                <p className={styles.title}>{title}</p>
+                <p className={styles.info}>{info}</p>
+                <hr color={"black"}/>
+                <div>
+                    <p className={styles.cost}>За задание</p>
+                </div>
+                <hr color={"black"}/>
 
+            </div>
+        </Card>
     )
 }
