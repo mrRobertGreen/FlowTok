@@ -24,6 +24,25 @@
   color: #8E8E93;
 }
 
+@media (min-height: 991px) and (max-width: 1200px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bold {
+    padding-top: 55px;
+  }
+  .little {
+    padding-top: 3px;
+  }
+}
+
 @media (max-width: 991.98px) {
   .wrapper {
     flex-direction: column;
