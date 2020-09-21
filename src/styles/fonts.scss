@@ -35,6 +35,15 @@
 }
 
 @font-face {
+  font-family: 'SFProText';
+  src: url('./fonts/fontsfree-net-sfprotext-medium-webfont.woff2') format('woff2'),
+  url('./fonts/fontsfree-net-sfprotext-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
   font-family: 'Riffic';
   src: url('./fonts/RifficFree-Bold.eot');
   src: local('☺'), url('./fonts/RifficFree-Bold.woff') format('woff'), url('./fonts/RifficFree-Bold.ttf') format('truetype'), url('./fonts/RifficFree-Bold.svg') format('svg');

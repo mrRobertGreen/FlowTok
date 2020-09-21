@@ -34,7 +34,7 @@ export const Card: FC<PropsT> = ({
       style.padding = "20px 25px"
       style.borderRadius = "14px"
    }
-   
+
    return (
       <div style={style}
            className={styles.wrapper}>

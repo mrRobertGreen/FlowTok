@@ -18,7 +18,7 @@ type PropsType = {
 }
 
 const NavBar_m: FC<PropsType> = ({isDesktop, pageName, newTasksNumber}) => {
-
+   newTasksNumber = 3
    const dispatch = useDispatch()
 
    return (
@@ -34,11 +34,13 @@ const NavBar_m: FC<PropsType> = ({isDesktop, pageName, newTasksNumber}) => {
                </div>
             </NavLink>
             <NavLink to={"/work"} className={styles.item}>
-               <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
-               {pageName === "Profile" && newTasksNumber &&
-					<div className={styles.notification}>
-                  {newTasksNumber}
-					</div>}
+               <div className={styles.iconWrap}>
+                  <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
+                  {pageName === "Profile" && newTasksNumber &&
+	               <div className={styles.notification}>
+                     {newTasksNumber}
+	               </div>}
+               </div>
                <div
                   className={styles.label}
                   style={{color: `${pageName === "Work" ? "#000" : "#979797"}`}}

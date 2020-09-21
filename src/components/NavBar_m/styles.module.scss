@@ -2,15 +2,6 @@
   display: block;
 }
 .navbar {
-  //background-color: #fff;
-  //margin: 0 auto;
-  //display: flex;
-  //align-items: center;
-  //justify-content: space-between;
-  //position: fixed;
-  //z-index: 10;
-  //bottom: 0;
-  //height: 60px;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -20,7 +11,6 @@
   justify-content: space-between;
   background-color: #fff;
 }
-
 .item {
   font-family: SFProText, sans-serif;
   display: flex;
@@ -28,26 +18,31 @@
   align-items: center;
   justify-content: center;
   width: 50%;
+  .iconWrap {
+    position: relative;
+  }
   .icon {
     display: block;
     position: relative;
     width: 25px;
     height: 25px;
     margin: 6px 0;
-    .notification {
-      right: -6px;
-      top: 0;
-      font-size: 9px;
-      color: white;
-      background-color: #EC2727;
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  }
+  .notification {
+    right: -6px;
+    top: 0;
+    font-size: 11px;
+    color: white;
+    background: #FF3B30;
+    position: absolute;
+    display: flex;
+    border: 1.2px solid #FFFFFF;
+    border-radius: 9px;
+    padding: 2.5px 5.5px;
+    width: 18px;
+    height: 18px;
+    justify-content: center;
+    align-items: center;
   }
   .label {
     font-size: 10px;
