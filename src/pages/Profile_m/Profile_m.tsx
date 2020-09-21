@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from "./styles.module.scss"
 import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
-import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
+import NavBar_m from "../../components/NavBar_m/NavBar_m";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {userActions} from "../../redux/user/user-reducer"
@@ -11,14 +11,14 @@ import {exit} from "../../redux/auth/auth-reducer";
 
 type PropsType = {}
 
-export type PageNamesType = "Profile" | "Work"
+export type PageNamesType = "Profile" | "Work" | "Settings"
 
 const Profile_m: FC<PropsType & PropsFromRedux> = ({ blogProfile, exit}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <div className={styles.wrapper}>
          <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>
-         <NavBar
+         <NavBar_m
             isDesktop={isDesktop}
             pageName={"Profile"}
             newTasksNumber={blogProfile && blogProfile.newTask}
@@ -41,6 +41,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 export default compose<FC>(
    connector,
    withTaskRedirect,
-   withCabinetRedirect,
+   // withCabinetRedirect,
    withAuthRedirect,
 )(Profile_m)

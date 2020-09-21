@@ -10,25 +10,31 @@ import {RootStateType} from "../../redux/store";
 
 type PropsT = {
    size?: "small" | "big"
+   m?: string
 }
 
 export const Card: FC<PropsT> = ({
-
+                                    m,
                                     children,
                                     size
 
                                  }) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
-   let style;
-
-   if (isDesktop && size === "small") {
-      style = {padding: "61px 50px", borderRadius: "30px"}
-   } else if (isDesktop && size === "big") {
-      style = {padding: "65px 60px", borderRadius: "30px"}
-   } else {
-      style = {padding: "20px 25px", borderRadius: "14px"}
+   let style = {
+      margin: m,
+      padding: "61px 50px", // small desktop size
+      borderRadius: "30px",
    }
+
+   if (isDesktop && size === "big") {
+      style.padding= "65px 60px"
+   }
+   if (!isDesktop) {
+      style.padding = "20px 25px"
+      style.borderRadius = "14px"
+   }
+   
    return (
       <div style={style}
            className={styles.wrapper}>

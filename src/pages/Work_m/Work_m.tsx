@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from "./styles.module.scss"
 import WorkBlock from "../../components/Profile_mPage/WorkBlock/WorkBlock";
-import NavBar from "../../components/Profile_mPage/NavBar/NavBar";
+import NavBar_m from "../../components/NavBar_m/NavBar_m";
 import {compose} from 'redux';
 import {withAuthRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {useSelector} from "react-redux";
@@ -14,7 +14,7 @@ const Work_m: FC<PropsType> = () => {
    return (
       <div className={styles.wrapper}>
          <WorkBlock/>
-         <NavBar isDesktop={isDesktop} pageName={"Work"} newTasksNumber={null}/>
+         <NavBar_m isDesktop={isDesktop} pageName={"Work"} newTasksNumber={null}/>
       </div>
    )
 

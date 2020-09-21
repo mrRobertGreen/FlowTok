@@ -8,7 +8,6 @@ import {Page} from "../../components/Page/Page";
 export const Landing = () => {
    return (
       <Page>
-
          <Header/>
          <Main/>
          <Stats/>
