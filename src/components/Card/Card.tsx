@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+   import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
