@@ -23,11 +23,11 @@ export const Card: FC<PropsT> = ({
    let style;
 
    if (isDesktop && size === "small") {
-      style = {padding: "61px 50px"}
+      style = {padding: "61px 50px", borderRadius: "30px"}
    } else if (isDesktop && size === "big") {
-      style = {padding: "65px 60px"}
+      style = {padding: "65px 60px", borderRadius: "30px"}
    } else {
-      style = {padding: "20px 25px"}
+      style = {padding: "20px 25px", borderRadius: "14px"}
    }
    return (
       <div style={style}
