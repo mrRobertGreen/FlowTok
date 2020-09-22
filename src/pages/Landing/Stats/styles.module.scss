@@ -24,6 +24,12 @@
   color: #8E8E93;
 }
 
+@media (max-width: 1600px) {
+  .bold {
+    font-size: 60px;
+  }
+}
+
 @media (min-height: 991px) and (max-width: 1200px) {
   .wrapper {
     flex-direction: column;
