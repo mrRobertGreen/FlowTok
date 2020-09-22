@@ -33,7 +33,7 @@ const ThirdStep: FC<PropsType & PropsFromRedux> = ({setTikTok, userRole, isFetch
    }
 
    const onButtonClick = () => {
-      setTikTok(inputValue)
+      // setTikTok(inputValue)
    }
 
    return (

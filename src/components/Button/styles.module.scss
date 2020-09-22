@@ -43,8 +43,16 @@
   background-color: #fff;
   border: 1px solid #E5E5EA;
   color: #A4A4A4;
-  .icon {
+  .icon_woman {
     left: 7%;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: calc(50% - 11px);
+  }
+  .icon_man {
+    @extend .icon_woman;
+    top: calc(50% - 13px);
   }
 }
 .icon {
@@ -53,10 +61,6 @@
   left: 17px;
   position: absolute;
   top: calc(50% - 13px);
-}
-.icon_man {
-  @extend .icon;
-  top: calc(50% - 15px);
 }
 .btn_google {
   @extend .btn_vk;
@@ -69,21 +73,3 @@
   background: rgba(222, 222, 222, 0.0001);
   border: 10px solid $gradient;
 }
-
-
-//@media (min-width: 767px) {
-//  .btn {
-//    padding: 18px 5px;
-//    border-radius: 30px;
-//    font-size: 18px;
-//    line-height: 20px;
-//  }
-//}
-//@media (min-width: 1200px) {
-//  .btn {
-//    padding: 15px 5px;
-//    border-radius: 30px;
-//    font-size: 15px;
-//    line-height: 18px;
-//  }
-//}

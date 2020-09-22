@@ -1,0 +1,36 @@
+//.wrapper {
+//  width: 32px;
+//  height: 32px;
+//  border-radius: 21px;
+//  padding: 8px;
+//  background-color: black;
+//  display:flex;
+//  justify-content:center;
+//  align-items:center;
+//}
+.loader{
+  background-color: black;
+  border-radius: 21px;
+  width:32px;
+  height:32px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+@keyframes load8{
+  100%{
+    transform:rotatez(360deg);
+  }
+}
+.loader8::before{
+  content:"";
+  color:white;
+  height:15px;
+  width:15px;
+  background:transparent;
+  border-radius:50%;
+  border:2px solid transparent;
+  border-color:#fff #fff transparent transparent;
+  animation:load8 .7s infinite;
+}

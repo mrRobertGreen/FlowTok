@@ -28,11 +28,11 @@ export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                [styles.active]: mod === "active",
             })}
          />
-         {/*<div className={styles.errorMsg}*/}
-         {/*     style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}*/}
-         {/*>*/}
-         {/*   {errorMessage ? errorMessage : null}*/}
-         {/*</div>*/}
+         <div className={styles.errorMsg}
+              style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}
+         >
+            {errorMessage ? errorMessage : null}
+         </div>
       </div>
 
    )
@@ -266,13 +266,18 @@ export const SelectCountry: FC<PropsType & HTMLProps<HTMLSelectElement>> = ({
    )
 }
 
-export const ToggleSwitch:FC<PropsType & HTMLProps<HTMLInputElement>> = () => {
+type SwitchPropsT = {
+
+}
+
+export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({...rest}) => {
    return (
       <div>
          <input
             className={styles.checkbox}
             type="checkbox"
             id="switch"
+            {...rest}
          />
          <label
             className={styles.label}

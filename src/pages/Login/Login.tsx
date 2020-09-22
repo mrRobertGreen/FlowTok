@@ -5,6 +5,8 @@ import Button from "../../components/Button/Button";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
+import {LoginVK} from "./VK/LoginVK";
+import {LoginGoogle} from "./Google/LoginGoogle";
 
 export const Login = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
@@ -16,10 +18,10 @@ export const Login = () => {
                <div className={styles.title}>Вход</div>
                <div className={styles.column}>
                   <div className={styles.btn}>
-                     <Button mod={"Google"}>Войти через Google</Button>
+                     <LoginGoogle/>
                   </div>
                   <div className={styles.btn}>
-                     <Button mod={"VK"}> Войти через VK</Button>
+                     <LoginVK/>
                   </div>
                   <div className={styles.label}>Нет аккаунта в FLowTok? Зарегистрируйтесь!</div>
                   <div className={styles.btn_submit}>

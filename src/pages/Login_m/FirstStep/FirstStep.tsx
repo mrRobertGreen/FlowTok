@@ -13,7 +13,7 @@ import {extractVkCode} from "../../../utils/extractVkCode";
 import GoogleLogin from "react-google-login";
 import Preloader from "../../../components/common/Preloader/Preloader";
 import {appActions} from "../../../redux/app/app-reducer";
-import {LoginVK} from "./VK/LoginVK";
+import {LoginVK} from "../../Login/VK/LoginVK";
 
 type PropsType = {}
 

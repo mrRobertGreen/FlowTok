@@ -4,24 +4,13 @@ import cn from "classnames/bind"
 import GoogleIcon from "../../media/icons/google.svg"
 import VkIcon from "../../media/icons/vk.svg"
 import manIcon from "../../media/icons/man.svg"
+import manActiveIcon from "../../media/icons/man_active.svg"
 import womanIcon from "../../media/icons/woman.svg"
-
-/*
-* Кнопки на сайте все одинаковые, отличие только в цвете.
-* Я тебе буду передавать mod, который означает цвет.
-* По умолчанию делай кнопку с синим градиентом.
-*
-* В качестве чилда я буду передавать подпись для кнопки.
-*
-* Также я могу передавать все пропсы, как для обычной кнопки. Их я собираю в ...rest и потом
-* прокидываю внутрь кнопки.
-*
-* СДЕЛАЙ У КНОПКИ width: 100%
-* */
-
+import womanActiveIcon from "../../media/icons/woman_active.svg"
+import {MiniLoader} from "../MiniLoader/MiniLoader";
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "whiteGradient"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "whiteGradient" | "loading"
    m?: string
    br?: string
    isActive?: boolean
@@ -36,6 +25,7 @@ const Button: FC<PropsT &
                                                                                         isActive,
                                                                                         ...rest
                                                                                      }) => {
+   if (mod === "loading") return <MiniLoader/>
    return (
       <button
          style={{margin: m, borderRadius: br,}}
@@ -55,8 +45,10 @@ const Button: FC<PropsT &
          {...rest}>
          {mod === "Google" && <img src={GoogleIcon} className={styles.icon} alt=""/>}
          {mod === "VK" && <img src={VkIcon} className={styles.icon} alt=""/>}
-         {mod === "man" && <img src={manIcon} className={styles.icon_man} alt=""/>}
-         {mod === "woman" && <img src={womanIcon} className={styles.icon} alt=""/>}
+         {mod === "man" && !isActive && <img src={manIcon} className={styles.icon_man} alt=""/>}
+         {mod === "man" && isActive && <img src={manActiveIcon} className={styles.icon_man} alt=""/>}
+         {mod === "woman" && !isActive && <img src={womanIcon} className={styles.icon_woman} alt=""/>}
+         {mod === "woman" && isActive && <img src={womanActiveIcon} className={styles.icon_woman} alt=""/>}
          {children}
       </button>
    )
