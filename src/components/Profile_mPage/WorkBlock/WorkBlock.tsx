@@ -15,11 +15,11 @@ const WorkBlock: FC<PropsType> = () => {
         <div className={styles.wrapper}>
             <Nav taskType={type as BlogTaskStatusType}/>
             <TaskCard_m taskType = {"new"}
-                        text = {"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        text = {"."}
                         id = {"1"}
                         title = {"FlowTok"}
                         link = {""}
-                        info = {""}
+                        info = {"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
                         rate = {10}
                         url= {""} />
         </div>

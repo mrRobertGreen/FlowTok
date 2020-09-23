@@ -6,6 +6,10 @@
   width: 100%;
 
 }
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+}
 .title {
   font-size: 17px;
   font-weight: bold;
@@ -14,6 +18,82 @@
 
   height: 20px;
   color: #000000;
+
+}
+.info_icon {
+  background-color: #FFFFFF;
+  border:none;
+  width: 18px;
+  height: 18px;
+  padding-left: 9px;
+  padding-top: 1.5px;
+}
+
+.info {
+  font-size: 15px;
+  line-height: 19px;
+  letter-spacing: -0.361765px;
+
+  color: #8E8E93;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.cost {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 18.5px;
+  padding-bottom: 16px;
+
+  &__text {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+
+    color: #000000;
+  }
+  &__green_cont {
+    background: rgba(0, 186, 50, 0.183403);
+    border-radius: 17px;
+  }
+}
+.rate {
+  width: 86px;
+  height: 32px;
+
+  font-size: 17px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.41px;
+
+  padding-top: 6px;
+
+  color: #00BA32;
+}
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+  &__chanel {
+    width: 120px;
+  }
+  &__check {
+    width: 185px;
+    height: 38px;
+  }
+  &__Up {
+    width: 118px;
+    height: 36px;
+    padding-right: 1px;
+
+    background-color: #FFFFFF;
+
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: -0.337647px;
+  }
 }
 
 .cancel {
@@ -25,6 +105,9 @@
 
   color: #FF3B30;
   background-color: #FFFFFF;
+
+  padding-top: 17px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 767px) {

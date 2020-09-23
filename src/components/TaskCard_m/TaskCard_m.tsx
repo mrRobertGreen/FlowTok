@@ -5,7 +5,8 @@ import {RootStateType} from "../../redux/store";
 import {BlogTaskStatusType, BlogTaskType} from "../../redux/user/user-reducer";
 import {Card} from "../Card/Card";
 import Button from "../Button/Button";
-import {Separator} from "../Separator/Separator";
+import Info from "../../media/icons/info.svg";
+import Line from "../../media/icons/line.svg";
 
 /*
 * Карточка задания
@@ -31,26 +32,34 @@ export const TaskCard_m: FC<PropsT> = ({
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
     return (
-        <Card pad={"10px"}>
+        <Card size={"small"} pad={"10px"}>
             <div className={styles.wrapper}>
-                <p className={styles.title}>{title}</p>
+                <div className={styles.titleContainer}>
+                    <p className={styles.title}>{title}</p>
+                    <button className={styles.info_icon}>
+                        <img src={Info} alt="info"/>
+                    </button>
+                </div>
                 <p className={styles.info}>{info}</p>
-                <hr color={"black"}/>
+                <img src={ Line } alt=""/>
                 <div className={styles.cost}>
                     <p className={styles.cost__text}>За задание</p>
-                    <p>{rate}</p>
+                    <div className={styles.cost__green_cont}><p className={styles.rate}>{rate + "₽"}</p></div>
                 </div>
-                <hr color={"black"}/>
                 <div className={styles.btn}>
-                    <div className={styles.chanel}>
-                        <Button mod={"whiteGradient"} br={"11px"}>Канал</Button>
+                    <div className={styles.btn__chanel}>
+                        <Button mod={"gradient"} br={"11px"}>
+                            <button className={styles.btn__Up}>Канал</button>
+                        </Button>
                     </div>
-                    <div className={styles.check}>
-                        <Button mod={"gradient"} br={"11px"}>Проверить</Button>
+                    <div className={styles.btn__check}>
+                        <Button mod={"gradient"} br={"11px"}>
+                            Проверить
+                        </Button>
                     </div>
                 </div>
                 <button className={styles.cancel}>Отменить</button>
             </div>
         </Card>
     )
-}
+};
