@@ -9,8 +9,11 @@ import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {Separator} from "../../Separator/Separator";
+import {verify} from "../../../redux/auth/auth-reducer";
+import {VerifyPayloadType} from "../../../api/user-api";
+import {osName} from "react-device-detect"
 
-export type TikTokFormValuesType = {
+export type UserDataFormValuesType = {
    name: string
    age: string
    country: string
@@ -22,14 +25,19 @@ type PropsType = {}
 
 export const UserDataForm: FC<PropsType> = () => {
    const dispatch = useDispatch()
-   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+   const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
+   const [isLoading, setIsLoading] = useState(false)
 
-   const onSubmit = async (values: TikTokFormValuesType, {resetForm}: FormikValues) => {
-      console.log(values)
-      // resetForm()
+   const onSubmit = async (values: UserDataFormValuesType, {resetForm,}: FormikValues) => {
+      const payload: VerifyPayloadType = {
+         age: +values.age,
+         country: values.country,
+         platform: osName,
+         sex: values.sex
+      }
+      dispatch(verify(payload, resetForm, setIsLoading))
    }
-
-   if (isFetching) return <Preloader/>
 
    return (
       <Formik
@@ -53,11 +61,11 @@ export const UserDataForm: FC<PropsType> = () => {
                             render={({field, form: {touched, errors}}: FieldProps) => (
                                <div className={styles.input}>
                                   <Input
-                                     mod={"active"}
+                                     mod={!errors.name && touched.name ? "active" : undefined}
                                      type={"text"}
                                      placeholder={"Имя"}
-                                     isError={!!(errors.link && touched.link)}
-                                     errorMessage={errors.link}
+                                     isError={!!(errors.name && touched.name)}
+                                     errorMessage={errors.name}
                                      {...field}
                                   />
                                </div>
@@ -69,7 +77,7 @@ export const UserDataForm: FC<PropsType> = () => {
                                render={({field, form: {touched, errors}}: FieldProps) => (
                                   <div className={styles.input}>
                                      <Input
-                                        mod={!!(errors.country) ? undefined : "active"}
+                                        mod={!errors.age && touched.age ? "active" : undefined}
                                         type={"number"}
                                         placeholder={"Возраст"}
                                         isError={!!(errors.age && touched.age)}
@@ -84,7 +92,7 @@ export const UserDataForm: FC<PropsType> = () => {
                                render={({field, form: {touched, errors}}: FieldProps) => (
                                   <div className={styles.input}>
                                      <Input
-                                        mod={!!(errors.country) ? undefined : "active"}
+                                        mod={!errors.country && touched.country ? "active" : undefined}
                                         type={"text"}
                                         placeholder={"Страна"}
                                         isError={!!(errors.country && touched.country)}
@@ -98,6 +106,7 @@ export const UserDataForm: FC<PropsType> = () => {
                      <div className={styles.row}>
                         <div className={styles.btn}>
                            <Button
+                              type={"button"}
                               isActive={values.sex === "woman"}
                               mod={"woman"}
                               onClick={() => setFieldValue("sex", "woman")}>
@@ -106,6 +115,7 @@ export const UserDataForm: FC<PropsType> = () => {
                         </div>
                         <div className={styles.btn}>
                            <Button
+                              type={"button"}
                               isActive={values.sex === "man"}
                               mod={"man"}
                               onClick={() => setFieldValue("sex", "man")}>
@@ -123,20 +133,26 @@ export const UserDataForm: FC<PropsType> = () => {
                            1₽ на счет и актуальные задания!
                         </div>
                      </div>
-                     <ToggleSwitch onClick={() => setFieldValue("turnOnTelegram", !values.turnOnTelegram)}/>
+                     <ToggleSwitch
+                        isLabel={values.turnOnTelegram && isDesktop}
+                        onClick={() => {setFieldValue("turnOnTelegram", !values.turnOnTelegram)}}/>
                   </div>
                   <Separator m={"0 0 8px"}/>
                   <div className={styles.row}>
                      <div className={styles.column}>
                         <div className={styles.label}>
-                           Подтвердите свой аккаунт
+                           {!verifySuccess && "Подтвердите свой аккаунт"}
+                           {verifySuccess && "Аккаунт на стадии проверки"}
                         </div>
                         <div className={styles.subLabel}>
-                           Нам нужно удостоверится, что это Ваш аккаунт
+                           {!verifySuccess && "Нам нужно удостоверится, что это Ваш аккаунт"}
+                           {verifySuccess && "Вы можете перейти в свой профиль, пока модератор проверяет Ваш аккаунт"}
                         </div>
                      </div>
                      <div className={styles.submitBtn}>
-                        <Button mod={"black"} type={"submit"}>
+                        <Button
+                           mod={isLoading ? "loading" : "black"}
+                           type={"submit"}>
                            Подвердить
                         </Button>
                      </div>

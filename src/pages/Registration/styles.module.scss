@@ -38,16 +38,15 @@
   .title {
     align-self: flex-start;
     font-weight: 600;
-    font-size: 42px;
+    font-size: 38px;
     margin-bottom: 30px;
   }
   .container {
     margin: 0;
-    height: 100%;
     max-width: 57%;
     position: static;
     border-radius: 0;
-    padding: 80px 200px 46px;
+    padding: 80px 190px 46px;
     .label {
       font-size: 13px;
     }
@@ -63,9 +62,24 @@
     }
   }
 }
-
-@media (min-width: 1600px) {
+@media (min-width: 1440px) {
+  .title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
   .container {
     max-width: 60%;
+    padding: 80px 290px 46px;
+  }
+}
+
+@media (min-width: 1680px) {
+  .title {
+    font-size: 42px;
+    margin-bottom: 50px;
+  }
+  .container {
+    max-width: 60%;
+    padding: 80px 350px 46px;
   }
 }

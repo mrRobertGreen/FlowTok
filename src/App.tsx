@@ -46,9 +46,9 @@ const App: FC = () => {
    const closeError = () => dispatch(appActions.setError(null));
    const closeNotification = () => dispatch(appActions.setNotification(null));
 
-   if (!isInit) { // show preloader while app initialized
-      return <Preloader/>
-   }
+   // if (!isInit) { // show preloader while app initialized
+   //    return <Preloader/>
+   // }
 
    if (isMobile) {
       dispatch(appActions.setIsDesktop(false))
@@ -81,7 +81,7 @@ const App: FC = () => {
             {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
             <Route exact path="/login" component={Auth}/>
             <Route exact path="/reg" component={Auth}/>
-            {/*<Route path="/profile" component={Profile_m}/>*/}
+            <Route path="/profile" component={Profile_m}/>
             <Route path="/work/:type" component={Work_m}/>
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}

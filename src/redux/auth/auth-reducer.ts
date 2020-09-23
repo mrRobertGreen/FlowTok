@@ -4,6 +4,9 @@ import {getUserData, userActions} from "../user/user-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions, initialize} from "../app/app-reducer";
 import {tikTokUrlParser} from "../../utils/tikTokUrlParser";
+import {commonThunkHandler} from "../../utils/commonThunkHandler";
+import {userApi, VerifyPayloadType} from "../../api/user-api";
+import {createAuthReqBody} from "../../utils/createAuthReqBody";
 
 const initialState = {
    isNew: false,
@@ -11,7 +14,10 @@ const initialState = {
    role: "Nobody" as UserRolesType,
    firstSuccess: false,
    secondSuccess: false,
-   isAdv: false
+   isAdv: false,
+   loginSuccess: false,
+   tikTokSuccess: false,
+   verifySuccess: false,
 }
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
    switch (action.type) {
@@ -19,6 +25,21 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
          return {
             ...state,
             isNew: action.isNew
+         }
+      case "auth/SET_LOGIN_SUCCESS":
+         return {
+            ...state,
+            loginSuccess: action.success
+         }
+      case "auth/SET_TIK_TOK_SUCCESS":
+         return {
+            ...state,
+            tikTokSuccess: action.success
+         }
+      case "auth/SET_VERIFY_SUCCESS":
+         return {
+            ...state,
+            verifySuccess: action.success
          }
       case "auth/SET_IS_AUTH":
          return {
@@ -67,12 +88,55 @@ export const authActions = {
    setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
    setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
    setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),
+   setTikTokSuccess: (success: boolean) => ({type: "auth/SET_TIK_TOK_SUCCESS", success} as const),
+   setLoginSuccess: (success: boolean) => ({type: "auth/SET_LOGIN_SUCCESS", success} as const),
+   setVerifySuccess: (success: boolean) => ({type: "auth/SET_VERIFY_SUCCESS", success} as const),
    clear: () => ({type: "auth/CLEAR"} as const),
 }
 
 export const callbackVk = () => {
    const vkApiPath = "https://oauth.vk.com/authorize?client_id=7565076&display=popup&redirect_uri=https://flowtok.com/login/1&response_type=code"
    document.location.href = vkApiPath
+}
+
+export const login = (googleId: string = "",
+                      vkCode: string = "",
+                      setButtonSuccess: (success: boolean) => void): ThunkType => {
+   return async (dispatch, getState) => {
+      await commonThunkHandler(async () => {
+         // create authMe request body
+         let reqBody = createAuthReqBody(googleId, vkCode)
+
+         // fake for development
+         const advKey = "Helldlllooo"
+         const blogKey = "1"
+         const fakeReqBody = {
+            auth: blogKey,
+         }
+
+         // if we have auth key we send this else we send vkCode
+         const data = await authApi.authMe(reqBody)
+
+         if (data.success) {
+            // if token received set it
+            localStorage.setItem("token", data.data.token)
+            // dispatch flag isNew
+            dispatch(authActions.setIsNew(data.data.isNew))
+            // set login success
+            setButtonSuccess(true) // success for button
+            dispatch(authActions.setLoginSuccess(true)) // may be i will delete this
+            if (!data.data.isNew) {
+               // if user already registered (isNew === false) try to get and set user data
+               await dispatch(getUserData())
+               // if getting and setting data is successful authorization finished
+               dispatch(authActions.setIsAuth(true))
+            }
+         } else {
+            await dispatch(exit())
+         }
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
+   }
 }
 
 export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): ThunkType => {
@@ -155,19 +219,45 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
       }
    }
 }
-
-export const setTikTok = (tikTokUrl: string): ThunkType => {
+export const setTikTok = (tikTokUrl: string,
+                          setFieldError: (field: string, errorMsg: string) => void,
+                          handleReset: () => void,
+                          setIsLoading: (flag: boolean) => void): ThunkType => {
    return async (dispatch) => {
-      // send blogger's tiktok account link to api
-      dispatch(appActions.toggleIsFetching(true))
-
-      const data = await authApi.setTikTokProfile(tikTokUrlParser(tikTokUrl))
-      if (data.success) {
-         await dispatch(getUserData())
-      } else {
-         await dispatch(exit())
+      await commonThunkHandler(async () => {
+         // send blogger's tiktok account link to api server
+         setIsLoading(true)
+         const data = await authApi.setTikTokProfile(tikTokUrlParser(tikTokUrl))
+         if (data.success) {
+            dispatch(authActions.setTikTokSuccess(true))
+         } else if (data.error) {
+            if (data.error.messageNotification) {
+               setFieldError("link", data.error.messageNotification)
+            } else {
+               setFieldError("link", "Произошла ошибка. Попробуйте снова")
+            }
+         }
+         setIsLoading(false)
+      }, dispatch)
+   }
+}
+export const verify = (payload: VerifyPayloadType,
+                       handleReset: () => void,
+                       setIsLoading: (flag: boolean) => void,): ThunkType => {
+   return async (dispatch, getState) => {
+      // send verification data to api server
+      if (!getState().auth.loginSuccess || !getState().auth.tikTokSuccess) {
+         dispatch(appActions.setError("Сначала подключите TikTok и одну из соцсетей!"))
+         return
       }
-      dispatch(appActions.toggleIsFetching(false))
+      setIsLoading(true)
+      const data = await userApi.verifyMe(payload)
+      if (data.success) {
+         handleReset()
+         dispatch(authActions.setVerifySuccess(true))
+      } else {
+         setIsLoading(false)
+      }
       checkMessageNotification(data, dispatch)
    }
 }
@@ -183,7 +273,6 @@ export const exit = (): ThunkType => {
       await dispatch(initialize())
    }
 }
-
 
 type ActionsType = InferActionsType<typeof authActions>
 export type InitialStateType = typeof initialState

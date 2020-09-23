@@ -1,0 +1,49 @@
+.wrapper {
+
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  .name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .label {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+    }
+    .subLabel {
+      font-size: 12px;
+      line-height: 15px;
+      text-align: center;
+      letter-spacing: -0.313529px;
+      color: #8E8E93;
+    }
+  }
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    margin-right: 15px;
+  }
+}
+
+.btn {
+  margin-left: 5px;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.385882px;
+  color: #2B44F2;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+

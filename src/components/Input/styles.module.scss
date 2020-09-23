@@ -15,7 +15,7 @@
   padding: 12px 16px;
   &::-webkit-input-placeholder {
     color: #1D1D1D;
-    mix-blend-mode: normal;
+    //mix-blend-mode: normal;
     opacity: 0.4;
   }
   &::-webkit-outer-spin-button,
@@ -68,6 +68,19 @@
 .label:active .switchBtn {
   width: 30px;
 }
+.switchWrap {
+  position: relative;
+  .switchLabel {
+    position: absolute;
+    right: -70px;
+    top: calc(50% - 13px);
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+    color: #00D439;
+  }
+}
+
 .select {
   @extend .input;
   position: relative;
@@ -89,31 +102,19 @@
   height: 10px;
 }
 .active {
-  border: 1.5px solid $violet-blue;
+  border: 1px solid $violet-blue;
 }
 .error {
-  border: 1px solid $red_font;
+  border: 1px solid #FF3B30;
 }
 .blue {
   background-color: #e6f9f5;
 }
 .errorMsg {
-  margin-top: 4px;
+  margin-top: 8px;
   text-align: center;
-  font-size: 12px;
-  color: red;
+  line-height: 15px;
+  font-size: 13px;
+  color: #FF3B30;
 }
 
-//@media (min-width: 767px) {
-//  .input {
-//    padding: 16px 18px;
-//    font-size: 18px;
-//  }
-//}
-//@media (min-width: 1200px) {
-//  .input {
-//    font-size: 15px;
-//    line-height: 18px;
-//    padding: 12px 16px;
-//  }
-//}

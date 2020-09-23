@@ -18,7 +18,7 @@ a:focus,a:active{outline: none;}
 nav,footer,header,aside{display: block;}
 
 html,body{
-  background-color: #e6f9f5;
+  background-color: #fff;
   height: 100%;
   margin: 0;
   width: 100%;
@@ -39,7 +39,7 @@ input::-ms-clear{display: none;}
 button{cursor: pointer; font-size:inherit}
 button::-moz-focus-inner {padding:0;border:0;}
 a, a:visited{text-decoration: none; color: inherit}
-a:hover{text-decoration: none;}
+a:hover{text-decoration: none; cursor: pointer}
 ul li{list-style: none;}
 img{vertical-align: top;}
 

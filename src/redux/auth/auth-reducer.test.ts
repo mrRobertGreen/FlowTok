@@ -10,7 +10,10 @@ describe("auth-reducer", () => {
          role: "Nobody" as UserRolesType,
          firstSuccess: false,
          secondSuccess: false,
-         isAdv: false
+         isAdv: false,
+         loginSuccess: false,
+         tikTokSuccess: false,
+         verifySuccess: false
       }
    })
 
