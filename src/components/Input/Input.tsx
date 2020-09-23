@@ -267,12 +267,12 @@ export const SelectCountry: FC<PropsType & HTMLProps<HTMLSelectElement>> = ({
 }
 
 type SwitchPropsT = {
-
+   isLabel: boolean
 }
 
-export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({...rest}) => {
+export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
    return (
-      <div>
+      <div className={styles.switchWrap}>
          <input
             className={styles.checkbox}
             type="checkbox"
@@ -285,6 +285,9 @@ export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({...
          >
             <span className={styles.switchBtn} />
          </label>
+         {isLabel && <div className={styles.switchLabel}>
+	         +1.00 ₽
+         </div>}
       </div>
    )
 }

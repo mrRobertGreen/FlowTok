@@ -25,9 +25,11 @@ type PropsType = {}
 
 export const UserDataForm: FC<PropsType> = () => {
    const dispatch = useDispatch()
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+   const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
    const [isLoading, setIsLoading] = useState(false)
 
-   const onSubmit = async (values: UserDataFormValuesType, {resetForm}: FormikValues) => {
+   const onSubmit = async (values: UserDataFormValuesType, {resetForm,}: FormikValues) => {
       const payload: VerifyPayloadType = {
          age: +values.age,
          country: values.country,
@@ -132,16 +134,19 @@ export const UserDataForm: FC<PropsType> = () => {
                         </div>
                      </div>
                      <ToggleSwitch
+                        isLabel={values.turnOnTelegram && isDesktop}
                         onClick={() => {setFieldValue("turnOnTelegram", !values.turnOnTelegram)}}/>
                   </div>
                   <Separator m={"0 0 8px"}/>
                   <div className={styles.row}>
                      <div className={styles.column}>
                         <div className={styles.label}>
-                           Подтвердите свой аккаунт
+                           {!verifySuccess && "Подтвердите свой аккаунт"}
+                           {verifySuccess && "Аккаунт на стадии проверки"}
                         </div>
                         <div className={styles.subLabel}>
-                           Нам нужно удостоверится, что это Ваш аккаунт
+                           {!verifySuccess && "Нам нужно удостоверится, что это Ваш аккаунт"}
+                           {verifySuccess && "Вы можете перейти в свой профиль, пока модератор проверяет Ваш аккаунт"}
                         </div>
                      </div>
                      <div className={styles.submitBtn}>

@@ -13,8 +13,10 @@ import {LoginGoogle} from "../Login/Google/LoginGoogle";
 import {LoginVK} from "../Login/VK/LoginVK";
 
 export const Registration = () => {
-
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+   const loginSuccess = useSelector((state: RootStateType) => state.auth.loginSuccess)
+   const tikTokSuccess = useSelector((state: RootStateType) => state.auth.tikTokSuccess)
+   const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
 
    return (
       <Page>
@@ -37,7 +39,10 @@ export const Registration = () => {
             </div>
             <div className={styles.btnGo}>
                <NavLink to={"/profile"}>
-                  <Button mod={"grey"}>
+                  <Button
+                     mod={loginSuccess && tikTokSuccess && verifySuccess ? "black" : "grey"}
+                     disabled={!loginSuccess || !tikTokSuccess || !verifySuccess}
+                  >
                      Перейти в мой FlowTok
                   </Button>
                </NavLink>

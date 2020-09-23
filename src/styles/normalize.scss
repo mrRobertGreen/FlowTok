@@ -39,7 +39,7 @@ input::-ms-clear{display: none;}
 button{cursor: pointer; font-size:inherit}
 button::-moz-focus-inner {padding:0;border:0;}
 a, a:visited{text-decoration: none; color: inherit}
-a:hover{text-decoration: none;}
+a:hover{text-decoration: none; cursor: pointer}
 ul li{list-style: none;}
 img{vertical-align: top;}
 

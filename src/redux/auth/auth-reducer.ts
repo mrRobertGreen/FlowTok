@@ -1,12 +1,11 @@
 import {BaseThunkType, InferActionsType} from "../store";
 import {authApi, AuthMeReqDataType} from "../../api/auth-api";
-import {getUserData, setUserData, userActions} from "../user/user-reducer";
+import {getUserData, userActions} from "../user/user-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions, initialize} from "../app/app-reducer";
 import {tikTokUrlParser} from "../../utils/tikTokUrlParser";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
 import {userApi, VerifyPayloadType} from "../../api/user-api";
-import {isBlog} from "../../utils/detectUserRole";
 import {createAuthReqBody} from "../../utils/createAuthReqBody";
 
 const initialState = {
@@ -221,25 +220,36 @@ export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
    }
 }
 export const setTikTok = (tikTokUrl: string,
-                          setErrors: (field: string, errorMsg: string) => void,
-                          handleReset: () => void): ThunkType => {
+                          setFieldError: (field: string, errorMsg: string) => void,
+                          handleReset: () => void,
+                          setIsLoading: (flag: boolean) => void): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
          // send blogger's tiktok account link to api server
+         setIsLoading(true)
          const data = await authApi.setTikTokProfile(tikTokUrlParser(tikTokUrl))
          if (data.success) {
             dispatch(authActions.setTikTokSuccess(true))
          } else if (data.error) {
-            setErrors("link", data.error.message)
+            if (data.error.messageNotification) {
+               setFieldError("link", data.error.messageNotification)
+            } else {
+               setFieldError("link", "Произошла ошибка. Попробуйте снова")
+            }
          }
+         setIsLoading(false)
       }, dispatch)
    }
 }
 export const verify = (payload: VerifyPayloadType,
                        handleReset: () => void,
-                       setIsLoading: (flag: boolean) => void): ThunkType => {
-   // send verification data to api server
-   return async (dispatch) => {
+                       setIsLoading: (flag: boolean) => void,): ThunkType => {
+   return async (dispatch, getState) => {
+      // send verification data to api server
+      if (!getState().auth.loginSuccess || !getState().auth.tikTokSuccess) {
+         dispatch(appActions.setError("Сначала подключите TikTok и одну из соцсетей!"))
+         return
+      }
       setIsLoading(true)
       const data = await userApi.verifyMe(payload)
       if (data.success) {
