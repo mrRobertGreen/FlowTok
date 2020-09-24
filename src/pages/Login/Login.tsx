@@ -7,12 +7,15 @@ import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {LoginVK} from "./VK/LoginVK";
 import {LoginGoogle} from "./Google/LoginGoogle";
+import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
+import {Logo} from "../../components/Logo/Logo";
 
 export const Login = () => {
-   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
       <Page>
+         <Logo/>
+         <LoginVideo/>
          <div className={styles.container}>
             <div className={styles.container__item}>
                <div className={styles.title}>Вход</div>

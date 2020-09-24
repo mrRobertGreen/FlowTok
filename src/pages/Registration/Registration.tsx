@@ -11,6 +11,8 @@ import {RootStateType} from "../../redux/store";
 import {NavLink} from "react-router-dom";
 import {LoginGoogle} from "../Login/Google/LoginGoogle";
 import {LoginVK} from "../Login/VK/LoginVK";
+import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
+import {Logo} from "../../components/Logo/Logo";
 
 export const Registration = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
@@ -20,6 +22,8 @@ export const Registration = () => {
 
    return (
       <Page>
+         {isDesktop && <LoginVideo/>}
+         {isDesktop && <Logo/>}
          {!isDesktop && <TopNavbar label={"Регистрация"}/>}
          <div className={styles.container}>
             {isDesktop &&

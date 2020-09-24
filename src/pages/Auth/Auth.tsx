@@ -5,10 +5,12 @@ import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {Login} from "../Login/Login";
 import {useLocation} from "react-router";
 import {Registration} from "../Registration/Registration";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
-export const Auth = () => {
-   // detect url and show Login or Register
+export const Auth = () => { // NEED TO SPLIT TO TWO PAGES
    const pathname = useLocation().pathname
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
       <Page>

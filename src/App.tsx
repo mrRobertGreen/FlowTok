@@ -79,8 +79,8 @@ const App: FC = () => {
             {/*<Route exact path="/login/1" component={FirstStep}/>*/}
             {/*<Route exact path="/login/2" component={SecondStep}/>*/}
             {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
-            <Route exact path="/login" component={Auth}/>
-            <Route exact path="/reg" component={Auth}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
             <Route path="/work/:type" component={Work_m}/>
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
