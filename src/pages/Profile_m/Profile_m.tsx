@@ -42,5 +42,5 @@ export default compose<FC>(
    connector,
    withTaskRedirect,
    // withCabinetRedirect,
-   withAuthRedirect,
+   // withAuthRedirect,
 )(Profile_m)

@@ -1,3 +1,16 @@
-<svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M23 5.5H18V3C18 1.6125 16.8875 0.5 15.5 0.5H10.5C9.1125 0.5 8 1.6125 8 3V5.5H3C1.6125 5.5 0.5125 6.6125 0.5125 8L0.5 21.75C0.5 23.1375 1.6125 24.25 3 24.25H23C24.3875 24.25 25.5 23.1375 25.5 21.75V8C25.5 6.6125 24.3875 5.5 23 5.5ZM15.5 5.5H10.5V3H15.5V5.5Z" fill="#67CE8C"/>
+<svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="briefcase">
+<rect id="Rectangle" x="1" y="5.04883" width="20.24" height="14.168" rx="2.024" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Path" d="M15.168 18.204V2.91156C15.168 1.85583 14.2618 1 13.144 1H9.09602C7.9782 1 7.07202 1.85583 7.07202 2.91156V18.204" stroke="url(#paint1_linear)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="11.12" y1="25.8105" x2="23.2144" y2="7.248" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2E1C9C"/>
+<stop offset="1" stop-color="#7031E9"/>
+</linearGradient>
+<linearGradient id="paint1_linear" x1="11.12" y1="26.2106" x2="24.0489" y2="19.674" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2E1C9C"/>
+<stop offset="1" stop-color="#7031E9"/>
+</linearGradient>
+</defs>
 </svg>

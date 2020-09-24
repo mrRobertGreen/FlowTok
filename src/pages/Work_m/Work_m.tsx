@@ -22,5 +22,5 @@ const Work_m: FC<PropsType> = () => {
 
 export default compose<FC>(
    withTaskRedirect,
-   withAuthRedirect
+   // withAuthRedirect
 )(Work_m)
