@@ -41,24 +41,29 @@ export const TaskCard_m: FC<PropsT> = ({
                     </button>
                 </div>
                 <p className={styles.info}>{info}</p>
-                <img src={ Line } alt=""/>
+                <img src={Line} className={styles.borderLine} alt=""/>
+
                 <div className={styles.cost}>
                     <p className={styles.cost__text}>За задание</p>
                     <div className={styles.cost__green_cont}><p className={styles.rate}>{rate + "₽"}</p></div>
                 </div>
+
+                <img src={Line} className={styles.borderLine} alt=""/>
                 <div className={styles.btn}>
-                    <div className={styles.btn__chanel}>
-                        <Button mod={"gradient"} br={"11px"}>
-                            <button className={styles.btn__Up}>Канал</button>
-                        </Button>
-                    </div>
+
+                    <button className={styles.btn__chanel}>
+                        Канал
+                    </button>
+
                     <div className={styles.btn__check}>
                         <Button mod={"gradient"} br={"11px"}>
                             Проверить
                         </Button>
                     </div>
                 </div>
-                <button className={styles.cancel}>Отменить</button>
+                <div className={styles.cCont}>
+                    <button className={styles.cancel}>Отменить</button>
+                </div>
             </div>
         </Card>
     )

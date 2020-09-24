@@ -4,12 +4,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-
+  //background-color: red;
 }
+
 .titleContainer {
   display: flex;
   flex-direction: row;
 }
+
 .title {
   font-size: 17px;
   font-weight: bold;
@@ -20,9 +22,10 @@
   color: #000000;
 
 }
+
 .info_icon {
   background-color: #FFFFFF;
-  border:none;
+  border: none;
   width: 18px;
   height: 18px;
   padding-left: 9px;
@@ -43,8 +46,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 18.5px;
-  padding-bottom: 16px;
+  padding-top: 10.5px;
+  padding-bottom: 10px;
 
   &__text {
     font-size: 15px;
@@ -53,11 +56,13 @@
 
     color: #000000;
   }
+
   &__green_cont {
     background: rgba(0, 186, 50, 0.183403);
     border-radius: 17px;
   }
 }
+
 .rate {
   width: 86px;
   height: 32px;
@@ -75,25 +80,56 @@
 .btn {
   display: flex;
   justify-content: space-between;
-  &__chanel {
-    width: 120px;
-  }
-  &__check {
-    width: 185px;
-    height: 38px;
-  }
-  &__Up {
-    width: 118px;
-    height: 36px;
-    padding-right: 1px;
 
+  &__chanel {
     background-color: #FFFFFF;
+    width: 120px;
+    height: 38px;
+    padding: 15px 5px;
+    margin-top: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    box-sizing: border-box;
 
     font-size: 14px;
     line-height: 16px;
     text-align: center;
     letter-spacing: -0.337647px;
+
+    &:before {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -5px;
+
+      border-radius: 11px;
+      background: $gradient;
+    }
   }
+
+  &__check {
+    width: 185px;
+    height: 38px;
+  }
+
+}
+.cCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  padding-top: 17px;
+  padding-bottom: 20px;
 }
 
 .cancel {
@@ -105,14 +141,16 @@
 
   color: #FF3B30;
   background-color: #FFFFFF;
+}
 
-  padding-top: 17px;
-  margin-bottom: 20px;
+.borderLine {
+  padding-bottom: 11.5px;
 }
 
 @media (min-width: 767px) {
 
 }
+
 @media (min-width: 1200px) {
 
 }
