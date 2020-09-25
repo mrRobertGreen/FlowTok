@@ -12,6 +12,20 @@
   z-index: 10;
   border-radius: 0 0 11px 11px;
 }
+.sliderItemL {
+  height: 32px;
+  border-radius: 30px;
+  position: absolute;
+  right: auto;
+  left: 3px;
+  width: 50%;
+  background-color: black;
+  z-index: 0;
+  transition: all ease .3s;
+}
+.sliderItemR {
+  left: 50%;
+}
 .sections {
   background: #EFEFF4;
   display: flex;
@@ -20,25 +34,17 @@
   width: 90%;
   height: 38px;
   border-radius: 30px;
+  position: relative;
   .item {
-    height: 32px;
-    border-radius: 30px;
     flex: 1 1 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 7px;
-    font-size: 15px;
-  }
-  .item:nth-child(1) {
-    margin: 3px 0 3px 3px;
-  }
-  .item:nth-child(2) {
-    margin: 3px 3px 3px 0;
+    z-index: 1;
+    background: transparent;
   }
   .active {
     @extend .item;
-    background-color: black;
     color: white;
   }
 }
