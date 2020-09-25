@@ -24,7 +24,7 @@ export const Registration = () => {
       <Page>
          {isDesktop && <LoginVideo/>}
          {isDesktop && <Logo/>}
-         {!isDesktop && <TopNavbar label={"Регистрация"}/>}
+         {!isDesktop && <TopNavbar label={"Регистрация"} logo={false}/>}
          <div className={styles.container}>
             {isDesktop &&
             <div className={styles.title}>

@@ -1,46 +1,48 @@
 .wrapper {
-  height: 50px;
+  width: 100%;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 16px;
   background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 0 0 11px 11px;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
+  margin-top: 50px;
 }
 .sections {
+  background: #EFEFF4;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 90%;
+  border-radius: 30px;
   .item {
+    border-radius: 30px;
     flex: 1 1 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px 10px;
-    color: #8D9593;
+    //color: #8D9593;
     font-size: 12px;
-    background-color: #fff;
-    border: 1px solid #8D9593;
+    //background-color: #fff;
+    //border: 1px solid #8D9593;
   }
   .item:nth-child(1) {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-right: none;
+    margin: 3px 0 3px 3px;
   }
   .item:nth-child(2) {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-left: none;
+    margin: 3px 3px 3px 0;
   }
   .active {
     @extend .item;
-    background-color: #67CE8C;
+    background-color: black;
     color: white;
-    border: 1px solid #67CE8C;
   }
 }
 

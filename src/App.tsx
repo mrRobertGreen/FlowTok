@@ -31,7 +31,6 @@ import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
-import {Auth} from "./pages/Auth/Auth";
 
 const App: FC = () => {
    const dispatch = useDispatch()

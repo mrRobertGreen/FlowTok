@@ -15,9 +15,7 @@ const Nav: FC<PropsType & PropsFromRedux> = ({taskType}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
-      <nav className={styles.wrapper}
-           style={{width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`}}
-      >
+      <nav className={styles.wrapper}>
          <div className={styles.sections}>
             <NavLink to={"/work/new"} className={classNames(styles.item, {[styles.active]: taskType === "new"})}>
                <div>Активные</div>
