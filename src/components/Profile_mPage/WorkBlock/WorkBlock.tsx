@@ -15,18 +15,60 @@ const WorkBlock: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
-      <Page>
+      <div>
          {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
-         {/*<Nav taskType={type as BlogTaskStatusType}/>*/}
-         <TaskCard_m taskType={"new"}
-                     text={"."}
-                     id={"1"}
-                     title={"FlowTok"}
-                     link={""}
-                     info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                     rate={10}
-                     url={""}/>
-      </Page>
+         <Nav taskType={type as BlogTaskStatusType}/>
+         <div style={{marginTop: ""}}>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+            <TaskCard_m taskType={"new"}
+                        text={"."}
+                        id={"1"}
+                        title={"FlowTok"}
+                        link={""}
+                        info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
+                        rate={10}
+                        url={""}/>
+         </div>
+      </div>
    )
 
 }

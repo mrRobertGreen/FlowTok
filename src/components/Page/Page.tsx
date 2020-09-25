@@ -1,8 +1,16 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 
-export const Page:FC = ({children}) => (
-   <div className={styles.wrapper}>
+
+type PropsType = {
+   bg?: string
+}
+
+export const Page:FC<PropsType> = ({children, bg}) => (
+   <div
+      style={{background: bg}}
+      className={styles.wrapper}
+   >
       {children}
    </div>
 )
