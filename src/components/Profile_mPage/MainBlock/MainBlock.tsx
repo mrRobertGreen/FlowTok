@@ -12,6 +12,8 @@ import Button from "../../Button/Button";
 import {NavLink} from "react-router-dom";
 import {useCache} from "../../../hooks/useCache";
 import {useSelector} from "react-redux";
+import MiniCard from "./MiniCard/MiniCard";
+import Refs from "./Refs/Refs";
 
 type PropsType = {
    isDesktop: boolean
@@ -32,8 +34,28 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
    }
 
    if (!profileData) {
-      return <Preloader/>
+      profileData = {
+         usersForMoney: 123,
+         needVerification: false,
+         type: "blog",
+         image: "",
+         login: "@sdfg",
+         medianViews: "123",
+         name: "Dima",
+         rate: 123,
+         rating: 123,
+         heart: "123",
+         fans: "12M",
+         valueDown: 12,
+         valueUp: 213,
+         holdUp: 12,
+         holdDown: 12,
+         admin: false,
+         newTask: 3,
+         isOffer: false
+      } as BlogProfileDataType
    }
+
    const {
       rate,
       name,
@@ -52,36 +74,13 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
 
    return (
       <div className={styles.wrapper}>
-         {isMenuVisible && <div
-				style={{height: "100%", overflow: "hidden"}}
-				className={classNames({[styles.dark]: isMenuVisible})}
-				onClick={hideMenu}
-			/>}
-
-         <Info setMenuVisible={setMenuVisible}
-               isMenuVisible={isMenuVisible}
-               fans={fans}
-               heart={heart}
-               image={image}
-               login={login}
-               name={name}
-         />
-         {/*{ isOffer &&*/}
-         {/*   <div className={styles.btn}>*/}
-         {/*      <NavLink to={"/refs"}>*/}
-         {/*         <Button mod={"bright"}>Заработать на рефералах</Button>*/}
-         {/*      </NavLink>*/}
-         {/*   </div>*/}
-         {/*}*/}
-         {needVerification && !isVerify &&
-         <div className={styles.btn}>
-            <NavLink to={"/verification"}>
-               <Button>Пройти верификацию</Button>
-            </NavLink>
-         </div>}
-         <Balance valueDown={valueDown} valueUp={valueUp} holdDown={holdDown} holdUp={holdUp}/>
-         <Stats medianViews={medianViews} rate={rate} rating={rating}/>
-         {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}
+         <div className={styles.grid}>
+            <Balance valueDown={valueDown} valueUp={valueUp}/>
+            <MiniCard label={"Ждет\n зачисления"} value={6703.50} pad={"10px 10px 0 10px"}/>
+            <MiniCard label={"Получено за все время"} value={164520.30} pad={"10px 10px 0 0"}/>
+            <Stats medianViews={medianViews} rate={rate} rating={rating}/>
+            <Refs/>
+         </div>
       </div>
    )
 }
