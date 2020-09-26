@@ -13,7 +13,7 @@ import {Logo} from "../../components/Logo/Logo";
 export const Login = () => {
 
    return (
-      <Page>
+      <Page h100={true}>
          <Logo/>
          <LoginVideo/>
          <div className={styles.container}>

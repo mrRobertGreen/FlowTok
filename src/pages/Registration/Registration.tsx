@@ -21,7 +21,7 @@ export const Registration = () => {
    const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
 
    return (
-      <Page>
+      <Page h100={true}>
          {isDesktop && <LoginVideo/>}
          {isDesktop && <Logo/>}
          {!isDesktop && <TopNavbar label={"Регистрация"} logo={false}/>}

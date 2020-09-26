@@ -106,7 +106,7 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
 }
 
 export default compose<FC>(
-   withCabinetRedirect,
-   withAuthRedirect,
+   // withCabinetRedirect,
+   // withAuthRedirect,
    withRouter
 )(Refs_m)

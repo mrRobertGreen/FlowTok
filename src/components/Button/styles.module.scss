@@ -13,7 +13,23 @@
   @extend .btn;
   background: $gradient;
   color: #ffffff;
+  border-radius: 11px;
 }
+.btn_copy {
+  @extend .btn;
+  background: $gradient;
+  color: #ffffff;
+  border-radius: 11px;
+  width: 50px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon_copy {
+    display: block;
+  }
+}
+
 .btn_white {
   @extend .btn;
   background-color: #fff;

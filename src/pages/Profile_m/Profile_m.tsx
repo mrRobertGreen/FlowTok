@@ -8,22 +8,30 @@ import {userActions} from "../../redux/user/user-reducer"
 import {compose} from 'redux'
 import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {exit} from "../../redux/auth/auth-reducer";
+import {Page} from "../../components/Page/Page";
+import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
 type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work" | "Settings"
 
-const Profile_m: FC<PropsType & PropsFromRedux> = ({ blogProfile, exit}) => {
+const Profile_m: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+
    return (
-      <div className={styles.wrapper}>
+      <Page bg={"#E5E5EA"}>
+         <TopNavbar logo={true}
+                    label={"Профиль"}
+                    avatarUrl={blogProfile ? blogProfile.image : ""}
+                    br={" 0px 0px 11px 11px"}
+         />
          <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>
          <NavBar_m
             isDesktop={isDesktop}
             pageName={"Profile"}
             newTasksNumber={blogProfile && blogProfile.newTask}
-            />
-      </div>
+         />
+      </Page>
    )
 }
 

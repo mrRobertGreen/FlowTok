@@ -7,10 +7,11 @@ import manIcon from "../../media/icons/man.svg"
 import manActiveIcon from "../../media/icons/man_active.svg"
 import womanIcon from "../../media/icons/woman.svg"
 import womanActiveIcon from "../../media/icons/woman_active.svg"
+import copyIcon from "../../media/icons/copy.svg"
 import {MiniLoader} from "../MiniLoader/MiniLoader";
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "loading"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "loading" | "copy"
    m?: string
    br?: string
    isActive?: boolean
@@ -33,6 +34,7 @@ const Button: FC<PropsT &
             styles.btn,
             {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
             {[styles.btn_gradient]: mod === "gradient"},
+            {[styles.btn_copy]: mod === "copy"},
             {[styles.btn_white]: mod === "white"},
             {[styles.btn_active]: isActive},
             {[styles.btn_red]: mod === "red"},
@@ -48,6 +50,7 @@ const Button: FC<PropsT &
          {mod === "man" && isActive && <img src={manActiveIcon} className={styles.icon_man} alt=""/>}
          {mod === "woman" && !isActive && <img src={womanIcon} className={styles.icon_woman} alt=""/>}
          {mod === "woman" && isActive && <img src={womanActiveIcon} className={styles.icon_woman} alt=""/>}
+         {mod === "copy"&& <img src={copyIcon} className={styles.icon_copy} alt=""/>}
          {children}
       </button>
    )

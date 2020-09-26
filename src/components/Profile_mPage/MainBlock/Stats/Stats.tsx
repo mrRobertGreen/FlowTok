@@ -10,32 +10,32 @@ type PropsType = {
 const Stats: FC<PropsType> = ({rate, medianViews, rating}) => {
    return (
       <div className={styles.wrapper}>
-         <div className={styles.header}>
-            Основные показатели
+         <div className={styles.title}>
+            Показатели
          </div>
          <div className={styles.stats}>
             <div className={styles.stats__item}>
-               <div className={styles.value}>
-                  {medianViews}
-               </div>
                <div className={styles.prop}>
                   Среднее кол-во просмотров
                </div>
+               <div className={styles.value}>
+                  {medianViews}
+               </div>
             </div>
             <div className={styles.stats__item}>
+               <div className={styles.prop}>
+                  Выплата за один ролик
+               </div>
                <div className={styles.value}>
                   {rate}₽
                </div>
-               <div className={styles.prop}>
-                  Вам заплатят за один ролик
-               </div>
             </div>
             <div className={styles.stats__item}>
+               <div className={styles.prop}>
+                  Рейтинг для рекламодателей
+               </div>
                <div className={styles.value}>
                   {rating}
-               </div>
-               <div className={styles.prop}>
-                  Ваш рейтинг
                </div>
             </div>
          </div>

@@ -6,10 +6,8 @@ configureEnzyme()
 
 describe("Balance Component", () => {
    const props: PropsType = {
-      holdDown: 1,
       valueDown: 2,
       valueUp: 3,
-      holdUp: 4,
    }
    let component: ShallowWrapper;
    beforeEach(() => {
