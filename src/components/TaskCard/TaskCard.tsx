@@ -27,17 +27,26 @@ export const TaskCard: FC<PropsT> = ({
                                          url, // передается, если это задание НЕ со звуком
                                      }) => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-
+    //if (taskType == "active") {
     return (
         <Card size={"big"} pad={"80px 28px"}>
             <div className={styles.wrapper}>
                 <div className={styles.mainText}>
-
+                    <p className={styles.title}>
+                        {title}
+                    </p>
+                    <div>
+                        <p> Описание </p>
+                        <p>
+                            {info}
+                        </p>
+                    </div>
                 </div>
 
                 <div className={styles.functional}>
                     <div className={styles.cost}>
-
+                        <p>За задание</p>
+                        <p>{rate + "₽"}</p>
                     </div>
                     <div className={styles.btn}>
 
@@ -46,4 +55,5 @@ export const TaskCard: FC<PropsT> = ({
             </div>
         </Card>
     )
+    //}
 }
