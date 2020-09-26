@@ -23,7 +23,6 @@ export const Card: FC<PropsT> = ({
 
    let MainStyle = {
       padding: pad, // for indent from border of phone
-      // в мобилке это везде 10px
    }
 
    let TextStyle = {
