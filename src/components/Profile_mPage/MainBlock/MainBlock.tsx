@@ -34,8 +34,28 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
    }
 
    if (!profileData) {
-      return <Preloader/>
+      profileData = {
+         usersForMoney: 123,
+         needVerification: false,
+         type: "blog",
+         image: "",
+         login: "@sdfg",
+         medianViews: "123",
+         name: "Dima",
+         rate: 123,
+         rating: 123,
+         heart: "123",
+         fans: "12M",
+         valueDown: 12,
+         valueUp: 213,
+         holdUp: 12,
+         holdDown: 12,
+         admin: false,
+         newTask: 3,
+         isOffer: false
+      } as BlogProfileDataType
    }
+
    const {
       rate,
       name,
