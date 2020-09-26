@@ -12,12 +12,11 @@ import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
 
 type PropsType = {
-   isDesktop: boolean
    pageName: PageNamesType
    newTasksNumber: number | null
 }
 
-const NavBar_m: FC<PropsType> = ({isDesktop, pageName, newTasksNumber}) => {
+const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
    newTasksNumber = 3
    const dispatch = useDispatch()
 

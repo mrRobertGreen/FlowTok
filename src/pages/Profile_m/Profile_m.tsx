@@ -27,7 +27,6 @@ const Profile_m: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
          />
          <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>
          <NavBar_m
-            isDesktop={isDesktop}
             pageName={"Profile"}
             newTasksNumber={blogProfile && blogProfile.newTask}
          />

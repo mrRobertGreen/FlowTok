@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile_m/Profile_m";
 import Refs_m from "./pages/Refs_m/Refs_m";
-import Settings_m from "./pages/Settings_m/Settings_m";
+import Settings from "./pages/Settings_m/Settings";
 import Cabinet_m from "./pages/Cabinet_m/Cabinet_m";
 import Work_m from "./pages/Work_m/Work_m";
 import TaskForm_m from "./pages/TaskForm_m/TaskForm_m";
@@ -83,6 +83,7 @@ const App: FC = () => {
             <Route path="/profile" component={Profile_m}/>
             <Route path="/work/:type" component={Work_m}/>
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
+            <Route path="/settings" component={Settings}/>
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}

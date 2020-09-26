@@ -15,7 +15,7 @@ const Work_m: FC<PropsType> = () => {
    return (
       <Page bg={"#E5E5EA"}>
          <WorkBlock/>
-         <NavBar_m isDesktop={isDesktop} pageName={"Work"} newTasksNumber={null}/>
+         <NavBar_m pageName={"Work"} newTasksNumber={null}/>
       </Page>
    )
 
