@@ -54,9 +54,11 @@ export const Task: FC<PropsT> = ({
 
                         <div className={styles.btn}>
                             <Button mod={"black"} children={"Канал"} br={"14px"}/>
-                            <Button mod={"grey"} br={"14px"}>
-                                <img src={Info} className={styles.btn__infoIcon} alt=""/>
-                            </Button>
+                            <div className={styles.btn__infoContainer}>
+                                <Button mod={"grey"} br={"14px"}>
+                                    <img src={Info} className={styles.btn__infoIcon} alt=""/>
+                                </Button>
+                            </div>
                         </div>
 
                         <div className={styles.check}>

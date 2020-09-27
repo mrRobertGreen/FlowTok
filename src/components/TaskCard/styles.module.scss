@@ -94,14 +94,16 @@
     border: 1px solid #4E3BF1;
     border-radius: 11px;
 
-    flex: 1 1 38%;
-
+    flex: 1 1 45%;
   }
 
   &__infoIcon {
     width: 26px;
     height: 26px;
-
+  }
+  &__infoContainer {
+    flex: 1 1 55%;
+    padding-left: 10px;
   }
 }
 
