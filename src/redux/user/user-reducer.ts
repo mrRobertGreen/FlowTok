@@ -94,10 +94,16 @@ export default function userReducer(state = initialState, action: ActionsType): 
          }
          return state
       case "user/SET_TASK":
-         return {
-            ...state,
-            task: action.task
+         if (state.blogNewTasks && action.task) {
+            return {
+               ...state,
+               blogNewTasks: [
+                  {...action.task, isActive: true},
+                  ...state.blogNewTasks
+               ]
+            }
          }
+         return {...state}
       case "user/SET_STATS":
          return {
             ...state,
@@ -378,6 +384,7 @@ export type BlogTaskType = {
    link?: string
    url?: string
    text?: string
+   isActive?: boolean
 }
-export type BlogTaskStatusType = "new" | "done" | "active"
+export type BlogTaskStatusType = "new" | "done"
 export type AdvTaskStatusType = "play" | "pause"

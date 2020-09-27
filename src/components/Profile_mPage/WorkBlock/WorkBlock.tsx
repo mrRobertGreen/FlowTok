@@ -1,94 +1,43 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import Nav from "./Nav/Nav";
 import {useParams} from "react-router";
-import {BlogTaskStatusType} from "../../../redux/user/user-reducer";
-import {TaskCard_m} from "../../TaskCard_m/TaskCard_m";
-import {Page} from "../../Page/Page";
+import {BlogTaskStatusType, getBlogTasks} from "../../../redux/user/user-reducer";
+import {TaskCard_m} from "./TaskList/TaskCard_m/TaskCard_m";
 import TopNavbar from "../../TopNavbar/TopNavbar";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
-import {Task} from "../../TaskCard/TaskCard";
+import {TaskCard} from "./TaskList/TaskCard/TaskCard";
+import styles from "./styles.module.scss"
+import {TaskList} from "./TaskList/TaskList";
 
 type PropsType = {}
 
 const WorkBlock: FC<PropsType> = () => {
-    const {type} = useParams()
-    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-    if (isDesktop) {
-        return (
-            <div>
-                {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
-                <Nav taskType={type as BlogTaskStatusType}/>
-                <div style={{marginTop: ""}}>
-                    <Task taskType={"new"} id={"1"}
-                          title={"FlowTok"}
-                          info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                          rate={10}/>
-                </div>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
-                <Nav taskType={type as BlogTaskStatusType}/>
-                <div style={{marginTop: ""}}>
-                    <Task taskType={"new"} id={"1"}
-                          title={"FlowTok"}
-                          info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                          rate={10}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                    <TaskCard_m taskType={"new"}
-                                text={"."}
-                                id={"1"}
-                                title={"FlowTok"}
-                                link={""}
-                                info={"Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис."}
-                                rate={10}
-                                url={""}/>
-                </div>
-            </div>
-        )
-    }
+   let {type} = useParams()
+   const dispatch = useDispatch()
+   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+   const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
+   const doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
+   const task = useSelector((state: RootStateType) => state.user.task)
+
+   useEffect(() => {
+      if (newTasks === null) dispatch(getBlogTasks("new"))
+      if (doneTasks === null) dispatch(getBlogTasks("done"))
+   }, [newTasks, doneTasks, dispatch])
+
+
+   if (task) {
+      type = "active"
+   }
+
+   return (
+      <div>
+         {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
+         <Nav taskType={type as BlogTaskStatusType}/>
+         <TaskList taskType={type}/>
+      </div>
+   )
+
 }
 
 export default WorkBlock
