@@ -1,0 +1,75 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tikTokAcc {
+  display: flex;
+  justify-content: space-between;
+
+  &__Container {
+    display: flex;
+
+  }
+}
+
+.name {
+  padding-left: 10px;
+  &__acc {
+    font-size: 17px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.41px;
+
+    color: #000000;
+  }
+
+  &__mail {
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: -0.313529px;
+
+    color: #8E8E93;
+  }
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50px;
+}
+
+.changeAcc {
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: -0.385882px;
+
+  color: #2B44F2;
+}
+
+.cancel {
+  display: flex;
+  justify-content: space-between;
+
+  &__text {
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+
+    color: #1D1D1D;
+  }
+
+  &__btn {
+    background-color: #FFFFFF;
+
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    letter-spacing: -0.385882px;
+
+    color: #FF3B30;
+  }
+}

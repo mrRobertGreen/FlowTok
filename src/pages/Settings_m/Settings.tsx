@@ -5,8 +5,10 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {Card} from "../../components/Card/Card";
-import {Accaunt} from "../../components/Settings/SettAccaunt/SettAccaunt";
+import {Account} from "../../components/Settings/SettAccount/SettAccount";
 import styles from "./styles.module.scss";
+import {DoubleText} from "../../components/DoubleText/DoubleText";
+import {ToggleSwitch} from "../../components/Input/Input";
 
 /*
 * здесь нужно подавать в Card паддинги и разрмеры разные, в зависимости от isDesktop
@@ -25,11 +27,19 @@ const Settings = () => {
                     <div className={styles.title}>
                         Аккаунт
                     </div>
-                    <Accaunt />
+                    <Account/>
                 </Card>
                 <Card>
                     <div className={styles.title}>
                         Уведомления
+                    </div>
+                    <div className={styles.notification}>
+                        <DoubleText
+                            FirstChildren={"Включить уведомления Telegram"}
+                            SecondChildren={"Получайте актуальные задания самый первый!"}
+                            pt={"0"}
+                            pb={"0"}/>
+                            <ToggleSwitch isLabel={true}/>
                     </div>
                 </Card>
                 <Card>
