@@ -10,6 +10,7 @@ import {useCache} from "../../../../hooks/useCache";
 import {TaskCard} from "./TaskCard/TaskCard";
 import {TaskCard_m} from "./TaskCard_m/TaskCard_m";
 import noTaskImg from "../../../../media/images/noTask.svg"
+import {getBlogNewFilteredTasks} from "../../../../redux/user/selectors";
 
 type PropsType = {
    taskType: BlogTaskStatusType
@@ -19,7 +20,9 @@ export const TaskList: FC<PropsType> = ({
                                            taskType,
                                         }) => {
    const dispatch = useDispatch()
-   let newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
+   let newTasks = useSelector(getBlogNewFilteredTasks)
+   // const isActiveTask = !!useSelector((state: RootStateType) => state.user.task)
+   const isActiveTask = true
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    let doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
    const doneTasksCache = useCache("blogDoneTasks")
@@ -33,37 +36,38 @@ export const TaskList: FC<PropsType> = ({
    if (!doneTasks && doneTasksCache) {
       doneTasks = doneTasksCache
    }
-   // if (newTasks?.length === 0) {
-   //    newTasks = [
-   //       {
-   //          title: "FlowTok",
-   //          rate: 10,
-   //          link: "link",
-   //          info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
-   //          id: "123",
-   //          url: "",
-   //          text: ""
-   //       },
-   //       {
-   //          title: "FlowTok",
-   //          rate: 10,
-   //          link: "link",
-   //          info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
-   //          id: "123",
-   //          url: "",
-   //          text: ""
-   //       },
-   //       {
-   //          title: "FlowTok",
-   //          rate: 10,
-   //          link: "link",
-   //          info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
-   //          id: "123",
-   //          url: "",
-   //          text: ""
-   //       },
-   //    ]
-   // }
+   if (newTasks?.length === 0) {
+      newTasks = [
+         {
+            title: "FlowTok",
+            rate: 10,
+            link: "link",
+            info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
+            id: "123",
+            url: "",
+            text: "",
+            isActive: true,
+         },
+         {
+            title: "FlowTok",
+            rate: 10,
+            link: "link",
+            info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
+            id: "1234",
+            url: "",
+            text: "",
+         },
+         {
+            title: "FlowTok",
+            rate: 10,
+            link: "link",
+            info: "Подпишитесь на официальный канал FlowTok для того, чтобы следить за последними новостями. Так же будем рассказывать как работает наш сервис.",
+            id: "12354",
+            url: "",
+            text: ""
+         },
+      ]
+   }
    // if (!isAuth) {
    //    return <Redirect to="/login"/>
    // }
@@ -115,6 +119,7 @@ export const TaskList: FC<PropsType> = ({
                   url={task.url}
                   taskType={taskType}
                   isActive={task.isActive}
+                  isActiveTask={isActiveTask}
                   // doBlogTask={(id: string) => dispatch(doBlogTask(id))}
                />
             ))}
@@ -135,6 +140,7 @@ export const TaskList: FC<PropsType> = ({
                   url={task.url}
                   isActive={task.isActive}
                   taskType={taskType}
+                  isActiveTask={isActiveTask}
                   // doBlogTask={(id: string) => dispatch(doBlogTask(id))}
                />
             ))}

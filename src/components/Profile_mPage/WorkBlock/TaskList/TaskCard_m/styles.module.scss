@@ -12,6 +12,14 @@
   flex-direction: row;
 }
 
+.message {
+  padding: 0 16px;
+  max-width: 80% ;
+  font-size: 15px;
+  line-height: 18px;
+  color: #868686;
+}
+
 .title {
   font-size: 17px;
   font-weight: bold;

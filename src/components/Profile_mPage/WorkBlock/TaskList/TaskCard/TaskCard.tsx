@@ -18,6 +18,7 @@ import Info from "../../../../../media/icons/blackInfo.svg"
 
 type PropsT = {
    taskType: BlogTaskStatusType
+   isActiveTask: boolean
 } & BlogTaskType
 
 export const TaskCard: FC<PropsT> = ({
@@ -29,8 +30,10 @@ export const TaskCard: FC<PropsT> = ({
                                         info, // описание таски
                                         rate, // стоимость таски
                                         url, // передается, если это задание НЕ со звуком
+                                        isActiveTask
                                      }) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+
 
    return (
       <Card size={"big"} pad={"80px"}>
