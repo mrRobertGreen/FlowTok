@@ -1,3 +1,5 @@
+$backColor: #E5E5EA;
+
 .title {
   font-size: 17px;
   line-height: 20px;
@@ -12,4 +14,52 @@
 .notification {
   display: flex;
   justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+
+  border: 1px solid $backColor;
+  border-radius: 14px;
+  height: 52px;
+  padding-left: 15px;
+}
+
+.input {
+  &:checked + .card {
+    $backColor: blue;
+    border: 1.4px solid $backColor;
+  }
+}
+
+.data {
+  display: flex;
+  justify-content: space-between;
+
+  padding-left: 17px;
+  padding-right: 20px;
+  width: 100%;
+
+  &__way {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+
+    color: #1D1D1D;
+  }
+
+  &__number {
+
+  }
+}
+
+.save {
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: -0.41px;
+
+  margin-bottom: 15px;
+
+  color: #1D1D1D;
 }
