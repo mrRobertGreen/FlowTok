@@ -48,6 +48,7 @@
 .btn_red {
   @extend .btn;
   background: $red_bg;
+  color: white;
 }
 .btn_vk {
   @extend .btn;

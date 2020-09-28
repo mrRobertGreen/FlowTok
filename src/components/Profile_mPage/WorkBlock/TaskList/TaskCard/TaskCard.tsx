@@ -30,50 +30,60 @@ export const TaskCard: FC<PropsT> = ({
                                         info, // описание таски
                                         rate, // стоимость таски
                                         url, // передается, если это задание НЕ со звуком
-                                        isActiveTask
+                                        isActiveTask,
+                                        isActive,
                                      }) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
 
    return (
-      <Card size={"big"} pad={"80px"}>
-         <div className={styles.wrapper}>
-            <div className={styles.textContainer}>
-               <p className={styles.title}>{title}</p>
-               <p className={styles.description}>Описание</p>
-               <p className={styles.info}>{info}</p>
-            </div>
-            <div className={styles.leftContainer}>
-               <img src={VerticalLine} alt=""/>
-               <div className={styles.btnContainer}>
-                  <div className={styles.cost}>
-                     <p className={styles.cost__text}>За задание</p>
-                     <p className={styles.cost__rate}>{rate + "₽"}</p>
-                  </div>
+      <>
+         <div className={styles.card}
+              style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
+            <div className={styles.wrapper}>
+               <div className={styles.textContainer}>
+                  <p className={styles.title}>{title}</p>
+                  <p className={styles.description}>Описание</p>
+                  <p className={styles.info}>{info}</p>
+               </div>
+               <div className={styles.leftContainer}>
+                  <img src={VerticalLine} alt="" className={styles.vertLine}/>
+                  <div className={styles.btnContainer}>
+                     <div className={styles.cost}>
+                        <p className={styles.cost__text}>За задание</p>
+                        <p className={styles.cost__rate}>{rate + "₽"}</p>
+                     </div>
 
-                  <img src={HorizontalLine} alt=""/>
+                     <img src={HorizontalLine} alt="" />
 
-                  <div className={styles.btn}>
-                     <Button mod={"black"} children={"Канал"} br={"14px"}/>
-                     <div className={styles.btn__infoContainer}>
-                        <Button mod={"grey"} br={"14px"}>
-                           <img src={Info} className={styles.btn__infoIcon} alt=""/>
+                     <div className={styles.btn}>
+                        <Button mod={"black"} children={"Канал"} br={"14px"}/>
+                        <div className={styles.btn__infoContainer}>
+                           <Button mod={"grey"} br={"14px"} p={"10px"}>
+                              <img src={Info} className={styles.btn__infoIcon} alt=""/>
+                           </Button>
+                        </div>
+                     </div>
+
+                     <div className={styles.check}>
+                        <Button mod={"gradient"} br={"11px"}>
+                           {isActive && "Проверить"}
+                           {!isActive && "Выполнить"}
                         </Button>
                      </div>
-                  </div>
 
-                  <div className={styles.check}>
-                     <Button mod={"gradient"} br={"11px"}>
-                        Проверить
-                     </Button>
-                  </div>
-
-                  <div className={styles.cCont}>
-                     <button className={styles.cancel}>Отменить</button>
+                     {isActive && <div className={styles.cCont}>
+								<Button mod={"red"} br={"11px"}>
+									Отменить
+								</Button>
+							</div>}
                   </div>
                </div>
             </div>
          </div>
-      </Card>
+         {isActive && <div className={styles.message}>
+				Выполните текущее задание, чтобы перейти к следющему
+			</div>}
+      </>
    )
 };

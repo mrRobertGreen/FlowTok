@@ -15,6 +15,7 @@ type PropsT = {
    m?: string
    br?: string
    isActive?: boolean
+   p?: string
 }
 
 const Button: FC<PropsT &
@@ -24,12 +25,13 @@ const Button: FC<PropsT &
                                                                                         br,
                                                                                         children,
                                                                                         isActive,
+                                                                                        p,
                                                                                         ...rest
                                                                                      }) => {
    if (mod === "loading") return <MiniLoader/>
    return (
       <button
-         style={{margin: m, borderRadius: br,}}
+         style={{margin: m, borderRadius: br, padding: p}}
          className={cn(
             styles.btn,
             {[styles.btn_black]: mod === "black"}, // в зависимости от мода присваиваю разный класс
@@ -50,7 +52,7 @@ const Button: FC<PropsT &
          {mod === "man" && isActive && <img src={manActiveIcon} className={styles.icon_man} alt=""/>}
          {mod === "woman" && !isActive && <img src={womanIcon} className={styles.icon_woman} alt=""/>}
          {mod === "woman" && isActive && <img src={womanActiveIcon} className={styles.icon_woman} alt=""/>}
-         {mod === "copy"&& <img src={copyIcon} className={styles.icon_copy} alt=""/>}
+         {mod === "copy" && <img src={copyIcon} className={styles.icon_copy} alt=""/>}
          {children}
       </button>
    )

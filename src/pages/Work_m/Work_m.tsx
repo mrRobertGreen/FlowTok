@@ -7,6 +7,7 @@ import {withAuthRedirect, withTaskRedirect} from "../../hocs/hocs";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {Page} from "../../components/Page/Page";
+import NavBar from "../../components/NavBar/NavBar";
 
 type PropsType = {}
 
@@ -14,8 +15,9 @@ const Work_m: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <Page bg={"#E5E5EA"}>
+         {isDesktop && <NavBar pageName={"Work"} newTasksNumber={null}/>}
          <WorkBlock/>
-         <NavBar_m pageName={"Work"} newTasksNumber={null}/>
+         {!isDesktop && <NavBar_m pageName={"Work"} newTasksNumber={null}/>}
       </Page>
    )
 

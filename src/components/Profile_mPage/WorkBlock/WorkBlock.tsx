@@ -31,7 +31,7 @@ const WorkBlock: FC<PropsType> = () => {
    }
 
    return (
-      <div>
+      <div className={styles.container}>
          {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
          <Nav taskType={type as BlogTaskStatusType}/>
          <TaskList taskType={type}/>

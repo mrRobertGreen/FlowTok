@@ -1,5 +1,13 @@
 @import "../../../styles/vars";
 
 .container {
+  //margin: 0 50px 0 calc(25% + 50px);
+  //padding-top: 50px;
+}
 
+@media (min-width: 1024px) {
+  .container {
+    margin: 0 50px 0 calc(25% + 50px);
+    padding-top: 50px;
+  }
 }
