@@ -12,17 +12,20 @@ import {Main} from "../../pages/Landing/Main/Main";
 type PropsT = {
    size?: "small" | "big"
    pad?: string
+   opacity?: string
 }
 
 export const Card: FC<PropsT> = ({
                                     pad,
                                     children,
                                     size,
+                                    opacity
                                  }) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    let MainStyle = {
       padding: pad, // for indent from border of phone
+      opacity: opacity
    }
 
    let TextStyle = {

@@ -3,7 +3,7 @@
 .btn {
   width: 100%;
   text-align: center;
-  padding: 15px 5px;
+  padding: 12px 5px;
   border-radius: 30px;
   font-size: 15px;
   line-height: 18px;
@@ -82,6 +82,7 @@
   @extend .btn_vk;
 }
 .btn_active {
+  padding: 11px 5px;
   border: 1.5px solid $violet-blue;
 }
 
