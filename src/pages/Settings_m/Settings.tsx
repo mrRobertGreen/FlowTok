@@ -60,7 +60,7 @@ const Settings = () => {
     }
 
     return (
-        <Page bg={"#E5E5EA"}>
+        <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Settings"}>
             {!isDesktop && <TopNavbar label={"Настройки"} logo={true} br={"0px 0px 11px 11px"}/>}
             <div>
                 <Card>

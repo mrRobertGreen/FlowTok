@@ -7,7 +7,7 @@ import homeIconActive from "../../media/icons/home_icon_active.svg"
 import workIconActive from "../../media/icons/work_icon_active.svg"
 import settingsIconActive from "../../media/icons/settings_icon_active.svg"
 import {NavLink} from "react-router-dom";
-import {PageNamesType} from "../../pages/Profile_m/Profile_m";
+import {PageNamesType} from "../../pages/Profile/Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {BlogProfileDataType, getUserData} from "../../redux/user/user-reducer";
 import {Logo} from "../Logo/Logo";
@@ -19,7 +19,7 @@ import tgIcon from "../../media/icons/tg_link.svg"
 import instIcon from "../../media/icons/inst_link.svg"
 
 type PropsType = {
-   pageName: PageNamesType
+   pageName?: PageNamesType
    newTasksNumber: number | null
 }
 

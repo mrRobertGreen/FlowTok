@@ -1,10 +1,10 @@
 import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
-import Profile_m from "./pages/Profile_m/Profile_m";
+import Profile_m from "./pages/Profile/Profile";
 import Refs_m from "./pages/Refs_m/Refs_m";
 import Settings from "./pages/Settings_m/Settings";
 import Cabinet_m from "./pages/Cabinet_m/Cabinet_m";
-import Work_m from "./pages/Work_m/Work_m";
+import Work_m from "./pages/Work/Work";
 import TaskForm_m from "./pages/TaskForm_m/TaskForm_m";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";

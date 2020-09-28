@@ -7,12 +7,12 @@ import homeIconActive from "../../media/icons/home_icon_active.svg"
 import workIconActive from "../../media/icons/work_icon_active.svg"
 import settingsIconActive from "../../media/icons/settings_icon_active.svg"
 import {NavLink} from "react-router-dom";
-import {PageNamesType} from "../../pages/Profile_m/Profile_m";
+import {PageNamesType} from "../../pages/Profile/Profile";
 import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
 
 type PropsType = {
-   pageName: PageNamesType
+   pageName?: PageNamesType
    newTasksNumber: number | null
 }
 

@@ -11,13 +11,13 @@ import NavBar from "../../components/NavBar/NavBar";
 
 type PropsType = {}
 
-const Work_m: FC<PropsType> = () => {
+const Work: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
-      <Page bg={"#E5E5EA"}>
-         {isDesktop && <NavBar pageName={"Work"} newTasksNumber={null}/>}
+      <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Work"}>
+         {/*{isDesktop && <NavBar pageName={"Work"} newTasksNumber={null}/>}*/}
          <WorkBlock/>
-         {!isDesktop && <NavBar_m pageName={"Work"} newTasksNumber={null}/>}
+         {/*{!isDesktop && <NavBar_m pageName={"Work"} newTasksNumber={null}/>}*/}
       </Page>
    )
 
@@ -26,4 +26,4 @@ const Work_m: FC<PropsType> = () => {
 export default compose<FC>(
    withTaskRedirect,
    // withAuthRedirect
-)(Work_m)
+)(Work)

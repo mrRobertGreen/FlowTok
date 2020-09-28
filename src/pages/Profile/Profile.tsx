@@ -15,21 +15,17 @@ type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work" | "Settings"
 
-const Profile_m: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
+const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
    return (
-      <Page bg={"#E5E5EA"}>
+      <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
          <TopNavbar logo={true}
                     label={"Профиль"}
                     avatarUrl={blogProfile ? blogProfile.image : ""}
                     br={" 0px 0px 11px 11px"}
          />
          <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>
-         <NavBar_m
-            pageName={"Profile"}
-            newTasksNumber={blogProfile && blogProfile.newTask}
-         />
       </Page>
    )
 }
@@ -50,4 +46,4 @@ export default compose<FC>(
    withTaskRedirect,
    // withCabinetRedirect,
    // withAuthRedirect,
-)(Profile_m)
+)(Profile)
