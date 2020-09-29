@@ -19,6 +19,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding-right: 40px;
+  width: 100%;
 }
 
 .leftContainer {
@@ -128,4 +129,40 @@
   .card {
     padding: 60px 60px 0;
   }
+}
+//------------------------------------------
+// done
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.date {
+  font-size: 17px;
+  color: #8E8E93;
+  line-height: 20px;
+  align-self: center;
+}
+
+.get {
+  font-size: 17px;
+  line-height: 20px;
+  height: 20px;
+  letter-spacing: -0.41px;
+
+  color: #000000;
+  margin-bottom: 60px;
+}
+.money {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 30px;
+  text-align: right;
+  letter-spacing: -0.627059px;
+
+  height: 31px;
+
+  color: #00D439;
+
 }
