@@ -133,6 +133,15 @@
 //------------------------------------------
 // done
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  //padding-right: 5px;
+  width: 100%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -162,7 +171,6 @@
   letter-spacing: -0.627059px;
 
   height: 31px;
-
   color: #00D439;
-
 }
+

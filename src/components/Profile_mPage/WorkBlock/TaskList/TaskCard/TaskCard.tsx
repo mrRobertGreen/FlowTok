@@ -93,20 +93,22 @@ export const TaskCard: FC<PropsT> = ({
                 <div className={styles.card}
                      style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
                     <div className={styles.wrapper}>
-                        <div className={styles.textContainer}>
+                        <div className={styles.container}>
                             <div className={styles.header}>
                                 <p className={styles.title}>{title}</p>
                                 <p className={styles.date}>Сегодня</p>
                             </div>
+
                             <p className={styles.description}>Описание</p>
                             <p className={styles.info}>{info}</p>
+
+                            <Separator m={"20px 0 20px 0"}/>
+                            <div className={styles.header}>
+                                <p className={styles.get}>Получено за задание</p>
+                                <p className={styles.money}>120 ₽</p>
+                            </div>
                         </div>
 
-                    </div>
-                    <Separator m={"20px 0 20px 0"}/>
-                    <div className={styles.header}>
-                        <p className={styles.get}>Получено за задание</p>
-                        <p className={styles.money}>120 ₽</p>
                     </div>
                 </div>
                 {isActive && <div className={styles.message}>
