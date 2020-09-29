@@ -16,6 +16,9 @@ import {TakeMoney} from "../../components/Settings/TakeMoneyWay/TakeMoneyWay";
 * здесь нужно подавать в Card паддинги и разрмеры разные, в зависимости от isDesktop
 * Предоставляю сие развлечение тебе
 * Весь остальной адаптив уже сделан
+*
+* Что-бы добавить способы оплаты переходи в TakeMoney, там в кнопках прописать
+* ссылки
 * */
 
 const Settings = () => {
@@ -62,7 +65,7 @@ const Settings = () => {
     return (
         <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Settings"}>
             {!isDesktop && <TopNavbar label={"Настройки"} logo={true} br={"0px 0px 11px 11px"}/>}
-            <div>
+            <div className={styles.container}>
                 <Card>
                     <div className={styles.title}>
                         Аккаунт
@@ -91,12 +94,24 @@ const Settings = () => {
                     <Separator m={"21px 0 21px 0 "}/>
 
                     <p className={styles.save}>Добавить</p>
-                    <TakeMoney />
+                    <TakeMoney/>
                 </Card>
+
                 <Card>
                     <div className={styles.title}>
                         Поддержка
                     </div>
+                    <div style={{paddingRight:"50px"}}>
+                    <DoubleText
+                        FirstChildren={""}
+                        SecondChildren={"По любым вопросам Вы можется свзяаться с нами по почте или через наш Telegram"}
+                        pt={"0"}
+                        pb={"0"}/>
+                    </div>
+                    <div>
+                        <p></p>
+                    </div>
+
                 </Card>
 
             </div>

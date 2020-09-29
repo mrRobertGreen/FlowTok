@@ -1,12 +1,21 @@
 .wrapper {
-  &__items {
-    border: 1px solid #E5E5EA;
+  &__item {
+    border: 1.5px solid #E5E5EA;
     border-radius: 18px;
+    display: inline;
 
     font-size: 15px;
     line-height: 18px;
     letter-spacing: -0.361765px;
 
+    margin-left: 10px;
+
     color: #1D1D1D;
+  }
+
+  &__btn {
+    background-color: white;
+    height: 38px;
+    padding: 10px;
   }
 }

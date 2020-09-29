@@ -17,73 +17,125 @@ import Info from "../../../../../media/icons/blackInfo.svg"
 
 
 type PropsT = {
-   taskType: BlogTaskStatusType
-   isActiveTask: boolean
+    taskType: BlogTaskStatusType
+    isActiveTask: boolean
 } & BlogTaskType
 
 export const TaskCard: FC<PropsT> = ({
-                                        taskType, // done - если выполнена, new - если нет, active - если в процессе
-                                        text, // если задание не со звуком, то ставишь этот текст на кнопку
-                                        id,
-                                        title, // название таски
-                                        link, // передается, если это задание со звуком
-                                        info, // описание таски
-                                        rate, // стоимость таски
-                                        url, // передается, если это задание НЕ со звуком
-                                        isActiveTask,
-                                        isActive,
+                                         taskType, // done - если выполнена, new - если нет, active - если в процессе
+                                         text, // если задание не со звуком, то ставишь этот текст на кнопку
+                                         id,
+                                         title, // название таски
+                                         link, // передается, если это задание со звуком
+                                         info, // описание таски
+                                         rate, // стоимость таски
+                                         url, // передается, если это задание НЕ со звуком
+                                         isActiveTask,
+                                         isActive,
                                      }) => {
-   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
-
-   return (
-      <>
-         <div className={styles.card}
-              style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
-            <div className={styles.wrapper}>
-               <div className={styles.textContainer}>
-                  <p className={styles.title}>{title}</p>
-                  <p className={styles.description}>Описание</p>
-                  <p className={styles.info}>{info}</p>
-               </div>
-               <div className={styles.leftContainer}>
-                  <img src={VerticalLine} alt="" className={styles.vertLine}/>
-                  <div className={styles.btnContainer}>
-                     <div className={styles.cost}>
-                        <p className={styles.cost__text}>За задание</p>
-                        <p className={styles.cost__rate}>{rate + "₽"}</p>
-                     </div>
-
-                     <img src={HorizontalLine} alt="" />
-
-                     <div className={styles.btn}>
-                        <Button mod={"black"} children={"Канал"} br={"14px"}/>
-                        <div className={styles.btn__infoContainer}>
-                           <Button mod={"grey"} br={"14px"} p={"10px"}>
-                              <img src={Info} className={styles.btn__infoIcon} alt=""/>
-                           </Button>
+    if (isActive) {
+        return (
+            <>
+                <div className={styles.card}
+                     style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
+                    <div className={styles.wrapper}>
+                        <div className={styles.textContainer}>
+                            <p className={styles.title}>{title}</p>
+                            <p className={styles.description}>Описание</p>
+                            <p className={styles.info}>{info}</p>
                         </div>
-                     </div>
+                        <div className={styles.leftContainer}>
+                            <img src={VerticalLine} alt="" className={styles.vertLine}/>
+                            <div className={styles.btnContainer}>
+                                <div className={styles.cost}>
+                                    <p className={styles.cost__text}>За задание</p>
+                                    <p className={styles.cost__rate}>{rate + "₽"}</p>
+                                </div>
 
-                     <div className={styles.check}>
-                        <Button mod={"gradient"} br={"11px"}>
-                           {isActive && "Проверить"}
-                           {!isActive && "Выполнить"}
-                        </Button>
-                     </div>
+                                <img src={HorizontalLine} alt=""/>
 
-                     {isActive && <div className={styles.cCont}>
-								<Button mod={"red"} br={"11px"}>
-									Отменить
-								</Button>
-							</div>}
-                  </div>
-               </div>
-            </div>
-         </div>
-         {isActive && <div className={styles.message}>
-				Выполните текущее задание, чтобы перейти к следющему
-			</div>}
-      </>
-   )
+                                <div className={styles.btn}>
+                                    <Button mod={"black"} children={"Канал"} br={"14px"}/>
+                                    <div className={styles.btn__infoContainer}>
+                                        <Button mod={"grey"} br={"14px"} p={"10px"}>
+                                            <img src={Info} className={styles.btn__infoIcon} alt=""/>
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                <div className={styles.check}>
+                                    <Button mod={"gradient"} br={"11px"}>
+                                        {isActive && "Проверить"}
+                                        {!isActive && "Выполнить"}
+                                    </Button>
+                                </div>
+
+                                {isActive && <div className={styles.cCont}>
+                                    <Button mod={"red"} br={"11px"}>
+                                        Отменить
+                                    </Button>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {isActive && <div className={styles.message}>
+                    Выполните текущее задание, чтобы перейти к следющему
+                </div>}
+            </>
+        )
+    } else  {
+        return (
+            <>
+                <div className={styles.card}
+                     style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
+                    <div className={styles.wrapper}>
+                        <div className={styles.textContainer}>
+                            <p className={styles.title}>{title}</p>
+                            <p className={styles.description}>Описание</p>
+                            <p className={styles.info}>{info}</p>
+                        </div>
+                        <div className={styles.leftContainer}>
+                            <img src={VerticalLine} alt="" className={styles.vertLine}/>
+                            <div className={styles.btnContainer}>
+                                <div className={styles.cost}>
+                                    <p className={styles.cost__text}>За задание</p>
+                                    <p className={styles.cost__rate}>{rate + "₽"}</p>
+                                </div>
+
+                                <img src={HorizontalLine} alt=""/>
+
+                                <div className={styles.btn}>
+                                    <Button mod={"black"} children={"Канал"} br={"14px"}/>
+                                    <div className={styles.btn__infoContainer}>
+                                        <Button mod={"grey"} br={"14px"} p={"10px"}>
+                                            <img src={Info} className={styles.btn__infoIcon} alt=""/>
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                <div className={styles.check}>
+                                    <Button mod={"gradient"} br={"11px"}>
+                                        {isActive && "Проверить"}
+                                        {!isActive && "Выполнить"}
+                                    </Button>
+                                </div>
+
+                                {isActive && <div className={styles.cCont}>
+                                    <Button mod={"red"} br={"11px"}>
+                                        Отменить
+                                    </Button>
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {isActive && <div className={styles.message}>
+                    Выполните текущее задание, чтобы перейти к следющему
+                </div>}
+            </>
+        )
+    }
 };
