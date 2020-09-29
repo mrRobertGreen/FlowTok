@@ -36,15 +36,20 @@ export const Page: FC<PropsType> = ({
       height: h100 ? "100%" : "",
    }
 
-   const containerStyle = {
+   const containerMobileStyle = {
       background: bg,
+      paddingBottom: isNavbar ? "93px" : "0"
    }
 
-   const containerWithNavbarStyle = {
-      ...containerStyle,
-      padding: "50px 50px 0 50px",
-      marginLeft: " 25%",
-      borderRadius: "30px 0 0 30px",
+   const withDesktopNavbar = isNavbar ? {
+      padding: queries.desktop ? "50px 50px 0 50px" : "30px 30px 0 30px",
+   } : {}
+
+   const containerDesktopStyle = {
+      ...withDesktopNavbar,
+      background: bg,
+      marginLeft: isNavbar ? "25%" : "",
+      borderRadius: isNavbar ? "30px 0 0 30px" : "",
    }
 
    return (
@@ -54,12 +59,12 @@ export const Page: FC<PropsType> = ({
       >
          {!!isNavbar && <Media queries={queries}>
 				<>
-               {queries.phone && <NavBar_m pageName={pageName} newTasksNumber={3}/>}
+               {!queries.largeTablet && <NavBar_m pageName={pageName} newTasksNumber={3}/>}
                {queries.largeTablet && <NavBar pageName={pageName} newTasksNumber={3}/>}
 				</>
 			</Media>}
          <div className={styles.container}
-              style={isNavbar && queries.largeTablet ? containerWithNavbarStyle : containerStyle}>
+              style={queries.largeTablet ? containerDesktopStyle : containerMobileStyle}>
             {children}
          </div>
       </div>

@@ -1,23 +1,78 @@
 .wrapper {
   width: 100%;
-  padding: 10px;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   justify-items: center;
+
+  .balance, .miniCard1, .miniCard2, .stats, .refs, .history {
+    width: 100%;
+  }
 }
 
 @media (min-width: 350px) {
   .grid {
     grid-template-columns: 1fr 1fr;
+
+    .balance,
+    .refs,
+    .stats {
+      grid-column: 1/3;
+    }
   }
 }
+
 @media (min-width: 767px) {
-
+  .grid {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
-@media (min-width: 1200px) {
 
+@media (min-width: 1024px) {
+  .grid {
+    width: 100%;
+    margin: 0;
+    grid-gap: 17px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "bal bal bal mc-1 mc-1 his his his"
+    "bal bal bal mc-2 mc-2 his his his"
+    "st st st st ref ref ref ref";
+
+    .balance {
+      grid-area: bal;
+    }
+
+    .history {
+      grid-area: his;
+    }
+
+    .miniCard1 {
+      grid-area: mc-1;
+    }
+
+    .miniCard2 {
+      grid-area: mc-2;
+    }
+
+    .stats {
+      grid-area: st;
+    }
+
+    .refs {
+      grid-area: ref;
+    }
+  }
+}
+
+@media (min-width: 1680px) {
+  .grid {
+    grid-gap: 25px;
+  }
 }
 

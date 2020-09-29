@@ -7,7 +7,7 @@ import {Page} from "../../components/Page/Page";
 
 export const Landing = () => {
    return (
-      <Page>
+      <Page isNavbar={false}>
          <Header/>
          <Main/>
          <Stats/>

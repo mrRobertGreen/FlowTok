@@ -17,3 +17,33 @@
   line-height: 33px;
   font-weight: 600;
 }
+
+@media (min-width: 1024px) {
+  .wrapper {
+    height: 100%;
+    padding: 35px 30px;
+    border-radius: 30px;
+  }
+  .label {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .money {
+    font-size: 22px;
+  }
+}
+@media (min-width: 1680px) {
+  .wrapper {
+    height: 100%;
+    padding: 60px 50px;
+    border-radius: 30px;
+  }
+  .label {
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+  .money {
+    font-size: 32px;
+    line-height: 37px;
+  }
+}

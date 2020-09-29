@@ -67,8 +67,9 @@
   .icon {
     display: block;
     position: relative;
-    width: 24px;
-    height: 24px;
+
+    width: 22px;
+    height: 22px;
     margin-right: 15px;
   }
   .notification {
@@ -88,7 +89,7 @@
     align-items: center;
   }
   .label {
-    font-size: 26px;
+    font-size: 23px;
     line-height: 33px;
     font-weight: 600;
   }
@@ -96,6 +97,7 @@
 
 @media (min-width: 1200px) {
   .navbar {
+    padding: 80px 30px;
     .profile {
       display: flex;
       flex-direction: row;
@@ -108,6 +110,14 @@
         margin-bottom: 0;
       }
     }
+  }
+  .label {
+    font-size: 26px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
   }
 
 }

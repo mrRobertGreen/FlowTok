@@ -1,0 +1,64 @@
+.wrapper {
+  padding: 40px 35px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 30px;
+}
+.title {
+  line-height: 32px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+.history {
+  max-height: 170px;
+  overflow-y: auto;
+  .historyItem {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    .operation_green {
+      font-size: 15px;
+      color: #24C054;
+    }
+    .operation_red {
+      @extend .operation_green;
+      color: #ED0000;
+    }
+
+    .date {
+      font-size: 12px;
+      color: #8E8E93;
+    }
+  }
+}
+
+
+
+@media (min-width: 1680px) {
+  .wrapper {
+    padding: 65px 60px
+  }
+  .title {
+    font-size: 32px;
+    line-height: 37px;
+    margin-bottom: 53px;
+  }
+  .history {
+    max-height: 230px;
+    .historyItem {
+      padding-bottom: 10px;
+      padding-right: 15px;
+      .operation_green {
+        font-size: 17px;
+        line-height: 20px;
+      }
+      .date {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+  }
+
+}

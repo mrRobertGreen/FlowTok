@@ -11,7 +11,7 @@
   width: 100%;
   border: 1px solid #E5E5EA;
   font-size: 15px;
-  line-height: 18px;
+  //line-height: 18px;
   padding: 12px 16px;
   &::-webkit-input-placeholder {
     color: #1D1D1D;
@@ -110,11 +110,22 @@
 .blue {
   background-color: #e6f9f5;
 }
+.grey {
+  background: #F0F0F0;
+}
 .errorMsg {
   margin-top: 8px;
   text-align: center;
   line-height: 15px;
   font-size: 13px;
   color: #FF3B30;
+}
+
+@media (min-width: 1680px) {
+  .input {
+    font-size: 17px;
+    padding: 11px 25px;
+    border-radius: 30px;
+  }
 }
 

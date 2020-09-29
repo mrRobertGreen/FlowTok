@@ -10,10 +10,13 @@ import {BlogProfileDataType} from "../../../redux/user/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import Button from "../../Button/Button";
 import {NavLink} from "react-router-dom";
+import {History} from "./History/History";
 import {useCache} from "../../../hooks/useCache";
 import {useSelector} from "react-redux";
 import MiniCard from "./MiniCard/MiniCard";
 import Refs from "./Refs/Refs";
+import {useMedia} from "react-media";
+import {GLOBAL_MEDIA_QUERIES} from "../../Page/Page";
 
 type PropsType = {
    isDesktop: boolean
@@ -72,14 +75,29 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
       needVerification
    } = profileData
 
+   const queries = useMedia({queries: GLOBAL_MEDIA_QUERIES})
+
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
-            <Balance valueDown={valueDown} valueUp={valueUp}/>
-            <MiniCard label={"Ждет\n зачисления"} value={6703.50} pad={"10px 10px 0 10px"}/>
-            <MiniCard label={"Получено за все время"} value={164520.30} pad={"10px 10px 0 0"}/>
-            <Stats medianViews={medianViews} rate={rate} rating={rating}/>
-            <Refs/>
+            <div className={styles.balance}>
+               <Balance valueDown={valueDown} valueUp={valueUp}/>
+            </div>
+            <div className={styles.miniCard1}>
+               <MiniCard label={"Ждет\n зачисления"} value={6703.50} pad={"10px 10px 0 10px"}/>
+            </div>
+            <div className={styles.miniCard2}>
+               <MiniCard label={"Получено за все время"} value={164520.30} pad={"10px 10px 0 0"}/>
+            </div>
+            <div className={styles.stats}>
+               <Stats medianViews={medianViews} rate={rate} rating={rating}/>
+            </div>
+            <div className={styles.refs}>
+               <Refs/>
+            </div>
+            {queries.largeTablet && <div className={styles.history}>
+               <History/>
+            </div>}
          </div>
       </div>
    )

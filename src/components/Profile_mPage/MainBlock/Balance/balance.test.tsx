@@ -4,7 +4,7 @@ import {ShallowWrapper} from "enzyme";
 
 configureEnzyme()
 
-describe("Balance Component", () => {
+describe("History Component", () => {
    const props: PropsType = {
       valueDown: 2,
       valueUp: 3,

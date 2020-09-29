@@ -13,15 +13,18 @@ const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
 
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
-         <div className={styles.title}>
-            Кошелек
+         <div>
+            <div className={styles.title}>
+               Кошелек
+            </div>
+            <div className={styles.label}>
+               Ваш баланс
+            </div>
+            <div className={styles.money}>
+               {valueUp}.{valueDown}₽
+            </div>
          </div>
-         <div className={styles.label}>
-            Ваш баланс
-         </div>
-         <div className={styles.money}>
-            {valueUp}.{valueDown}₽
-         </div>
+
          <div className={styles.btn} data-test={"btn"}>
             <NavLink to={"/withdraw"}>
                <Button data-test={"button"} mod={"gradient"}>Выплатить</Button>

@@ -36,7 +36,7 @@ export const TaskCard: FC<PropsT> = ({
                                      }) => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
-    if (isActive) {
+    if (taskType === "new") {
         return (
             <>
                 <div className={styles.card}
@@ -90,8 +90,7 @@ export const TaskCard: FC<PropsT> = ({
     } else {
         return (
             <>
-                <div className={styles.card}
-                     style={{opacity: isActiveTask && !isActive && taskType === "new" ? "0.5" : ""}}>
+                <div className={styles.card}>
                     <div className={styles.wrapper}>
                         <div className={styles.container}>
                             <div className={styles.header}>

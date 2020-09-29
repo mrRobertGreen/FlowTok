@@ -87,19 +87,10 @@
   border: 1.5px solid $violet-blue;
 }
 
-//@media (min-width: 767px) {
-//  .btn {
-//    padding: 18px 5px;
-//    border-radius: 30px;
-//    font-size: 18px;
-//    line-height: 20px;
-//  }
-//}
-//@media (min-width: 1200px) {
-//  .btn {
-//    padding: 15px 5px;
-//    border-radius: 30px;
-//    font-size: 15px;
-//    line-height: 18px;
-//  }
-//}
+@media (min-width: 1680px) {
+  .btn {
+    font-size: 22px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+}

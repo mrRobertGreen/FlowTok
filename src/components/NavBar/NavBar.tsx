@@ -60,8 +60,8 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
 
    const gradientText = {
       background: "linear-gradient(143.49deg, #030F6B -41.61%, #7633F0 98.25%)",
-      webkitBackgroundClip: "text",
-      webkitTextFillColor: "transparent",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
       textShadow: "0px 0px 10px rgba(255, 251, 118, 0.4)",
    }
 

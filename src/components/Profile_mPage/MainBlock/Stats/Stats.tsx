@@ -1,5 +1,7 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
+import {useMedia} from "react-media";
+import {GLOBAL_MEDIA_QUERIES} from "../../../Page/Page";
 
 type PropsType = {
    rate: number
@@ -8,6 +10,8 @@ type PropsType = {
 }
 
 const Stats: FC<PropsType> = ({rate, medianViews, rating}) => {
+   const queries = useMedia({queries: GLOBAL_MEDIA_QUERIES})
+
    return (
       <div className={styles.wrapper}>
          <div className={styles.title}>
@@ -34,7 +38,7 @@ const Stats: FC<PropsType> = ({rate, medianViews, rating}) => {
                <div className={styles.prop}>
                   Рейтинг для рекламодателей
                </div>
-               <div className={styles.value}>
+               <div className={styles.value} style={{color: queries.largeTablet ? "#24C054" : "black"}}>
                   {rating}
                </div>
             </div>
