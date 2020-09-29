@@ -12,6 +12,7 @@ import {ToggleSwitch} from "../../components/Input/Input";
 import {Separator} from "../../components/Separator/Separator";
 import {TakeMoney} from "../../components/Settings/TakeMoneyWay/TakeMoneyWay";
 
+
 /*
 * здесь нужно подавать в Card паддинги и разрмеры разные, в зависимости от isDesktop
 * Предоставляю сие развлечение тебе
@@ -23,6 +24,11 @@ import {TakeMoney} from "../../components/Settings/TakeMoneyWay/TakeMoneyWay";
 
 const Settings = () => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
+
+    let Size = "small";
+    if (isDesktop) {
+        let Size = "big"
+    }
 
     // вот тут надо принимать тот самый список, о котором я писал
     // здесь должен быть map
@@ -66,54 +72,68 @@ const Settings = () => {
         <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Settings"}>
             {!isDesktop && <TopNavbar label={"Настройки"} logo={true} br={"0px 0px 11px 11px"}/>}
             <div className={styles.container}>
-                <Card>
-                    <div className={styles.title}>
-                        Аккаунт
-                    </div>
-                    <Account/>
-                </Card>
-                <Card>
-                    <div className={styles.title}>
-                        Уведомления
-                    </div>
-                    <div className={styles.notification}>
-                        <DoubleText
-                            FirstChildren={"Включить уведомления Telegram"}
-                            SecondChildren={"Получайте актуальные задания самый первый!"}
-                            pt={"0"}
-                            pb={"0"}/>
-                        <ToggleSwitch isLabel={true}/>
-                    </div>
-                </Card>
-                <Card>
-                    <div className={styles.title}>
-                        Вывод средств
-                    </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Аккаунт
+                        </div>
+                        <Account/>
+                    </Card>
+                </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Уведомления
+                        </div>
+                        <div className={styles.notification}>
+                            <DoubleText
+                                FirstChildren={"Включить уведомления Telegram"}
+                                SecondChildren={"Получайте актуальные задания самый первый!"}
+                                pt={"0"}
+                                pb={"0"}/>
+                            <ToggleSwitch isLabel={false}/>
+                        </div>
+                    </Card>
+                </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Вывод средств
+                        </div>
 
-                    {Saves(true)}
-                    <Separator m={"21px 0 21px 0 "}/>
+                        {Saves(true)}
+                        <Separator m={"21px 0 21px 0 "}/>
 
-                    <p className={styles.save}>Добавить</p>
-                    <TakeMoney/>
-                </Card>
+                        <p className={styles.save}>Добавить</p>
+                        <TakeMoney/>
+                    </Card>
+                </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Поддержка
+                        </div>
+                        <div className={styles.connectText}>
+                            <DoubleText
+                                FirstChildren={""}
+                                SecondChildren={"По любым вопросам Вы можется свзяаться с нами по почте или через наш Telegram"}
+                                pt={"0"}
+                                pb={"0"}/>
+                        </div>
+                        <div className={styles.connect}>
+                            <p className={styles.connect__mailType}>Почта</p>
+                            <p className={styles.connect__mail}>flowtokcom@gmail.com</p>
+                        </div>
 
-                <Card>
-                    <div className={styles.title}>
-                        Поддержка
-                    </div>
-                    <div style={{paddingRight:"50px"}}>
-                    <DoubleText
-                        FirstChildren={""}
-                        SecondChildren={"По любым вопросам Вы можется свзяаться с нами по почте или через наш Telegram"}
-                        pt={"0"}
-                        pb={"0"}/>
-                    </div>
-                    <div>
-                        <p></p>
-                    </div>
+                        <Separator m={"0 0"}/>
 
-                </Card>
+                        <div className={styles.connect}>
+                            <p className={styles.connect__mailType}>Telegram</p>
+                            <p className={styles.connect__mail}>@flowtokcom</p>
+                        </div>
 
+                    </Card>
+                </div>
             </div>
             <NavBar_m pageName={"Settings"} newTasksNumber={3}/>
         </Page>

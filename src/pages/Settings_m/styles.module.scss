@@ -1,8 +1,11 @@
 $backColor: #E5E5EA;
 .container {
-  padding-bottom: 93px;
+  padding-bottom: 90px;
+  padding-top: 6px;
 }
-
+.main {
+  padding: 6px 10px;
+}
 .title {
   font-size: 17px;
   line-height: 20px;
@@ -28,7 +31,7 @@ $backColor: #E5E5EA;
   height: 52px;
   padding-left: 15px;
 }
-
+// это попытки изменить карту
 .input {
   &:checked + .card {
     $backColor: blue;
@@ -65,4 +68,41 @@ $backColor: #E5E5EA;
   margin-bottom: 15px;
 
   color: #1D1D1D;
+}
+
+.connectText {
+  padding-right: 50px;
+}
+
+.connect {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 15px 0;
+
+  &__mailType {
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+
+    color: #1D1D1D;
+  }
+  &__mail {
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+
+    color: #2B44F2;
+  }
+}
+
+@media (max-width: 350px) {
+  .connectText {
+    padding-right: 0;
+  }
+}
+
+// middle
+@media (max-width: 767px) {
+
 }
