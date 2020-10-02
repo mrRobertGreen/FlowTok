@@ -9,9 +9,10 @@ type PropsType = {
 const Modal: FC<PropsType> = ({children, isOpen}) => {
 	return (
 		<>
-			<div className={styles.main}>
-				{children}
-				<div className={styles.dark}/>
+			<div className={styles.dark}>
+				<div className={styles.body}>
+					{children}
+				</div>
 			</div>
 		</>
 	)

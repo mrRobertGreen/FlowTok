@@ -82,9 +82,9 @@
     display: flex;
     border: 2px solid #FFFFFF;
     border-radius: 100%;
-    padding: 2.5px 5.5px;
-    width: 22px;
-    height: 22px;
+    padding: 2px 5px;
+    width: 20px;
+    height: 20px;
     justify-content: center;
     align-items: center;
   }
@@ -107,7 +107,7 @@
       .info {
         text-align: left;
         .name {
-          font-size: 21px;
+          font-size: 20px;
           margin-bottom: 5px;
         }
         .surname {
@@ -162,6 +162,12 @@
         }
       }
     }
+  }
+  .notification {
+    padding: 2.5px 5.5px;
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
   }
   .item {
     margin-top: 45px;

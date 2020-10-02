@@ -67,11 +67,11 @@ const App: FC = () => {
       <div style={isMobile ? mobileStyle : desktopStyle}>
          {error &&
 			<Modal isOpen={true}
-			       children={<Alert close={closeError} message={error} title={"Ошибка"}
+			       children={<Alert onClose={closeError} message={error} title={"Ошибка"} btnText={"text"}
                                  isError={true}/>}/>}
          {notification &&
 			<Modal isOpen={!!notification}
-			       children={<Alert close={closeNotification} message={notification} title={"Успех"}
+			       children={<Alert onClose={closeNotification} message={notification} title={"Успех"}
                                  isError={false}/>}/>
          }
          <Switch>

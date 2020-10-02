@@ -4,7 +4,7 @@ import {getUserData} from "../user/user-reducer";
 const initialState = {
    isFetching: false,
    isInit: false,
-   notification: null as null | string,
+   notification: "notification" as null | string,
    error: null as null | string,
    isDesktop: false,
 }
