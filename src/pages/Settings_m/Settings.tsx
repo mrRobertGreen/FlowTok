@@ -72,29 +72,34 @@ const Settings = () => {
         <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Settings"}>
             {!isDesktop && <TopNavbar label={"Настройки"} logo={true} br={"0px 0px 11px 11px"}/>}
             <div className={styles.container}>
-                <Card>
-                    <div className={styles.title}>
-                        Аккаунт
-                    </div>
-                    <Account/>
-                </Card>
-                <Card>
-                    <div className={styles.title}>
-                        Уведомления
-                    </div>
-                    <div className={styles.notification}>
-                        <DoubleText
-                            FirstChildren={"Включить уведомления Telegram"}
-                            SecondChildren={"Получайте актуальные задания самый первый!"}
-                            pt={"0"}
-                            pb={"0"}/>
-                        <ToggleSwitch isLabel={false}/>
-                    </div>
-                </Card>
-                <Card>
-                    <div className={styles.title}>
-                        Вывод средств
-                    </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Аккаунт
+                        </div>
+                        <Account/>
+                    </Card>
+                </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Уведомления
+                        </div>
+                        <div className={styles.notification}>
+                            <DoubleText
+                                FirstChildren={"Включить уведомления Telegram"}
+                                SecondChildren={"Получайте актуальные задания самый первый!"}
+                                pt={"0"}
+                                pb={"0"}/>
+                            <ToggleSwitch isLabel={false}/>
+                        </div>
+                    </Card>
+                </div>
+                <div className={styles.main}>
+                    <Card>
+                        <div className={styles.title}>
+                            Вывод средств
+                        </div>
 
                         {Saves(true)}
                         <Separator m={"21px 0 21px 0 "}/>
@@ -103,6 +108,7 @@ const Settings = () => {
                         <TakeMoney/>
                     </Card>
                 </div>
+
                 <div className={styles.main}>
                     <Card>
                         <div className={styles.title}>
@@ -129,6 +135,7 @@ const Settings = () => {
 
                     </Card>
                 </div>
+            </div>
         </Page>
     )
 }

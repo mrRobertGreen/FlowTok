@@ -3,7 +3,6 @@ import styles from "./styles.module.scss"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../../../redux/store";
 import {BlogTaskStatusType, BlogTaskType} from "../../../../../redux/user/user-reducer";
-import {Card} from "../../../../Card/Card";
 import Button from "../../../../Button/Button";
 import HorizontalLine from "../../../../../media/icons/HorisontalLine.svg";
 import VerticalLine from "../../../../../media/icons/VerticalLine.svg";
@@ -48,7 +47,9 @@ export const TaskCard: FC<PropsT> = ({
                             <p className={styles.info}>{info}</p>
                         </div>
                         <div className={styles.leftContainer}>
-                            <img src={VerticalLine} alt="" className={styles.vertLine}/>
+                            {/*<img src={VerticalLine} alt="" className={styles.vertLine}/>*/}
+                            <div className={styles.vertLine}><Separator m={"0 10px"}/></div>
+
                             <div className={styles.btnContainer}>
                                 <div className={styles.cost}>
                                     <p className={styles.cost__text}>За задание</p>

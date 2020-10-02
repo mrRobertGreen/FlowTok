@@ -51,8 +51,11 @@
   color: #000000;
 }
 .vertLine {
-  display: block;
   height: 100%;
+  -webkit-transform: rotate(-90deg); /* Chrome y Safari */
+  -moz-transform: rotate(-90deg); /* Firefox */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
+  -o-transform: rotate(-90deg); /* Opera */
 }
 
 .cost {
