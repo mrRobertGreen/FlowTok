@@ -17,6 +17,7 @@
   padding-left: 10px;
   &__acc {
     font-size: 17px;
+    font-weight: bold;
     line-height: 20px;
     text-align: center;
     letter-spacing: -0.41px;
@@ -71,5 +72,19 @@
     letter-spacing: -0.385882px;
 
     color: #FF3B30;
+  }
+}
+
+@media (min-width: 1024px) {
+  .name {
+    &__acc {
+      font-size: 23px;
+      line-height: 27px;
+
+      letter-spacing: -0.554706px;
+    }
+    &__mail {
+      text-align: left;
+    }
   }
 }

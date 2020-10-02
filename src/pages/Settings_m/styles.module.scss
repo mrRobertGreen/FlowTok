@@ -105,6 +105,33 @@ $backColor: #E5E5EA;
 }
 
 // middle
-@media (max-width: 767px) {
-
+@media (min-width: 767px) {
+  .container {
+    width: 80%;
+  }
 }
+@media (min-width: 1024px) {
+  .container {
+    width: 95%;
+    display: flex;
+  }
+  .main {
+    padding: 15px;
+  }
+
+  .leftBlock {
+    flex: 1 1 80%;
+  }
+  .title {
+    font-size: 26px;
+    line-height: 30px;
+    letter-spacing: -0.627059px;
+  }
+}
+
+@media (min-width: 1600px){
+  .container {
+    width: 80%;
+  }
+}
+
