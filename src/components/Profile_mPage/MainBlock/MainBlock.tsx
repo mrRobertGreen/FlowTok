@@ -44,7 +44,7 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
          image: "",
          login: "@sdfg",
          medianViews: "123",
-         name: "Dima",
+         name: "Dimaaaaann",
          rate: 123,
          rating: 123,
          heart: "123",
