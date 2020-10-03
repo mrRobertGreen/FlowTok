@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile/Profile";
 import Refs_m from "./pages/Refs_m/Refs_m";
-import Settings from "./pages/Settings_m/Settings";
+import Settings from "./pages/Settings/Settings";
 import Cabinet_m from "./pages/Cabinet_m/Cabinet_m";
 import Work_m from "./pages/Work/Work";
 import TaskForm_m from "./pages/TaskForm_m/TaskForm_m";
@@ -88,7 +88,7 @@ const App: FC = () => {
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}
             {/*<Route path="/ref/:refId" component={RefRedirect}/>*/}
-            {/*<Route path="/settings" component={Settings_m}/>*/}
+            {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route exact path="/withdraw" component={WithdrawTypes_m}/>*/}
             {/*<Route path="/withdraw/:type" component={Withdraw_m}/>*/}
             {/*<Route path="/user_terms" component={UserTerms}/>*/}

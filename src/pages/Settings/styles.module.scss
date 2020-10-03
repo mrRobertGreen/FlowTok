@@ -8,6 +8,7 @@ $backColor: #E5E5EA;
 .container {
   padding-top: 6px;
   margin: 0 auto;
+  width: 100%;
 }
 .main {
   padding: 6px 10px;
@@ -25,6 +26,7 @@ $backColor: #E5E5EA;
 .notification {
   display: flex;
   justify-content: space-between;
+  margin-right: 15px;
 }
 
 .card {
@@ -111,41 +113,43 @@ $backColor: #E5E5EA;
 
 @media (min-width: 767px) {
   .container {
-    width: 80%;
   }
 }
 // middle
 @media (min-width: 1024px) {
   .Card {
-    padding: 22px 27px;
+    padding: 40px 35px;
+    border-radius: 30px;
   }
-  
   .container {
-    width: 95%;
     display: flex;
   }
 
   .leftBlock {
-    flex: 1 1 80%;
+    flex: 1 1 50%;
+  }
+  .rightBlock {
+    flex: 1 1 50%;
   }
   .title {
     font-size: 26px;
     line-height: 30px;
     letter-spacing: -0.627059px;
+    margin-bottom: 25px;
   }
 }
 
 
-@media (min-width: 1600px){
+@media (min-width: 1680px){
   .container {
     width: 80%;
+    margin: 0;
   }
   .main {
     padding: 15px;
   }
   .Card {
     padding: 65px 60px;
-    border-right: 30px;
   }
 }
 

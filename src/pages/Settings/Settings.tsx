@@ -98,7 +98,7 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className={styles.rightBlock}>
                     <div className={styles.main}>
                         <div className={styles.Card}>
                             <div className={styles.title}>
