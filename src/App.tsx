@@ -31,6 +31,7 @@ import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
+import {Panel} from "./pages/Panel/Panel";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -84,6 +85,7 @@ const App: FC = () => {
             <Route path="/work/:type" component={Work_m}/>
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
             <Route path="/settings" component={Settings}/>
+            <Route path="/ad/panel" component={Panel}/>
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}
