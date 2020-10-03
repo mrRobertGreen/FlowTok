@@ -125,7 +125,7 @@ const Settings = () => {
                                     pt={"0"}
                                     pb={"0"}/>
                             </div>
-                            <div className={styles.connect}>
+                            <div className={styles.connect} style={{paddingBottom:"15px"}}>
                                 <p className={styles.connect__mailType}>Почта</p>
                                 <p className={styles.connect__mail}>flowtokcom@gmail.com</p>
                             </div>
