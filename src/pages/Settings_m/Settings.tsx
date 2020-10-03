@@ -74,16 +74,16 @@ const Settings = () => {
             <div className={styles.container}>
                 <div className={styles.leftBlock}>
                     <div className={styles.main}>
-                        <Card>
+                        <div className={styles.Card}>
                             <div className={styles.title}>
                                 Аккаунт
                             </div>
                             <Account/>
-                        </Card>
+                        </div>
                     </div>
 
                     <div className={styles.main}>
-                        <Card>
+                        <div className={styles.Card}>
                             <div className={styles.title}>
                                 Уведомления
                             </div>
@@ -95,12 +95,12 @@ const Settings = () => {
                                     pb={"0"}/>
                                 <ToggleSwitch isLabel={false}/>
                             </div>
-                        </Card>
+                        </div>
                     </div>
                 </div>
                 <div>
                     <div className={styles.main}>
-                        <Card>
+                        <div className={styles.Card}>
                             <div className={styles.title}>
                                 Вывод средств
                             </div>
@@ -110,11 +110,11 @@ const Settings = () => {
 
                             <p className={styles.save}>Добавить</p>
                             <TakeMoney/>
-                        </Card>
+                        </div>
                     </div>
 
                     <div className={styles.main}>
-                        <Card>
+                        <div className={styles.Card}>
                             <div className={styles.title}>
                                 Поддержка
                             </div>
@@ -137,7 +137,7 @@ const Settings = () => {
                                 <p className={styles.connect__mail}>@flowtokcom</p>
                             </div>
 
-                        </Card>
+                        </div>
                     </div>
                 </div>
             </div>
