@@ -12,6 +12,7 @@ import {RefDataType} from "../../../../api/user-api";
 import {Separator} from "../../../Separator/Separator";
 import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../../Page/Page";
+import separatorY from "../../../../media/icons/separator_y.svg"
 
 type PropsType = {}
 
