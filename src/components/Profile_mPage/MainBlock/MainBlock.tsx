@@ -1,5 +1,5 @@
 import React, {FC, useState} from "react";
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
 import Info from "./Info/Info";
 import Balance from "./Balance/Balance";
 import Stats from "./Stats/Stats";
@@ -17,6 +17,7 @@ import MiniCard from "./MiniCard/MiniCard";
 import Refs from "./Refs/Refs";
 import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../Page/Page";
+import {Container} from "../../Container/Container";
 
 type PropsType = {
    isDesktop: boolean
@@ -83,14 +84,17 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
             <div className={styles.balance}>
                <Balance valueDown={valueDown} valueUp={valueUp}/>
             </div>
-            <div className={styles.miniCard1}>
-               <MiniCard label={"Ждет\n зачисления"} value={6703.50} pad={"10px 10px 0 10px"}/>
-            </div>
             <div className={styles.miniCard2}>
                <MiniCard label={"Получено за все время"} value={164520.30} pad={"10px 10px 0 0"}/>
             </div>
-            <div className={styles.stats}>
-               <Stats medianViews={medianViews} rate={rate} rating={rating}/>
+            <div>
+               <Container/>
+            </div>
+            <div>
+               <Container/>
+            </div>
+            <div>
+               <Container/>
             </div>
             <div className={styles.refs}>
                <Refs/>
