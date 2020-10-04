@@ -33,7 +33,7 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   Главная
                </div>
             </NavLink>
-            <NavLink to={"/work"} className={styles.item}>
+            <NavLink to={"/containers/small"} className={styles.item}>
                <div className={styles.iconWrap}>
                   <img src={pageName === "Work" ? workIconActive : container} alt="" className={styles.icon}/>
                   {/*{pageName === "Profile" && newTasksNumber &&*/}

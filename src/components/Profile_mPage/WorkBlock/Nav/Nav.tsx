@@ -4,13 +4,13 @@ import classNames from "classnames";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
 import {NavLink} from "react-router-dom";
-import {BlogTaskStatusType} from "../../../../redux/user/user-reducer";
+import {ContainerT} from "../../../../redux/user/user-reducer";
 
 type PropsType = {
-   taskType: BlogTaskStatusType
+   type: ContainerT
 }
 
-const Nav: FC<PropsType & PropsFromRedux> = ({taskType}) => {
+const Nav: FC<PropsType & PropsFromRedux> = ({type}) => {
 
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    const sliderItem = useRef<HTMLDivElement>(null)
@@ -19,26 +19,32 @@ const Nav: FC<PropsType & PropsFromRedux> = ({taskType}) => {
    useEffect(() => {
       const div = sliderItem.current
       if (div) {
-         if (taskType === "new") {
+         if (type === "small") {
             div.classList.remove(`${styles.sliderItemR}`)
-         } else {
+         } else if (type === "large") {
             div.classList.add(`${styles.sliderItemR}`)
+         } else {
+            //...
          }
       }
-   }, [taskType])
+   }, [type])
 
    return (
       <nav className={styles.wrapper}>
          <div className={styles.sections}>
             <div className={styles.sliderItemL} ref={sliderItem}/>
-            <NavLink to={"/work/new"}
-                     className={classNames(styles.item, {[styles.active]: taskType === "new"})}>
-               <div>Активные</div>
+            <NavLink to={"/containers/small"}
+                     className={classNames(styles.item, {[styles.active]: type === "small"})}>
+               <div>Small</div>
             </NavLink>
-            <NavLink to={"/work/done"}
-                     className={classNames(styles.item, {[styles.active]: taskType === "done"})}>
-               <div>Выполненные</div>
+            <NavLink to={"/containers/large"}
+                     className={classNames(styles.item, {[styles.active]: type === "large"})}>
+               <div>Large</div>
             </NavLink>
+            {/*<NavLink to={"/containers/fridge"}*/}
+            {/*         className={classNames(styles.item, {[styles.active]: type === "large"})}>*/}
+            {/*   <div>Холодильник</div>*/}
+            {/*</NavLink>*/}
          </div>
       </nav>
    )

@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
-import Work_m from "./pages/Work/Work";
+import {Containers} from "./pages/Work/Containers";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";
 import Modal from "./components/common/Modal/Modal";
@@ -63,7 +63,7 @@ const App: FC = () => {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
-            {/*<Route path="/work/:type" component={Work_m}/>*/}
+            <Route path="/containers/:type" component={Containers}/>
             {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route path="/ad/panel" component={Panel}/>*/}

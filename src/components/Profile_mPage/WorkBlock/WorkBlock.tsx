@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from "react";
 import Nav from "./Nav/Nav";
 import {useParams} from "react-router";
-import {BlogTaskStatusType, getBlogTasks} from "../../../redux/user/user-reducer";
+import {ContainerT, getBlogTasks} from "../../../redux/user/user-reducer";
 import {TaskCard_m} from "./TaskList/TaskCard_m/TaskCard_m";
 import TopNavbar from "../../TopNavbar/TopNavbar";
 import {useDispatch, useSelector} from "react-redux";
@@ -20,10 +20,10 @@ const WorkBlock: FC<PropsType> = () => {
    const doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
    const task = useSelector((state: RootStateType) => state.user.task)
 
-   useEffect(() => {
-      if (newTasks === null) dispatch(getBlogTasks("new"))
-      if (doneTasks === null) dispatch(getBlogTasks("done"))
-   }, [newTasks, doneTasks, dispatch])
+   // useEffect(() => {
+   //    if (newTasks === null) dispatch(getBlogTasks("new"))
+   //    if (doneTasks === null) dispatch(getBlogTasks("done"))
+   // }, [newTasks, doneTasks, dispatch])
 
 
    if (task) {
@@ -33,7 +33,7 @@ const WorkBlock: FC<PropsType> = () => {
    return (
       <div className={styles.container}>
          {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
-         <Nav taskType={type as BlogTaskStatusType}/>
+         <Nav type={type as ContainerT}/>
          <TaskList taskType={type}/>
       </div>
    )

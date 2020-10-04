@@ -181,20 +181,20 @@ export const setUserData = (userData: UserDataType, dispatch: Dispatch<Action>) 
       localStorage.setItem("advProfile", JSON.stringify(userData))
    }
 }
-export const getBlogTasks = (taskStatus: BlogTaskStatusType): ThunkType => {
+export const getBlogTasks = (taskStatus: ContainerT): ThunkType => {
    return async (dispatch) => {
       // get tasks for blogger
       const data = await userApi.getBlogTasks(taskStatus)
       if (data.success) {
-         switch (taskStatus) {
-            case "done":
-               localStorage.setItem("blogDoneTasks", JSON.stringify(data.data))
-               dispatch(userActions.setBlogDoneTasks(data.data))
-               return
-            case "new":
-               dispatch(userActions.setBlogNewTasks(data.data))
-               return
-         }
+         // switch (taskStatus) {
+         //    case "done":
+         //       localStorage.setItem("blogDoneTasks", JSON.stringify(data.data))
+         //       dispatch(userActions.setBlogDoneTasks(data.data))
+         //       return
+         //    case "new":
+         //       dispatch(userActions.setBlogNewTasks(data.data))
+         //       return
+         // }
       }
       checkMessageNotification(data, dispatch)
    }
@@ -386,5 +386,5 @@ export type BlogTaskType = {
    text?: string
    isActive?: boolean
 }
-export type BlogTaskStatusType = "new" | "done"
+export type ContainerT = "small" | "large" | "fridge"
 export type AdvTaskStatusType = "play" | "pause"
