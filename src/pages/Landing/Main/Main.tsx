@@ -24,10 +24,10 @@ export const Main: FC = () => {
             <div className={styles.container}>
                 <div className={styles.mainText}>
                     <div className={styles.mainText__earn}>
-                        <p>Зарабатывай с FlowTok</p>
+                        <p>Зарабатывай с Container</p>
                     </div>
                     <div className={styles.mainText__content}>
-                        <p>Создавай потрясающий контент и получай за него деньги</p>
+                        <p>Инвестируй в контейнеры и получай за них деньги</p>
                     </div>
                     <NavLink to={"/"}>
                         <div className={styles.mainText__createBtn}>

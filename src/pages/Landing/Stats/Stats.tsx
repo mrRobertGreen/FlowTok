@@ -19,7 +19,7 @@ export const Stats: FC = () => {
                     563 195
                 </p>
                 <p className={styles.little}>
-                    Пользователей в FlowTok
+                    Пользователей в Container
                 </p>
             </div>
             <div className={styles.container}>
