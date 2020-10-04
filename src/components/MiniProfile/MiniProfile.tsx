@@ -9,7 +9,7 @@ export const MiniProfile: FC = () => {
    const dispatch = useDispatch()
 
    const onChangeAcc = () => {
-      dispatch(authActions.setTikTokSuccess(false))
+
    }
 
    return (

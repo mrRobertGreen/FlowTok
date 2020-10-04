@@ -6,7 +6,6 @@ import Button from "../../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {Input} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
-import {setTikTok} from "../../../redux/auth/auth-reducer";
 import {MiniProfile} from "../../MiniProfile/MiniProfile";
 
 
@@ -23,7 +22,7 @@ export const TikTokForm: FC<PropsType> = () => {
    const tikTokSuccess = useSelector((state: RootStateType) => state.auth.tikTokSuccess)
 
    const onSubmit = async (values: TikTokFormValuesType, {resetForm, setFieldError}: FormikValues) => {
-      dispatch(setTikTok(values.link, setFieldError, resetForm, setIsLoading))
+
    }
 
    if (tikTokSuccess) return <MiniProfile/>

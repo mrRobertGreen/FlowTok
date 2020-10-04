@@ -1,31 +1,12 @@
 import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile/Profile";
-import Refs_m from "./pages/Refs_m/Refs_m";
 import Settings from "./pages/Settings/Settings";
-import Cabinet_m from "./pages/Cabinet_m/Cabinet_m";
 import Work_m from "./pages/Work/Work";
-import TaskForm_m from "./pages/TaskForm_m/TaskForm_m";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";
-import Preloader from "./components/common/Preloader/Preloader";
-import FirstStep from "./pages/Login_m/FirstStep/FirstStep";
-import SecondStep from "./pages/Login_m/SecondStep/SecondStep";
-import ThirdStep from "./pages/Login_m/ThirdStep/ThirdStep";
-import RefRedirect from "./components/common/RefRedirect/RefRedirect";
-import WithdrawTypes_m from "./pages/WithdrawTypes_m/WithdrawTypes_m";
-import Withdraw_m from "./pages/Withdraw_m/Withdraw_m";
-import {UserTerms} from "./pages/UserTerms/UserTerms";
-import {Topup} from "./pages/Topup/Topup";
-import {Task_m} from "./pages/Task_m/Task_m";
 import Modal from "./components/common/Modal/Modal";
 import Alert from "./components/common/Alert/Alert";
-import AdminPanel from "./pages/AdminPanel/AdminPanel";
-import PushBalance from "./pages/PushBalance/PushBalance";
-import AdvRedirect from "./pages/AdvRedirect/AdvRedirect";
-import {Support} from "./pages/Support/Support";
-import {Verification} from "./pages/Verification/Verification";
-import {VerificationForm} from "./pages/VerificationForm/VerificationForm";
 import {isMobile} from "react-device-detect"
 import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";

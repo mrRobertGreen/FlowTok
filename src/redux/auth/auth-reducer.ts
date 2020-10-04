@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsType} from "../store";
-import {authApi, AuthMeReqDataType} from "../../api/auth-api";
+import {authApi, AuthMeReqPayloadType} from "../../api/auth-api";
 import {getUserData, userActions} from "../user/user-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions, initialize} from "../app/app-reducer";
@@ -18,6 +18,7 @@ const initialState = {
    loginSuccess: false,
    tikTokSuccess: false,
    verifySuccess: false,
+   needMoreInfo: false
 }
 const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
    switch (action.type) {
@@ -30,11 +31,6 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
          return {
             ...state,
             loginSuccess: action.success
-         }
-      case "auth/SET_TIK_TOK_SUCCESS":
-         return {
-            ...state,
-            tikTokSuccess: action.success
          }
       case "auth/SET_VERIFY_SUCCESS":
          return {
@@ -56,15 +52,10 @@ const authReducer = (state = initialState, action: ActionsType): InitialStateTyp
             ...state,
             role: action.role
          }
-      case "auth/SET_FIRST_SUCCESS":
+      case "auth/SET_NEED_MORE_INFO":
          return {
             ...state,
-            firstSuccess: action.success
-         }
-      case "auth/SET_SECOND_SUCCESS":
-         return {
-            ...state,
-            secondSuccess: action.success
+            needMoreInfo: action.flag
          }
       case "auth/CLEAR":
          return {
@@ -86,11 +77,9 @@ export const authActions = {
    setIsAuth: (isAuth: boolean) => ({type: "auth/SET_IS_AUTH", isAuth} as const),
    setIsAdv: (isAdv: boolean) => ({type: "auth/SET_IS_ADV", isAdv} as const),
    setUserRole: (role: UserRolesType) => ({type: "auth/SET_USER_ROLE", role} as const),
-   setFirstSuccess: (success: boolean) => ({type: "auth/SET_FIRST_SUCCESS", success} as const),
-   setSecondSuccess: (success: boolean) => ({type: "auth/SET_SECOND_SUCCESS", success} as const),
-   setTikTokSuccess: (success: boolean) => ({type: "auth/SET_TIK_TOK_SUCCESS", success} as const),
    setLoginSuccess: (success: boolean) => ({type: "auth/SET_LOGIN_SUCCESS", success} as const),
    setVerifySuccess: (success: boolean) => ({type: "auth/SET_VERIFY_SUCCESS", success} as const),
+   setNeedMoreInfo: (flag: boolean) => ({type: "auth/SET_NEED_MORE_INFO", flag} as const),
    clear: () => ({type: "auth/CLEAR"} as const),
 }
 
@@ -99,148 +88,37 @@ export const callbackVk = () => {
    document.location.href = vkApiPath
 }
 
-export const login = (googleId: string = "",
-                      vkCode: string = "",
-                      setButtonSuccess: (success: boolean) => void): ThunkType => {
+
+export const authMe = (payload: AuthMeReqPayloadType,
+                       handleReset: () => void,
+                       setIsLoading: (flag: boolean) => void,): ThunkType => {
    return async (dispatch, getState) => {
+      // login & registration
       await commonThunkHandler(async () => {
-         // create authMe request body
-         let reqBody = createAuthReqBody(googleId, vkCode)
-
-         // fake for development
-         const advKey = "Helldlllooo"
-         const blogKey = "1"
-         const fakeReqBody = {
-            auth: blogKey,
-         }
-
-         // if we have auth key we send this else we send vkCode
-         const data = await authApi.authMe(reqBody)
+         setIsLoading(true)
+         const data = await authApi.authMe(payload)
 
          if (data.success) {
             // if token received set it
             localStorage.setItem("token", data.data.token)
-            // dispatch flag isNew
-            dispatch(authActions.setIsNew(data.data.isNew))
-            // set login success
-            setButtonSuccess(true) // success for button
-            dispatch(authActions.setLoginSuccess(true)) // may be i will delete this
-            if (!data.data.isNew) {
-               // if user already registered (isNew === false) try to get and set user data
-               await dispatch(getUserData())
-               // if getting and setting data is successful authorization finished
+            dispatch(authActions.setLoginSuccess(true))
+            handleReset() // reset form
+            if (data.data.needMoreInfo) {
+               dispatch(authActions.setNeedMoreInfo(true))
+            } else {
                dispatch(authActions.setIsAuth(true))
             }
+         } else if (!data.success && data.error && data.error.name === "wrong_password") {
+            dispatch(appActions.setError("Неверный пароль!"))
          } else {
             await dispatch(exit())
-         }
-         checkMessageNotification(data, dispatch)
-      }, dispatch)
-   }
-}
-
-export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): ThunkType => {
-   return async (dispatch, getState) => {
-      if (localStorage.getItem("token")) { // if token already received do nothing
-         return
-      }
-
-      const ref = localStorage.getItem("ref") // get ref link
-
-      // create authMe request body
-      let reqBody: AuthMeReqDataType = {}
-
-      if (ref) {
-         reqBody.ref = ref
-      }
-      if (auth) {
-         reqBody.auth = auth
-      } else if (vkCode) {
-         reqBody.vkCode = vkCode
-      }
-
-      const advKey = "Helldlllooo"
-      const blogKey = "1"
-      const fakeReqBody = {
-         auth: blogKey,
-      }
-      dispatch(appActions.toggleIsFetching(true))
-
-      // if we have auth key we send this else we send vkCode
-      const data = await authApi.authMe(reqBody)
-
-      if (data.success) {
-         // if token received set it
-         localStorage.setItem("token", data.data.token)
-         // dispatch flag isNew
-         dispatch(authActions.setIsNew(data.data.isNew))
-         if (!data.data.isNew) {
-            // if user already registered (isNew === false) try to get and set user data
-            await dispatch(getUserData())
-            // if getting and setting data is successful authorization finished
-         } else {
-            // if user is new continue registration
-            dispatch(authActions.setFirstSuccess(true))
-            // it's temporary, because we turn off advertiser
-            if (getState().auth.isAdv) {
-               await dispatch(goToThirdLoginStep("Advertiser"))
-            } else {
-               await dispatch(goToThirdLoginStep("Blogger"))
-            }
-         }
-      } else {
-         await dispatch(exit())
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
-   }
-}
-
-export const goToThirdLoginStep = (role: UserRolesType): ThunkType => {
-   return async (dispatch, getState) => {
-      if (role === "Advertiser") {
-         dispatch(appActions.toggleIsFetching(true))
-         dispatch(authActions.setUserRole("Advertiser"))
-         // say to server that user is advertiser and in response we get user data (advProfile)
-         const data = await authApi.setAdv()
-         if (data.success) {
-            // if we get advProfile set data and finish authorization
-            dispatch(userActions.setAdvProfile(data.data))
-            dispatch(authActions.setIsAuth(true))
-         } else {
-            await dispatch(exit())
-         }
-         dispatch(appActions.toggleIsFetching(false))
-         checkMessageNotification(data, dispatch)
-      } else if (role === "Blogger") {
-         // we need to continue authorization
-         dispatch(authActions.setUserRole("Blogger"))
-         dispatch(authActions.setSecondSuccess(true))
-      }
-   }
-}
-export const setTikTok = (tikTokUrl: string,
-                          setFieldError: (field: string, errorMsg: string) => void,
-                          handleReset: () => void,
-                          setIsLoading: (flag: boolean) => void): ThunkType => {
-   return async (dispatch) => {
-      await commonThunkHandler(async () => {
-         // send blogger's tiktok account link to api server
-         setIsLoading(true)
-         const data = await authApi.setTikTokProfile(tikTokUrlParser(tikTokUrl))
-         if (data.success) {
-            dispatch(authActions.setTikTokSuccess(true))
-         } else if (data.error) {
-            if (data.error.messageNotification) {
-               setFieldError("link", data.error.messageNotification)
-            } else {
-               setFieldError("link", "Произошла ошибка. Попробуйте снова")
-            }
          }
          setIsLoading(false)
+         checkMessageNotification(data, dispatch)
       }, dispatch)
    }
 }
+
 export const verify = (payload: VerifyPayloadType,
                        handleReset: () => void,
                        setIsLoading: (flag: boolean) => void,): ThunkType => {

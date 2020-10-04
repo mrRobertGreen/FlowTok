@@ -9,7 +9,7 @@
   border-radius: 20px 20px 0 0;
   justify-content: center;
   align-items: center;
-  padding: 30px 20px 46px;
+  padding: 30px 20px 10px;
   &__item {
     width: 100%;
   }
@@ -17,23 +17,6 @@
     width: 100%;
     margin: 0 auto;
     text-align: center;
-  }
-  .label {
-    font-size: 13px;
-  }
-  .btn {
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    * {
-      flex: 0 1 49%;
-    }
-    &:nth-child(2) {
-      margin-bottom: 50px;
-    }
-  }
-  .btn_submit {
-    margin: 9px 0 0;
   }
   .title {
     align-self: flex-start;
@@ -70,18 +53,6 @@
     .title {
       font-size: 33px;
       padding-bottom: 40px;
-    }
-    .label {
-      font-size: 15px;
-    }
-    .btn {
-      margin-bottom: 20px;
-      &:nth-child(2) {
-        margin-bottom: 60px;
-      }
-    }
-    .btn_submit {
-      margin: 15px 0 0;
     }
   }
 }
