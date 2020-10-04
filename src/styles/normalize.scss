@@ -36,6 +36,11 @@ html,body{
 input,button,textarea{font-family:inherit;}
 
 input::-ms-clear{display: none;}
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 button{cursor: pointer; font-size:inherit}
 button::-moz-focus-inner {padding:0;border:0;}
 a, a:visited{text-decoration: none; color: inherit}

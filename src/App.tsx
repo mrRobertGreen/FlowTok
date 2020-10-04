@@ -63,10 +63,10 @@ const App: FC = () => {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
-            <Route path="/work/:type" component={Work_m}/>
-            <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
-            <Route path="/settings" component={Settings}/>
-            <Route path="/ad/panel" component={Panel}/>
+            {/*<Route path="/work/:type" component={Work_m}/>*/}
+            {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}
+            {/*<Route path="/settings" component={Settings}/>*/}
+            {/*<Route path="/ad/panel" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}
@@ -83,7 +83,7 @@ const App: FC = () => {
             {/*<Route path="/admin" component={AdminPanel}/>*/}
             {/*<Route path="/ad" component={AdvRedirect}/>*/}
             {/*<Route path="/push_balance/:id" component={PushBalance}/>*/}
-            <Route path="/" component={Landing}/>
+            <Route path="/" component={Login}/>
             {/*<Route path="/" component={() => <Redirect to={"/login"}/>}/>*/}
          </Switch>
       </div>
