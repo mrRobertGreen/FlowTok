@@ -21,10 +21,8 @@ export const Login = () => {
                <div className={styles.title}>Вход</div>
                <div className={styles.column}>
                   <div className={styles.btn}>
-                     <LoginGoogle/>
-                  </div>
-                  <div className={styles.btn}>
-                     <LoginVK/>
+                     <Button mod={"white"}>Физ. лицо</Button>
+                     <Button mod={"white"}>Юр. лицо</Button>
                   </div>
                   <div className={styles.label}>Нет аккаунта в FLowTok? Зарегистрируйтесь!</div>
                   <div className={styles.btn_submit}>
