@@ -4,7 +4,7 @@ import {
    AdvTaskStatusType,
    AdvTaskType,
    BlogProfileDataType,
-   BlogTaskStatusType,
+   ContainerT,
    BlogTaskType
 } from "../redux/user/user-reducer";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
@@ -13,7 +13,7 @@ export const userApi = {
    getUserData() {
       return instance.get<BaseResponseType<UserDataType>>("/users/user/profile").then(res => res.data)
    },
-   getBlogTasks(taskStatus: BlogTaskStatusType) {
+   getBlogTasks(taskStatus: ContainerT) {
       return instance.get<BaseResponseType<BlogTasksType>>(`/tasks/type/${taskStatus}`).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {

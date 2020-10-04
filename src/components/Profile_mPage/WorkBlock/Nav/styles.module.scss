@@ -18,13 +18,16 @@
   position: absolute;
   right: auto;
   left: 3px;
-  width: 50%;
+  width: 33.33%;
   background-color: black;
   z-index: 0;
   transition: all ease .3s;
 }
+.sliderItemM {
+  left: 33.33%;
+}
 .sliderItemR {
-  left: 50%;
+  left: 66.66%;
 }
 .sections {
   background: #EFEFF4;
@@ -36,7 +39,7 @@
   border-radius: 30px;
   position: relative;
   .item {
-    flex: 1 1 50%;
+    flex: 1 1 33.33%;
     display: flex;
     align-items: center;
     justify-content: center;

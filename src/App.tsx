@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom'
 import Profile_m from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
-import Work_m from "./pages/Work/Work";
+import {Containers} from "./pages/Work/Containers";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";
 import Modal from "./components/common/Modal/Modal";
@@ -13,6 +13,7 @@ import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
 import {Panel} from "./pages/Panel/Panel";
+import {Work_m} from "../../FlowTok/src/pages/Work/Containers"
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -63,8 +64,12 @@ const App: FC = () => {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
+
             <Route path="/work/:type" component={Work_m}/>
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
+
+            <Route path="/containers/:type" component={Containers}/>
+
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route path="/ad/panel" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}

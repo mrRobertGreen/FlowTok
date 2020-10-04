@@ -4,7 +4,7 @@ import ListItem from "./ListItem/ListItem";
 import {RootStateType} from "../../../../redux/store";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router";
-import {BlogTaskStatusType, BlogTaskType, doBlogTask, getBlogTasks} from "../../../../redux/user/user-reducer";
+import {ContainerT, BlogTaskType, doBlogTask, getBlogTasks} from "../../../../redux/user/user-reducer";
 import Preloader from "../../../common/Preloader/Preloader";
 import {useCache} from "../../../../hooks/useCache";
 import {TaskCard} from "./TaskCard/TaskCard";
@@ -15,7 +15,7 @@ import {Container} from "../../../Container/Container";
 import {Purchase} from "../../../Purchase/Purchase";
 
 type PropsType = {
-    taskType: BlogTaskStatusType
+    taskType: ContainerT
 }
 
 export const TaskList: FC<PropsType> = ({
@@ -84,38 +84,38 @@ export const TaskList: FC<PropsType> = ({
     // if (!isAuth) {
     //    return <Redirect to="/login"/>
     // }
-    if (taskType === "new" && !newTasks) {
-        return <Preloader/>
-    }
-    if (taskType === "done" && !doneTasks) {
-        return <Preloader/>
-    }
+    // if (taskType === "new" && !newTasks) {
+    //     return <Preloader/>
+    // }
+    // if (taskType === "done" && !doneTasks) {
+    //     return <Preloader/>
+    // }
     // if (isFetching) {
     //     return <Preloader/>
     // }
 
-    if (newTasks && taskType === "new" && newTasks.length === 0) {
-        return (
-            <div className={styles.message}>
-                <img src={noTaskImg} alt="" className={styles.noTaskImg}/>
-                <p className={styles.title}>Здесь пока ничего нет</p>
-                <p className={styles.desc}>Мы сообщим Вам, как только появятся актульные задания</p>
-            </div>
-        )
-    }
-    if (doneTasks && taskType === "done" && doneTasks.length === 0) {
-        return <div className={styles.message}>Заданий пока нет...</div>
-    }
-
-    const getTasks = () => {
-        if (taskType === "new" && newTasks) {
-            return newTasks
-        }
-        if (taskType === "done" && doneTasks) {
-            return doneTasks
-        }
-        return [] as Array<BlogTaskType>
-    }
+    // if (newTasks && taskType === "new" && newTasks.length === 0) {
+    //     return (
+    //         <div className={styles.message}>
+    //             <img src={noTaskImg} alt="" className={styles.noTaskImg}/>
+    //             <p className={styles.title}>Здесь пока ничего нет</p>
+    //             <p className={styles.desc}>Мы сообщим Вам, как только появятся актульные задания</p>
+    //         </div>
+    //     )
+    // }
+    // if (doneTasks && taskType === "done" && doneTasks.length === 0) {
+    //     return <div className={styles.message}>Заданий пока нет...</div>
+    // }
+    //
+    // const getTasks = () => {
+    //     if (taskType === "new" && newTasks) {
+    //         return newTasks
+    //     }
+    //     if (taskType === "done" && doneTasks) {
+    //         return doneTasks
+    //     }
+    //     return [] as Array<BlogTaskType>
+    // }
 
     if (isDesktop) {
         return (
@@ -136,8 +136,6 @@ export const TaskList: FC<PropsType> = ({
                 {/*        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}*/}
                 {/*    />*/}
                 {/*))}*/}
-                <Container/>
-
             </div>
         )
     } else {
@@ -159,10 +157,12 @@ export const TaskList: FC<PropsType> = ({
                 {/*        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}*/}
                 {/*    />*/}
                 {/*))}*/}
+
                 <div className={styles.container}>
                     <Container isInformed={true}/>
                     <Purchase/>
                 </div>
+
             </div>
         )
     }
