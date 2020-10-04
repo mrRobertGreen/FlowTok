@@ -36,7 +36,10 @@
     .numbers {
       font-size: 19px;
       line-height: 22px;
-      font-weight: 600;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
     }
     .label {
       font-size: 13px;

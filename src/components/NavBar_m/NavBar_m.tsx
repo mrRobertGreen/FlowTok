@@ -10,6 +10,7 @@ import {NavLink} from "react-router-dom";
 import {PageNamesType} from "../../pages/Profile/Profile";
 import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
+import container from "../../media/images_new/NavBarContainer.svg";
 
 type PropsType = {
    pageName?: PageNamesType
@@ -34,17 +35,17 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
             </NavLink>
             <NavLink to={"/work"} className={styles.item}>
                <div className={styles.iconWrap}>
-                  <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
-                  {pageName === "Profile" && newTasksNumber &&
-	               <div className={styles.notification}>
-                     {newTasksNumber}
-	               </div>}
+                  <img src={pageName === "Work" ? workIconActive : container} alt="" className={styles.icon}/>
+                  {/*{pageName === "Profile" && newTasksNumber &&*/}
+	              {/* <div className={styles.notification}>*/}
+                  {/*   {newTasksNumber}*/}
+	              {/* </div>}*/}
                </div>
                <div
                   className={styles.label}
                   style={{color: `${pageName === "Work" ? "#000" : "#979797"}`}}
                >
-                  Задания
+                  Контейнеры
                </div>
             </NavLink>
             <NavLink to={"/settings"} className={styles.item}>

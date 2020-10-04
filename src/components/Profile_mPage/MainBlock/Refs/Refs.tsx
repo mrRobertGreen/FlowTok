@@ -70,7 +70,12 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
                   Кол-во рефералов
                </div>
                <div className={styles.numbers}>
-                  {refData.refs}
+                  {/*{refData.refs}*/}
+                  <div>1:17</div>
+                  <div>2:34</div>
+                  <div>3:10</div>
+                  <div>4:4</div>
+                  <div>5:7</div>
                </div>
             </div>
             {queries.largeTablet && <Separator m={"20px 0"}/>}
@@ -82,7 +87,6 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
                   {refData.value}₽
                </div>
             </div>
-
          </div>
       </div>
    )
