@@ -1,0 +1,47 @@
+.wrapper {
+  width: 100%;
+}
+.input {
+  padding-bottom: 10px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  .input {
+    flex: 1 1 50%;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+  .btn {
+    flex: 1 1 60%;
+    &:first-child {
+      margin-right:10px;
+    }
+  }
+  .submitBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 40%;
+    margin-left: 10px;
+  }
+  .column {
+    color: #1D1D1D;
+    flex: 1 1 60%;
+    .label {
+      font-size: 15px;
+      line-height: 18px;
+      margin-bottom: 5px;
+    }
+    .subLabel {
+      padding-bottom: 15px;
+      font-size: 13px;
+      line-height: 15px;
+      letter-spacing: -0.313529px;
+      mix-blend-mode: normal;
+      opacity: 0.5;
+    }
+  }
+}

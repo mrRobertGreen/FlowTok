@@ -15,9 +15,7 @@ const Work: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Work"}>
-         {/*{isDesktop && <NavBar pageName={"Work"} newTasksNumber={null}/>}*/}
          <WorkBlock/>
-         {/*{!isDesktop && <NavBar_m pageName={"Work"} newTasksNumber={null}/>}*/}
       </Page>
    )
 

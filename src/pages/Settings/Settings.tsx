@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {Page} from "../../components/Page/Page";
 import NavBar_m from "../../components/NavBar_m/NavBar_m";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
@@ -30,11 +30,7 @@ const Settings = () => {
         let Size = "big"
     }
 
-    // вот тут надо принимать тот самый список, о котором я писал
-    // здесь должен быть map
-    // написано все для одного способа вывода, просто потом скопируй html
-    // если нужно, то напиши мне, вынесу это в компоненту
-    let CardsList = () => {
+    const CardsList: FC = () => {
         return (
             <div>
                 <div className={styles.card}>
@@ -48,13 +44,16 @@ const Settings = () => {
         )
     }
 
-    // здесь cards (bool) - начилие средств вывода
-    let Saves = (cards = false) => {
-        if (cards) {
+    // здесь isCards (bool) - начилие средств вывода
+    type SavesPropsT = {
+        isCards: boolean
+    }
+    const Saves: FC<SavesPropsT> = ({isCards= false}) => {
+        if (isCards) {
             return (
                 <div>
                     <p className={styles.save}>Сохраненные</p>
-                    {CardsList()}
+                    <CardsList/>
                 </div>
             )
         } else {
@@ -105,7 +104,7 @@ const Settings = () => {
                                 Вывод средств
                             </div>
 
-                            {Saves(true)}
+                            <Saves isCards={true}/>
                             <Separator m={"21px 0 21px 0 "}/>
 
                             <p className={styles.save}>Добавить</p>

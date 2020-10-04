@@ -18,17 +18,12 @@ const WorkBlock: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    const newTasks = useSelector((state: RootStateType) => state.user.blogNewTasks)
    const doneTasks = useSelector((state: RootStateType) => state.user.blogDoneTasks)
-   const task = useSelector((state: RootStateType) => state.user.task)
 
    useEffect(() => {
       if (newTasks === null) dispatch(getBlogTasks("new"))
       if (doneTasks === null) dispatch(getBlogTasks("done"))
    }, [newTasks, doneTasks, dispatch])
 
-
-   if (task) {
-      type = "active"
-   }
 
    return (
       <div className={styles.container}>

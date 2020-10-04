@@ -3,6 +3,8 @@ import styles from "./styles.module.scss";
 import {DoubleText} from "../../DoubleText/DoubleText";
 import {Separator} from "../../Separator/Separator";
 import {NavLink} from "react-router-dom";
+import {UserDataForm} from "../../forms/UserDataForm/UserDataForm";
+import {MiniUserDataForm} from "../../forms/MiniUserDataForm/MiniUserDataForm";
 
 type PropsT = {}
 
@@ -28,9 +30,11 @@ export const Account: FC<PropsT> = ({}) => {
                 FirstChildren={"О вас"}
                 SecondChildren={"Укажите актуальные данные и мы лучше подберем задания для Вас!"}
                 pt={"15.5px"}
-                pb={"18px"}/>
-            <Separator m={"20px 0"}/>
+                pb={"0"}/>
 
+            <Separator m={"20px 0"}/>
+            <MiniUserDataForm/>
+           <Separator m={"10px 0"}/>
             <div className={styles.cancel}>
                 <p className={styles.cancel__text}>Выйти из профиля</p>
                 <button className={styles.cancel__btn}>Выйти</button>
