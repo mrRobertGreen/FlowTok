@@ -11,6 +11,8 @@ import {TaskCard} from "./TaskCard/TaskCard";
 import {TaskCard_m} from "./TaskCard_m/TaskCard_m";
 import noTaskImg from "../../../../media/images/noTask.svg"
 import {getBlogNewFilteredTasks} from "../../../../redux/user/selectors";
+import {Container} from "../../../Container/Container";
+import {Purchase} from "../../../Purchase/Purchase";
 
 type PropsType = {
     taskType: BlogTaskStatusType
@@ -118,43 +120,49 @@ export const TaskList: FC<PropsType> = ({
     if (isDesktop) {
         return (
             <div className={styles.wrapper}>
-                {getTasks().map(task => (
-                    <TaskCard
-                        key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        info={task.info}
-                        rate={task.rate}
-                        link={task.link}
-                        text={task.text}
-                        url={task.url}
-                        taskType={taskType}
-                        isActive={task.isActive}
-                        isActiveTask={isActiveTask}
-                        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}
-                    />
-                ))}
+                {/*{getTasks().map(task => (*/}
+                {/*    <TaskCard*/}
+                {/*        key={task.id}*/}
+                {/*        id={task.id}*/}
+                {/*        title={task.title}*/}
+                {/*        info={task.info}*/}
+                {/*        rate={task.rate}*/}
+                {/*        link={task.link}*/}
+                {/*        text={task.text}*/}
+                {/*        url={task.url}*/}
+                {/*        taskType={taskType}*/}
+                {/*        isActive={task.isActive}*/}
+                {/*        isActiveTask={isActiveTask}*/}
+                {/*        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}*/}
+                {/*    />*/}
+                {/*))}*/}
+                <Container/>
+
             </div>
         )
     } else {
         return (
             <div className={styles.wrapper}>
-                {getTasks().map(task => (
-                    <TaskCard_m
-                        key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        info={task.info}
-                        rate={task.rate}
-                        link={task.link}
-                        text={task.text}
-                        url={task.url}
-                        isActive={task.isActive}
-                        taskType={taskType}
-                        isActiveTask={isActiveTask}
-                        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}
-                    />
-                ))}
+                {/*{getTasks().map(task => (*/}
+                {/*    <TaskCard_m*/}
+                {/*        key={task.id}*/}
+                {/*        id={task.id}*/}
+                {/*        title={task.title}*/}
+                {/*        info={task.info}*/}
+                {/*        rate={task.rate}*/}
+                {/*        link={task.link}*/}
+                {/*        text={task.text}*/}
+                {/*        url={task.url}*/}
+                {/*        isActive={task.isActive}*/}
+                {/*        taskType={taskType}*/}
+                {/*        isActiveTask={isActiveTask}*/}
+                {/*        // doBlogTask={(id: string) => dispatch(doBlogTask(id))}*/}
+                {/*    />*/}
+                {/*))}*/}
+                <div className={styles.container}>
+                    <Container isInformed={true}/>
+                    <Purchase/>
+                </div>
             </div>
         )
     }

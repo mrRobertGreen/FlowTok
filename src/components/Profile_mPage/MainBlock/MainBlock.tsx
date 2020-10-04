@@ -87,9 +87,9 @@ const MainBlock: FC<PropsType> = ({isDesktop, profileData, exit}) => {
                 <div className={styles.miniCard2}>
                     <MiniCard label={"Получено за все время"} value={164520.30} pad={"10px 10px 0 0"}/>
                 </div>
-                <Container/>
-                <Container/>
-                <Container/>
+                <Container isInformed={false}/>
+                <Container isInformed={false}/>
+                <Container isInformed={false}/>
                 <div className={styles.refs}>
                     <Refs/>
                 </div>

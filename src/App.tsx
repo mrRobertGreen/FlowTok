@@ -63,8 +63,8 @@ const App: FC = () => {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
-            {/*<Route path="/work/:type" component={Work_m}/>*/}
-            {/*<Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>*/}
+            <Route path="/work/:type" component={Work_m}/>
+            <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route path="/ad/panel" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}

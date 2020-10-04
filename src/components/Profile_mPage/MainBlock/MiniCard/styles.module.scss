@@ -16,6 +16,36 @@
   line-height: 33px;
   font-weight: 600;
 }
+.profit {
+  display: inline;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.313529px;
+
+  color: #45C500;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+
+  .size {
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+
+    padding-bottom: 8px;
+
+    color: #8E8E93;
+  }
+  .money_2 {
+    @extend .money;
+    font-size: 20px;
+    line-height: 29px;
+  }
+}
+
 
 @media (min-width: 1024px) {
   .wrapper {

@@ -8,11 +8,11 @@ import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
 
 type PropsType = {
    isError?: boolean
-   mod?: "active" | "blue" | "grey"
+   mod?: "active" | "blue" | "grey" | "white"
    errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
 }
 
-export const   Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
+export const  Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                                                                       isError,
                                                                       mod,
                                                                       errorMessage,
@@ -27,6 +27,7 @@ export const   Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                [styles.blue]: mod === "blue",
                [styles.active]: mod === "active",
                [styles.grey]: mod === "grey",
+               [styles.white]: mod === "white",
             })}
          />
          <div className={styles.errorMsg}
