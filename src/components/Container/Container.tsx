@@ -6,7 +6,7 @@ import VerticalLine from "../../media/images_new/VerticalLine.svg";
 import info from "../../media/images_new/Info.svg";
 
 /*
-Когда будешь вносить пропсы, то эта компонента используется как в Profile/Profile, так и TaskList
+Когда будешь вносить пропсы, то эта компонента используется как в Profile/Profile, так и ConatinersList
 */
 
 

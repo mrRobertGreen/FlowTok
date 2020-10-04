@@ -12,8 +12,6 @@ import {RootStateType} from "./redux/store";
 import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
-import {Panel} from "./pages/Panel/Panel";
-import {Work_m} from "../../FlowTok/src/pages/Work/Containers"
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -58,18 +56,10 @@ const App: FC = () => {
                                  isError={false}/>}/>
          }
          <Switch>
-            {/*<Route exact path="/login/1" component={FirstStep}/>*/}
-            {/*<Route exact path="/login/2" component={SecondStep}/>*/}
-            {/*<Route exact path="/login/3" component={ThirdStep}/>*/}
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile_m}/>
-
-            <Route path="/work/:type" component={Work_m}/>
-            <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
-
             <Route path="/containers/:type" component={Containers}/>
-
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route path="/ad/panel" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}

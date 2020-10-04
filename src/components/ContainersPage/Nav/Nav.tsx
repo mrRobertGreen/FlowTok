@@ -2,9 +2,9 @@ import React, {FC, useEffect, useRef} from "react";
 import styles from "./styles.module.scss"
 import classNames from "classnames";
 import {connect, ConnectedProps, useSelector} from "react-redux";
-import {RootStateType} from "../../../../redux/store";
+import {RootStateType} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
-import {ContainerT} from "../../../../redux/user/user-reducer";
+import {ContainerT} from "../../../redux/user/user-reducer";
 
 type PropsType = {
    type: ContainerT

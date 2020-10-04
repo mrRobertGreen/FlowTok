@@ -20,17 +20,15 @@ export const Purchase: FC<PropsT> = () => {
             </div>
             <div>
                 <button className={styles.allSum}>На всю сумму</button>
-                    {/*<input type={"text"} className={styles.Input}/>*/}
                 <Input
                     mod={"white"}
                     type={"text"}
                     placeholder={"Своя сумма"}
-
                 />
             </div>
             <div className={styles.container}>
                 <img src={percent} className={styles.image} alt=" "/>
-                <img src={VerticalLine} alt=""/>
+                <img src={VerticalLine} alt="" className={styles.separator}/>
                 <div className={styles.text}>
                     <div className={styles.text__little}>Количество</div>
                     <div className={styles.text__large}>{"1шт. + 30%"}</div>
