@@ -71,11 +71,11 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
                </div>
                <div className={styles.numbers}>
                   {/*{refData.refs}*/}
-                  <div>1:17</div>
-                  <div>2:34</div>
-                  <div>3:10</div>
-                  <div>4:4</div>
-                  <div>5:7</div>
+                  <div>1: 17</div>
+                  <div>2: 34</div>
+                  <div>3: 10</div>
+                  <div>4: 4</div>
+                  <div>5: 7</div>
                </div>
             </div>
             {queries.largeTablet && <Separator m={"20px 0"}/>}
