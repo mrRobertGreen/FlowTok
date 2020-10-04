@@ -13,6 +13,7 @@ import {LoginGoogle} from "../Login/Google/LoginGoogle";
 import {LoginVK} from "../Login/VK/LoginVK";
 import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {Logo} from "../../components/Logo/Logo";
+import {RegForm} from "../../components/forms/RegForm/RegForm";
 
 export const Registration = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
@@ -31,25 +32,7 @@ export const Registration = () => {
 	            Регистрация
             </div>}
             <div className={styles.block}>
-               <div className={styles.btn}>
-                  <LoginGoogle/>
-               </div>
-               <div className={styles.btn}>
-                  <LoginVK/>
-               </div>
-               <Separator m={"12px 0"}/>
-               <TikTokForm/>
-               <UserDataForm/>
-            </div>
-            <div className={styles.btnGo}>
-               <NavLink to={"/profile"}>
-                  <Button
-                     mod={loginSuccess && tikTokSuccess && verifySuccess ? "black" : "grey"}
-                     disabled={!loginSuccess || !tikTokSuccess || !verifySuccess}
-                  >
-                     Перейти в мой FlowTok
-                  </Button>
-               </NavLink>
+               <RegForm/>
             </div>
          </div>
       </Page>

@@ -3,7 +3,7 @@ import {AdvProfileDataType, BlogProfileDataType} from "../redux/user/user-reduce
 
 
 export const authApi = {
-   authMe(body: AuthMeReqDataType) {
+   authMe(body: AuthMeReqPayloadType) {
       return instance.post<BaseResponseType<AuthMeResDataType>>("/users/new", {...body}).then(res => res.data)
    },
    setTikTokProfile(tikTokUrl: string) {
@@ -17,12 +17,12 @@ export const authApi = {
 
 type AuthMeResDataType = {
    token: string
-   isNew: boolean
    messageNotification?: string
+   needMoreInfo: boolean
 }
-export type AuthMeReqDataType = {
-   auth?: string
-   vkCode?: string
-   ref?: string
+export type AuthMeReqPayloadType = {
+   auth: string
+   password: string
+   type: "u"|"f"
 }
 

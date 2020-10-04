@@ -1,11 +1,21 @@
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 
+export const emailValidator = (value: string) => {
+   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   return re.test(String(value).toLowerCase()) ? "" : "Введен некорректный email"
+}
+
 export const validateRequiredField = (value: string) => {
    return value.length === 0 ? "Это поле не может быть пустым" : undefined
 }
 export const createMinSumValidator = (minSum: number) => {
    return (value: string) => {
       return +value < minSum ? `Сумма не может быть меньше ${minSum} руб`  : undefined
+   }
+}
+export const createMinLengthValidator = (length: number) => {
+   return (value: string) => {
+      return value.length < length ? `Минимальное кол-во символов -  ${length}`  : undefined
    }
 }
 export const createMinMaxSumValidator = (minSum: number, maxSum: number) => {

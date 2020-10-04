@@ -12,7 +12,7 @@ type PropsType = {
    errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
 }
 
-export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
+export const   Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                                                                       isError,
                                                                       mod,
                                                                       errorMessage,

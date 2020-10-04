@@ -1,7 +1,6 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from "../../Login_m/FirstStep/styles.module.scss";
 import Button from "../../../components/Button/Button";
-import {goToSecondLoginStep, login} from "../../../redux/auth/auth-reducer";
 import {extractVkCode} from "../../../utils/extractVkCode";
 import {useHistory} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,9 +21,6 @@ export const LoginVK: FC = () => {
    useEffect(() => { // check "search" in url - part of url which is after "?"
       if (history.location.search) {
          let vkCode = extractVkCode(history.location.search) // get vk code from "search"
-         if (vkCode) {
-            dispatch(login("", vkCode, setButtonSuccess))
-         }
          history.push(redirectUri)
       }
    }, [history.location.search, dispatch, history, redirectUri]) // depends on history.location.search

@@ -13,7 +13,8 @@ describe("auth-reducer", () => {
          isAdv: false,
          loginSuccess: false,
          tikTokSuccess: false,
-         verifySuccess: false
+         verifySuccess: false,
+         needMoreInfo: false
       }
    })
 
@@ -21,17 +22,9 @@ describe("auth-reducer", () => {
       const newState = authReducer(initialState, authActions.setIsAdv(true))
       expect(newState.isAdv).toBeTruthy()
    })
-   test("setSecondSuccess works correctly", () => {
-      const newState = authReducer(initialState, authActions.setSecondSuccess(true))
-      expect(newState.secondSuccess).toBeTruthy()
-   })
    test("setIsAuth works correctly", () => {
       const newState = authReducer(initialState, authActions.setIsAuth(true))
       expect(newState.isAuth).toBeTruthy()
-   })
-   test("setFirstSuccess works correctly", () => {
-      const newState = authReducer(initialState, authActions.setFirstSuccess(true))
-      expect(newState.firstSuccess).toBeTruthy()
    })
    test("setUserRole works correctly", () => {
       const newState = authReducer(initialState, authActions.setUserRole("Blogger"))
