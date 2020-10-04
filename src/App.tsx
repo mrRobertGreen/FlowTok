@@ -83,7 +83,7 @@ const App: FC = () => {
             {/*<Route path="/admin" component={AdminPanel}/>*/}
             {/*<Route path="/ad" component={AdvRedirect}/>*/}
             {/*<Route path="/push_balance/:id" component={PushBalance}/>*/}
-            <Route path="/" component={Login}/>
+            <Route path="/" component={Landing}/>
             {/*<Route path="/" component={() => <Redirect to={"/login"}/>}/>*/}
          </Switch>
       </div>
