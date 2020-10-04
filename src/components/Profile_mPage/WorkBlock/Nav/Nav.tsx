@@ -21,10 +21,13 @@ const Nav: FC<PropsType & PropsFromRedux> = ({type}) => {
       if (div) {
          if (type === "small") {
             div.classList.remove(`${styles.sliderItemR}`)
+            div.classList.remove(`${styles.sliderItemM}`)
          } else if (type === "large") {
-            div.classList.add(`${styles.sliderItemR}`)
+            div.classList.remove(`${styles.sliderItemR}`)
+            div.classList.add(`${styles.sliderItemM}`)
          } else {
-            //...
+            div.classList.remove(`${styles.sliderItemM}`)
+            div.classList.add(`${styles.sliderItemR}`)
          }
       }
    }, [type])
@@ -41,10 +44,10 @@ const Nav: FC<PropsType & PropsFromRedux> = ({type}) => {
                      className={classNames(styles.item, {[styles.active]: type === "large"})}>
                <div>Large</div>
             </NavLink>
-            {/*<NavLink to={"/containers/fridge"}*/}
-            {/*         className={classNames(styles.item, {[styles.active]: type === "large"})}>*/}
-            {/*   <div>Холодильник</div>*/}
-            {/*</NavLink>*/}
+            <NavLink to={"/containers/fridge"}
+                     className={classNames(styles.item, {[styles.active]: type === "fridge"})}>
+               <div>Холодильник</div>
+            </NavLink>
          </div>
       </nav>
    )

@@ -14,13 +14,13 @@ type PropsType = {}
 
 export const Containers: FC<PropsType> = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-   const type = useParams() as ContainerT
+   const {type} = useParams()
 
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Work"}>
          <div className={styles.container}>
             {!isDesktop && <TopNavbar label={"Задания"} logo={true}/>}
-            <Nav type={"small"}/>
+            <Nav type={type as ContainerT}/>
             {/*<TaskList/>*/}
          </div>
       </Page>
