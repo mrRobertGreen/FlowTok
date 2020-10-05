@@ -15,10 +15,7 @@ import {useCache} from "../../../hooks/useCache";
 import {useSelector} from "react-redux";
 import {AllProfit} from "./MiniCard/AllProfit";
 import {Refs} from "./Refs/Refs";
-import {useMedia} from "react-media";
-import {GLOBAL_MEDIA_QUERIES} from "../../Page/Page";
 import {Container} from "../../Container/Container";
-import Profile from "../../../pages/Profile/Profile";
 
 type PropsType = {}
 
@@ -39,14 +36,15 @@ const MainBlock: FC<PropsType> = () => {
       containers,
       dayMoney,
       referral,
-      wallet
+      wallet,
+      history
    } = userData
 
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
             <div className={styles.balance}>
-               <Balance value={wallet}/>
+               <Balance value={wallet} history={history}/>
             </div>
             <div className={styles.miniCard2}>
                <AllProfit allTimeMoney={allTimeMoney} dayMoney={dayMoney}/>

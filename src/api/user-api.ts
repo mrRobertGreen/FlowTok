@@ -6,8 +6,8 @@ export const userApi = {
    getUserData() {
       return instance.get<BaseResponseType<UserDataType>>("/users/user/profile").then(res => res.data)
    },
-   getBlogTasks(taskStatus: ContainerObjT) {
-      return instance.get<BaseResponseType<BlogTasksType>>(`/tasks/type/${taskStatus}`).then(res => res.data)
+   getContainers() {
+      return instance.get<BaseResponseType<GetContainersResDataT>>(`/containers`).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {
       return instance.post<BaseResponseType<AdvTaskType>>(`/tasks/new`, {...advTask}).then(res => res.data)
@@ -48,6 +48,12 @@ export type UserDataType = {
    containers: Array<ContainerObjT>
    referral: ReferralT
    messageNotification?: string
+   history: Array<HistoryItemT>
+}
+export type HistoryItemT = {
+   sign: number
+   value: number
+   date: string
 }
 export type UserMoneyT = {
    small: number
@@ -72,7 +78,26 @@ export type ReferralT = {
       e: number
    }
 }
-
+export type GetContainersResDataT = {
+   small: {
+      container: ContainerObjT
+      buy: BuyContainerT
+   }
+   large: {
+      container: ContainerObjT
+      buy: BuyContainerT
+   }
+   refrigerator: {
+      container: ContainerObjT
+      buy: BuyContainerT
+   }
+   messageNotification?: string
+}
+export type BuyContainerT = {
+   cost: number
+   percent: number
+   wallet: number
+}
 export type BlogTasksType = BaseDataType & Array<BlogTaskType>
 export type StatsType = BaseDataType & Array<StatItemType>
 export type AdvCreateTaskType = {

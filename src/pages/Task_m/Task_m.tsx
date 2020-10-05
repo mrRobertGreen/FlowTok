@@ -4,7 +4,7 @@ import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {cancelBlogTask, checkBlogTask} from "../../redux/user/user-reducer";
+import {checkBlogTask} from "../../redux/user/user-reducer";
 import {Redirect} from "react-router";
 import Preloader from "../../components/common/Preloader/Preloader";
 
@@ -18,9 +18,6 @@ export const Task_m = () => {
 
    const {id, info, link, rate, title, url, text} = task
 
-   const onCancelTask = () => {
-      dispatch(cancelBlogTask(id))
-   }
    const onCheckTask = () => {
       dispatch(checkBlogTask(id))
    }
@@ -78,7 +75,7 @@ export const Task_m = () => {
                   <Button onClick={onCheckTask}>Проверить</Button>
                </div>
                <div className={styles.btnItem}>
-                  <Button mod={"red"} onClick={onCancelTask}>Отменить</Button>
+                  <Button mod={"red"}>Отменить</Button>
                </div>
             </div>
          </div>

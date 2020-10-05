@@ -15,33 +15,13 @@ import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
 
-const Cabinet_m: FC<PropsType & PropsFromRedux> = ({advProfile, changeAdvTaskStatus, exit}) => {
+const Cabinet_m: FC<PropsType & PropsFromRedux> = ({changeAdvTaskStatus, exit}) => {
    const [isMenuVisible, setMenuVisible] = useState(false)
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-   const hideMenu = () => {
-      if (isMenuVisible) setMenuVisible(false)
-   }
-   const advProfileCache = useCache("advProfile")
 
-   if (!advProfile && advProfileCache) {
-      advProfile = advProfileCache
-   }
-
-   if (!advProfile) {
-      return <Preloader/>
-   }
-
-   const {value} = advProfile
    return (
       <div className={styles.wrapper}>
-         {isMenuVisible && <div
-		      style={{height: "100%", overflow: "hidden"}}
-		      className={classNames({[styles.dark]: isMenuVisible})}
-		      onClick={hideMenu}
-	      />}
-         <Balance value={value} setMenuVisible={setMenuVisible} isMenuVisible={isMenuVisible}/>
-         <Campaigns tasks={advProfile.tasks} changeAdvTaskStatus={changeAdvTaskStatus} />
-         {isMenuVisible && <DropUpMenu hideMenu={hideMenu} isDesktop={isDesktop} exit={exit}/>}
+
       </div>
    )
 }
@@ -52,7 +32,6 @@ const mapDispatchToProps = {
    exit,
 }
 const mapStateToProps = (state: RootStateType) => ({
-   advProfile: state.user.advProfile
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps)

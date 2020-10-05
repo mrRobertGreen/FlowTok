@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsType} from "../store";
-import {getUserData} from "../user/user-reducer";
+import {getContainers, getUserData} from "../user/user-reducer";
 
 const initialState = {
    isFetching: false,
@@ -65,6 +65,7 @@ export const initialize = (): ThunkType => { // initialization of app
       if (localStorage.getItem("token")) {
          // try to get user profile data with cached token
          await dispatch(getUserData())
+         await dispatch(getContainers())
       }
       dispatch(appActions.toggleIsInit(true)) // initialization finished
    }

@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsType, Nullable} from "../store";
 import {
    AdvCreateTaskType,
-   BlogTasksType,
+   BlogTasksType, GetContainersResDataT,
    RefDataType,
    StatsType,
    userApi,
@@ -18,10 +18,7 @@ import {commonThunkHandler} from "../../utils/commonThunkHandler";
 
 const initialState = {
    userData: null as UserDataType | null,
-   blogProfile: null as BlogProfileDataType | null,
-   advProfile: null as AdvProfileDataType | null,
-   blogNewTasks: null as BlogTasksType | null,
-   blogDoneTasks: null as BlogTasksType | null,
+   containers: null as GetContainersResDataT | null,
    refData: null as RefDataType | null,
    task: null as null | BlogTaskType,
    isAdvTaskCreated: false,
@@ -36,20 +33,16 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             userData: action.payload
          }
-      case "user/SET_REF_DATA":
+      case "user/SET_CONTAINERS":
          return {
             ...state,
-            refData: action.payload
+            containers: action.payload
          }
       case "user/CLEAR":
          return {
             ...state,
-            blogDoneTasks: null,
-            blogNewTasks: null,
             isAdvTaskCreated: false,
             refData: null,
-            advProfile: null,
-            blogProfile: null,
             task: null,
             stats: null,
          }
@@ -60,11 +53,7 @@ export default function userReducer(state = initialState, action: ActionsType): 
 
 export const userActions = {
    setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
-   setBlogProfile: (payload: BlogProfileDataType) => ({type: "user/SET_BLOG_PROFILE", payload} as const),
-   setAdvProfile: (payload: AdvProfileDataType) => ({type: "user/SET_ADV_PROFILE", payload} as const),
-   setBlogNewTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_NEW_TASKS", payload} as const),
-   setBlogDoneTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_DONE_TASKS", payload} as const),
-   setRefData: (payload: RefDataType) => ({type: "user/SET_REF_DATA", payload} as const),
+   setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
    changeAdvTask: (task: AdvTaskType) => ({type: "user/CHANGE_ADV_TASK", task} as const),
    createAdvTask: (task: AdvTaskType) => ({type: "user/CREATE_ADV_TASK", task} as const),
    setIsAdvTaskCreated: (flag: boolean) => ({type: "user/SET_IS_ADV_TASK_CREATED", flag} as const),
@@ -95,17 +84,17 @@ export const getUserData = (): ThunkType => { // getting and setting user data
    }
 }
 
-export const getRefData = (): ThunkType => {
+export const getContainers = (): ThunkType => {
    return async (dispatch, getState) => {
       // get ref data for blogger
       await commonThunkHandler(async () => {
-         if (getState().auth.role === "Blogger") {
-            const data = await userApi.getRef()
-            if (data.success) {
-               dispatch(userActions.setRefData(data.data))
-            }
-            checkMessageNotification(data, dispatch)
+
+         const data = await userApi.getContainers()
+         if (data.success) {
+            dispatch(userActions.setContainers(data.data))
          }
+         checkMessageNotification(data, dispatch)
+
       }, dispatch)
    }
 }
@@ -157,21 +146,7 @@ export const doBlogTask = (taskId: string): ThunkType => {
       checkMessageNotification(data, dispatch)
    }
 }
-export const cancelBlogTask = (taskId: string): ThunkType => {
-   // cancel blogger's task and set new tasks
-   return async (dispatch) => {
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.cancelBlogTask(taskId)
-      if (data.success) {
-         dispatch(userActions.setBlogNewTasks(data.data))
-         dispatch(userActions.setTask(null))
-         dispatch(appActions.setNotification("Вы успешно отменили задание"))
-      } else {
-         dispatch(appActions.setError("Что-то пошло не так, попробуйте снова"))
-      }
-      dispatch(appActions.toggleIsFetching(false))
-   }
-}
+
 export const checkBlogTask = (taskId: string): ThunkType => {
    // send blogger's task to done section
    return async (dispatch) => {

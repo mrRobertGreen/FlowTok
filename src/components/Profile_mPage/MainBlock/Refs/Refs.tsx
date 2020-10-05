@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {compose} from "redux";
 import {RootStateType} from "../../../../redux/store";
 import {useCache} from "../../../../hooks/useCache";
-import {getRefData} from "../../../../redux/user/user-reducer";
+import {getContainers} from "../../../../redux/user/user-reducer";
 import Button from "../../../Button/Button";
 import {Input} from "../../../Input/Input";
 import {RefDataType, ReferralT} from "../../../../api/user-api";
