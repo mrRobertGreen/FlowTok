@@ -11,7 +11,7 @@ import copyIcon from "../../media/icons/copy.svg"
 import {MiniLoader} from "../MiniLoader/MiniLoader";
 
 type PropsT = {
-   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "loading" | "copy"
+   mod?: "black" | "gradient" | "red" | "Google" | "VK" | "white" | "woman" | "man" | "grey" | "loading" | "copy" | "green"
    m?: string
    br?: string
    isActive?: boolean
@@ -44,6 +44,7 @@ const Button: FC<PropsT &
             {[styles.btn_sex]: mod === "woman" || mod === "man"},
             {[styles.btn_vk]: mod === "VK"},
             {[styles.btn_google]: mod === "Google"},
+            {[styles.btn_green]: mod === "green"},
          )}
          {...rest}>
          {mod === "Google" && <img src={GoogleIcon} className={styles.icon} alt=""/>}

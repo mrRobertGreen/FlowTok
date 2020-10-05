@@ -47,6 +47,19 @@
     font-size: 35px;
   }
 }
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__first {
+    flex: 1 1 45%;
+    margin-right: 11px;
+  }
+  &__second {
+    flex: 1 1 44%;
+  }
+}
 
 @media (min-width: 1680px) {
   .wrapper {
