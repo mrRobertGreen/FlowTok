@@ -3,6 +3,7 @@ import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
 import {NavLink} from "react-router-dom";
 import {Card} from "../../../Card/Card";
+import clock from "../../../../media/images_new/clock.svg";
 
 export type PropsType = {
     valueUp: number
@@ -16,6 +17,9 @@ const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
             <div>
                 <div className={styles.title}>
                     Кошелек
+                    <button className={styles.clock}>
+                        <img src={clock} alt=""/>
+                    </button>
                 </div>
                 <div className={styles.label}>
                     Ваш баланс

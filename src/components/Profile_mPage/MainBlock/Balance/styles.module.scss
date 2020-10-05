@@ -4,12 +4,21 @@
   width: 100%;
   background: #FFFFFF;
   border-radius: 14px;
+
 }
 .title {
   font-weight: bold;
   font-size: 17px;
   line-height: 20px;
   margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.clock {
+  background-color: #FFFFFF;
+  width: 20px;
+  height: 20px;
 }
 .label {
   font-size: 15px;
@@ -38,6 +47,7 @@
     font-size: 26px;
     line-height: 32px;
     margin-bottom: 40px;
+
   }
   .label {
     font-size: 15px;
