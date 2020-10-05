@@ -1,9 +1,11 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
 import {NavLink} from "react-router-dom";
 
 import clock from "../../../../media/images_new/clock.svg";
+import Modal from "../../../common/Modal/Modal";
+import {History} from "../History/History";
 
 
 export type PropsType = {
@@ -11,13 +13,17 @@ export type PropsType = {
 }
 
 const Balance: FC<PropsType> = ({value}) => {
+    const [isHistory, setIsHistory] = useState(false)
 
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
+            <Modal isOpen={isHistory}>
+                <History />
+            </Modal>
             <div>
                 <div className={styles.title}>
                     Кошелек
-                    <button className={styles.clock}>
+                    <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>
                         <img src={clock} alt=""/>
                     </button>
                 </div>
