@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import styles from "./styles.module.scss"
 import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
 import NavBar_m from "../../components/NavBar_m/NavBar_m";
@@ -10,13 +10,16 @@ import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hoc
 import {exit} from "../../redux/auth/auth-reducer";
 import {Page} from "../../components/Page/Page";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
+import {useRedirect} from "../../hooks/useRedirect";
 
 type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work" | "Settings"
 
 const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
-   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
+   const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
+
+   useRedirect(!isAuth, "/login")
 
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
@@ -25,7 +28,7 @@ const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
                     avatarUrl={blogProfile ? blogProfile.image : ""}
                     br={" 0px 0px 11px 11px"}
          />
-         <MainBlock isDesktop={isDesktop} profileData={blogProfile} exit={exit}/>
+         <MainBlock/>
       </Page>
    )
 }

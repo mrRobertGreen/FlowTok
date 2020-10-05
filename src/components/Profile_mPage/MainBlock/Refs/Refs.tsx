@@ -8,43 +8,27 @@ import {useCache} from "../../../../hooks/useCache";
 import {getRefData} from "../../../../redux/user/user-reducer";
 import Button from "../../../Button/Button";
 import {Input} from "../../../Input/Input";
-import {RefDataType} from "../../../../api/user-api";
+import {RefDataType, ReferralT} from "../../../../api/user-api";
 import {Separator} from "../../../Separator/Separator";
 import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../../Page/Page";
 import separatorY from "../../../../media/icons/separator_y.svg"
 
-type PropsType = {}
+type PropsType = {
+   refData: ReferralT
+}
 
-const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
-   const dispatch = useDispatch()
-   // let refData = useSelector((state: RootStateType) => state.user.refData)
-   const refData: RefDataType = {
-      value: 890.00,
-      link: "https://flowtok.com/ref/5f3eba819845264b903e746f",
-      refs: 17
-   }
-   let blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
-   const blogProfileCache = useCache("blogProfile")
-
-   if (blogProfileCache && !blogProfile) {
-      blogProfile = blogProfileCache
-   }
-
-   useEffect(() => {
-      if (!refData) dispatch(getRefData())
-   }, [refData, dispatch])
-
+export const Refs: FC<PropsType> = ({refData}) => {
    const [isCopied, setIsCopied] = useState(false)
 
    const queries = useMedia({queries: GLOBAL_MEDIA_QUERIES})
-
-   // if (!refData) return <Preloader/>
 
    const onCopy = async (text: string) => {
       await navigator.clipboard.writeText(text)
       setIsCopied(true)
    }
+
+   const {link, money, referrals} = refData
 
    return (
       <div className={styles.wrapper}>
@@ -54,10 +38,10 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
             </div>
             <div className={styles.row}>
                <div className={styles.input}>
-                  <Input type="text" readOnly={true} value={refData.link} mod={"grey"}/>
+                  <Input type="text" readOnly={true} value={link} mod={"grey"}/>
                </div>
                <div className={styles.btn}>
-                  <Button mod={queries.largeTablet ? "gradient" : "copy"} onClick={() => onCopy(refData.link)}>
+                  <Button mod={queries.largeTablet ? "gradient" : "copy"} onClick={() => onCopy(link)}>
                      {queries.largeTablet && "Копировать"}
                   </Button>
                </div>
@@ -70,12 +54,11 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
                   Кол-во рефералов
                </div>
                <div className={styles.numbers}>
-                  {/*{refData.refs}*/}
-                  <div>1: 17</div>
-                  <div>2: 34</div>
-                  <div>3: 10</div>
-                  <div>4: 4</div>
-                  <div>5: 7</div>
+                  {(Object.keys(referrals)as Array<keyof typeof referrals>).map((key, idx) => (
+                     <>
+                        {referrals[key] !== 0 && <div>{idx + 1}: {referrals[key]}</div>}
+                     </>
+                  ))}
                </div>
             </div>
             {queries.largeTablet && <Separator m={"20px 0"}/>}
@@ -84,16 +67,10 @@ const Refs: FC<PropsType & RouteComponentProps> = ({history}) => {
                   Заработано всего
                </div>
                <div className={styles.numbers}>
-                  {refData.value}₽
+                  {money}₽
                </div>
             </div>
          </div>
       </div>
    )
 }
-
-export default compose<FC>(
-   // withCabinetRedirect,
-   // withAuthRedirect,
-   withRouter
-)(Refs)

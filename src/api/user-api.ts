@@ -1,19 +1,12 @@
 import {BaseDataType, BaseResponseType, instance} from "./api";
-import {
-   AdvProfileDataType,
-   AdvTaskStatusType,
-   AdvTaskType,
-   BlogProfileDataType,
-   ContainerT,
-   BlogTaskType
-} from "../redux/user/user-reducer";
+import {AdvTaskStatusType, AdvTaskType, BlogTaskType} from "../redux/user/user-reducer";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 
 export const userApi = {
    getUserData() {
       return instance.get<BaseResponseType<UserDataType>>("/users/user/profile").then(res => res.data)
    },
-   getBlogTasks(taskStatus: ContainerT) {
+   getBlogTasks(taskStatus: ContainerObjT) {
       return instance.get<BaseResponseType<BlogTasksType>>(`/tasks/type/${taskStatus}`).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {
@@ -48,7 +41,38 @@ export const userApi = {
    },
 };
 
-export type UserDataType = AdvProfileDataType | BlogProfileDataType
+export type UserDataType = {
+   wallet: number
+   allTimeMoney: UserMoneyT
+   dayMoney: UserMoneyT
+   containers: Array<ContainerObjT>
+   referral: ReferralT
+   messageNotification?: string
+}
+export type UserMoneyT = {
+   small: number
+   large: number
+   refrigerator: number
+   all: number
+}
+export type ContainerObjT = {
+   type: string
+   image: string
+   quantity: string
+   need: string
+}
+export type ReferralT = {
+   link: string
+   money: number
+   referrals: {
+      a: number
+      b: number
+      c: number
+      d: number
+      e: number
+   }
+}
+
 export type BlogTasksType = BaseDataType & Array<BlogTaskType>
 export type StatsType = BaseDataType & Array<StatItemType>
 export type AdvCreateTaskType = {

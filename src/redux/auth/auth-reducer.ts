@@ -1,5 +1,5 @@
 import {BaseThunkType, InferActionsType} from "../store";
-import {authApi, AuthMeReqPayloadType} from "../../api/auth-api";
+import {authApi, AuthMeReqPayloadType, SendMoreInfoReqPayloadT} from "../../api/auth-api";
 import {getUserData, userActions} from "../user/user-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions, initialize} from "../app/app-reducer";
@@ -83,12 +83,6 @@ export const authActions = {
    clear: () => ({type: "auth/CLEAR"} as const),
 }
 
-export const callbackVk = () => {
-   const vkApiPath = "https://oauth.vk.com/authorize?client_id=7565076&display=popup&redirect_uri=https://flowtok.com/login/1&response_type=code"
-   document.location.href = vkApiPath
-}
-
-
 export const authMe = (payload: AuthMeReqPayloadType,
                        handleReset: () => void,
                        setIsLoading: (flag: boolean) => void,): ThunkType => {
@@ -101,15 +95,42 @@ export const authMe = (payload: AuthMeReqPayloadType,
          if (data.success) {
             // if token received set it
             localStorage.setItem("token", data.data.token)
-            dispatch(authActions.setLoginSuccess(true))
             handleReset() // reset form
             if (data.data.needMoreInfo) {
                dispatch(authActions.setNeedMoreInfo(true))
             } else {
-               dispatch(authActions.setIsAuth(true))
+               await dispatch(getUserData())
             }
          } else if (!data.success && data.error && data.error.name === "wrong_password") {
             dispatch(appActions.setError("Неверный пароль!"))
+         } else {
+            await dispatch(exit())
+         }
+         setIsLoading(false)
+         checkMessageNotification(data, dispatch)
+      }, dispatch)
+   }
+}
+export const sendMoreInfo = (payload: SendMoreInfoReqPayloadT,
+                       handleReset: () => void,
+                       setIsLoading: (flag: boolean) => void,): ThunkType => {
+   return async (dispatch, getState) => {
+      // login & registration
+      await commonThunkHandler(async () => {
+         setIsLoading(true)
+         const data = await authApi.sendMoreInfo(payload)
+
+         if (data.success) {
+            // if token received set it
+            localStorage.setItem("token", data.data.token)
+            handleReset() // reset form
+            await dispatch(getUserData())
+         } else if (!data.success) {
+            if (data.error && data.error.name === "empty_data") {
+               await dispatch(exit())
+            } else if (data.error && data.error.name === "no_user") {
+               dispatch(appActions.setError("Для начала пройдите авторизацию!"))
+            }
          } else {
             await dispatch(exit())
          }
@@ -144,7 +165,6 @@ export const exit = (): ThunkType => {
    return async (dispatch) => {
       // log out and clear all
       localStorage.setItem("token", "")
-      localStorage.setItem("ref", "")
       dispatch(authActions.clear())
       dispatch(userActions.clear())
       dispatch(appActions.clear())

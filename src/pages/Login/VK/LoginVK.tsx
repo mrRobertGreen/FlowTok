@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from "react";
-import styles from "../../Login_m/FirstStep/styles.module.scss";
 import Button from "../../../components/Button/Button";
 import {extractVkCode} from "../../../utils/extractVkCode";
 import {useHistory} from "react-router";

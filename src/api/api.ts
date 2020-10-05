@@ -1,7 +1,7 @@
 import axios, {AxiosRequestConfig} from "axios";
 
 export const instance = axios.create({
-   baseURL: "https://api.flowtok.com/api/v1",
+   baseURL: "http://45.84.225.122:3002/api/v1",
    headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",

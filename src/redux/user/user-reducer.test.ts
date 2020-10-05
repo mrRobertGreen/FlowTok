@@ -20,7 +20,8 @@ describe("user-reducer", () => {
          task: null as null | BlogTaskType,
          isAdvTaskCreated: false,
          stats: null as null | StatsType,
-         isVerify: false
+         isVerify: false,
+         userData: null
       }
    })
 

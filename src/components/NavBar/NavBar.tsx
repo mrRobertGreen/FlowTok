@@ -27,11 +27,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
    newTasksNumber = 3
    const dispatch = useDispatch()
    let profileData = useSelector((state: RootStateType) => state.user.blogProfile)
-   const blogProfileCache = useCache("blogProfile")
 
-   if (blogProfileCache && !profileData) {
-      profileData = blogProfileCache
-   }
    if (!profileData) {
       profileData = {
          usersForMoney: 123,

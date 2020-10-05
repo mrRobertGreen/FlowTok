@@ -2,22 +2,22 @@ import {BaseThunkType, InferActionsType, Nullable} from "../store";
 import {
    AdvCreateTaskType,
    BlogTasksType,
-   RefDataType, StatsType,
+   RefDataType,
+   StatsType,
    userApi,
-   UserDataType, VerifyPayloadType,
+   UserDataType,
+   VerifyPayloadType,
    WithdrawPayloadType
 } from "../../api/user-api";
-import {Dispatch} from "react";
 import {authActions, exit} from "../auth/auth-reducer";
-import {isBlog} from "../../utils/detectUserRole";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions} from "../app/app-reducer";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
-import {Action} from "redux";
 
-// userReducer is responsible for main user's information (profile, tasks)
+// userReducer is responsible for main user's information
 
 const initialState = {
+   userData: null as UserDataType | null,
    blogProfile: null as BlogProfileDataType | null,
    advProfile: null as AdvProfileDataType | null,
    blogNewTasks: null as BlogTasksType | null,
@@ -31,88 +31,15 @@ const initialState = {
 
 export default function userReducer(state = initialState, action: ActionsType): InitialStateType {
    switch (action.type) {
-      case "user/SET_BLOG_PROFILE":
+      case "user/SET_USER_DATA":
          return {
             ...state,
-            blogProfile: action.payload
-         }
-      case "user/SET_ADV_PROFILE":
-         return {
-            ...state,
-            advProfile: action.payload
-         }
-      case "user/SET_BLOG_DONE_TASKS":
-         return {
-            ...state,
-            blogDoneTasks: action.payload
-         }
-      case "user/SET_BLOG_NEW_TASKS":
-         return {
-            ...state,
-            blogNewTasks: action.payload
+            userData: action.payload
          }
       case "user/SET_REF_DATA":
          return {
             ...state,
             refData: action.payload
-         }
-      case "user/SET_IS_ADV_TASK_CREATED":
-         return {
-            ...state,
-            isAdvTaskCreated: action.flag
-         }
-      case "user/CHANGE_ADV_TASK":
-         // replace adv task with action.task.id by action.task
-         if (state.advProfile) {
-            let copyAdvTasks = [...state.advProfile.tasks]
-            copyAdvTasks = copyAdvTasks.map(t => {
-               if (t.id === action.task.id) {
-                  return action.task
-               }
-               return t
-            })
-            return {
-               ...state,
-               advProfile: {
-                  ...state.advProfile,
-                  tasks: copyAdvTasks
-               }
-            }
-         }
-         return state
-      case "user/CREATE_ADV_TASK":
-         if (state.advProfile) {
-            let copyAdvTasks = [...state.advProfile.tasks]
-            copyAdvTasks.unshift(action.task)
-            return {
-               ...state,
-               advProfile: {
-                  ...state.advProfile,
-                  tasks: copyAdvTasks
-               }
-            }
-         }
-         return state
-      case "user/SET_TASK":
-         if (state.blogNewTasks && action.task) {
-            return {
-               ...state,
-               blogNewTasks: [
-                  {...action.task, isActive: true},
-                  ...state.blogNewTasks
-               ]
-            }
-         }
-         return {...state}
-      case "user/SET_STATS":
-         return {
-            ...state,
-            stats: action.stats
-         }
-      case "user/SET_IS_VERIFY":
-         return {
-            ...state,
-            isVerify: action.isVerify
          }
       case "user/CLEAR":
          return {
@@ -132,6 +59,7 @@ export default function userReducer(state = initialState, action: ActionsType): 
 }
 
 export const userActions = {
+   setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
    setBlogProfile: (payload: BlogProfileDataType) => ({type: "user/SET_BLOG_PROFILE", payload} as const),
    setAdvProfile: (payload: AdvProfileDataType) => ({type: "user/SET_ADV_PROFILE", payload} as const),
    setBlogNewTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_NEW_TASKS", payload} as const),
@@ -152,53 +80,21 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          // this thunk is called only if there is a token
          const data = await userApi.getUserData()
          if (data.success) { // if token is true
-            setUserData(data.data, dispatch)
-            // detectUserRole(data.data, dispatch)
-            if (isBlog(data.data)) {
-               if (data.data.task) {
-                  dispatch(userActions.setTask(data.data.task))
-               }
-            }
-            // after all i can say, that user is authenticated
+            dispatch(userActions.setUserData(data.data))
+            await localStorage.setItem("userData", JSON.stringify(data.data))
+            // after this i can say, that user is authenticated
             dispatch(authActions.setIsAuth(true))
-         } else if (data.error) {
+         } else if (data.error && data.error.name === "no_user") {
             // exit app
+            dispatch(appActions.setError("Для начала авторизируйтесь!"))
+         } else {
             await dispatch(exit())
          }
          checkMessageNotification(data, dispatch)
       }, dispatch)
    }
 }
-export const setUserData = (userData: UserDataType, dispatch: Dispatch<Action>) => {
-   // set user data correctly
-   if (isBlog(userData)) {
-      dispatch(userActions.setBlogProfile(userData))
-      dispatch(authActions.setUserRole("Blogger"))
-      localStorage.setItem("blogProfile", JSON.stringify(userData))
-   } else {
-      dispatch(userActions.setAdvProfile(userData))
-      dispatch(authActions.setUserRole("Advertiser"))
-      localStorage.setItem("advProfile", JSON.stringify(userData))
-   }
-}
-export const getBlogTasks = (taskStatus: ContainerT): ThunkType => {
-   return async (dispatch) => {
-      // get tasks for blogger
-      const data = await userApi.getBlogTasks(taskStatus)
-      if (data.success) {
-         // switch (taskStatus) {
-         //    case "done":
-         //       localStorage.setItem("blogDoneTasks", JSON.stringify(data.data))
-         //       dispatch(userActions.setBlogDoneTasks(data.data))
-         //       return
-         //    case "new":
-         //       dispatch(userActions.setBlogNewTasks(data.data))
-         //       return
-         // }
-      }
-      checkMessageNotification(data, dispatch)
-   }
-}
+
 export const getRefData = (): ThunkType => {
    return async (dispatch, getState) => {
       // get ref data for blogger
@@ -386,5 +282,5 @@ export type BlogTaskType = {
    text?: string
    isActive?: boolean
 }
-export type ContainerT = "small" | "large" | "fridge"
+export type ContainerT = "small" | "large" | "refrigerator"
 export type AdvTaskStatusType = "play" | "pause"

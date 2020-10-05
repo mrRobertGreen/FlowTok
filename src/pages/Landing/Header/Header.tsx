@@ -24,7 +24,7 @@ export const Header: FC = () => {
             <div className={styles.buttons}>
                 <a href="#" className={styles.buttons__telegram}>Telegram</a>
                 <a href="#" className={styles.buttons__mail}>Почта</a>
-                <NavLink to={"/"}>
+                <NavLink to={"/login"}>
                     <div className={ styles.buttons__createAcc}>
                         Создать аккаунт
                     </div>
