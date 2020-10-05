@@ -21,11 +21,6 @@ const Refs_m: FC<PropsType & RouteComponentProps> = ({history}) => {
    const dispatch = useDispatch()
    const refData = useSelector((state: RootStateType) => state.user.refData)
    let blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
-   const blogProfileCache = useCache("blogProfile")
-
-   if (blogProfileCache && !blogProfile) {
-      blogProfile = blogProfileCache
-   }
 
    useEffect(() => {
       if (!refData) dispatch(getRefData())

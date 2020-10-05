@@ -9,9 +9,11 @@ import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {Separator} from "../../Separator/Separator";
-import {verify} from "../../../redux/auth/auth-reducer";
+import {sendMoreInfo, verify} from "../../../redux/auth/auth-reducer";
 import {VerifyPayloadType} from "../../../api/user-api";
 import {osName} from "react-device-detect"
+import {SendMoreInfoReqPayloadT} from "../../../api/auth-api";
+import {useRedirect} from "../../../hooks/useRedirect";
 
 export type RegFormValuesType = {
    ogrn: string
@@ -23,12 +25,18 @@ type PropsType = {}
 
 export const RegForm: FC<PropsType> = () => {
    const dispatch = useDispatch()
-   const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-   const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
+   const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
    const [isLoading, setIsLoading] = useState(false)
 
+   useRedirect(isAuth, "/profile")
+
    const onSubmit = async (values: RegFormValuesType, {resetForm,}: FormikValues) => {
-      const payload = {}
+      const payload: SendMoreInfoReqPayloadT = {
+         inn: values.inn,
+         name: values.name,
+         ogrn: values.ogrn
+      }
+      dispatch(sendMoreInfo(payload, resetForm, setIsLoading))
    }
 
    return (
@@ -94,7 +102,7 @@ export const RegForm: FC<PropsType> = () => {
                   </div>
                   <div className={styles.submitBtn}>
                      <Button
-                        mod={"black"}
+                        mod={isLoading ? "loading" : "black"}
                         type={"submit"}
                      >
                         Дальше

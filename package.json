@@ -40,7 +40,6 @@
     "react-input-mask": "^3.0.0-alpha.2",
     "react-iscroll": "^2.0.3",
     "react-jivosite": "^1.0.0",
-    "react-loadingg": "^1.7.2",
     "react-media": "^2.0.0-rc.1",
     "react-player": "^2.6.2",
     "react-redux": "^7.2.1",
@@ -58,7 +57,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

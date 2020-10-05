@@ -17,9 +17,6 @@ import {RegForm} from "../../components/forms/RegForm/RegForm";
 
 export const Registration = () => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
-   const loginSuccess = useSelector((state: RootStateType) => state.auth.loginSuccess)
-   const tikTokSuccess = useSelector((state: RootStateType) => state.auth.tikTokSuccess)
-   const verifySuccess = useSelector((state: RootStateType) => state.auth.verifySuccess)
 
    return (
       <Page h100={true}>

@@ -29,7 +29,7 @@ export const Main: FC = () => {
                     <div className={styles.mainText__content}>
                         <p>Инвестируй в контейнеры и получай за них деньги</p>
                     </div>
-                    <NavLink to={"/"}>
+                    <NavLink to={"/login"}>
                         <div className={styles.mainText__createBtn}>
                             <Button mod={"gradient"} children={"Создать аккаунт или войти"} br={"42px"}/>
                         </div>

@@ -2,15 +2,15 @@ import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
 import {NavLink} from "react-router-dom";
-import {Card} from "../../../Card/Card";
+
 import clock from "../../../../media/images_new/clock.svg";
 
+
 export type PropsType = {
-    valueUp: number
-    valueDown: number
+    value: number
 }
 
-const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
+const Balance: FC<PropsType> = ({value}) => {
 
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
@@ -25,7 +25,7 @@ const Balance: FC<PropsType> = ({valueUp, valueDown}) => {
                     Ваш баланс
                 </div>
                 <div className={styles.money}>
-                    {valueUp}.{valueDown}₽
+                    {value}₽
                 </div>
             </div>
 

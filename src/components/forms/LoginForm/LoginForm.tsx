@@ -9,7 +9,7 @@ import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {Separator} from "../../Separator/Separator";
-import {verify} from "../../../redux/auth/auth-reducer";
+import {authMe, verify} from "../../../redux/auth/auth-reducer";
 import {VerifyPayloadType} from "../../../api/user-api";
 import {osName} from "react-device-detect"
 import {useRedirect} from "../../../hooks/useRedirect";
@@ -30,14 +30,15 @@ export const LoginForm: FC<PropsType> = () => {
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
 
    useRedirect(needMoreInfo, "/reg")
-   // useRedirect(isAuth, "/profile")
+   useRedirect(isAuth, "/profile")
 
-   const onSubmit = async (values: LoginFormValuesType, {resetForm,}: FormikValues) => {
+   const onSubmit = async (values: LoginFormValuesType, {resetForm}: FormikValues) => {
       const payload: AuthMeReqPayloadType = {
          auth: values.email,
          password: values.password,
          type: values.type,
       }
+      dispatch(authMe(payload, resetForm, setIsLoading))
    }
 
    const validateMinLength = createMinLengthValidator(6)
@@ -76,46 +77,47 @@ export const LoginForm: FC<PropsType> = () => {
                         </Button>
                      </div>
                      <Field name={"email"}
-                            validate={emailValidator}
-                            render={({field, form: {touched, errors}}: FieldProps) => {
-                               console.log(touched)
-                               return <div className={styles.input}>
-                                  <Input
-                                     mod={!errors.email && touched.email ? "active" : undefined}
-                                     type={"email"}
-                                     placeholder={"Email"}
-                                     isError={!!(errors.email && touched.email)}
-                                     errorMessage={errors.email}
-                                     {...field}
-                                  />
-                               </div>
-                            }}
-                  />
-                  <Field name={"password"}
-                         validate={validateMinLength}
-                         render={({field, form: {touched, errors}}: FieldProps) => (
-                            <div className={styles.input}>
-                               <Input
-                                  mod={!errors.password && touched.password ? "active" : undefined}
-                                  type={"password"}
-                                  placeholder={"Пароль"}
-                                  isError={!!(errors.password && touched.password)}
-                                  errorMessage={errors.password}
-                                  {...field}
-                               />
-                            </div>
-                         )}
-                  />
-               </div>
-            <div className={styles.submitBtn}>
-            <Button
-            mod={"black"}
-            type={"submit"}
-            >
-            Войти
-            </Button>
-            </div>
-            </Form>}
+                            validate={emailValidator}>
+                        {({field, form: {touched, errors}}: FieldProps) => (
+                           <div className={styles.input}>
+                              <Input
+                                 mod={!errors.email && touched.email ? "active" : undefined}
+                                 type={"email"}
+                                 placeholder={"Email"}
+                                 isError={!!(errors.email && touched.email)}
+                                 errorMessage={errors.email}
+                                 {...field}
+                              />
+                           </div>
+                        )}
+                     </Field>
+                     <Field name={"password"}
+                            validate={validateMinLength}
+                     >
+                        {({field, form: {touched, errors}}: FieldProps) => (
+                           <div className={styles.input}>
+                              <Input
+                                 mod={!errors.password && touched.password ? "active" : undefined}
+                                 type={"password"}
+                                 placeholder={"Пароль"}
+                                 isError={!!(errors.password && touched.password)}
+                                 errorMessage={errors.password}
+                                 {...field}
+                              />
+                           </div>
+                        )}
+                     </Field>
+
+                  </div>
+                  <div className={styles.submitBtn}>
+                     <Button
+                        mod={isLoading ? "loading" : "black"}
+                        type={"submit"}
+                     >
+                        Войти
+                     </Button>
+                  </div>
+               </Form>}
       </Formik>
    )
 }

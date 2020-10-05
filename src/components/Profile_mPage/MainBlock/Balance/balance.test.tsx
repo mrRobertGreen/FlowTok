@@ -5,10 +5,9 @@ import {ShallowWrapper} from "enzyme";
 configureEnzyme()
 
 describe("History Component", () => {
-   const props: PropsType = {
-      valueDown: 2,
-      valueUp: 3,
-   }
+   const props = {
+
+   } as PropsType
    let component: ShallowWrapper;
    beforeEach(() => {
       component = setUp<PropsType>(Balance, props)

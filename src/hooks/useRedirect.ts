@@ -6,5 +6,4 @@ export const useRedirect = (condition: boolean, url: string) => {
    useEffect(() => {
       if (condition) history.push(url)
    }, [condition] )
-
 }

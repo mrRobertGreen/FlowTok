@@ -16,11 +16,9 @@ export const Containers: FC<PropsType> = () => {
 
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Work"}>
-         <div>
-            {!isDesktop && <TopNavbar label={"Контейнер"} logo={true}/>}
-            <Nav type={type as ContainerT}/>
-            <ContainersList/>
-         </div>
+         {!isDesktop && <TopNavbar label={"Контейнер"} logo={true}/>}
+         <Nav type={type as ContainerT}/>
+         <ContainersList/>
       </Page>
    )
 }
