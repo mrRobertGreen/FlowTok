@@ -7,6 +7,8 @@ type PropsType = {
 }
 
 const Modal: FC<PropsType> = ({children, isOpen}) => {
+	if (!isOpen) return <></>
+	
 	return (
 		<>
 			<div className={styles.dark}>

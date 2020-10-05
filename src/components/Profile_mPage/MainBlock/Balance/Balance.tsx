@@ -18,7 +18,7 @@ const Balance: FC<PropsType> = ({value}) => {
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
             <Modal isOpen={isHistory}>
-                <History />
+                <History onClose={setIsHistory}/>
             </Modal>
             <div>
                 <div className={styles.title}>

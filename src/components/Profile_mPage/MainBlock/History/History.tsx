@@ -1,16 +1,13 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import styles from "./styles.module.scss";
-import Button from "../../../Button/Button";
-import {NavLink} from "react-router-dom";
-import {Card} from "../../../Card/Card";
 import {Separator} from "../../../Separator/Separator";
 import cross from "../../../../media/images_new/Cross.svg";
 
-export type PropsType = {}
+export type PropsType = {
+    onClose: (flag: boolean) => void
+}
 
-export const History: FC<PropsType> = () => {
-
-    const [isHistory, setIsHistory] = useState(false);
+export const History: FC<PropsType> = ({onClose}) => {
 
     const history = [
         {
@@ -47,7 +44,7 @@ export const History: FC<PropsType> = () => {
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
             <div className={styles.crossContainer}>
-                <button className={styles.cross}>
+                <button className={styles.cross} onClick={() => onClose(false)}>
                     <img src={cross} alt=""/>
                 </button>
             </div>
