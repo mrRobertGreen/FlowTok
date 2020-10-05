@@ -55,9 +55,9 @@ export const Refs: FC<PropsType> = ({refData}) => {
                </div>
                <div className={styles.numbers}>
                   {(Object.keys(referrals)as Array<keyof typeof referrals>).map((key, idx) => (
-                     <>
+                     <div key={idx}>
                         {referrals[key] !== 0 && <div>{idx + 1}: {referrals[key]}</div>}
-                     </>
+                     </div>
                   ))}
                </div>
             </div>
