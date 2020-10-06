@@ -1,7 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom'
-import Profile_m from "./pages/Profile/Profile";
-import Settings from "./pages/Settings/Settings";
+import {Route, Switch} from 'react-router-dom'
 import {Containers} from "./pages/Work/Containers";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";
@@ -13,6 +11,7 @@ import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
 import Preloader from "./components/common/Preloader/Preloader";
+import {Profile} from "./pages/Profile/Profile";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -49,17 +48,18 @@ const App: FC = () => {
       <div style={isMobile ? mobileStyle : desktopStyle}>
          {error &&
 			<Modal isOpen={true}
-			       children={<Alert onClose={closeError} message={error} title={"Ошибка"} btnText={"text"}
+			       children={<Alert onClose={closeError} message={error} title={"Ошибка"}
                                  isError={true}/>}/>}
          {notification &&
 			<Modal isOpen={!!notification}
-			       children={<Alert onClose={closeNotification} message={notification} title={"Успех"}
+			       children={<Alert onClose={closeNotification} message={notification.message}
+                                 title={notification.title}
                                  isError={false}/>}/>
          }
          <Switch>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/reg" component={Registration}/>
-            <Route path="/profile" component={Profile_m}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="/containers/:type" component={Containers}/>
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route path="/ad/panel" component={Panel}/>*/}

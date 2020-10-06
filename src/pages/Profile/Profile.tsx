@@ -16,7 +16,7 @@ type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work" | "Settings"
 
-const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
+export const Profile: FC<PropsType> = ({}) => {
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
 
    useRedirect(!isAuth, "/login")
@@ -25,28 +25,9 @@ const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
          <TopNavbar logo={true}
                     label={"Профиль"}
-                    avatarUrl={blogProfile ? blogProfile.image : ""}
                     br={" 0px 0px 11px 11px"}
          />
          <MainBlock/>
       </Page>
    )
 }
-
-const mapDispatchToProps = {
-   setBlogProfile: userActions.setBlogProfile,
-   exit
-}
-const mapStateToProps = (state: RootStateType) => ({
-   blogProfile: state.user.blogProfile,
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps)
-type PropsFromRedux = ConnectedProps<typeof connector>
-
-export default compose<FC>(
-   connector,
-   withTaskRedirect,
-   // withCabinetRedirect,
-   // withAuthRedirect,
-)(Profile)

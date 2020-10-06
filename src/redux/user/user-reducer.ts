@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsType, Nullable} from "../store";
 import {
    AdvCreateTaskType,
-   BlogTasksType,
+   BlogTasksType, BuyContainerReqBodyT, GetContainersResDataT,
    RefDataType,
    StatsType,
    userApi,
@@ -13,15 +13,14 @@ import {authActions, exit} from "../auth/auth-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions} from "../app/app-reducer";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
+import {NotificationT} from "../../api/api";
 
 // userReducer is responsible for main user's information
 
 const initialState = {
    userData: null as UserDataType | null,
-   blogProfile: null as BlogProfileDataType | null,
-   advProfile: null as AdvProfileDataType | null,
-   blogNewTasks: null as BlogTasksType | null,
-   blogDoneTasks: null as BlogTasksType | null,
+   containers: null as GetContainersResDataT | null,
+   containerType: "small" as ContainerT,
    refData: null as RefDataType | null,
    task: null as null | BlogTaskType,
    isAdvTaskCreated: false,
@@ -36,20 +35,21 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             userData: action.payload
          }
-      case "user/SET_REF_DATA":
+      case "user/SET_CONTAINERS":
          return {
             ...state,
-            refData: action.payload
+            containers: action.payload
+         }
+      case "user/SET_CONTAINER_TYPE":
+         return {
+            ...state,
+            containerType: action.payload
          }
       case "user/CLEAR":
          return {
             ...state,
-            blogDoneTasks: null,
-            blogNewTasks: null,
             isAdvTaskCreated: false,
             refData: null,
-            advProfile: null,
-            blogProfile: null,
             task: null,
             stats: null,
          }
@@ -60,11 +60,8 @@ export default function userReducer(state = initialState, action: ActionsType): 
 
 export const userActions = {
    setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
-   setBlogProfile: (payload: BlogProfileDataType) => ({type: "user/SET_BLOG_PROFILE", payload} as const),
-   setAdvProfile: (payload: AdvProfileDataType) => ({type: "user/SET_ADV_PROFILE", payload} as const),
-   setBlogNewTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_NEW_TASKS", payload} as const),
-   setBlogDoneTasks: (payload: BlogTasksType) => ({type: "user/SET_BLOG_DONE_TASKS", payload} as const),
-   setRefData: (payload: RefDataType) => ({type: "user/SET_REF_DATA", payload} as const),
+   setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
+   setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
    changeAdvTask: (task: AdvTaskType) => ({type: "user/CHANGE_ADV_TASK", task} as const),
    createAdvTask: (task: AdvTaskType) => ({type: "user/CREATE_ADV_TASK", task} as const),
    setIsAdvTaskCreated: (flag: boolean) => ({type: "user/SET_IS_ADV_TASK_CREATED", flag} as const),
@@ -95,17 +92,33 @@ export const getUserData = (): ThunkType => { // getting and setting user data
    }
 }
 
-export const getRefData = (): ThunkType => {
+export const getContainers = (): ThunkType => {
    return async (dispatch, getState) => {
       // get ref data for blogger
       await commonThunkHandler(async () => {
-         if (getState().auth.role === "Blogger") {
-            const data = await userApi.getRef()
-            if (data.success) {
-               dispatch(userActions.setRefData(data.data))
-            }
-            checkMessageNotification(data, dispatch)
+
+         const data = await userApi.getContainers()
+         if (data.success) {
+            dispatch(userActions.setContainers(data.data))
          }
+         checkMessageNotification(data, dispatch)
+
+      }, dispatch)
+   }
+}
+export const buyContainer = (body: BuyContainerReqBodyT,
+                             setIsLoading: (flag: boolean) => void): ThunkType => {
+   return async (dispatch, getState) => {
+      // get ref data for blogger
+      await commonThunkHandler(async () => {
+         setIsLoading(true)
+         const res = await userApi.buyContainer(body)
+
+         if (res.success) {
+            dispatch(userActions.setContainers(res.data.data))
+         }
+         setIsLoading(false)
+         checkMessageNotification(res, dispatch)
       }, dispatch)
    }
 }
@@ -121,77 +134,16 @@ export const getStatsData = (): ThunkType => {
       }, dispatch)
    }
 }
-export const createAdvTask = (task: AdvCreateTaskType): ThunkType => {
-   // create new advertiser's task
-   return async (dispatch) => {
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.addAdvTask(task)
-      if (data.success) {
-         dispatch(userActions.createAdvTask(data.data))
-         dispatch(userActions.setIsAdvTaskCreated(true))
-         await dispatch(getUserData())
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
-   }
-}
-export const changeAdvTaskStatus = (taskId: string, taskStatus: AdvTaskStatusType): ThunkType => {
-   // change advertiser's task status (play | pause)
-   return async (dispatch) => {
-      const data = await userApi.changeAdvTaskStatus(taskId, taskStatus)
-      if (data.success) {
-         dispatch(userActions.changeAdvTask(data.data))
-      }
-      checkMessageNotification(data, dispatch)
-   }
-}
-export const doBlogTask = (taskId: string): ThunkType => {
-   // start doing task
-   return async (dispatch) => {
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.doBlogTask(taskId)
-      if (data.success) {
-         await dispatch(getUserData())
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
-   }
-}
-export const cancelBlogTask = (taskId: string): ThunkType => {
-   // cancel blogger's task and set new tasks
-   return async (dispatch) => {
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.cancelBlogTask(taskId)
-      if (data.success) {
-         dispatch(userActions.setBlogNewTasks(data.data))
-         dispatch(userActions.setTask(null))
-         dispatch(appActions.setNotification("Вы успешно отменили задание"))
-      } else {
-         dispatch(appActions.setError("Что-то пошло не так, попробуйте снова"))
-      }
-      dispatch(appActions.toggleIsFetching(false))
-   }
-}
-export const checkBlogTask = (taskId: string): ThunkType => {
-   // send blogger's task to done section
-   return async (dispatch) => {
-      dispatch(appActions.toggleIsFetching(true))
-      const data = await userApi.checkBlogTask(taskId)
-      if (data.success) {
-         await dispatch(getUserData())
-         dispatch(userActions.setTask(null))
-      }
-      dispatch(appActions.toggleIsFetching(false))
-      checkMessageNotification(data, dispatch)
-   }
-}
 export const withdraw = (payload: WithdrawPayloadType): ThunkType => {
    // send blogger's task to done section
    return async (dispatch) => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.withdraw(payload)
       if (data.success) {
-         appActions.setNotification("Операция успешно завершена")
+         appActions.setNotification({
+            message: "Операция успешно завершена",
+            title: "Поздравляем!"
+         })
       }
       dispatch(appActions.toggleIsFetching(false))
       checkMessageNotification(data, dispatch)
@@ -203,7 +155,10 @@ export const pushTaskBalance = (money: number, taskId: string): ThunkType => {
       dispatch(appActions.toggleIsFetching(true))
       const data = await userApi.pushTaskBalance(money, taskId)
       if (data.success) {
-         dispatch(appActions.setNotification("Вы успешно пополнили бюджет кампании!"))
+         dispatch(appActions.setNotification({
+            message: "Вы успешно пополнили бюджет кампании!",
+            title: "Поздравляем!"
+         }))
          await dispatch(getUserData())
       }
       dispatch(appActions.toggleIsFetching(false))
@@ -233,7 +188,7 @@ export type AdvProfileDataType = {
    tasks: Array<AdvTaskType>
    admin: boolean
    type: "ad"
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type AdvTaskType = {
    id: string
@@ -247,7 +202,7 @@ export type AdvTaskType = {
    min: string
    max: string
    state: "play" | "pause"
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type BlogProfileDataType = {
    rate: number
@@ -268,7 +223,7 @@ export type BlogProfileDataType = {
    needVerification: boolean
    usersForMoney: number
    newTask: Nullable<number>
-   messageNotification?: string
+   notification?: NotificationT
    task?: BlogTaskType
 }
 export type BlogTaskType = {
@@ -276,7 +231,7 @@ export type BlogTaskType = {
    title: string
    info: string
    rate: number
-   messageNotification?: string
+   notification?: NotificationT
    link?: string
    url?: string
    text?: string

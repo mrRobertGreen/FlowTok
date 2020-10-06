@@ -14,60 +14,8 @@ type PropsType = {
 
 const DropUpMenu: FC<PropsType> = ({hideMenu, isDesktop, exit}) => {
 
-   const userRole = useSelector((state: RootStateType) => state.auth.role)
-   const blogProfile = useSelector((state: RootStateType) => state.user.blogProfile)
-   const advProfile = useSelector((state: RootStateType) => state.user.advProfile)
-
    return (
-      <div className={styles.wrapper} style={
-         {
-            width: `${isDesktop ? `${document.body.clientHeight * 0.47229219}px` : "100%"}`,
-         }
-      }>
-         <div
-            onClick={hideMenu}
-            className={styles.close}
-         >
-            <img src={closeIcon} alt="close"/>
-         </div>
-         <div className={styles.item}>
-            <div className={styles.title}>Ещё</div>
-         </div>
-         {/*<NavLink to={"/settings"}>*/}
-         {/*   <div className={styles.item}>*/}
-         {/*      <div>Настройки</div>*/}
-         {/*      <img className={styles.arrow} src={ArrowRightIcon} alt=""/>*/}
-         {/*   </div>*/}
-         {/*</NavLink>*/}
-         {(
-            (userRole === "Blogger" && blogProfile && blogProfile.admin) ||
-            (userRole === "Advertiser" && advProfile && advProfile.admin)) &&
-			<NavLink to={"/admin"}>
-				<div className={styles.item}>
-					<div>Панель администратора</div>
-				</div>
-			</NavLink>}
-         {userRole === "Blogger" &&
-			<NavLink to={"/refs"}>
-				<div className={styles.item}>
-					<div>Реферальная программа</div>
-				</div>
-			</NavLink>}
-         <NavLink to={"/user_terms"}>
-            <div className={styles.item}>
-               <div>Пользовательское соглашение</div>
-            </div>
-         </NavLink>
-         <NavLink to={"/support"}>
-            <div className={styles.item}>
-               <div>Служба поддержки</div>
-            </div>
-         </NavLink>
-         <NavLink to={"/login/1"}>
-            <div className={styles.item} onClick={() => exit()}>
-               <div style={{color: "red"}}>Выйти</div>
-            </div>
-         </NavLink>
+      <div>
       </div>
    )
 

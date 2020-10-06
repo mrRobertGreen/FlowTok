@@ -23,10 +23,6 @@ describe("app-reducer", () => {
       const newState = appReducer(initialState, appActions.setIsDesktop(true))
       expect(newState.isDesktop).toBeTruthy()
    })
-   test("setNotification works correctly", () => {
-      const newState = appReducer(initialState, appActions.setNotification("message"))
-      expect(newState.notification).toBe("message")
-   })
    test("setError works correctly", () => {
       const newState = appReducer(initialState, appActions.setError("error"))
       expect(newState.error).toBe("error")
