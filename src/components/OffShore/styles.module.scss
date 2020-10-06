@@ -1,0 +1,48 @@
+.wrapper {
+
+}
+
+.title {
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 20px;
+
+  margin-bottom: 20px;
+  display: flex;
+
+  &__info {
+    margin-left: 9px;
+    margin-top: 3px;
+  }
+}
+
+.label {
+  font-size: 15px;
+  line-height: 18px;
+  color: #8E8E93;
+  margin-bottom: 10px;
+}
+
+.sum {
+  padding-bottom: 21px;
+  .money {
+    display: inline;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 33px;
+    padding-bottom: 21px;
+
+    &__green {
+      display: inline;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: -0.313529px;
+      color: #45C500;
+
+      &:first-child {
+        margin-left: 2px;
+      }
+    }
+  }
+}

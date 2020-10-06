@@ -1,11 +1,10 @@
 .wrapper {
-  margin-top: 10px;
   padding: 20px 25px;
   width: 100%;
   background: #FFFFFF;
   border-radius: 14px;
-
 }
+
 .title {
   font-weight: bold;
   font-size: 17px;
@@ -15,21 +14,25 @@
   display: flex;
   justify-content: space-between;
 }
+
 .clock {
   background-color: #FFFFFF;
   width: 20px;
   height: 20px;
 }
+
 .label {
   font-size: 15px;
   line-height: 18px;
   color: #8E8E93;
   margin-bottom: 10px;
 }
+
 .money {
   font-size: 28px;
   line-height: 33px;
-  font-weight: 600;
+  font-weight: bold;
+  letter-spacing: -0.675294px;
   margin-bottom: 21px;
 }
 
@@ -57,6 +60,7 @@
     font-size: 35px;
   }
 }
+
 .btn {
   width: 100%;
   display: flex;
@@ -66,6 +70,7 @@
     flex: 1 1 45%;
     margin-right: 11px;
   }
+
   &__second {
     flex: 1 1 44%;
   }

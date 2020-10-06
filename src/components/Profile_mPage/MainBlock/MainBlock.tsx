@@ -19,6 +19,9 @@ import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../Page/Page";
 import {Container} from "../../Container/Container";
 import Profile from "../../../pages/Profile/Profile";
+import {Card} from "../../Card/Card";
+import {Gift} from "../../Gift/Gift";
+import {OffShore} from "../../OffShore/OffShore";
 
 type PropsType = {}
 
@@ -45,6 +48,9 @@ const MainBlock: FC<PropsType> = () => {
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
+            <Gift title={"Подарок!"} text={"Контейнер Small " +
+            "на сумму 100₽"}/>
+            <OffShore />
             <div className={styles.balance}>
                <Balance value={wallet}/>
             </div>
