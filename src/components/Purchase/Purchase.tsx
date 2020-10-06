@@ -32,19 +32,35 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
    const [inputError, setInputError] = useState("")
    const [isLoading, setIsLoading] = useState(false)
    const [isAllSum, setIsAllSum] = useState(false)
+   const [realTimeData, setRealTimeData] = useState({
+      whole: 0,
+      percent: ["0"],
+   })
 
-   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
-      setInputValue(e.currentTarget.value)
-      if (inputValue === ""+wallet) {
-         setIsAllSum(true)
+   const {cost, percent, wallet} = data
+
+   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault()
+
+      if (inputValue.includes(".") && e.target.value.endsWith(".")) {
+         return
       } else {
-         setIsAllSum(false)
+         setInputValue(e.target.value)
+         if (inputValue === "" + wallet) {
+            setIsAllSum(true)
+         } else {
+            setIsAllSum(false)
+         }
       }
    }
 
    useEffect(() => {
       if (inputValue) setInputError("")
    }, [inputValue])
+
+   useEffect(() => {
+      setRealTimeData(calculateContainerData(cost, +inputValue))
+   }, [inputValue, cost])
 
    const onSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
@@ -77,9 +93,7 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
       }
    }
 
-   const {cost, percent, wallet} = data
-   const realTimeData = calculateContainerData(cost, wallet)
-
+   console.log(inputValue)
    return (
       <div className={styles.wrapper}>
          <div className={styles.header}>
@@ -103,10 +117,10 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
                errorMessage={inputError}
                isError={!!inputError}
                mod={"white"}
-               type={"number"}
                placeholder={"Своя сумма"}
                onChange={onChangeInput}
                value={inputValue}
+               inputMode={"tel"}
             />
          </div>
          <div className={styles.container}>
