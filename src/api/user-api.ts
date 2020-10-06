@@ -1,4 +1,4 @@
-import {BaseDataType, BaseResponseType, instance} from "./api";
+import {BaseDataType, BaseResponseType, instance, NotificationT} from "./api";
 import {AdvTaskStatusType, AdvTaskType, BlogTaskType} from "../redux/user/user-reducer";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 
@@ -8,6 +8,9 @@ export const userApi = {
    },
    getContainers() {
       return instance.get<BaseResponseType<GetContainersResDataT>>(`/containers`).then(res => res.data)
+   },
+   buyContainer(body: BuyContainerReqBodyT) {
+      return instance.post<BaseResponseType<BuyContainerResDataT>>(`/containers/buy`, body).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {
       return instance.post<BaseResponseType<AdvTaskType>>(`/tasks/new`, {...advTask}).then(res => res.data)
@@ -41,14 +44,24 @@ export const userApi = {
    },
 };
 
+// types
 export type UserDataType = {
    wallet: number
    allTimeMoney: UserMoneyT
    dayMoney: UserMoneyT
    containers: Array<ContainerObjT>
    referral: ReferralT
-   messageNotification?: string
+   notification?: NotificationT
    history: Array<HistoryItemT>
+}
+export type BuyContainerReqBodyT = {
+   type: "small" | "large" | "refrigerator"
+   amount: number
+   date: number
+}
+export type BuyContainerResDataT = {
+   data: GetContainersResDataT
+   notification?: NotificationT
 }
 export type HistoryItemT = {
    sign: number
@@ -91,7 +104,7 @@ export type GetContainersResDataT = {
       container: ContainerObjT
       buy: BuyContainerT
    }
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type BuyContainerT = {
    cost: number
@@ -114,11 +127,11 @@ export type RefDataType = {
    link: string
    value: number
    refs: number
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type ChangeBlogTaskDataType = {
    message: string
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type WithdrawPayloadType = {
    money: number

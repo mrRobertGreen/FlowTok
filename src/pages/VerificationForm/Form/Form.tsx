@@ -4,7 +4,7 @@ import {RootStateType} from "../../../redux/store";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import Preloader from "../../../components/common/Preloader/Preloader";
 import styles from "./styles.module.scss";
-import {Input, SelectCountry} from "../../../components/Input/Input";
+import {Input} from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 import {validateRequiredField} from "../../../utils/validators";
 import classNames from "classnames";
@@ -54,17 +54,6 @@ export const VerifyForm: FC = () => {
                      <div className={styles.subLabel}>
                         Ваше место проживания:
                      </div>
-                     <Field name={"country"} validate={validateRequiredField}>
-                        {({
-                             field,
-                             form: {touched, errors}
-                          }: FieldProps) => (
-                           <div className={styles.input}>
-                              <SelectCountry {...field}
-                                             isError={!!(errors.country && touched.country)}/>
-                           </div>
-                        )}
-                     </Field>
                      <div className={styles.subLabel}>
                         Ваш возраст:
                      </div>

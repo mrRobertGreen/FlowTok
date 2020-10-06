@@ -1,17 +1,12 @@
 import React, {FC, useState} from "react";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import styles from "./styles.module.scss";
-import {createMinLengthValidator, emailValidator, validateRequiredField} from "../../../utils/validators";
+import {validateRequiredField} from "../../../utils/validators";
 import Button from "../../Button/Button";
-import {WithdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {useDispatch, useSelector} from "react-redux";
-import {ChooseSex, Input, SelectCountry, ToggleSwitch} from "../../Input/Input";
+import {Input} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
-import Preloader from "../../common/Preloader/Preloader";
-import {Separator} from "../../Separator/Separator";
-import {sendMoreInfo, verify} from "../../../redux/auth/auth-reducer";
-import {VerifyPayloadType} from "../../../api/user-api";
-import {osName} from "react-device-detect"
+import {sendMoreInfo} from "../../../redux/auth/auth-reducer";
 import {SendMoreInfoReqPayloadT} from "../../../api/auth-api";
 import {useRedirect} from "../../../hooks/useRedirect";
 

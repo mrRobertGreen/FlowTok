@@ -29,7 +29,7 @@ export const History: FC<PropsType> = ({
                <div>
                   <div className={styles.historyItem}>
                      <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>
-                        {h.sign * h.value}₽
+                        {h.sign === 1 && "+"}{h.sign * h.value}₽
                      </div>
                      <div className={styles.date}>
                         {h.date}

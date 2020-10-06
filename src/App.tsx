@@ -52,7 +52,8 @@ const App: FC = () => {
                                  isError={true}/>}/>}
          {notification &&
 			<Modal isOpen={!!notification}
-			       children={<Alert onClose={closeNotification} message={notification} title={"Успех"}
+			       children={<Alert onClose={closeNotification} message={notification.message}
+                                 title={notification.title}
                                  isError={false}/>}/>
          }
          <Switch>

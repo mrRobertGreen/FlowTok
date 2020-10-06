@@ -6,7 +6,7 @@ import {RootStateType} from "../../redux/store";
 import {connect, ConnectedProps, useSelector} from "react-redux";
 import {compose} from "redux";
 import {withAuthRedirect, withProfileRedirect} from "../../hocs/hocs";
-import {changeAdvTaskStatus, getUserData} from "../../redux/user/user-reducer";
+import {getUserData} from "../../redux/user/user-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
 import classNames from "classnames";
 import DropUpMenu from "../../components/Profile_mPage/DropUpMenu/DropUpMenu";
@@ -15,7 +15,7 @@ import {useCache} from "../../hooks/useCache";
 
 type PropsType = {}
 
-const Cabinet_m: FC<PropsType & PropsFromRedux> = ({changeAdvTaskStatus, exit}) => {
+const Cabinet_m: FC<PropsType & PropsFromRedux> = ({exit}) => {
    const [isMenuVisible, setMenuVisible] = useState(false)
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
 
@@ -28,7 +28,6 @@ const Cabinet_m: FC<PropsType & PropsFromRedux> = ({changeAdvTaskStatus, exit}) 
 
 const mapDispatchToProps = {
    getUserData,
-   changeAdvTaskStatus: changeAdvTaskStatus,
    exit,
 }
 const mapStateToProps = (state: RootStateType) => ({

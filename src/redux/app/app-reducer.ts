@@ -1,10 +1,11 @@
 import {BaseThunkType, InferActionsType} from "../store";
 import {getContainers, getUserData} from "../user/user-reducer";
+import {NotificationT} from "../../api/api";
 
 const initialState = {
    isFetching: false,
    isInit: false,
-   notification: null as null | string,
+   notification: null as null | NotificationT,
    error: null as null | string,
    isDesktop: false,
 }
@@ -52,7 +53,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
 }
 
 export const appActions = {
-   setNotification: (notification: string | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
+   setNotification: (notification: NotificationT | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
    setError: (error: string | null) => ({type: "app/SET_ERROR", error} as const),
    toggleIsFetching: (isFetching: boolean) => ({type: "app/TOGGLE_IS_FETCHING", isFetching} as const),
    toggleIsInit: (isInit: boolean) => ({type: "app/TOGGLE_IS_INTI", isInit} as const),

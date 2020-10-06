@@ -1,4 +1,4 @@
-import {BaseResponseType, instance} from "./api";
+import {BaseResponseType, instance, NotificationT} from "./api";
 import {AdvProfileDataType, BlogProfileDataType} from "../redux/user/user-reducer";
 
 
@@ -20,12 +20,12 @@ export const authApi = {
 
 type AuthMeResDataType = {
    token: string
-   messageNotification?: string
+   notification?: NotificationT
    needMoreInfo: boolean
 }
 type SendMoreResDataT = {
    token: string
-   messageNotification?: string
+   notification?: NotificationT
 }
 export type AuthMeReqPayloadType = {
    auth: string
