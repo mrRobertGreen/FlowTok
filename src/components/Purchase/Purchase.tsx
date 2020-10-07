@@ -40,13 +40,11 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
    const {cost, percent, wallet} = data
 
    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault()
-
-      if (inputValue.includes(".") && e.target.value.endsWith(".")) {
-         return
-      } else {
+      if (isNaN(+e.target.value)) return
+      else {
          setInputValue(e.target.value)
-         if (inputValue === "" + wallet) {
+         if (+e.target.value > wallet) {
+            setInputValue("" + wallet)
             setIsAllSum(true)
          } else {
             setIsAllSum(false)
@@ -93,7 +91,6 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
       }
    }
 
-   console.log(inputValue)
    return (
       <div className={styles.wrapper}>
          <div className={styles.header}>
