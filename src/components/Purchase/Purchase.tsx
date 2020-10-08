@@ -126,7 +126,7 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
             <div className={styles.text}>
                <div className={styles.text__little}>Количество</div>
                <div className={styles.text__large}>{`${realTimeData.whole} шт. + ${realTimeData.percent}%`}</div>
-               <div className={styles.text__little}>{`До ${realTimeData.whole + 1} штук осталось ${100 - +realTimeData.percent}%`}</div>
+               <div className={styles.text__little}>{`До ${realTimeData.whole + 1} шт. осталось ${100 - +realTimeData.percent}%`}</div>
             </div>
          </div>
          <div className={styles.profitability}>
