@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {useParams} from "react-router";
-import {ContainerT, userActions} from "../../../redux/user/user-reducer";
+import {ContainerT, getContainers, userActions} from "../../../redux/user/user-reducer";
 import {getBuyContainerData, getContainerData} from "../../../redux/user/selectors";
 
 type PropsType = {}
@@ -21,6 +21,13 @@ export const ContainersList: FC<PropsType> = () => {
    useEffect(() => {
       dispatch(userActions.setContainerType(type as ContainerT))
    }, [type])
+
+
+   useEffect(() => {
+      if ((!containerData || !buyContainerData)) {
+         dispatch(getContainers())
+      }
+   }, [containerData, buyContainerData])
 
    if (!containerData || !buyContainerData) return <Preloader/>
 
