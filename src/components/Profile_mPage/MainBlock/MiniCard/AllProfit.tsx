@@ -4,10 +4,9 @@ import {UserMoneyT} from "../../../../api/user-api";
 
 export type PropsType = {
    allTimeMoney: UserMoneyT
-   dayMoney: UserMoneyT
 }
 
-export const AllProfit: FC<PropsType> = ({allTimeMoney, dayMoney}) => {
+export const AllProfit: FC<PropsType> = ({allTimeMoney}) => {
    const {all, large, refrigerator, small} = allTimeMoney
 
    return (
@@ -17,23 +16,23 @@ export const AllProfit: FC<PropsType> = ({allTimeMoney, dayMoney}) => {
          </div>
          <div className={styles.money}>
             {all}₽
-            <p className={styles.profit}>+{dayMoney.all}₽</p>
+            <p className={styles.profit}>+{123}₽</p>
          </div>
          <div className={styles.footer}>
             <div className={styles.column}>
                <p className={styles.size}>Small</p>
                <p className={styles.money_2}>{small}₽</p>
-               <p className={styles.profit}>+{dayMoney.small}₽</p>
+               <p className={styles.profit}>+{123}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Large</p>
                <p className={styles.money_2}>{large}₽</p>
-               <p className={styles.profit}>+{dayMoney.large}₽</p>
+               <p className={styles.profit}>+{123}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Холодильник</p>
                <p className={styles.money_2}>{refrigerator}₽</p>
-               <p className={styles.profit}>+{dayMoney.refrigerator}₽</p>
+               <p className={styles.profit}>+{123}₽</p>
             </div>
          </div>
       </div>

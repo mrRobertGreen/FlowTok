@@ -5,10 +5,12 @@ import {Card} from "../Card/Card";
 import Button from "../Button/Button";
 
 type PropsType = {
-
+    bank?: number
 }
 
-export const OffShore: FC<PropsType> = () => {
+export const OffShore: FC<PropsType> = ({bank}) => {
+    if (!bank) return <></>
+
     return (
         <div className={styles.wrapper}>
             <Card>
@@ -22,7 +24,7 @@ export const OffShore: FC<PropsType> = () => {
                     Ваш баланс
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>15 236.00 ₽</p>
+                    <p className={styles.money}>{bank}</p>
                     <p className={styles.money__green}>+ 1318 ₽</p>
                 </div>
                 <Button mod={"gradient"}>

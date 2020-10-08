@@ -6,13 +6,15 @@ import {HistoryItemT} from "../../../../api/user-api";
 
 export type PropsType = {
    onClose: (flag: boolean) => void
-   history: Array<HistoryItemT>
+   history?: Array<HistoryItemT>
 }
 
 export const History: FC<PropsType> = ({
                                           onClose,
                                           history = []
                                        }) => {
+
+   if (!history || history.length === 0) return <></>
 
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>

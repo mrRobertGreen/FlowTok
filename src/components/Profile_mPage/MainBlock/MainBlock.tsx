@@ -38,23 +38,23 @@ const MainBlock: FC<PropsType> = () => {
    const {
       allTimeMoney,
       containers,
-      dayMoney,
+      bank,
       referral,
       wallet,
-      history
+      history,
+      gift
    } = userData
 
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
-            <Gift title={"Подарок!"} text={"Контейнер Small " +
-            "на сумму 100₽"}/>
-            <OffShore />
+            {gift && <Gift title={"Подарок!"} text={"Контейнер Small на сумму 100₽"}/>}
+            <OffShore bank={bank}/>
             <div className={styles.balance}>
                <Balance value={wallet} history={history}/>
             </div>
             <div className={styles.miniCard2}>
-               <AllProfit allTimeMoney={allTimeMoney} dayMoney={dayMoney}/>
+               <AllProfit allTimeMoney={allTimeMoney}/>
             </div>
             {containers.map((item, idx) => (
                <Container isInformed={false} data={item} key={idx}/>

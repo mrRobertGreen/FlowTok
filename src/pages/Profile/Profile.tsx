@@ -1,13 +1,7 @@
-import React, {FC, useEffect} from 'react';
-import styles from "./styles.module.scss"
+import React, {FC} from 'react';
 import MainBlock from "../../components/Profile_mPage/MainBlock/MainBlock";
-import NavBar_m from "../../components/NavBar_m/NavBar_m";
-import {connect, ConnectedProps, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {userActions} from "../../redux/user/user-reducer"
-import {compose} from 'redux'
-import {withAuthRedirect, withCabinetRedirect, withTaskRedirect} from "../../hocs/hocs";
-import {exit} from "../../redux/auth/auth-reducer";
 import {Page} from "../../components/Page/Page";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import {useRedirect} from "../../hooks/useRedirect";

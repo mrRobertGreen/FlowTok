@@ -11,7 +11,7 @@ import {HistoryItemT} from "../../../../api/user-api";
 
 export type PropsType = {
     value: number
-    history: Array<HistoryItemT>
+    history?: Array<HistoryItemT>
 }
 
 const Balance: FC<PropsType> = ({value, history}) => {
@@ -25,9 +25,9 @@ const Balance: FC<PropsType> = ({value, history}) => {
             <div>
                 <div className={styles.title}>
                     Кошелек
-                    <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>
+                    {history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>
                         <img src={clock} alt=""/>
-                    </button>
+                    </button>}
                 </div>
                 <div className={styles.label}>
                     Ваш баланс
