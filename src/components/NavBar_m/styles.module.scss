@@ -1,3 +1,5 @@
+@import "../../styles/vars";
+
 .wrapper {
   display: block;
 }
@@ -28,6 +30,18 @@
     width: 25px;
     height: 25px;
     margin: 6px 0;
+  }
+  .activeIcon {
+    @extend .icon;
+    path, circle {
+      stroke: $violet-blue;
+    }
+  }
+  .activeIconC {
+    @extend .icon;
+    path {
+      fill: $violet-blue;
+    }
   }
   .notification {
     right: -6px;

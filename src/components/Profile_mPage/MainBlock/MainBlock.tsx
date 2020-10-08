@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import Info from "./Info/Info";
 import Balance from "./Balance/Balance";
@@ -6,19 +6,20 @@ import Stats from "./Stats/Stats";
 import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import classNames from "classnames";
 import {Nullable, RootStateType} from "../../../redux/store";
-import {BlogProfileDataType} from "../../../redux/user/user-reducer";
+import {BlogProfileDataType, getUserData} from "../../../redux/user/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import Button from "../../Button/Button";
 import {NavLink} from "react-router-dom";
 import {History} from "./History/History";
 import {useCache} from "../../../hooks/useCache";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AllProfit} from "./MiniCard/AllProfit";
 import {Refs} from "./Refs/Refs";
 import {Container} from "../../Container/Container";
 import {Card} from "../../Card/Card";
 import {Gift} from "../../Gift/Gift";
 import {OffShore} from "../../OffShore/OffShore";
+import {DAY_SECONDS, getSecondsToday} from "../../../utils/getRealTimeProfit";
 
 
 type PropsType = {}
@@ -26,6 +27,9 @@ type PropsType = {}
 const MainBlock: FC<PropsType> = () => {
    let userData = useSelector((state: RootStateType) => state.user.userData)
    const userDataCache = useCache("userData")
+
+
+
 
    if (userDataCache && !userData) {
       userData = userDataCache
@@ -45,6 +49,13 @@ const MainBlock: FC<PropsType> = () => {
       gift
    } = userData
 
+   const allDaySum = {
+      small: 1123,
+      large: 12335,
+      refrigerator: 5446,
+      all: 124235,
+   }
+
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
@@ -54,7 +65,7 @@ const MainBlock: FC<PropsType> = () => {
                <Balance value={wallet} history={history}/>
             </div>
             <div className={styles.miniCard2}>
-               <AllProfit allTimeMoney={allTimeMoney}/>
+               <AllProfit allTimeMoney={allTimeMoney} allDaySum={allDaySum}/>
             </div>
             {containers.map((item, idx) => (
                <Container isInformed={false} data={item} key={idx}/>
