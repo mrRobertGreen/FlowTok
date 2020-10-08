@@ -13,7 +13,7 @@ import {NavLink} from "react-router-dom";
 import {History} from "./History/History";
 import {useCache} from "../../../hooks/useCache";
 import {useDispatch, useSelector} from "react-redux";
-import {AllProfit} from "./MiniCard/AllProfit";
+import {AllProfit} from "./AllProfit/AllProfit";
 import {Refs} from "./Refs/Refs";
 import {Container} from "../../Container/Container";
 import {Card} from "../../Card/Card";
@@ -50,10 +50,9 @@ const MainBlock: FC<PropsType> = () => {
    } = userData
 
    const allDaySum = {
-      small: 1123,
-      large: 12335,
-      refrigerator: 5446,
-      all: 124235,
+      small: 203,
+      large: 342,
+      refrigerator: 546,
    }
 
    return (

@@ -1,6 +1,6 @@
 export const getRealTimeProfit = (allSum: number, everySecSum: number) => {
    const secs = getSecondsToday()
-   return (allSum - everySecSum * secs).toFixed(2)
+   return (allSum - everySecSum * (DAY_SECONDS - secs)).toFixed(2)
 }
 
 export const DAY_SECONDS = 86400
