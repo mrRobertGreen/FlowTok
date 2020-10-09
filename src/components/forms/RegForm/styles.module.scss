@@ -8,6 +8,22 @@
 .input {
   margin-bottom: 10px;
 }
+.block_2 {
+  padding-bottom: 60px;
+}
+
+.row_2 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  * {
+    flex: 1 1 50%;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
 .row {
   display: flex;
   justify-content: space-between;
@@ -19,4 +35,16 @@
       margin-right: 10px;
     }
   }
+}
+
+.in {
+  padding-top: 5px;
+  margin-bottom: 79px;
+
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: -0.313529px;
+
+  color: #8E8E93;
 }

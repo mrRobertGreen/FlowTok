@@ -3,7 +3,6 @@ import {Page} from "../../components/Page/Page";
 import styles from "./styles.module.scss"
 import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {Logo} from "../../components/Logo/Logo";
-import {LoginForm} from "../../components/forms/LoginForm/LoginForm";
 import {Entrance} from "../../components/Entrance/Entrance";
 
 export const SignIn = () => {

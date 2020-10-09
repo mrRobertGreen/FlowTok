@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
-import styles from "../../pages/SignIn/styles.module.scss";
+import styles from "./styles.module.scss"
 import {createMinLengthValidator, emailValidator} from "../../utils/validators";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -10,6 +10,7 @@ import {useRedirect} from "../../hooks/useRedirect";
 import {AuthMeReqPayloadType} from "../../api/auth-api";
 import Button from "../Button/Button";
 import {Input} from "../Input/Input";
+import {NavLink} from "react-router-dom";
 
 export type LoginFormValuesType = {
     email: string
@@ -54,24 +55,24 @@ export const Entrance: FC<PropsType> = () => {
                 ({setFieldValue, setFieldTouched, values}) =>
                     <Form className={styles.wrapper}>
                         <div className={styles.block}>
-                            <div className={styles.row}>
-                                <Button
-                                    mod={"white"}
-                                    type={"button"}
-                                    isActive={values.type === "f"}
-                                    onClick={() => setFieldValue("type", "f", false)}
-                                >
-                                    Физ. лицо
-                                </Button>
-                                <Button
-                                    mod={"white"}
-                                    type={"button"}
-                                    isActive={values.type === "u"}
-                                    onClick={() => setFieldValue("type", "u", false)}
-                                >
-                                    Юр. лицо
-                                </Button>
-                            </div>
+                            {/*<div className={styles.row}>*/}
+                            {/*    <Button*/}
+                            {/*        mod={"white"}*/}
+                            {/*        type={"button"}*/}
+                            {/*        isActive={values.type === "f"}*/}
+                            {/*        onClick={() => setFieldValue("type", "f", false)}*/}
+                            {/*    >*/}
+                            {/*        Физ. лицо*/}
+                            {/*    </Button>*/}
+                            {/*    <Button*/}
+                            {/*        mod={"white"}*/}
+                            {/*        type={"button"}*/}
+                            {/*        isActive={values.type === "u"}*/}
+                            {/*        onClick={() => setFieldValue("type", "u", false)}*/}
+                            {/*    >*/}
+                            {/*        Юр. лицо*/}
+                            {/*    </Button>*/}
+                            {/*</div>*/}
                             <Field name={"email"}
                                    validate={emailValidator}>
                                 {({field, form: {touched, errors}}: FieldProps) => (
@@ -112,6 +113,10 @@ export const Entrance: FC<PropsType> = () => {
                             >
                                 Войти
                             </Button>
+                            <NavLink to={"/login"}>
+                                <p className={styles.createAcc}>Создать аккаунт</p>
+                            </NavLink>
+
                         </div>
                     </Form>}
         </Formik>

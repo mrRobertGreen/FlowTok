@@ -4,6 +4,7 @@ import styles from "./styles.module.scss"
 import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {Logo} from "../../components/Logo/Logo";
 import {LoginForm} from "../../components/forms/LoginForm/LoginForm";
+import {RegForm} from "../../components/forms/RegForm/RegForm";
 
 export const Login = () => {
 
@@ -13,9 +14,9 @@ export const Login = () => {
          <LoginVideo/>
          <div className={styles.container}>
             <div className={styles.container__item}>
-               <div className={styles.title}>Вход</div>
+               <div className={styles.title}>Регистрация</div>
                <div className={styles.column}>
-                   <LoginForm/>
+                   <RegForm />
                </div>
             </div>
          </div>
