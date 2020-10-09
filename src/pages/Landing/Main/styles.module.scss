@@ -13,7 +13,7 @@
 }
 
 .mainText {
-  width: 592px;
+  //width: 592px;
   //padding-top: 294px;
 
   display: flex;
@@ -45,8 +45,21 @@
 
   &__createBtn {
     width: 252px;
-    height: 72px;
-    margin: 50px auto 0;
+    //height: 72px;
+    //margin: 50px auto 0;
+  }
+  .In {
+    background-color: #FFFFFF;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    letter-spacing: -0.313529px;
+
+    padding-top: 5px;
+
+    color: #8E8E93;
   }
 }
 
@@ -94,6 +107,10 @@
     width: 266px;
     height: 210px;
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &__earn {
       font-size: 34px;
@@ -101,6 +118,7 @@
       text-align: center;
       letter-spacing: -0.369565px;
       justify-self: center;
+      padding-right: 7px;
 
       height: 82px;
     }
@@ -109,10 +127,10 @@
       font-size: 15px;
       line-height: 18px;
       text-align: center;
-      width: 243px;
+      width: 100%;
       justify-self: center;
       padding-top: 8px;
-      padding-left: 0px;
+      padding-left: 0;
     }
 
     &__createBtn {
@@ -154,6 +172,7 @@
       text-align: center;
       letter-spacing: -0.369565px;
       justify-self: center;
+      align-self: center;
 
       height: 82px;
     }
@@ -164,8 +183,9 @@
       text-align: center;
       width: 243px;
       justify-self: center;
+      align-self: center;
       padding-top: 8px;
-      padding-left: 0px;
+      padding-left: 0;
     }
 
     &__createBtn {

@@ -20,13 +20,6 @@
 
     background-color: #FFFFFF;
     color: #1D1D1D;
-
-    &:after {
-      content: url("../../media/images_new/Info.svg");
-      position: relative;
-      top: 4px;
-      left: 8px;
-    }
   }
 
   .numbers {
@@ -135,8 +128,22 @@
     color: #24C054;
   }
 }
+.plusButton {
+  background-color: #FFFFFF;
+  width: 17px;
+  height: 17px;
+  padding-left: 8px;
+}
 
 @media (max-width: 300px) {
+  .numbers {
+    width: 100px;
+    font-size: 14px;
+    line-height: 17px;
+
+    letter-spacing: -0.675294px;
+
+  }
   .text {
     padding-right: 0;
   }

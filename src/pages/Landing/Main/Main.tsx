@@ -24,14 +24,19 @@ export const Main: FC = () => {
             <div className={styles.container}>
                 <div className={styles.mainText}>
                     <div className={styles.mainText__earn}>
-                        <p>Зарабатывай с Container</p>
+                        <p>Зарабатывай с Take Container</p>
                     </div>
                     <div className={styles.mainText__content}>
-                        <p>Инвестируй в контейнеры и получай за них деньги</p>
+                        <p>Инвестируй в контейнеры и получай доход</p>
                     </div>
                     <NavLink to={"/login"}>
                         <div className={styles.mainText__createBtn}>
-                            <Button mod={"gradient"} children={"Создать аккаунт или войти"} br={"42px"}/>
+                            <Button mod={"gradient"} children={"Создать аккаунт"} br={"42px"}/>
+                        </div>
+                    </NavLink>
+                    <NavLink to={"/login"}>
+                        <div>
+                            <button className={styles.In}>Войти</button>
                         </div>
                     </NavLink>
                 </div>

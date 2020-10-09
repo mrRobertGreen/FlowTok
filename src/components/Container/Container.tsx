@@ -19,6 +19,8 @@ export const Container: FC<PropsT> = ({isInformed = false, data})=> {
             <div className={styles.title}>
                 Контейнер {type}
                 <InformedButton isInformed={isInformed}/>
+                {/*<Cost isInformed={isInformed}/>*/}
+                {isInformed ? <p className={styles.text__little_2}>Цена: 75 000.00  ₽ за шт.</p> : <div></div>}
             </div>
             <div className={styles.container}>
                 <img src={container} className={styles.image} alt=" "/>
@@ -50,3 +52,10 @@ const InformedButton: FC<InfoProps> = ({isInformed}) => {
         )
     }
 }
+// const Cost: FC<InfoProps> = ({isInformed}) => {
+//     if (isInformed) {
+//         return (
+//             <div>ih</div>
+//         )
+//     }
+// }

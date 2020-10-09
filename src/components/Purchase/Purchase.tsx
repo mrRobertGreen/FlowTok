@@ -19,6 +19,8 @@ import battery_9 from "../../media/batteryIcons/90.svg"
 import battery_10 from "../../media/batteryIcons/100.svg"
 import {useDispatch} from "react-redux";
 import {buyContainer, ContainerT} from "../../redux/user/user-reducer";
+//import plus from "../../media/images_new/PlusButton.svg";
+import plus from "../../media/images_new/PlusButton.svg"
 
 type PropsT = {
    data: BuyContainerT
@@ -95,7 +97,10 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
       <div className={styles.wrapper}>
          <div className={styles.header}>
             <button className={styles.purchase}>Покупка</button>
-            <p className={styles.numbers}>{wallet}₽</p>
+            <p className={styles.numbers}>Ваш баланс: {wallet}₽
+               <button className={styles.plusButton}><img src={plus} alt=""/></button>
+            </p>
+
          </div>
          <div>
             <div className={styles.allSum}>
