@@ -7,15 +7,28 @@ import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {useParams} from "react-router";
 import {ContainerT, getContainers, userActions} from "../../../redux/user/user-reducer";
-import {getBuyContainerData, getContainerData} from "../../../redux/user/selectors";
+import {
+   getBuyContainerData,
+   getContainerData,
+   getContainerType,
+   getterBuyContainerData, getterContainerData
+} from "../../../redux/user/selectors";
+import {BuyContainerT, ContainerObjT} from "../../../api/user-api";
+import {useCache} from "../../../hooks/useCache";
 
 type PropsType = {}
 
 export const ContainersList: FC<PropsType> = () => {
 
    const dispatch = useDispatch()
-   const containerData = useSelector(getContainerData)
-   const buyContainerData = useSelector(getBuyContainerData)
+   const containerType  = useSelector(getContainerType)
+   let containerData = useSelector(getContainerData)
+   let buyContainerData = useSelector(getBuyContainerData)
+
+   const containersCache = useCache("containers")
+   const buyContainerCache = getterBuyContainerData(containersCache, containerType)
+   const containerCache = getterContainerData(containersCache, containerType)
+
    const {type} = useParams()
 
    useEffect(() => {
@@ -29,7 +42,8 @@ export const ContainersList: FC<PropsType> = () => {
       }
    }, [containerData, buyContainerData])
 
-   if (!containerData || !buyContainerData) return <Preloader/>
+   if (!containerData) containerData = containerCache
+   if (!buyContainerData) buyContainerData = buyContainerCache
 
    return (
       <div className={styles.wrapper}>

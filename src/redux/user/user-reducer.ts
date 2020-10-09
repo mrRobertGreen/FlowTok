@@ -21,6 +21,7 @@ const initialState = {
    userData: null as UserDataType | null,
    containers: null as GetContainersResDataT | null,
    containerType: "small" as ContainerT,
+   everySecAllMoney: 0,
    refData: null as RefDataType | null,
    task: null as null | BlogTaskType,
    isAdvTaskCreated: false,
@@ -45,6 +46,11 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             containerType: action.payload
          }
+      case "user/SET_EVERY_SEC_ALL_MONEY":
+         return {
+            ...state,
+            everySecAllMoney: action.value
+         }
       case "user/CLEAR":
          return {
             ...state,
@@ -62,6 +68,7 @@ export const userActions = {
    setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
    setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
    setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
+   setEverySecAllMoney: (value: number) => ({type: "user/SET_EVERY_SEC_ALL_MONEY", value} as const),
    changeAdvTask: (task: AdvTaskType) => ({type: "user/CHANGE_ADV_TASK", task} as const),
    createAdvTask: (task: AdvTaskType) => ({type: "user/CREATE_ADV_TASK", task} as const),
    setIsAdvTaskCreated: (flag: boolean) => ({type: "user/SET_IS_ADV_TASK_CREATED", flag} as const),
@@ -99,6 +106,7 @@ export const getContainers = (): ThunkType => {
 
          const data = await userApi.getContainers()
          if (data.success) {
+            localStorage.setItem("containers", JSON.stringify(data.data))
             dispatch(userActions.setContainers(data.data))
          }
          checkMessageNotification(data, dispatch)
@@ -115,7 +123,7 @@ export const buyContainer = (body: BuyContainerReqBodyT,
          const res = await userApi.buyContainer(body)
 
          if (res.success) {
-            dispatch(userActions.setContainers(res.data.data))
+            dispatch(userActions.setContainers(res.data))
          }
          setIsLoading(false)
          checkMessageNotification(res, dispatch)

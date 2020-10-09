@@ -7,13 +7,11 @@ import Modal from "./components/common/Modal/Modal";
 import Alert from "./components/common/Alert/Alert";
 import {isMobile} from "react-device-detect"
 import {RootStateType} from "./redux/store";
-import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
-import {Registration} from "./pages/Registration/Registration";
 import Preloader from "./components/common/Preloader/Preloader";
 import {Profile} from "./pages/Profile/Profile";
-import {Entrance} from "./components/Entrance/Entrance";
 import {SignIn} from "./pages/SignIn/SignIn";
+import {Registration} from "./pages/Registration/Registration";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -59,9 +57,8 @@ const App: FC = () => {
                                  isError={false}/>}/>
          }
          <Switch>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/entrance" component={SignIn}/>
             <Route exact path="/reg" component={Registration}/>
+            <Route exact path="/login" component={SignIn}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/containers/:type" component={Containers}/>
             {/*<Route path="/settings" component={Settings}/>*/}

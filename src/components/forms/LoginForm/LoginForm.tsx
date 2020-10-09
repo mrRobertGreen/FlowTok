@@ -31,7 +31,7 @@ export const LoginForm: FC<PropsType> = () => {
       const payload: AuthMeReqPayloadType = {
          auth: values.email,
          password: values.password,
-         type: values.type,
+         type: "f"
       }
       dispatch(authMe(payload, resetForm, setIsLoading))
    }

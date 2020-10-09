@@ -55,10 +55,11 @@ const MainBlock: FC<PropsType> = () => {
       <div className={styles.wrapper}>
          <div className={styles.grid}>
             {gift && <Gift title={"Подарок!"} text={"Контейнер Small на сумму 100₽"}/>}
-            <OffShore bank={bank}/>
+
             <div className={styles.balance}>
                <Balance value={wallet} history={history}/>
             </div>
+            <OffShore bank={bank}/>
             <div className={styles.miniCard2}>
                <AllProfit allTimeMoney={allTimeMoney} allDaySum={allDayMoney}/>
             </div>

@@ -1,14 +1,32 @@
-import React, {FC, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import info from "../../media/images_new/Info.svg";
 import {Card} from "../Card/Card";
 import Button from "../Button/Button";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
+import {getSecondsToday} from "../../utils/getRealTimeProfit";
 
 type PropsType = {
     bank?: number
 }
 
 export const OffShore: FC<PropsType> = ({bank}) => {
+
+    const everySecAllMoney = useSelector((state: RootStateType) => state.user.everySecAllMoney)
+    const [realTimeBank, setRealTimeBank] = useState(""+bank)
+
+    useEffect(() => {
+        if (realTimeBank) {
+            const interval = setInterval(() => {
+
+                setRealTimeBank((+realTimeBank + everySecAllMoney).toFixed(3))
+
+            }, 1000);
+            return () => clearInterval(interval);
+        }
+    }, [realTimeBank, everySecAllMoney]);
+
     if (!bank) return <></>
 
     return (
@@ -24,8 +42,7 @@ export const OffShore: FC<PropsType> = ({bank}) => {
                     Ваш баланс
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{bank}</p>
-                    <p className={styles.money__green}>+ 1318 ₽</p>
+                    <p className={styles.money}>{realTimeBank}</p>
                 </div>
                 <Button mod={"gradient"}>
                     В кошелек

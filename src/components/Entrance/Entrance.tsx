@@ -55,24 +55,6 @@ export const Entrance: FC<PropsType> = () => {
                 ({setFieldValue, setFieldTouched, values}) =>
                     <Form className={styles.wrapper}>
                         <div className={styles.block}>
-                            {/*<div className={styles.row}>*/}
-                            {/*    <Button*/}
-                            {/*        mod={"white"}*/}
-                            {/*        type={"button"}*/}
-                            {/*        isActive={values.type === "f"}*/}
-                            {/*        onClick={() => setFieldValue("type", "f", false)}*/}
-                            {/*    >*/}
-                            {/*        Физ. лицо*/}
-                            {/*    </Button>*/}
-                            {/*    <Button*/}
-                            {/*        mod={"white"}*/}
-                            {/*        type={"button"}*/}
-                            {/*        isActive={values.type === "u"}*/}
-                            {/*        onClick={() => setFieldValue("type", "u", false)}*/}
-                            {/*    >*/}
-                            {/*        Юр. лицо*/}
-                            {/*    </Button>*/}
-                            {/*</div>*/}
                             <Field name={"email"}
                                    validate={emailValidator}>
                                 {({field, form: {touched, errors}}: FieldProps) => (
@@ -113,7 +95,7 @@ export const Entrance: FC<PropsType> = () => {
                             >
                                 Войти
                             </Button>
-                            <NavLink to={"/login"}>
+                            <NavLink to={"/reg"}>
                                 <p className={styles.createAcc}>Создать аккаунт</p>
                             </NavLink>
 

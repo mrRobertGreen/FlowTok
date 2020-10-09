@@ -111,34 +111,6 @@ export const authMe = (payload: AuthMeReqPayloadType,
       }, dispatch)
    }
 }
-export const sendMoreInfo = (payload: SendMoreInfoReqPayloadT,
-                       handleReset: () => void,
-                       setIsLoading: (flag: boolean) => void,): ThunkType => {
-   return async (dispatch, getState) => {
-      // login & registration
-      await commonThunkHandler(async () => {
-         setIsLoading(true)
-         const data = await authApi.sendMoreInfo(payload)
-
-         if (data.success) {
-            // if token received set it
-            localStorage.setItem("token", data.data.token)
-            handleReset() // reset form
-            await dispatch(getUserData())
-         } else if (!data.success) {
-            if (data.error && data.error.name === "empty_data") {
-               await dispatch(exit())
-            } else if (data.error && data.error.name === "no_user") {
-               dispatch(appActions.setError("Для начала пройдите авторизацию!"))
-            }
-         } else {
-            await dispatch(exit())
-         }
-         setIsLoading(false)
-         checkMessageNotification(data, dispatch)
-      }, dispatch)
-   }
-}
 
 export const verify = (payload: VerifyPayloadType,
                        handleReset: () => void,

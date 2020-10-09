@@ -1,11 +1,13 @@
 import {RootStateType} from "../store";
 import {createSelector} from "reselect";
+import {GetContainersResDataT} from "../../api/user-api";
+import {ContainerT} from "./user-reducer";
 
 const getContainers = (state: RootStateType) => {
    return state.user.containers
 }
 
-const getContainerType = (state: RootStateType) => {
+export const getContainerType = (state: RootStateType) => {
    return state.user.containerType
 }
 
@@ -22,6 +24,7 @@ export const getContainerData = createSelector([getContainers, getContainerType]
          }
       }
    })
+
 export const getBuyContainerData = createSelector([getContainers, getContainerType],
    (containers, type) => {
       if (containers) {
@@ -35,3 +38,28 @@ export const getBuyContainerData = createSelector([getContainers, getContainerTy
          }
       }
    })
+
+export const getterBuyContainerData = (containers: GetContainersResDataT, type: ContainerT) => {
+
+   switch (type) {
+      case "large":
+         return containers.large.buy
+      case "small":
+         return containers.small.buy
+      case "refrigerator":
+         return containers.refrigerator.buy
+   }
+
+}
+export const getterContainerData = (containers: GetContainersResDataT, type: ContainerT) => {
+
+   switch (type) {
+      case "large":
+         return containers.large.container
+      case "small":
+         return containers.small.container
+      case "refrigerator":
+         return containers.refrigerator.container
+   }
+
+}

@@ -29,12 +29,12 @@ export const Main: FC = () => {
                     <div className={styles.mainText__content}>
                         <p>Инвестируй в контейнеры и получай доход</p>
                     </div>
-                    <NavLink to={"/login"}>
+                    <NavLink to={"/reg"}>
                         <div className={styles.mainText__createBtn}>
                             <Button mod={"gradient"} children={"Создать аккаунт"} br={"42px"}/>
                         </div>
                     </NavLink>
-                    <NavLink to={"/entrance"}>
+                    <NavLink to={"/login"}>
                         <div>
                             <button className={styles.In}>Войти</button>
                         </div>

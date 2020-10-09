@@ -10,7 +10,7 @@ export const userApi = {
       return instance.get<BaseResponseType<GetContainersResDataT>>(`/containers`).then(res => res.data)
    },
    buyContainer(body: BuyContainerReqBodyT) {
-      return instance.post<BaseResponseType<BuyContainerResDataT>>(`/containers/buy`, body).then(res => res.data)
+      return instance.post<BaseResponseType<GetContainersResDataT>>(`/containers/buy`, body).then(res => res.data)
    },
    addAdvTask(advTask: AdvCreateTaskType) {
       return instance.post<BaseResponseType<AdvTaskType>>(`/tasks/new`, {...advTask}).then(res => res.data)

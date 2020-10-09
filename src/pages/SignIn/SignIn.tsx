@@ -1,7 +1,7 @@
 import React from "react";
 import {Page} from "../../components/Page/Page";
 import styles from "./styles.module.scss"
-import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
+import {LoginVideo} from "../../components/LoginVideo/LoginVideo";
 import {Logo} from "../../components/Logo/Logo";
 import {Entrance} from "../../components/Entrance/Entrance";
 

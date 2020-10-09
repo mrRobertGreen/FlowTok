@@ -6,8 +6,8 @@ import Button from "../../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {Input} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
-import {sendMoreInfo} from "../../../redux/auth/auth-reducer";
-import {SendMoreInfoReqPayloadT} from "../../../api/auth-api";
+import {authMe} from "../../../redux/auth/auth-reducer";
+import {AuthMeReqPayloadType} from "../../../api/auth-api";
 import {useRedirect} from "../../../hooks/useRedirect";
 import {NavLink} from "react-router-dom";
 
@@ -16,6 +16,8 @@ export type RegFormValuesType = {
     inn: string
     name: string
     type: "f" | "u"
+    password: string
+    email: string
 }
 
 type PropsType = {}
@@ -29,12 +31,25 @@ export const RegForm: FC<PropsType> = () => {
     useRedirect(isAuth, "/profile")
 
     const onSubmit = async (values: RegFormValuesType, {resetForm,}: FormikValues) => {
-        const payload: SendMoreInfoReqPayloadT = {
-            inn: values.inn,
-            name: values.name,
-            ogrn: values.ogrn
-        }
-        dispatch(sendMoreInfo(payload, resetForm, setIsLoading))
+       let payload: AuthMeReqPayloadType
+       if (values.type === "f") {
+           payload = {
+             type: values.type,
+             password: values.password,
+             auth: values.email
+          }
+       } else {
+           payload = {
+             inn: values.inn,
+             name: values.name,
+             ogrn: values.ogrn,
+             type: values.type,
+             password: values.password,
+             auth: values.email
+          }
+       }
+
+        dispatch(authMe(payload, resetForm, setIsLoading))
     }
 
     return (
@@ -43,7 +58,9 @@ export const RegForm: FC<PropsType> = () => {
                 ogrn: "",
                 inn: "",
                 name: "",
-                type: "f"
+                type: "f",
+                password: "",
+                email: "",
             }}
             validateOnChange={false}
             onSubmit={onSubmit}
@@ -105,51 +122,54 @@ export const RegForm: FC<PropsType> = () => {
                                 )}
                             </Field>
 
-                            <Field name={"ogrn"}
-                                   validate={validateRequiredField}
-                                   render={({field, form: {touched, errors}}: FieldProps) => (
-                                       <div className={styles.input}>
+                           {values.type === "u" &&
+                           <>
+	                           <Field name={"ogrn"}
+	                                  validate={validateRequiredField}
+	                                  render={({field, form: {touched, errors}}: FieldProps) => (
+                                        <div className={styles.input}>
                                            <Input
-                                               mod={!errors.ogrn && touched.ogrn ? "active" : undefined}
-                                               type={"number"}
-                                               placeholder={"ОГРН"}
-                                               isError={!!(errors.ogrn && touched.ogrn)}
-                                               errorMessage={errors.ogrn}
-                                               {...field}
+                                              mod={!errors.ogrn && touched.ogrn ? "active" : undefined}
+                                              type={"number"}
+                                              placeholder={"ОГРН"}
+                                              isError={!!(errors.ogrn && touched.ogrn)}
+                                              errorMessage={errors.ogrn}
+                                              {...field}
                                            />
-                                       </div>
-                                   )}
-                            />
-                            <Field name={"inn"}
-                                   validate={validateRequiredField}
-                                   render={({field, form: {touched, errors}}: FieldProps) => (
-                                       <div className={styles.input}>
+                                        </div>
+                                     )}
+	                           />
+	                           <Field name={"inn"}
+	                                  validate={validateRequiredField}
+	                                  render={({field, form: {touched, errors}}: FieldProps) => (
+                                        <div className={styles.input}>
                                            <Input
-                                               mod={!errors.inn && touched.inn ? "active" : undefined}
-                                               type={"number"}
-                                               placeholder={"ИНН"}
-                                               isError={!!(errors.inn && touched.inn)}
-                                               errorMessage={errors.inn}
-                                               {...field}
+                                              mod={!errors.inn && touched.inn ? "active" : undefined}
+                                              type={"number"}
+                                              placeholder={"ИНН"}
+                                              isError={!!(errors.inn && touched.inn)}
+                                              errorMessage={errors.inn}
+                                              {...field}
                                            />
-                                       </div>
-                                   )}
-                            />
-                            <Field name={"name"}
-                                   validate={validateRequiredField}
-                                   render={({field, form: {touched, errors}}: FieldProps) => (
-                                       <div className={styles.input}>
+                                        </div>
+                                     )}
+	                           />
+	                           <Field name={"name"}
+	                                  validate={validateRequiredField}
+	                                  render={({field, form: {touched, errors}}: FieldProps) => (
+                                        <div className={styles.input}>
                                            <Input
-                                               mod={!errors.name && touched.name ? "active" : undefined}
-                                               type={"text"}
-                                               placeholder={"Название компании"}
-                                               isError={!!(errors.name && touched.name)}
-                                               errorMessage={errors.name}
-                                               {...field}
+                                              mod={!errors.name && touched.name ? "active" : undefined}
+                                              type={"text"}
+                                              placeholder={"Название компании"}
+                                              isError={!!(errors.name && touched.name)}
+                                              errorMessage={errors.name}
+                                              {...field}
                                            />
-                                       </div>
-                                   )}
-                            />
+                                        </div>
+                                     )}
+	                           /></>
+                          }
                         </div>
                         <div className={styles.submitBtn}>
                             <Button
@@ -158,7 +178,7 @@ export const RegForm: FC<PropsType> = () => {
                             >
                                 Создать аккаунт
                             </Button>
-                            <NavLink to={"/entrance"}>
+                            <NavLink to={"/login"}>
                                 <p className={styles.in}>Войти</p>
                             </NavLink>
                         </div>

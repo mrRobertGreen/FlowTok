@@ -30,7 +30,10 @@ type SendMoreResDataT = {
 export type AuthMeReqPayloadType = {
    auth: string
    password: string
-   type: "u"|"f"
+   type?: "u"|"f"
+   inn?: string
+   ogrn?: string
+   name?: string
 }
 export type SendMoreInfoReqPayloadT = {
    inn: string
