@@ -3,14 +3,8 @@ import {Page} from "../../components/Page/Page";
 import styles from "./styles.module.scss"
 import Button from "../../components/Button/Button";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
-import {TikTokForm} from "../../components/forms/TikTokForm/TikTokForm";
-import {UserDataForm} from "../../components/forms/UserDataForm/UserDataForm";
-import {Separator} from "../../components/Separator/Separator";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {NavLink} from "react-router-dom";
-import {LoginGoogle} from "../Login/Google/LoginGoogle";
-import {LoginVK} from "../Login/VK/LoginVK";
 import {LoginVideo} from "../../components/LoginVideo'/LoginVideo";
 import {Logo} from "../../components/Logo/Logo";
 import {RegForm} from "../../components/forms/RegForm/RegForm";

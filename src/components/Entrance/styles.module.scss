@@ -1,0 +1,22 @@
+.wrapper {
+  width: 100%;
+  background-color: red;
+}
+.block {
+  padding-bottom: 60px;
+}
+.input {
+  margin-bottom: 10px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  * {
+    flex: 1 1 50%;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}

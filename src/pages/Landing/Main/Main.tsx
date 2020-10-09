@@ -34,7 +34,7 @@ export const Main: FC = () => {
                             <Button mod={"gradient"} children={"Создать аккаунт"} br={"42px"}/>
                         </div>
                     </NavLink>
-                    <NavLink to={"/login"}>
+                    <NavLink to={"/entrance"}>
                         <div>
                             <button className={styles.In}>Войти</button>
                         </div>

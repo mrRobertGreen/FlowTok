@@ -12,6 +12,8 @@ import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
 import Preloader from "./components/common/Preloader/Preloader";
 import {Profile} from "./pages/Profile/Profile";
+import {Entrance} from "./components/Entrance/Entrance";
+import {SignIn} from "./pages/SignIn/SignIn";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -58,6 +60,7 @@ const App: FC = () => {
          }
          <Switch>
             <Route exact path="/login" component={Login}/>
+            <Route exact path="/entrance" component={SignIn}/>
             <Route exact path="/reg" component={Registration}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/containers/:type" component={Containers}/>

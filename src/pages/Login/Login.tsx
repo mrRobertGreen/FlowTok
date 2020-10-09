@@ -15,7 +15,7 @@ export const Login = () => {
             <div className={styles.container__item}>
                <div className={styles.title}>Вход</div>
                <div className={styles.column}>
-                  <LoginForm/>
+                   <LoginForm/>
                </div>
             </div>
          </div>
