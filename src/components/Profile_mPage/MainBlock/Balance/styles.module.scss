@@ -102,3 +102,9 @@
     line-height: 56px;
   }
 }
+
+@media (max-width: 300px) {
+  .wrapper {
+    padding: 12px 17px;
+  }
+}

@@ -89,3 +89,9 @@
     line-height: 37px;
   }
 }
+
+@media (max-width: 300px) {
+  .wrapper {
+    padding: 12px 17px;
+  }
+}

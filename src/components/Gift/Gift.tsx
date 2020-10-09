@@ -15,7 +15,7 @@ type PropsType = {
 export const Gift: FC<PropsType> = ({title, text}) => {
     return (
         <div className={styles.wrapper}>
-            <Card size={"small"}>
+            <div>
                 <div className={styles.header}>
                     <div className={styles.header__container}>
                         <p className={styles.header__title}>{title}</p>
@@ -36,7 +36,7 @@ export const Gift: FC<PropsType> = ({title, text}) => {
                         Получить
                     </Button>
                 </NavLink>
-            </Card>
+            </div>
         </div>
     )
 }

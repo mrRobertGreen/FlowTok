@@ -13,7 +13,7 @@ export const OffShore: FC<PropsType> = ({bank}) => {
 
     return (
         <div className={styles.wrapper}>
-            <Card>
+            <div>
                 <div className={styles.title}>
                     <p>Оффшорный счет</p>
                     <button style={{backgroundColor:"white"}}>
@@ -30,7 +30,7 @@ export const OffShore: FC<PropsType> = ({bank}) => {
                 <Button mod={"gradient"}>
                     В кошелек
                 </Button>
-            </Card>
+            </div>
         </div>
     )
 }

@@ -103,23 +103,23 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
 
          </div>
          <div>
-            <div className={styles.allSum}>
-               <Button
-                  mod={"white"}
-                  isActive={isAllSum}
-                  onClick={() => {
-                     setIsAllSum(true)
-                     setInputValue(""+wallet)
-                  }}
-               >
-                  На всю сумму
-               </Button>
-            </div>
+            {/*<div className={styles.allSum}>*/}
+            {/*   <Button*/}
+            {/*      mod={"white"}*/}
+            {/*      isActive={isAllSum}*/}
+            {/*      onClick={() => {*/}
+            {/*         setIsAllSum(true)*/}
+            {/*         setInputValue(""+wallet)*/}
+            {/*      }}*/}
+            {/*   >*/}
+            {/*      На всю сумму*/}
+            {/*   </Button>*/}
+            {/*</div>*/}
             <Input
                errorMessage={inputError}
                isError={!!inputError}
                mod={"white"}
-               placeholder={"Своя сумма"}
+               placeholder={"Сумма"}
                onChange={onChangeInput}
                value={inputValue}
                inputMode={"tel"}
@@ -139,13 +139,15 @@ export const Purchase: FC<PropsT> = ({data,type}) => {
                <p className={styles.text__little}>Доходность</p>
                <p className={styles.text__large}><span className={styles.greenPercent}>{percent}%</span> в день </p>
             </div>
-            <button className={styles.profitability__Btn}>Пополнить</button>
+            <div className={styles.profitability__Btn}>
+               <Button mod={isLoading ? "loading" : "gradient"}
+                                                                children={"Купить"}
+                                                                type={"submit"}
+                                                                onClick={onSubmit}
+            /></div>
+            {/*<button className={styles.profitability__Btn}>Пополнить</button>*/}
          </div>
-         <Button mod={isLoading ? "loading" : "gradient"}
-                 children={"Купить"}
-                 type={"submit"}
-                 onClick={onSubmit}
-         />
+
       </div>
    )
 }

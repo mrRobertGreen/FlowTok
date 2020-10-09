@@ -79,8 +79,8 @@
   padding-right: 14%;
 
   &__large {
-    font-size: 19px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 21px;
     font-weight: bold;
     letter-spacing: -0.458235px;
 
@@ -100,7 +100,7 @@
   display: flex;
   justify-content: space-between;
 
-  margin-bottom: 14px;
+  //margin-bottom: 14px;
 
   &__container {
     flex: 1 1 35%;
@@ -108,20 +108,20 @@
   }
 
   &__Btn {
-    border: 1px solid blue;
-    padding: 12px 10px;
-
-    width: 100%;
-    border-radius: 11px;
-    background-color: #FFFFFF;
-
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    letter-spacing: -0.337647px;
+    //border: 1px solid blue;
+    //padding: 12px 10px;
+    //
+    //width: 100%;
+    //border-radius: 11px;
+    //background-color: #FFFFFF;
+    //
+    //font-size: 14px;
+    //line-height: 16px;
+    //text-align: center;
+    //letter-spacing: -0.337647px;
 
     color: #000000;
-    flex: 1 1 65%;
+    flex: 1 1 48%;
     align-self: center;
   }
   .greenPercent {
@@ -136,13 +136,15 @@
 }
 
 @media (max-width: 300px) {
+  .wrapper {
+    padding: 12px 17px;
+  }
   .numbers {
     width: 100px;
     font-size: 14px;
     line-height: 17px;
 
     letter-spacing: -0.675294px;
-
   }
   .text {
     padding-right: 0;

@@ -55,3 +55,9 @@
     color: #8E8E93;
   }
 }
+
+@media (max-width: 310px) {
+  .wrapper {
+    padding: 12px 17px;
+  }
+}
