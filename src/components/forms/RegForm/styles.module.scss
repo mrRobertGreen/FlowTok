@@ -2,7 +2,7 @@
   width: 100%;
 }
 .block {
-  padding-top: 30%;
+  padding-top: 18px;
   padding-bottom: 12px;
 }
 .input {
@@ -29,7 +29,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
   * {
-    flex: 1 1 50%;
+    //flex: 1 1 50%;
 
     &:first-child {
       margin-right: 10px;
