@@ -41,6 +41,7 @@ const MainBlock: FC<PropsType> = () => {
 
    const {
       allTimeMoney,
+      allDayMoney,
       containers,
       bank,
       referral,

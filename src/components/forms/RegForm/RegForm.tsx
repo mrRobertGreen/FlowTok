@@ -15,6 +15,7 @@ export type RegFormValuesType = {
     ogrn: string
     inn: string
     name: string
+    type: "f" | "u"
 }
 
 type PropsType = {}
@@ -41,7 +42,8 @@ export const RegForm: FC<PropsType> = () => {
             initialValues={{
                 ogrn: "",
                 inn: "",
-                name: ""
+                name: "",
+                type: "f"
             }}
             validateOnChange={false}
             onSubmit={onSubmit}
@@ -51,26 +53,26 @@ export const RegForm: FC<PropsType> = () => {
                 ({setFieldValue, values}) =>
                     <Form className={styles.wrapper}>
                         <div className={styles.block}>
-                            {/*<div className={styles.block_2}>*/}
-                            {/*    <div className={styles.row_2}>*/}
-                            {/*        <Button*/}
-                            {/*            mod={"white"}*/}
-                            {/*            type={"button"}*/}
-                            {/*            isActive={values.type === "f"}*/}
-                            {/*            onClick={() => setFieldValue("type", "f", false)}*/}
-                            {/*        >*/}
-                            {/*            Физ. лицо*/}
-                            {/*        </Button>*/}
-                            {/*        <Button*/}
-                            {/*            mod={"white"}*/}
-                            {/*            type={"button"}*/}
-                            {/*            isActive={values.type === "u"}*/}
-                            {/*            onClick={() => setFieldValue("type", "u", false)}*/}
-                            {/*        >*/}
-                            {/*            Юр. лицо*/}
-                            {/*        </Button>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className={styles.block_2}>
+                                <div className={styles.row_2}>
+                                    <Button
+                                        mod={"white"}
+                                        type={"button"}
+                                        isActive={values.type === "f"}
+                                        onClick={() => setFieldValue("type", "f", false)}
+                                    >
+                                        Физ. лицо
+                                    </Button>
+                                    <Button
+                                        mod={"white"}
+                                        type={"button"}
+                                        isActive={values.type === "u"}
+                                        onClick={() => setFieldValue("type", "u", false)}
+                                    >
+                                        Юр. лицо
+                                    </Button>
+                                </div>
+                            </div>
                             <Field name={"email"}
                                    validate={emailValidator}>
                                 {({field, form: {touched, errors}}: FieldProps) => (
