@@ -48,6 +48,11 @@ export const userApi = {
 export type UserDataType = {
    wallet: number
    allTimeMoney: UserMoneyT
+   allDayMoney: {
+      small: number
+      large: number
+      refrigerator: number
+   }
    bank?: number
    containers: Array<ContainerObjT>
    referral: ReferralT

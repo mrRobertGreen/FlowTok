@@ -41,6 +41,7 @@ const MainBlock: FC<PropsType> = () => {
 
    const {
       allTimeMoney,
+      allDayMoney,
       containers,
       bank,
       referral,
@@ -49,11 +50,6 @@ const MainBlock: FC<PropsType> = () => {
       gift
    } = userData
 
-   const allDaySum = {
-      small: 203,
-      large: 342,
-      refrigerator: 546,
-   }
 
    return (
       <div className={styles.wrapper}>
@@ -64,7 +60,7 @@ const MainBlock: FC<PropsType> = () => {
                <Balance value={wallet} history={history}/>
             </div>
             <div className={styles.miniCard2}>
-               <AllProfit allTimeMoney={allTimeMoney} allDaySum={allDaySum}/>
+               <AllProfit allTimeMoney={allTimeMoney} allDaySum={allDayMoney}/>
             </div>
             {containers.map((item, idx) => (
                <Container isInformed={false} data={item} key={idx}/>
