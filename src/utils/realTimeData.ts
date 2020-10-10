@@ -20,7 +20,3 @@ export const getEverySecMoney = (restDayMoney: number) => {
 export const getAllTimeMoney = (restDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
    return round(allTimeMoneyOld + (realTimeProfit - restDayMoney), 2)
 }
-
-export const getOffShoreMoney = () => {
-
-}

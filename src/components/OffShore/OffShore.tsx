@@ -5,7 +5,7 @@ import {Card} from "../Card/Card";
 import Button from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeProfit";
+import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeData";
 import {transfer} from "../../redux/user/user-reducer";
 
 type PropsType = {

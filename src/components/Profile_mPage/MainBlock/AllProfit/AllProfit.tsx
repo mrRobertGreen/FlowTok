@@ -7,7 +7,7 @@ import {
    getRealTimeProfit,
    getSecondsToday,
    round
-} from "../../../../utils/realTimeProfit";
+} from "../../../../utils/realTimeData";
 import {getUserData, userActions} from "../../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
