@@ -3,7 +3,7 @@
   height: 100%;
 
   padding: 20px 25px;
-  background-color: #fff;
+  background-color: #FFFFFF;
   border-radius: 14px;
 }
 
@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
-  padding-right: 1.1%;
+  padding-right: 2%;
 
   .purchase {
     font-size: 17px;
@@ -24,6 +24,8 @@
   }
 
   .numbers {
+    display: inline-block;
+    padding-right: 5px;
     font-size: 17px;
     line-height: 20px;
     letter-spacing: -0.675294px;
@@ -133,18 +135,23 @@
   background-color: #FFFFFF;
   width: 17px;
   height: 17px;
-  padding-left: 4px;
+  display: inline;
+  align-self: center;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 316px) {
   .wrapper {
     padding: 12px 17px;
   }
+  .purchase {
+    margin-right: 6px;
+  }
   .numbers {
-    width: 90px;
+    width: 80px;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: -0.675294px;
+    margin-right: 3px;
   }
   .text {
     padding-right: 0;
