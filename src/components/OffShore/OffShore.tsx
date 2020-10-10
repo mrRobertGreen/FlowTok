@@ -3,29 +3,24 @@ import styles from "./styles.module.scss";
 import info from "../../media/images_new/Info.svg";
 import {Card} from "../Card/Card";
 import Button from "../Button/Button";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getSecondsToday} from "../../utils/getRealTimeProfit";
+import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeProfit";
+import {transfer} from "../../redux/user/user-reducer";
 
 type PropsType = {
-    bank?: number
+
 }
 
-export const OffShore: FC<PropsType> = ({bank}) => {
+export const OffShore: FC<PropsType> = () => {
 
-    const everySecAllMoney = useSelector((state: RootStateType) => state.user.everySecAllMoney)
-    const [realTimeBank, setRealTimeBank] = useState(""+bank)
+    const bank = useSelector((state: RootStateType) => state.user.bank)
+    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (realTimeBank) {
-            const interval = setInterval(() => {
-
-                setRealTimeBank((+realTimeBank + everySecAllMoney).toFixed(3))
-
-            }, 1000);
-            return () => clearInterval(interval);
-        }
-    }, [realTimeBank, everySecAllMoney]);
+    const omTransfer = () => {
+        dispatch(transfer(setIsLoading))
+    }
 
     if (!bank) return <></>
 
@@ -42,9 +37,9 @@ export const OffShore: FC<PropsType> = ({bank}) => {
                     Ваш баланс
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{realTimeBank}</p>
+                    <p className={styles.money}>{bank}</p>
                 </div>
-                <Button mod={"gradient"}>
+                <Button mod={isLoading ? "loading" : "gradient"} onClick={omTransfer}>
                     В кошелек
                 </Button>
             </div>

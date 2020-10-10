@@ -9,7 +9,6 @@ import {Redirect} from "react-router-dom";
 import {ChooseAmount} from "../../../components/forms/common/ChooseAmount/ChooseAmount";
 import {Input} from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
-import {pushTaskBalance} from "../../../redux/user/user-reducer";
 
 type PropsType = {
    taskId: string
@@ -19,7 +18,6 @@ export const PushBalanceForm:FC<PropsType> = ({taskId}) => {
    const dispatch = useDispatch()
 
    const onSubmit = async (values: { amount: string }, {resetForm}: FormikValues) => {
-      await dispatch(pushTaskBalance(+values.amount, taskId))
       setIsSubmit(true)
       resetForm()
    }

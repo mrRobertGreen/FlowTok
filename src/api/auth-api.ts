@@ -1,5 +1,4 @@
 import {BaseResponseType, instance, NotificationT} from "./api";
-import {AdvProfileDataType, BlogProfileDataType} from "../redux/user/user-reducer";
 
 
 export const authApi = {
@@ -9,13 +8,6 @@ export const authApi = {
    sendMoreInfo(body: SendMoreInfoReqPayloadT) {
       return instance.put<BaseResponseType<SendMoreResDataT>>("/users/udata", body  ).then(res => res.data)
    },
-   setTikTokProfile(tikTokUrl: string) {
-      return instance.post<BaseResponseType<BlogProfileDataType>>("/profile", {url: tikTokUrl}).then(res => res.data)
-   },
-   setAdv() {
-      return instance.post<BaseResponseType<AdvProfileDataType>>("/users/user/ad").then(res => res.data)
-   },
-
 };
 
 type AuthMeResDataType = {

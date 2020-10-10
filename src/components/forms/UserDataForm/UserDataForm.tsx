@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {Input, ToggleSwitch} from "../../Input/Input";
 import {RootStateType} from "../../../redux/store";
 import {Separator} from "../../Separator/Separator";
-import {verify} from "../../../redux/auth/auth-reducer";
 import {VerifyPayloadType} from "../../../api/user-api";
 import {osName} from "react-device-detect"
 
@@ -34,7 +33,7 @@ export const UserDataForm: FC<PropsType> = () => {
          platform: osName,
          sex: values.sex
       }
-      dispatch(verify(payload, resetForm, setIsLoading))
+
    }
 
    return (

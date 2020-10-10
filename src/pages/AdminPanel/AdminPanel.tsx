@@ -5,7 +5,6 @@ import {compose} from "redux";
 import {withAdminRedirect, withAuthRedirect, withProfileRedirect} from "../../hocs/hocs";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getStatsData} from "../../redux/user/user-reducer";
 import Preloader from "../../components/common/Preloader/Preloader";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
@@ -73,7 +72,7 @@ function AdminPanel() {
 
    useEffect(() => {
       if (!data) {
-         dispatch(getStatsData())
+
       }
    }, [data, dispatch])
 

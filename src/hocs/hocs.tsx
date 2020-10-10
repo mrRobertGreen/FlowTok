@@ -23,20 +23,6 @@ export function withAuthRedirect<WCP>(WrappedComponent: ComponentType<WCP>): Com
    return connector(withAuthRedirectComponent)
 }
 
-export function withTaskRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
-   const withTaskRedirectComponent:ComponentType = (props) => {
-
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const task = useSelector((state: RootStateType) => state.user.task)
-
-      if (task) {
-         return <Redirect to="/task"/>
-      }
-      return <WrappedComponent {...props as WCP}/>
-   }
-   return withTaskRedirectComponent
-}
-
 export function withAdminRedirect<WCP>(WrappedComponent: ComponentType<WCP>): ComponentType {
    return (props) => {
       return <WrappedComponent {...props as WCP}/>

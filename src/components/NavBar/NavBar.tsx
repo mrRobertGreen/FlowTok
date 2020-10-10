@@ -8,11 +8,9 @@ import workIconActive from "../../media/icons/work_icon_active.svg"
 import settingsIconActive from "../../media/icons/settings_icon_active.svg"
 import {NavLink} from "react-router-dom";
 import {PageNamesType} from "../../pages/Profile/Profile";
-import {useDispatch, useSelector} from "react-redux";
-import {BlogProfileDataType, getUserData} from "../../redux/user/user-reducer";
+import {useDispatch} from "react-redux";
+import {getUserData} from "../../redux/user/user-reducer";
 import {Logo} from "../Logo/Logo";
-import {RootStateType} from "../../redux/store";
-import {useCache} from "../../hooks/useCache";
 import {Separator} from "../Separator/Separator";
 import vkIcon from "../../media/icons/vk_link.svg"
 import tgIcon from "../../media/icons/tg_link.svg"

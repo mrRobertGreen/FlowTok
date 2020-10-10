@@ -5,16 +5,12 @@ import {createWithdrawAmountValidator, validateRequiredField} from "../../../uti
 import Button from "../../Button/Button";
 import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
 import {WithdrawPayloadType} from "../../../api/user-api";
-import {withdraw} from "../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {Input, InputWithMask} from "../../Input/Input";
 import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {cleanPhoneNumber} from "../../../utils/parseString";
-import Modal from "../../common/Modal/Modal";
-import Alert from "../../common/Alert/Alert";
-import {appActions} from "../../../redux/app/app-reducer";
 
 export type WithdrawFormValuesType = {
    wallet: string
@@ -35,7 +31,6 @@ export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
          purse: type === "qiwi" ? cleanPhoneNumber(values.wallet) : values.wallet,
          type: type,
       }
-      await dispatch(withdraw(payload))
       resetForm()
    }
 

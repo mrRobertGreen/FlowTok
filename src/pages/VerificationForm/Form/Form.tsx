@@ -10,7 +10,6 @@ import {validateRequiredField} from "../../../utils/validators";
 import classNames from "classnames";
 import {osName} from "react-device-detect"
 import {VerifyPayloadType} from "../../../api/user-api";
-import {verifyMe} from "../../../redux/user/user-reducer";
 import {useHistory} from "react-router";
 
 
@@ -32,7 +31,6 @@ export const VerifyForm: FC = () => {
          age: +values.age,
          platform: osName,
       }
-      dispatch(verifyMe(payload, resetForm, history.push))
    }
 
    if (isFetching) return <Preloader/>

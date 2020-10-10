@@ -112,27 +112,6 @@ export const authMe = (payload: AuthMeReqPayloadType,
    }
 }
 
-export const verify = (payload: VerifyPayloadType,
-                       handleReset: () => void,
-                       setIsLoading: (flag: boolean) => void,): ThunkType => {
-   return async (dispatch, getState) => {
-      // send verification data to api server
-      if (!getState().auth.loginSuccess || !getState().auth.tikTokSuccess) {
-         dispatch(appActions.setError("Сначала подключите TikTok и одну из соцсетей!"))
-         return
-      }
-      setIsLoading(true)
-      const data = await userApi.verifyMe(payload)
-      if (data.success) {
-         handleReset()
-         dispatch(authActions.setVerifySuccess(true))
-      } else {
-         setIsLoading(false)
-      }
-      checkMessageNotification(data, dispatch)
-   }
-}
-
 export const exit = (): ThunkType => {
    return async (dispatch) => {
       // log out and clear all
