@@ -40,26 +40,28 @@ export const getBuyContainerData = createSelector([getContainers, getContainerTy
    })
 
 export const getterBuyContainerData = (containers: GetContainersResDataT, type: ContainerT) => {
-
-   switch (type) {
-      case "large":
-         return containers.large.buy
-      case "small":
-         return containers.small.buy
-      case "refrigerator":
-         return containers.refrigerator.buy
+   if (containers) {
+      switch (type) {
+         case "large":
+            return containers.large.buy
+         case "small":
+            return containers.small.buy
+         case "refrigerator":
+            return containers.refrigerator.buy
+      }
    }
+
 
 }
 export const getterContainerData = (containers: GetContainersResDataT, type: ContainerT) => {
-
-   switch (type) {
-      case "large":
-         return containers.large.container
-      case "small":
-         return containers.small.container
-      case "refrigerator":
-         return containers.refrigerator.container
+   if (containers) {
+      switch (type) {
+         case "large":
+            return containers.large.container
+         case "small":
+            return containers.small.container
+         case "refrigerator":
+            return containers.refrigerator.container
+      }
    }
-
 }

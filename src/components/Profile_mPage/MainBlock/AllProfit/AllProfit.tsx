@@ -7,63 +7,77 @@ import {useDispatch} from "react-redux";
 
 export type PropsType = {
    allTimeMoney: UserMoneyT
-   allDaySum: {
+   allDayMoney: {
       small: number
       large: number
       refrigerator: number
    }
 }
 
-export const AllProfit: FC<PropsType> = ({allTimeMoney, allDaySum}) => {
-
-   const everySecSumSmall = allDaySum.small / DAY_SECONDS // столько он получает каждую секунду
-   const everySecSumLarge = allDaySum.large / DAY_SECONDS
-   const everySecSumRefrigerator = allDaySum.refrigerator / DAY_SECONDS
-   const everySecSumAll = everySecSumSmall + everySecSumLarge + everySecSumRefrigerator
+export const AllProfit: FC<PropsType> = ({allTimeMoney, allDayMoney}) => {
 
    const dispatch = useDispatch()
+
+   // получает каждую секунду
+   const everySecSumSmall = allDayMoney.small / (DAY_SECONDS - getSecondsToday())
+   const everySecSumLarge = allDayMoney.large / (DAY_SECONDS - getSecondsToday())
+   const everySecSumRefrigerator = allDayMoney.refrigerator / (DAY_SECONDS - getSecondsToday())
+   const everySecSumAll = everySecSumSmall + everySecSumLarge + everySecSumRefrigerator
+
    dispatch(userActions.setEverySecAllMoney(everySecSumAll))
 
+   // уже получил за сегодня
    const [realTimeProfitSmall, setRealTimeProfitSmall] = useState((everySecSumSmall * getSecondsToday()).toFixed(3))
    const [realTimeProfitLarge, setRealTimeProfitLarge] = useState((everySecSumLarge * getSecondsToday()).toFixed(3))
    const [realTimeProfitRefrigerator, setRealTimeProfitRefrigerator] = useState((everySecSumRefrigerator * getSecondsToday()).toFixed(3))
    const [realTimeProfitAll, setRealTimeProfitAll] = useState((everySecSumAll * getSecondsToday()).toFixed(3))
 
-
-   useEffect(() => {
-      setInterval(() => {
-         if (getSecondsToday() === 0) dispatch(getUserData())
-      }, 1000)
-   }, [])
-
+   // увеличение каждую секунду
    useEffect(() => {
       const interval = setInterval(() => {
+         console.log("small: " + everySecSumSmall)
          setRealTimeProfitSmall((+realTimeProfitSmall + everySecSumSmall).toFixed(3))
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [realTimeProfitSmall]);
-
-   useEffect(() => {
-      const interval = setInterval(() => {
+         console.log("large: " + everySecSumLarge)
          setRealTimeProfitLarge((+realTimeProfitLarge + everySecSumLarge).toFixed(3))
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [realTimeProfitLarge]);
-
-   useEffect(() => {
-      const interval = setInterval(() => {
+         console.log("refrigerator: " + everySecSumRefrigerator)
          setRealTimeProfitRefrigerator((+realTimeProfitRefrigerator + everySecSumRefrigerator).toFixed(3))
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [realTimeProfitRefrigerator]);
-
-   useEffect(() => {
-      const interval = setInterval(() => {
+         console.log("all: " + everySecSumAll)
          setRealTimeProfitAll((+realTimeProfitAll + everySecSumAll).toFixed(3))
       }, 1000);
       return () => clearInterval(interval);
-   }, [realTimeProfitAll]);
+   }, [realTimeProfitSmall, realTimeProfitRefrigerator, realTimeProfitLarge]);
 
+   // useEffect(() => {
+   //    const interval = setInterval(() => {
+   //       console.log("large: " + everySecSumLarge)
+   //       setRealTimeProfitLarge((+realTimeProfitLarge + everySecSumLarge).toFixed(3))
+   //    }, 1000);
+   //    return () => clearInterval(interval);
+   // }, [realTimeProfitLarge]);
+   //
+   // useEffect(() => {
+   //    const interval = setInterval(() => {
+   //       console.log("refrigerator: " + everySecSumRefrigerator)
+   //       setRealTimeProfitRefrigerator((+realTimeProfitRefrigerator + everySecSumRefrigerator).toFixed(3))
+   //    }, 1000);
+   //    return () => clearInterval(interval);
+   // }, [realTimeProfitRefrigerator]);
+   //
+   // useEffect(() => {
+   //    const interval = setInterval(() => {
+   //       console.log("all: " + everySecSumAll)
+   //       setRealTimeProfitAll((+realTimeProfitAll + everySecSumAll).toFixed(3))
+   //    }, 1000);
+   //    return () => clearInterval(interval);
+   // }, [realTimeProfitAll]);
+
+   // обновление в 00:00
+   useEffect(() => {
+      const interval = setInterval(() => {
+         if (getSecondsToday() === 0) dispatch(getUserData())
+      }, 1000);
+      return () => clearInterval(interval);
+   }, [])
 
    const {all, large, refrigerator, small} = allTimeMoney
 

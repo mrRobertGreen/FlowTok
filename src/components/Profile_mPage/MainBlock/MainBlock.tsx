@@ -61,7 +61,7 @@ const MainBlock: FC<PropsType> = () => {
             </div>
             <OffShore bank={bank}/>
             <div className={styles.miniCard2}>
-               <AllProfit allTimeMoney={allTimeMoney} allDaySum={allDayMoney}/>
+               <AllProfit allTimeMoney={allTimeMoney} allDayMoney={allDayMoney}/>
             </div>
             {containers.map((item, idx) => (
                <Container isInformed={false} data={item} key={idx}/>

@@ -25,6 +25,8 @@ export const ContainersList: FC<PropsType> = () => {
    let containerData = useSelector(getContainerData)
    let buyContainerData = useSelector(getBuyContainerData)
 
+
+
    const containersCache = useCache("containers")
    const buyContainerCache = getterBuyContainerData(containersCache, containerType)
    const containerCache = getterContainerData(containersCache, containerType)
@@ -44,6 +46,8 @@ export const ContainersList: FC<PropsType> = () => {
 
    if (!containerData) containerData = containerCache
    if (!buyContainerData) buyContainerData = buyContainerCache
+
+   if (!containerData || !buyContainerData) return <Preloader/>
 
    return (
       <div className={styles.wrapper}>
