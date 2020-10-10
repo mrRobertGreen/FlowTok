@@ -21,7 +21,7 @@ export const Stats: FC = () => {
       }, 5000)
       return () => clearInterval(interval)
    }, [userStats])
-   
+
    return (
       <div className={styles.wrapper}>
          <div className={styles.container}>

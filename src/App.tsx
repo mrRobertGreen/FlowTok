@@ -12,6 +12,7 @@ import Preloader from "./components/common/Preloader/Preloader";
 import {Profile} from "./pages/Profile/Profile";
 import {SignIn} from "./pages/SignIn/SignIn";
 import {Registration} from "./pages/Registration/Registration";
+import Settings from "./pages/Settings/Settings";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -61,7 +62,7 @@ const App: FC = () => {
             <Route exact path="/login" component={SignIn}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/containers/:type" component={Containers}/>
-            {/*<Route path="/settings" component={Settings}/>*/}
+            <Route path="/settings" component={Settings}/>
             {/*<Route path="/ad/panel" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
