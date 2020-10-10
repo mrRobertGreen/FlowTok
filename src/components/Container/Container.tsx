@@ -16,6 +16,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data})=> {
 
     return (
         <div className={styles.wrapper}>
+
             <div className={styles.title}>
                 Контейнер {type}
                 <InformedButton isInformed={isInformed}/>

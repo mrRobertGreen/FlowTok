@@ -1,155 +1,32 @@
-$backColor: #E5E5EA;
-.Card {
-  background-color: #fff;
-  padding: 20px 25px;
-  border-radius: 14px;
-}
-
-.container {
-  padding-top: 6px;
-  margin: 0 auto;
+.wrapper {
   width: 100%;
+  padding: 10px;
 }
-.main {
-  padding: 6px 10px;
-}
-.title {
-  font-size: 17px;
-  line-height: 20px;
-  letter-spacing: -0.41px;
-  font-weight: bold;
-  margin-bottom: 19px;
+.enter {
+  background-color: #FFFFFF;
 
-  color: #1D1D1D;
-}
-
-.notification {
   display: flex;
   justify-content: space-between;
-  margin-right: 15px;
-}
-
-.card {
-  display: flex;
   align-items: center;
 
-  border: 1px solid $backColor;
-  border-radius: 14px;
-  height: 52px;
-  padding-left: 15px;
-}
-// это попытки изменить карту
-.input {
-  color: blue;
-
-  &:checked + .card {
-    $backColor: blue;
-    border: 1.4px solid $backColor;
-  }
-}
-
-.data {
-  display: flex;
-  justify-content: space-between;
-
-  padding-left: 17px;
-  padding-right: 20px;
   width: 100%;
+  padding: 20px 25px;
+  border-radius: 14px;
 
-  &__way {
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: -0.361765px;
-
-    color: #1D1D1D;
-  }
-
-  &__number {
-
-  }
-}
-
-.save {
-  font-size: 17px;
-  line-height: 20px;
-  letter-spacing: -0.41px;
-
-  margin-bottom: 15px;
-
-  color: #1D1D1D;
-}
-
-.connectText {
-  padding-right: 50px;
-}
-
-.connect {
-  display: flex;
-  justify-content: space-between;
-
-  padding-top: 15px;
-
-  &__mailType {
+  &__text {
     font-size: 17px;
     line-height: 20px;
     letter-spacing: -0.41px;
 
     color: #1D1D1D;
   }
-  &__mail {
-    font-size: 17px;
-    line-height: 20px;
-    letter-spacing: -0.41px;
+  &__btn {
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    background-color: #FFFFFF;
+    letter-spacing: -0.385882px;
 
-    color: #2B44F2;
+    color: #FF3B30;
   }
 }
-
-@media (max-width: 350px) {
-  .connectText {
-    padding-right: 0;
-  }
-}
-
-@media (min-width: 767px) {
-  .container {
-  }
-}
-// middle
-@media (min-width: 1024px) {
-  .Card {
-    padding: 40px 35px;
-    border-radius: 30px;
-  }
-  .container {
-    display: flex;
-  }
-
-  .leftBlock {
-    flex: 1 1 50%;
-  }
-  .rightBlock {
-    flex: 1 1 50%;
-  }
-  .title {
-    font-size: 26px;
-    line-height: 30px;
-    letter-spacing: -0.627059px;
-    margin-bottom: 25px;
-  }
-}
-
-
-@media (min-width: 1680px){
-  .container {
-    width: 80%;
-    margin: 0;
-  }
-  .main {
-    padding: 15px;
-  }
-  .Card {
-    padding: 65px 60px;
-  }
-}
-
