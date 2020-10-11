@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import styles from "./styles.module.scss";
 import container from "../../media/images_new/container.svg";
 import VerticalLine from "../../media/images_new/VerticalLine.svg";
@@ -17,26 +17,36 @@ type PropsT = {
 }
 export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
 
-    const {image, need, quantity, type} = data
+
+   const {image, need, quantity, type} = data
+   const [isTooltip, setIsTooltip]  = useState(false)
 
 
-    return (
-        <div className={styles.wrapper}>
-            <Modal isOpen={isInformed}>
-                <ToolTip type={"small"}/>
-            </Modal>
-            <div className={styles.title}>
-                Контейнер {type}
-                <InformedButton isInformed={isInformed}/>
-                {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
-            </div>
-            <div className={styles.container}>
-                <img src={image} className={styles.image} alt=" "/>
-                <img src={VerticalLine} alt=""/>
-                <div className={styles.text}>
-                    <div className={styles.text__little}>Количество</div>
-                    <div className={styles.text__large}>{quantity}</div>
-                    <div className={styles.text__little}>{need}</div>
+   const onOpenTooltip = () => {
+      setIsTooltip(true)
+   }
+   const onCloseTooltip = () => {
+      setIsTooltip(false)
+   }
+
+
+   return (
+      <div className={styles.wrapper}>
+         <Modal isOpen={isTooltip}>
+            <ToolTip onClose={onCloseTooltip}/>
+         </Modal>
+         <div className={styles.title}>
+            Контейнер {type}
+            <InformedButton isInformed={isInformed} onClick={onOpenTooltip}/>
+            {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
+         </div>
+         <div className={styles.container}>
+            <img src={image} className={styles.image} alt=" "/>
+            <img src={VerticalLine} alt=""/>
+            <div className={styles.text}>
+               <div className={styles.text__little}>Количество</div>
+               <div className={styles.text__large}>{quantity}</div>
+               <div className={styles.text__little}>{need}</div>
 
                 </div>
             </div>
@@ -45,21 +55,23 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
 }
 
 type InfoProps = {
-    isInformed: boolean
+
+   isInformed: boolean
+   onClick: () => void,
 }
 
+const InformedButton: FC<InfoProps> = ({isInformed, onClick}) => {
 
-const InformedButton: FC<InfoProps> = ({isInformed}) => {
+   if (isInformed) {
+      return (
+         <img src={info} style={{paddingLeft: "9px", height: "19px"}} alt="" onClick={onClick}/>
+      )
+   } else {
+      return (
+         <span/>
+      )
+   }
 
-    if (isInformed) {
-        return (
-            <img src={info} style={{paddingLeft: "9px", height: "19px"}} alt=""/>
-        )
-    } else {
-        return (
-            <span/>
-        )
-    }
 }
 
 // const Cost: FC<InfoProps> = ({isInformed}) => {

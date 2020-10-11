@@ -3,8 +3,11 @@ import styles from "./styles.module.scss";
 import cross from "../../media/images_new/Cross.svg";
 
 type PropsT = {
-    type?: "small" | "large" | "fridge"
+   type?: "small" | "large" | "fridge"
+   onClose: () => void
+
 }
+
 
 export const ToolTip: FC<PropsT> = ({type}) => {
 
@@ -56,6 +59,4 @@ export const ToolTip: FC<PropsT> = ({type}) => {
                 <span></span>
             )
     }
-
-
 }

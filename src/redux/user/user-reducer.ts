@@ -11,6 +11,7 @@ import {authActions, exit} from "../auth/auth-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions} from "../app/app-reducer";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
+import {getEverySecMoney, round} from "../../utils/realTimeData";
 
 // userReducer is responsible for main user's information
 
@@ -24,6 +25,7 @@ const initialState = {
    stats: null as null | StatsType,
    isVerify: false,
    userStats: {quantity: 0},
+   realMoneyData: null as null | RealMoneyDataT
 }
 
 export default function userReducer(state = initialState, action: ActionsType): InitialStateType {
@@ -95,6 +97,11 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             userStats: action.data
          }
+      case "user/SET_REAL_MONEY_DATA":
+         return {
+            ...state,
+            realMoneyData: action.data
+         }
       case "user/CLEAR":
          return {
             ...state,
@@ -119,6 +126,7 @@ export const userActions = {
    setHistory: (history: Array<HistoryItemT>) => ({type: "user/SET_HISTORY", history} as const),
    clear: () => ({type: "user/CLEAR"} as const),
    setUserStats: (data: {quantity: number}) => ({type: "user/SET_USER_STATS", data} as const),
+   setRealMoneyData: (data: RealMoneyDataT) => ({type: "user/SET_REAL_MONEY_DATA", data} as const),
 }
 
 export const getUserData = (): ThunkType => { // getting and setting user data
@@ -129,6 +137,30 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          if (data.success) { // if token is true
             dispatch(userActions.setUserData(data.data))
             await localStorage.setItem("userData", JSON.stringify(data.data))
+
+            const {allDayMoney, allTimeMoney} = data.data
+
+            const realMoneyData: RealMoneyDataT = {
+               everySecMoney: {
+                  all: getEverySecMoney(allDayMoney.still.small + allDayMoney.still.large + allDayMoney.still.refrigerator),
+                  large: getEverySecMoney(allDayMoney.still.large),
+                  refrigerator: getEverySecMoney(allDayMoney.still.refrigerator),
+                  small: getEverySecMoney(allDayMoney.still.small),
+               },
+               realAllTimeMoney: {
+                  all: round(allTimeMoney.all, 3),
+                  large:  round(allTimeMoney.large, 3),
+                  refrigerator:  round(allTimeMoney.refrigerator, 3),
+                  small:  round(allTimeMoney.small, 3)
+               },
+               realDayMoney: {
+                  all:  round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3),
+                  large:  round(allDayMoney.now.large, 3),
+                  refrigerator:  round(allDayMoney.now.refrigerator, 3),
+                  small:  round(allDayMoney.now.small, 3)
+               }
+            }
+            dispatch(userActions.setRealMoneyData(realMoneyData))
             // after this i can say, that user is authenticated
             dispatch(authActions.setIsAuth(true))
          } else if (data.error && data.error.name === "no_user") {
@@ -239,3 +271,23 @@ export type BankT = {
    realTimeBank: number
 }
 export type ContainerT = "small" | "large" | "refrigerator"
+export type RealMoneyDataT = {
+   everySecMoney: {
+      small: number
+      large: number
+      refrigerator: number
+      all: number
+   }
+   realDayMoney: {
+      small: number
+      large: number
+      refrigerator: number
+      all: number
+   }
+   realAllTimeMoney: {
+      small: number
+      large: number
+      refrigerator: number
+      all: number
+   }
+}
