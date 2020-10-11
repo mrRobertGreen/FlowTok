@@ -10,7 +10,7 @@ type PropsType = {}
 
 export type PageNamesType = "Profile" | "Work" | "Settings"
 
-export const Profile: FC<PropsType> = ({}) => {
+export const Profile: FC<PropsType> = () => {
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
 
    useRedirect(!isAuth, "/login")

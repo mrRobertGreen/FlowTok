@@ -35,6 +35,10 @@
   padding-top: 10px;
   .column {
     flex: 1 1 33.33%;
+    margin-right: 3px;
+    *:last-child {
+      margin-right: 0;
+    }
   }
   .size {
     font-size: 15px;

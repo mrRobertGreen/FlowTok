@@ -1,8 +1,10 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "./styles.module.scss";
 import {Separator} from "../../../Separator/Separator";
 import cross from "../../../../media/images_new/Cross.svg";
 import {HistoryItemT} from "../../../../api/user-api";
+import {useDispatch} from "react-redux";
+import {getHistory} from "../../../../redux/user/user-reducer";
 
 export type PropsType = {
    onClose: (flag: boolean) => void
@@ -13,6 +15,11 @@ export const History: FC<PropsType> = ({
                                           onClose,
                                           history = []
                                        }) => {
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(getHistory())
+   }, [])
 
    if (!history || history.length === 0) return <></>
 

@@ -90,6 +90,13 @@ export const authMe = (payload: AuthMeReqPayloadType,
       // login & registration
       await commonThunkHandler(async () => {
          setIsLoading(true)
+
+         // set refId in payload
+         const refId = localStorage.getItem("ref")
+         if (refId) {
+            payload.ref = refId
+         }
+
          const data = await authApi.authMe(payload)
 
          if (data.success) {

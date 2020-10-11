@@ -1,12 +1,18 @@
 import React from "react";
-import styles from "./styles.module.scss"
-import { Header } from "./Header/Header";
+import {Header} from "./Header/Header";
 import {Main} from "./Main/Main";
 import {Stats} from "./Stats/Stats";
 import {Page} from "../../components/Page/Page";
 import {Description} from "./Description/Description";
+import {useRedirect} from "../../hooks/useRedirect";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
+
 
 export const Landing = () => {
+   const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
+   useRedirect(isAuth, "/profile")
+
    return (
       <Page isNavbar={false}>
          <Header/>

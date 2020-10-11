@@ -46,7 +46,7 @@ const Nav: FC<PropsType & PropsFromRedux> = ({type}) => {
             </NavLink>
             <NavLink to={"/containers/refrigerator"}
                      className={classNames(styles.item, {[styles.active]: type === "refrigerator"})}>
-               <div>Холодильник</div>
+               <div>Refrigerator</div>
             </NavLink>
          </div>
       </nav>
