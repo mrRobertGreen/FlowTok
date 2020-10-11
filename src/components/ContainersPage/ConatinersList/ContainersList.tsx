@@ -48,7 +48,7 @@ export const ContainersList: FC<PropsType> = () => {
    return (
       <div className={styles.wrapper}>
          <div className={styles.container}>
-            <Container isInformed={true} data={containerData}/>
+            <Container isInformed={true} data={containerData} buyData={buyContainerData}/>
             <Purchase data={buyContainerData} type={type}/>
          </div>
       </div>
