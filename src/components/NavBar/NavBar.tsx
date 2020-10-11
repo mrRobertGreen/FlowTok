@@ -46,7 +46,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   </div>
                </div>
             </NavLink>
-            <NavLink to={"/containers/:type"} className={styles.item}>
+            <NavLink to={"/containers/small"} className={styles.item}>
                <div className={styles.iconWrap}>
                   <img src={workIcon} alt="" className={styles.icon}/>
                   {pageName === "Profile"}

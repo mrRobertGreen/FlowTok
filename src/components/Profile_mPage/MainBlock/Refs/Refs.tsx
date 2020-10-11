@@ -25,7 +25,11 @@ export const Refs: FC<PropsType> = ({refData}) => {
 
    const onCopy = async (text: string) => {
       await navigator.clipboard.writeText(text)
+      console.log("click")
       setIsCopied(true)
+      setTimeout(() => {
+         setIsCopied(false)
+      }, 3000)
    }
 
    const {link, money, referrals} = refData
@@ -41,7 +45,12 @@ export const Refs: FC<PropsType> = ({refData}) => {
                   <Input type="text" readOnly={true} value={link} mod={"grey"}/>
                </div>
                <div className={styles.btn}>
-                  <Button mod={queries.largeTablet ? "gradient" : "copy"} onClick={() => onCopy(link)}>
+                  <Button
+                     mod={queries.largeTablet ? "gradient" : "copy"}
+                     onClick={() => onCopy(link)}
+                     disabled={isCopied}
+                     style={{background: isCopied ? "#00BA32" : ""}}
+                  >
                      {queries.largeTablet && "Копировать"}
                   </Button>
                </div>

@@ -7,29 +7,21 @@ import {useDispatch} from "react-redux";
 import {getHistory} from "../../../../redux/user/user-reducer";
 
 export type PropsType = {
-   onClose: (flag: boolean) => void
    history?: Array<HistoryItemT>
 }
 
 export const History: FC<PropsType> = ({
-                                          onClose,
                                           history = []
                                        }) => {
-   const dispatch = useDispatch()
-
-   useEffect(() => {
-      dispatch(getHistory())
-   }, [])
-
    if (!history || history.length === 0) return <></>
 
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
-         <div className={styles.crossContainer}>
-            <button className={styles.cross} onClick={() => onClose(false)}>
-               <img src={cross} alt=""/>
-            </button>
-         </div>
+         {/*<div className={styles.crossContainer}>*/}
+         {/*   <button className={styles.cross} onClick={() => onClose(false)}>*/}
+         {/*      <img src={cross} alt=""/>*/}
+         {/*   </button>*/}
+         {/*</div>*/}
          <div className={styles.title}>
             История
          </div>

@@ -28,6 +28,8 @@ export type AuthMeReqPayloadType = {
    name?: string
    ref?: string
    timeOffset: number
+   userName?: string
+   surname?: string
 }
 export type SendMoreInfoReqPayloadT = {
    inn: string

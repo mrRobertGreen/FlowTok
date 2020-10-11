@@ -25,6 +25,12 @@
   }
 }
 
+@media (max-width: 350px) {
+  .container {
+    position: static;
+    background-color:#fff;
+  }
+}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {

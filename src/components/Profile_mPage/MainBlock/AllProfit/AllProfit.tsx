@@ -66,35 +66,26 @@ export const AllProfit: FC<PropsType> = ({}) => {
                everySecMoney: {...data.everySecMoney},
                realAllTimeMoney: {
                   all: round(data.realAllTimeMoney.all + data.everySecMoney.all, 2),
-                  large:  round(data.realAllTimeMoney.large + data.everySecMoney.large, 2),
-                  refrigerator:  round(data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator, 2),
-                  small:  round(data.realAllTimeMoney.small + data.everySecMoney.small, 2),
+                  large: round(data.realAllTimeMoney.large + data.everySecMoney.large, 2),
+                  refrigerator: round(data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator, 2),
+                  small: round(data.realAllTimeMoney.small + data.everySecMoney.small, 2),
                },
                realDayMoney: {
-                  all:  round(data.realDayMoney.all + data.everySecMoney.all, 3),
-                  large:  round(data.realDayMoney.large + data.everySecMoney.large, 3),
-                  refrigerator:  round(data.realDayMoney.refrigerator + data.everySecMoney.refrigerator, 3),
-                  small:  round(data.realDayMoney.small + data.everySecMoney.small, 3),
+                  all: round(data.realDayMoney.all + data.everySecMoney.all, 3),
+                  large: round(data.realDayMoney.large + data.everySecMoney.large, 3),
+                  refrigerator: round(data.realDayMoney.refrigerator + data.everySecMoney.refrigerator, 3),
+                  small: round(data.realDayMoney.small + data.everySecMoney.small, 3),
                }
             }
 
             dispatch(userActions.setRealMoneyData(realTimeData))
 
-            // увеличиваю оффшор
-            // dispatch(userActions.setBank(round(bank + data.everySecMoney.all, 3)))
+            if (getSecondsToday() === 0) dispatch(getUserData())  // обновление в 00:00
          }
 
       }, 1000);
       return () => clearInterval(interval);
    }, [data]);
-
-   // обновление в 00:00
-   useEffect(() => {
-      const interval = setInterval(() => {
-         if (getSecondsToday() === 0) dispatch(getUserData())
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [])
 
    if (!data) return <Preloader/>
 

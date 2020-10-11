@@ -18,6 +18,8 @@ export type RegFormValuesType = {
    type: "f" | "u"
    password: string
    email: string
+   userName: string
+   surname: string
 }
 
 type PropsType = {}
@@ -37,7 +39,9 @@ export const RegForm: FC<PropsType> = () => {
             type: values.type,
             password: values.password,
             auth: values.email,
-            timeOffset: new Date().getTimezoneOffset()
+            timeOffset: new Date().getTimezoneOffset(),
+            userName: values.userName,
+            surname: values.surname,
          }
       } else {
          payload = {
@@ -48,6 +52,8 @@ export const RegForm: FC<PropsType> = () => {
             password: values.password,
             auth: values.email,
             timeOffset: new Date().getTimezoneOffset(),
+            userName: values.userName,
+            surname: values.surname,
          }
       }
 
@@ -63,6 +69,8 @@ export const RegForm: FC<PropsType> = () => {
             type: "f",
             password: "",
             email: "",
+            userName: "",
+            surname: "",
          }}
          validateOnChange={false}
          onSubmit={onSubmit}
@@ -92,6 +100,37 @@ export const RegForm: FC<PropsType> = () => {
                            </Button>
                         </div>
                      </div>
+
+                     <Field name={"userName"}
+                            validate={validateRequiredField}>
+                        {({field, form: {touched, errors}}: FieldProps) => (
+                           <div className={styles.input}>
+                              <Input
+                                 mod={!errors.email && touched.email ? "active" : undefined}
+                                 type={"text"}
+                                 placeholder={"Имя"}
+                                 isError={!!(errors.email && touched.email)}
+                                 errorMessage={errors.email}
+                                 {...field}
+                              />
+                           </div>
+                        )}
+                     </Field>
+                     <Field name={"surname"}
+                            validate={validateRequiredField}>
+                        {({field, form: {touched, errors}}: FieldProps) => (
+                           <div className={styles.input}>
+                              <Input
+                                 mod={!errors.email && touched.email ? "active" : undefined}
+                                 type={"text"}
+                                 placeholder={"Фамилия"}
+                                 isError={!!(errors.email && touched.email)}
+                                 errorMessage={errors.email}
+                                 {...field}
+                              />
+                           </div>
+                        )}
+                     </Field>
                      <Field name={"email"}
                             validate={emailValidator}>
                         {({field, form: {touched, errors}}: FieldProps) => (

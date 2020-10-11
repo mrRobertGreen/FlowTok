@@ -33,6 +33,7 @@ export const userApi = {
 
 // types
 export type UserDataType = {
+   userName: string
    wallet: number
    allTimeMoney: UserMoneyT
    allDayMoney: {
@@ -114,6 +115,7 @@ export type BuyContainerT = {
    cost: number
    percent: number
    wallet: number
+   min: number
 }
 export type StatsType = BaseDataType & Array<StatItemType>
 export type AdvCreateTaskType = {

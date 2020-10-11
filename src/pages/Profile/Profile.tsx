@@ -12,13 +12,14 @@ export type PageNamesType = "Profile" | "Work" | "Settings"
 
 export const Profile: FC<PropsType> = () => {
    const isAuth = useSelector((state: RootStateType) => state.auth.isAuth)
+   const userName = useSelector((state: RootStateType) => state.user.userData?.userName)
 
    useRedirect(!isAuth, "/login")
 
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
          <TopNavbar logo={true}
-                    label={"Профиль"}
+                    label={userName ? userName : "Профиль"}
                     br={" 0px 0px 11px 11px"}
          />
          <MainBlock/>

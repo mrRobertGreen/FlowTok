@@ -35,7 +35,7 @@ export const Stats: FC = () => {
    useEffect(() => {
       const interval = setInterval(() => {
          setAverage(getAverage())
-      }, 1000)
+      }, 14400)
       return () => clearInterval(interval)
    }, [average])
 

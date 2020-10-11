@@ -73,9 +73,13 @@
     border-radius: 30px;
     background-color: black;
     z-index: 0;
+    width: 33.33%;
   }
+  .sliderItemM {
+     left: 33.33%;
+   }
   .sliderItemR {
-    left: 49%;
+    left: 66.66%;
   }
   .sections {
     background-color: #fff;

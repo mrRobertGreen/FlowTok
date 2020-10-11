@@ -35,8 +35,6 @@ export  function getPaid() {
    return nowStart + Math.round(secFromStart / secInDay * 21453)
 }
 
-let lastRandom = 0
-let sign = -1
 export function getAverage() {
 
    let offSet = (new Date).getTimezoneOffset()
@@ -48,13 +46,7 @@ export function getAverage() {
    let dt = new Date();
    let secFromStart = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
    let moneyNow = Math.round(secFromStart / secInDay * 256)
-   let min = lastRandom + (sign * 5)
-   let max = lastRandom - (sign * 5)
-   if (min < -100 || max > 100) {
-      sign = sign * -1
-   }
 
-   lastRandom = min + Math.floor((max - min) * Math.random());
-   let random = min + Math.floor((max - min) * Math.random());
-   return nowStart + moneyNow + (lastRandom)
+   let random = (moneyNow - 100) + Math.floor(((moneyNow + 100) - (moneyNow - 100)) * Math.random());
+   return random
 }

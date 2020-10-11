@@ -32,9 +32,9 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
 
     return (
         <div className={styles.wrapper}>
-            {/*<Modal isOpen={isTooltip}>*/}
-            {/*    <ToolTip onClose={onCloseTooltip}/>*/}
-            {/*</Modal>*/}
+            <Modal isOpen={isTooltip}>
+                <ToolTip onClose={onCloseTooltip}/>
+            </Modal>
             <div className={styles.title}>
                 Контейнер {type}
                 <InformedButton isInformed={isInformed} onClick={onOpenTooltip}/>

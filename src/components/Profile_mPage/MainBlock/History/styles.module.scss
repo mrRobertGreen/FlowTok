@@ -1,8 +1,9 @@
 .wrapper {
-  padding: 32px 21px;
+  padding: 32px 0 0;
   width: 100%;
   background: #FFFFFF;
-  border-radius: 14px;
+  max-height: 250px;
+  overflow-y: auto;
 }
 .crossContainer {
   display: flex;
@@ -13,9 +14,9 @@
   background-color: #FFFFFF;
 }
 .title {
-  line-height: 22px;
-  font-size: 19px;
   font-weight: bold;
+  font-size: 17px;
+  line-height: 20px;
   margin-bottom: 20px;
 }
 .history {
@@ -25,7 +26,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
-    padding-right: 5px;
+    padding-right: 10px;
     .operation_green {
       font-size: 17px;
       color: #24C054;

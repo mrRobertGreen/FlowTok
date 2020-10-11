@@ -148,10 +148,10 @@ export const getUserData = (): ThunkType => { // getting and setting user data
                   small: getEverySecMoney(allDayMoney.still.small),
                },
                realAllTimeMoney: {
-                  all: round(allTimeMoney.all, 3),
-                  large:  round(allTimeMoney.large, 3),
-                  refrigerator:  round(allTimeMoney.refrigerator, 3),
-                  small:  round(allTimeMoney.small, 3)
+                  all: round(allTimeMoney.all, 2),
+                  large:  round(allTimeMoney.large, 2),
+                  refrigerator:  round(allTimeMoney.refrigerator, 2),
+                  small:  round(allTimeMoney.small, 2)
                },
                realDayMoney: {
                   all:  round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3),
@@ -200,6 +200,7 @@ export const getGift = (): ThunkType => {
          if (res.success) {
             dispatch(userActions.setGift(false))
             dispatch(userActions.setWallet(res.data.wallet))
+            await dispatch(getHistory())
          }
          checkMessageNotification(res, dispatch)
       }, dispatch)
@@ -227,7 +228,6 @@ export const getContainers = (): ThunkType => {
             dispatch(userActions.setContainers(data.data))
          }
          checkMessageNotification(data, dispatch)
-
       }, dispatch)
    }
 }

@@ -11,7 +11,10 @@
   }
 }
 
-@media (min-width: 767px) {
+@media (max-width: 350px) {
+  .video {
+    display: none;
+  }
 }
 
 // Large devices (desktops, 992px and up)

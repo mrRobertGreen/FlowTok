@@ -15,19 +15,19 @@ export type PropsType = {
 }
 
 const Balance: FC<PropsType> = ({value, history}) => {
-    const [isHistory, setIsHistory] = useState(false)
+    // const [isHistory, setIsHistory] = useState(false)
 
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
-            <Modal isOpen={isHistory}>
-                <History onClose={setIsHistory} history={history}/>
-            </Modal>
+            {/*<Modal isOpen={isHistory}>*/}
+            {/*    <History history={history}/>*/}
+            {/*</Modal>*/}
             <div>
                 <div className={styles.title}>
                     Кошелек
-                    {history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>
-                        <img src={clock} alt=""/>
-                    </button>}
+                    {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
+                    {/*    <img src={clock} alt=""/>*/}
+                    {/*</button>}*/}
                 </div>
                 <div className={styles.label}>
                     Ваш баланс
@@ -49,6 +49,8 @@ const Balance: FC<PropsType> = ({value, history}) => {
                     </NavLink>
                 </div>
             </div>
+
+            <History history={history}/>
         </div>
     )
 }
