@@ -14,6 +14,8 @@ import {SignIn} from "./pages/SignIn/SignIn";
 import {Registration} from "./pages/Registration/Registration";
 import Settings from "./pages/Settings/Settings";
 import RefRedirect from "./components/common/RefRedirect/RefRedirect";
+import {getUserData} from "./redux/user/user-reducer";
+import {useDataRefresher} from "./hooks/useDataRefresher";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -24,6 +26,8 @@ const App: FC = () => {
    useEffect(() => {
       dispatch(initialize())
    }, [dispatch])
+
+   useDataRefresher()
 
    const closeError = () => dispatch(appActions.setError(null));
    const closeNotification = () => dispatch(appActions.setNotification(null));

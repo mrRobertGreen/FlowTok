@@ -25,6 +25,33 @@ export  function getPaid() {
    let offSet = (new Date).getTimezoneOffset()
    let startTime = (1602374400000 + offSet * 60000)
    let days = Math.round((Date.now()-startTime)/(1000*60*60*24))
+   let nowStart = 356893 + 21453 * days
+   let secInDay = 24 * 3600
+   let dt = new Date();
+   let secFromStart = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
+   return nowStart + Math.round(secFromStart / secInDay * 21453)
+}
 
-   return 356893 + (days * 21453)
+let lastRandom = 0
+let sign = -1
+export function getAverage() {
+
+   let offSet = (new Date).getTimezoneOffset()
+   let startTime = (1602374400000 + offSet * 60000)// - (24 * 3600000)
+   let days = Math.round((Date.now()-startTime)/(1000*60*60*24))
+   let nowStart = 1578 + 256 * days
+   let nowEnd = nowStart + 256
+   let secInDay = 24 * 3600
+   let dt = new Date();
+   let secFromStart = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
+   let moneyNow = Math.round(secFromStart / secInDay * 256)
+   let min = lastRandom + (sign * 5)
+   let max = lastRandom - (sign * 5)
+   if (min < -100 || max > 100) {
+      sign = sign * -1
+   }
+
+   lastRandom = min + Math.floor((max - min) * Math.random());
+   let random = min + Math.floor((max - min) * Math.random());
+   return nowStart + moneyNow + (lastRandom)
 }

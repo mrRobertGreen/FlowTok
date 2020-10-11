@@ -4,7 +4,7 @@ import {userApi} from "../../../api/user-api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
 import {getUsersCount} from "../../../redux/user/user-reducer";
-import {getPaid} from "../../../utils/realTimeData";
+import {getAverage, getPaid} from "../../../utils/realTimeData";
 
 
 export const Stats: FC = () => {
@@ -12,6 +12,7 @@ export const Stats: FC = () => {
    const dispatch = useDispatch()
    const userStats = useSelector((state: RootStateType) => state.user.userStats)
    const [paid, setPaid] = useState(getPaid())
+   const [average, setAverage] = useState(getAverage())
 
    useEffect(() => {
       dispatch(getUsersCount())
@@ -27,9 +28,16 @@ export const Stats: FC = () => {
    useEffect(() => {
       const interval = setInterval(() => {
          setPaid(getPaid())
-      }, 5000)
+      }, 4000)
       return () => clearInterval(interval)
    }, [paid])
+
+   useEffect(() => {
+      const interval = setInterval(() => {
+         setAverage(getAverage())
+      }, 1000)
+      return () => clearInterval(interval)
+   }, [average])
 
    return (
       <div className={styles.wrapper}>
@@ -51,7 +59,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               1 578 ₽
+               {average} ₽
             </p>
             <p className={styles.little}>
                Средний доход в день

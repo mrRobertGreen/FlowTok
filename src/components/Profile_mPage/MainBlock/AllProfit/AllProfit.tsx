@@ -14,31 +14,38 @@ import {RootStateType} from "../../../../redux/store";
 
 export type PropsType = {
    allTimeMoney: UserMoneyT
-   restDayMoney: {
-      small: number
-      large: number
-      refrigerator: number
+   allDayMoney: {
+      now: {
+         small: number
+         large: number
+         refrigerator: number
+      }
+      still: {
+         small: number
+         large: number
+         refrigerator: number
+      }
    }
 }
 
-export const AllProfit: FC<PropsType> = ({allTimeMoney, restDayMoney}) => {
+export const AllProfit: FC<PropsType> = ({allTimeMoney, allDayMoney}) => {
 
    const dispatch = useDispatch()
    const bank = useSelector((state: RootStateType) => state.user.bank)
 
-   const restDayMoneyAll = restDayMoney.large + restDayMoney.small + restDayMoney.refrigerator
+   const restDayMoneyAll = allDayMoney.still.large + allDayMoney.still.small + allDayMoney.still.refrigerator
 
    // получает каждую секунду
-   const everySecMoneySmall = getEverySecMoney(restDayMoney.small)
-   const everySecMoneyLarge = getEverySecMoney(restDayMoney.large)
-   const everySecMoneyRefrigerator = getEverySecMoney(restDayMoney.refrigerator)
-   const everySecMoneyAll = getEverySecMoney(restDayMoney.refrigerator + restDayMoney.small + restDayMoney.large)
+   const everySecMoneySmall = getEverySecMoney(allDayMoney.still.small)
+   const everySecMoneyLarge = getEverySecMoney(allDayMoney.still.large)
+   const everySecMoneyRefrigerator = getEverySecMoney(allDayMoney.still.refrigerator)
+   const everySecMoneyAll = getEverySecMoney(allDayMoney.still.refrigerator + allDayMoney.still.small + allDayMoney.still.large)
 
    // уже получил за сегодня
-   const [realTimeProfitSmall, setRealTimeProfitSmall] = useState(getRealTimeProfit(+everySecMoneySmall))
-   const [realTimeProfitLarge, setRealTimeProfitLarge] = useState(getRealTimeProfit(+everySecMoneyLarge))
-   const [realTimeProfitRefrigerator, setRealTimeProfitRefrigerator] = useState(getRealTimeProfit(+everySecMoneyRefrigerator))
-   const [realTimeProfitAll, setRealTimeProfitAll] = useState(getRealTimeProfit(+everySecMoneyAll))
+   const [realTimeProfitSmall, setRealTimeProfitSmall] = useState(round(allDayMoney.now.small, 3))
+   const [realTimeProfitLarge, setRealTimeProfitLarge] = useState(round(allDayMoney.now.large, 3))
+   const [realTimeProfitRefrigerator, setRealTimeProfitRefrigerator] = useState(round(allDayMoney.now.refrigerator, 3))
+   const [realTimeProfitAll, setRealTimeProfitAll] = useState(round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3))
 
    // увеличение каждую секунду
    useEffect(() => {
@@ -85,23 +92,23 @@ export const AllProfit: FC<PropsType> = ({allTimeMoney, restDayMoney}) => {
          </div>
          <div className={styles.money}>
             {getAllTimeMoney(restDayMoneyAll, realTimeProfitAll, allTimeMoney.all)}₽
-            <p className={styles.profit}>{realTimeProfitAll}₽</p>
+            <p className={styles.profit}>+{realTimeProfitAll}₽</p>
          </div>
          <div className={styles.footer}>
             <div className={styles.column}>
                <p className={styles.size}>Small</p>
-               <p className={styles.money_2}>{getAllTimeMoney(restDayMoney.small, realTimeProfitSmall, allTimeMoney.small)}₽</p>
+               <p className={styles.money_2}>{getAllTimeMoney(allDayMoney.still.small, realTimeProfitSmall, allTimeMoney.small)}₽</p>
                <p className={styles.profit}>+{realTimeProfitSmall}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Large</p>
-               <p className={styles.money_2}>{getAllTimeMoney(restDayMoney.large, realTimeProfitLarge, allTimeMoney.large)}₽</p>
+               <p className={styles.money_2}>{getAllTimeMoney(allDayMoney.still.large, realTimeProfitLarge, allTimeMoney.large)}₽</p>
                <p className={styles.profit}>+{realTimeProfitLarge}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Холодильник</p>
                <p className={styles.money_2}>
-                  {getAllTimeMoney(restDayMoney.refrigerator, realTimeProfitRefrigerator, allTimeMoney.refrigerator)}₽
+                  {getAllTimeMoney(allDayMoney.still.refrigerator, realTimeProfitRefrigerator, allTimeMoney.refrigerator)}₽
                </p>
                <p className={styles.profit}>+{realTimeProfitRefrigerator}₽</p>
             </div>
