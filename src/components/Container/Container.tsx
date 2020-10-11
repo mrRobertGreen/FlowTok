@@ -4,23 +4,29 @@ import container from "../../media/images_new/container.svg";
 import VerticalLine from "../../media/images_new/VerticalLine.svg";
 import info from "../../media/images_new/Info.svg";
 import {ContainerObjT} from "../../api/user-api";
+import Modal from "../common/Modal/Modal";
+import {ToolTip} from "../ToolTip/ToolTip";
 
 type PropsT = {
     isInformed?: boolean
     data: ContainerObjT
 }
 
-export const Container: FC<PropsT> = ({isInformed = false, data})=> {
+export const Container: FC<PropsT> = ({isInformed = false, data}) => {
 
     const {image, need, quantity, type} = data
 
     return (
         <div className={styles.wrapper}>
-
+            <Modal isOpen={isInformed}>
+                <ToolTip />
+            </Modal>
             <div className={styles.title}>
                 Контейнер {type}
-                <InformedButton isInformed={isInformed}/>
-                {isInformed ? <p className={styles.text__little_2}>Цена: 75 000.00  ₽ за шт.</p> : <div></div>}
+                <button style={{backgroundColor:"white"}} onClick={() => {isInformed = !isInformed}}>
+                    <InformedButton isInformed={isInformed}/>
+                </button>
+                {isInformed ? <p className={styles.text__little_2}>Цена: 75 000.00 ₽ за шт.</p> : <div></div>}
             </div>
             <div className={styles.container}>
                 <img src={container} className={styles.image} alt=" "/>
@@ -43,12 +49,11 @@ type InfoProps = {
 const InformedButton: FC<InfoProps> = ({isInformed}) => {
     if (isInformed) {
         return (
-           <img src={info} style={{paddingLeft:"9px", height:"19px"}} alt=""/>
+            <img src={info} style={{paddingLeft: "9px", height: "19px"}} alt=""/>
         )
-    }
-    else {
-        return(
-           <span />
+    } else {
+        return (
+            <span/>
         )
     }
 }

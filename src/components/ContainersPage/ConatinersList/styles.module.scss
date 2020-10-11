@@ -7,10 +7,10 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
-
-@media (min-width: 992px) {
+@media (min-width: 767px) {
   .wrapper {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
   }
 }
 @media (min-width: 1200px) {

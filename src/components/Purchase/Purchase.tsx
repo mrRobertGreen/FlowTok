@@ -112,7 +112,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                     <p className={styles.numbers}>
                         Ваш баланс: {wallet}₽
                     </p>
-                    <button className={styles.plusButton}><img src={plus} style={{width:"17px"}} alt=""/></button>
+                    <button className={styles.plusButton}><img src={plus} style={{width: "17px"}} alt=""/></button>
                 </div>
 
             </div>
@@ -140,13 +140,18 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                 />
             </div>
             <div className={styles.container}>
-                <img src={getPercentIcon(+realTimeData.percent)} className={styles.image} alt=" "/>
-                <img src={VerticalLine} alt="" className={styles.separator}/>
-                <div className={styles.text}>
-                    <div className={styles.text__little}>Количество</div>
-                    <div className={styles.text__large}>{`${realTimeData.whole} шт. + ${realTimeData.percent}%`}</div>
-                    <div
-                        className={styles.text__little}>{`До ${realTimeData.whole + 1} шт. осталось ${100 - +realTimeData.percent}%`}</div>
+
+                    <img src={getPercentIcon(+realTimeData.percent)} className={styles.image} alt=" "/>
+                    <img src={VerticalLine} alt="" className={styles.separator}/>
+
+                <div className={styles.container__right}>
+                    <div className={styles.text}>
+                        <div className={styles.text__little}>Количество</div>
+                        <div
+                            className={styles.text__large}>{`${realTimeData.whole} шт. + ${realTimeData.percent}%`}</div>
+                        <div
+                            className={styles.text__little}>{`До ${realTimeData.whole + 1} шт. осталось ${100 - +realTimeData.percent}%`}</div>
+                    </div>
                 </div>
             </div>
             <div className={styles.profitability}>
@@ -161,7 +166,6 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                             type={"submit"}
                             onClick={onSubmit}
                     /></div>
-                {/*<button className={styles.profitability__Btn}>Пополнить</button>*/}
             </div>
 
         </div>
