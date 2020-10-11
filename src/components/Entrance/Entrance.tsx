@@ -34,6 +34,7 @@ export const Entrance: FC<PropsType> = () => {
             auth: values.email,
             password: values.password,
             type: values.type,
+            timeOffset: new Date().getTimezoneOffset(),
         }
         dispatch(authMe(payload, resetForm, setIsLoading))
     }
