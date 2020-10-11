@@ -28,6 +28,9 @@
   .icon_copy {
     display: block;
   }
+  &:active {
+    background: #00BA32;
+  }
 }
 
 .btn_white {

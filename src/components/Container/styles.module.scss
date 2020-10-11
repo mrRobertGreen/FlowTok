@@ -24,7 +24,6 @@
 .text {
   display: flex;
   flex-direction: column;
-  gap: 4px;
   align-items: flex-start;
   padding-top: -6px;
   padding-right: 13%;
@@ -35,6 +34,7 @@
     line-height: 22px;
     font-weight: bold;
     letter-spacing: -0.458235px;
+    padding-bottom: 4px;
 
     color: #000000;
   }
@@ -42,6 +42,7 @@
     font-size: 13px;
     line-height: 15px;
     letter-spacing: -0.313529px;
+    padding-bottom: 4px;
 
     color: #8E8E93;
   }

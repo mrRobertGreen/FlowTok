@@ -121,7 +121,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
                <p className={styles.profit}>+{realDayMoney.large}₽</p>
             </div>
             <div className={styles.column}>
-               <p className={styles.size}>Холодильник</p>
+               <p className={styles.size}>Refrigerator</p>
                <p className={styles.money_2}>
                   {realAllTimeMoney.refrigerator}₽
                </p>

@@ -1,15 +1,17 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss";
 import cross from "../../media/images_new/Cross.svg";
+import {ContainerT} from "../../redux/user/user-reducer";
+import { useParams } from "react-router";
 
 type PropsT = {
-   type?: "small" | "large" | "fridge"
    onClose: () => void
-
 }
 
 
-export const ToolTip: FC<PropsT> = ({type}) => {
+export const ToolTip: FC<PropsT> = ({onClose}) => {
+
+    const type = useParams() as ContainerT;
 
     switch (type) {
         case "small":
@@ -40,7 +42,7 @@ export const ToolTip: FC<PropsT> = ({type}) => {
                     <p className={styles.text}>Ширина проема: 2339 см</p>
                 </div>
             )
-        case "fridge":
+        case "refrigerator":
             return (
                 <div>
                     <div>
