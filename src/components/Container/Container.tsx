@@ -11,41 +11,41 @@ import {BuyContainerT, ContainerObjT} from "../../api/user-api";
 
 
 type PropsT = {
-   isInformed?: boolean
-   data: ContainerObjT
-   buyData?: BuyContainerT
+    isInformed?: boolean
+    data: ContainerObjT
+    buyData?: BuyContainerT
 }
 export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
 
-   const {image, need, quantity, type} = data
+    const {image, need, quantity, type} = data
 
 
     return (
         <div className={styles.wrapper}>
             <Modal isOpen={isInformed}>
-                <ToolTip />
+                <ToolTip type={"small"}/>
             </Modal>
-         <div className={styles.title}>
-            Контейнер {type}
-            <InformedButton isInformed={isInformed}/>
-            {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
-         </div>
-         <div className={styles.container}>
-            <img src={image} className={styles.image} alt=" "/>
-            <img src={VerticalLine} alt=""/>
-            <div className={styles.text}>
-               <div className={styles.text__little}>Количество</div>
-               <div className={styles.text__large}>{quantity}</div>
-               <div className={styles.text__little}>{need}</div>
-
+            <div className={styles.title}>
+                Контейнер {type}
+                <InformedButton isInformed={isInformed}/>
+                {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
             </div>
-         </div>
-      </div>
-   )
+            <div className={styles.container}>
+                <img src={image} className={styles.image} alt=" "/>
+                <img src={VerticalLine} alt=""/>
+                <div className={styles.text}>
+                    <div className={styles.text__little}>Количество</div>
+                    <div className={styles.text__large}>{quantity}</div>
+                    <div className={styles.text__little}>{need}</div>
+
+                </div>
+            </div>
+        </div>
+    )
 }
 
 type InfoProps = {
-   isInformed: boolean
+    isInformed: boolean
 }
 
 
@@ -60,6 +60,7 @@ const InformedButton: FC<InfoProps> = ({isInformed}) => {
             <span/>
         )
     }
+}
 
 // const Cost: FC<InfoProps> = ({isInformed}) => {
 //     if (isInformed) {
