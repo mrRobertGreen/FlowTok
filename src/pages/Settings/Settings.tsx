@@ -23,7 +23,6 @@ const Settings = () => {
          <TopNavbar label={"Настройки"} logo={true} br={" 0px 0px 11px 11px"}/>
          <div className={styles.wrapper}>
             <div className={styles.enter}>
-               <p className={styles.enter__text}>Выйти из профиля</p>
                <button className={styles.enter__btn} onClick={onExit}>Выйти</button>
             </div>
          </div>

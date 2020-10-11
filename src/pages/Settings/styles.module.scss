@@ -6,7 +6,7 @@
   background-color: #FFFFFF;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   width: 100%;
@@ -28,5 +28,16 @@
     letter-spacing: -0.385882px;
 
     color: #FF3B30;
+  }
+}
+
+@media (min-width: 760px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .enter {
+    width: 80%;
   }
 }
