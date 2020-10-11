@@ -8,7 +8,11 @@
 }
 .container {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
+
+  &__image {
+
+  }
 }
 .title {
   font-size: 17px;
@@ -20,14 +24,17 @@
 .image {
   width: 77px;
   height: 51px;
+
+  margin-right: 25px;
 }
 .text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-top: -6px;
-  padding-right: 13%;
-  margin-left: 3%;
+  //padding-right: 13%;
+  padding-left: 27px;
+
   max-width: 55%;
 
   &__large {

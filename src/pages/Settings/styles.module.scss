@@ -41,3 +41,11 @@
     width: 80%;
   }
 }
+@media (min-width: 1024px) {
+  .wrapper {
+    justify-content: flex-start;
+  }
+  .enter {
+    width: 70%;
+  }
+}

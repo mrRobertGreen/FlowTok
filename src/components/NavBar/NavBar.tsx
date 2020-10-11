@@ -12,9 +12,6 @@ import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
 import {Logo} from "../Logo/Logo";
 import {Separator} from "../Separator/Separator";
-import vkIcon from "../../media/icons/vk_link.svg"
-import tgIcon from "../../media/icons/tg_link.svg"
-import instIcon from "../../media/icons/inst_link.svg"
 
 type PropsType = {
    pageName?: PageNamesType
@@ -36,18 +33,6 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
       <nav className={styles.wrapper}>
          <Logo/>
          <div className={styles.navbar}>
-            <div className={styles.profile}>
-               <img src={""} alt="" className={styles.avatar}/>
-               <div className={styles.info}>
-                  <div className={styles.name}>
-                     name
-                  </div>
-                  <div className={styles.surname}>
-                     login
-                  </div>
-               </div>
-            </div>
-            <Separator m={"0"}/>
             <NavLink to={"/profile"} onClick={() => dispatch(getUserData())}>
                <div className={styles.item}>
                   <img src={pageName === "Profile" ? homeIconActive : homeIcon} alt="" className={styles.icon}/>
@@ -61,13 +46,10 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   </div>
                </div>
             </NavLink>
-            <NavLink to={"/work"} className={styles.item}>
+            <NavLink to={"/containers/:type"} className={styles.item}>
                <div className={styles.iconWrap}>
-                  <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
-                  {pageName === "Profile" && newTasksNumber &&
-						<div className={styles.notification}>
-                     {newTasksNumber}
-						</div>}
+                  <img src={workIcon} alt="" className={styles.icon}/>
+                  {pageName === "Profile"}
                </div>
                <div
                   className={styles.label}
@@ -75,7 +57,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                      gradientText
                      : {color: "#979797"}}
                >
-                  Задания
+                  Контейнеры
                </div>
             </NavLink>
             <NavLink to={"/settings"} className={styles.item}>
@@ -89,20 +71,9 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   Настройки
                </div>
             </NavLink>
-            <div className={styles.socialItems}>
-               <a href="https://vk.com" target="_blank" rel="noopener noreferrer">
-                  <img src={vkIcon} alt="" className={styles.socialItem}/>
-               </a>
-               <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
-                  <img src={tgIcon} alt="" className={styles.socialItem}/>
-               </a>
-               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                  <img src={instIcon} alt="" className={styles.socialItem}/>
-               </a>
-            </div>
          </div>
          <div className={styles.rights}>
-            © FlowTok. All Rights Reserved.
+            © Take Containers. All Rights Reserved.
          </div>
       </nav>
    )

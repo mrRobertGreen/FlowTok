@@ -19,41 +19,47 @@
   }
 }
 
+
+
 @media (min-width: 1024px) {
+  //.grid {
+  //  width: 100%;
+  //  margin: 0;
+  //  grid-gap: 17px;
+  //  grid-template-columns: repeat(8, 1fr);
+  //  grid-template-rows: 1fr 1fr;
+  //  grid-template-areas:
+  //  "bal bal bal mc-1 mc-1 his his his"
+  //  "bal bal bal mc-2 his his his"
+  //  "st st st st ref ref ref ref";
+  //
+  //  .balance {
+  //    grid-area: bal;
+  //  }
+  //
+  //  .history {
+  //    grid-area: his;
+  //  }
+  //
+  //  .miniCard1 {
+  //    grid-area: mc-1;
+  //  }
+  //
+  //  .miniCard2 {
+  //    grid-area: mc-2;
+  //  }
+  //
+  //  .stats {
+  //    grid-area: st;
+  //  }
+  //
+  //  .refs {
+  //    grid-area: ref;
+  //  }
+  //}
   .grid {
-    width: 100%;
+    width: 70%;
     margin: 0;
-    grid-gap: 17px;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-    "bal bal bal mc-1 mc-1 his his his"
-    "bal bal bal mc-2 his his his"
-    "st st st st ref ref ref ref";
-
-    .balance {
-      grid-area: bal;
-    }
-
-    .history {
-      grid-area: his;
-    }
-
-    .miniCard1 {
-      grid-area: mc-1;
-    }
-
-    .miniCard2 {
-      grid-area: mc-2;
-    }
-
-    .stats {
-      grid-area: st;
-    }
-
-    .refs {
-      grid-area: ref;
-    }
   }
 }
 

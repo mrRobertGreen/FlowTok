@@ -55,12 +55,11 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
 
   padding-top: 24px;
   margin-bottom: 25px;
   .separator {
-    padding: 0 6%;
   }
   &__left {
     display: flex;
@@ -84,6 +83,8 @@
 .image {
   width: 77px;
   height: 51px;
+
+  margin-right: 25px;
 }
 .text {
   display: flex;
@@ -91,6 +92,7 @@
   align-items: flex-start;
   justify-content: space-between;
   padding-top: -8px;
+  padding-left: 27px;
   //padding-right: 11%;
   width: 100%;
 

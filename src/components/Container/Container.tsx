@@ -41,8 +41,10 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
                 {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
             </div>
             <div className={styles.container}>
-                <img src={image} className={styles.image} alt=" "/>
-                <img src={VerticalLine} alt=""/>
+                <div className={styles.container__image}>
+                    <img src={image} className={styles.image} alt=" "/>
+                    <img src={VerticalLine} alt=""/>
+                </div>
                 <div className={styles.text}>
                     <div className={styles.text__little}>Количество</div>
                     <div className={styles.text__large}>{quantity}</div>
