@@ -28,7 +28,7 @@ export const LoginForm: FC<PropsType> = () => {
    useRedirect(isAuth, "/profile")
 
    const onSubmit = async (values: LoginFormValuesType, {resetForm}: FormikValues) => {
-      const payload: AuthMeReqPayloadType = {
+      let payload: AuthMeReqPayloadType = {
          auth: values.email,
          password: values.password,
          type: "f"

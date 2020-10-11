@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsType} from "../store";
 import {
    BuyContainerReqBodyT,
-   GetContainersResDataT,
+   GetContainersResDataT, HistoryItemT,
    RefDataType,
    StatsType,
    userApi,
@@ -48,6 +48,48 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             bank: action.bank
          }
+      case "user/SET_HISTORY":
+         if (state.userData) {
+            return {
+               ...state,
+               userData: {
+                  ...state.userData,
+                  history: [...action.history]
+               }
+            }
+         } else {
+            return {
+               ...state,
+            }
+         }
+      case "user/SET_GIFT":
+         if (state.userData) {
+            return {
+               ...state,
+               userData: {
+                  ...state.userData,
+                  gift: action.gift
+               }
+            }
+         } else {
+            return {
+               ...state,
+            }
+         }
+      case "user/SET_WALLET":
+         if (state.userData) {
+            return {
+               ...state,
+               userData: {
+                  ...state.userData,
+                  wallet: action.wallet
+               }
+            }
+         } else {
+            return {
+               ...state,
+            }
+         }
       case "user/SET_USER_STATS":
          return {
             ...state,
@@ -70,6 +112,9 @@ export const userActions = {
    setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
    setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
    setBank: (bank: number) => ({type: "user/SET_BANK", bank} as const),
+   setGift: (gift: boolean) => ({type: "user/SET_GIFT", gift} as const),
+   setWallet: (wallet: number) => ({type: "user/SET_WALLET", wallet} as const),
+   setHistory: (history: Array<HistoryItemT>) => ({type: "user/SET_HISTORY", history} as const),
    clear: () => ({type: "user/CLEAR"} as const),
    setUserStats: (data: {quantity: number}) => ({type: "user/SET_USER_STATS", data} as const),
 }
@@ -94,12 +139,44 @@ export const getUserData = (): ThunkType => { // getting and setting user data
       }, dispatch)
    }
 }
-export const getUsersCount = (): ThunkType => { // getting and setting user data
+export const getUsersCount = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
          const res = await userApi.getUsersCount()
          if (res.success) {
             dispatch(userActions.setUserStats(res.data))
+         }
+      }, dispatch)
+   }
+}
+export const getHistory = (): ThunkType => {
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         const res = await userApi.getHistory()
+         if (res.success) {
+            dispatch(userActions.setHistory(res.data))
+         }
+      }, dispatch)
+   }
+}
+export const getGift = (): ThunkType => {
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         const res = await userApi.getGift()
+         if (res.success) {
+            dispatch(userActions.setGift(false))
+            dispatch(userActions.setWallet(res.data.wallet))
+         }
+         checkMessageNotification(res, dispatch)
+      }, dispatch)
+   }
+}
+export const closeGift = (): ThunkType => {
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         const res = await userApi.closeGift()
+         if (res.success) {
+            dispatch(userActions.setGift(false))
          }
       }, dispatch)
    }

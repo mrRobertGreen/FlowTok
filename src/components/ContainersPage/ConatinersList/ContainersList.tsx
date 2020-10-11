@@ -3,7 +3,6 @@ import styles from "./styles.module.scss"
 import {Container} from "../../Container/Container";
 import {Purchase} from "../../Purchase/Purchase";
 import {useDispatch, useSelector} from "react-redux";
-import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {useParams} from "react-router";
 import {ContainerT, getContainers, userActions} from "../../../redux/user/user-reducer";
@@ -11,9 +10,9 @@ import {
    getBuyContainerData,
    getContainerData,
    getContainerType,
-   getterBuyContainerData, getterContainerData
+   getterBuyContainerData,
+   getterContainerData
 } from "../../../redux/user/selectors";
-import {BuyContainerT, ContainerObjT} from "../../../api/user-api";
 import {useCache} from "../../../hooks/useCache";
 
 type PropsType = {}
@@ -21,10 +20,9 @@ type PropsType = {}
 export const ContainersList: FC<PropsType> = () => {
 
    const dispatch = useDispatch()
-   const containerType  = useSelector(getContainerType)
+   const containerType = useSelector(getContainerType)
    let containerData = useSelector(getContainerData)
    let buyContainerData = useSelector(getBuyContainerData)
-
 
 
    const containersCache = useCache("containers")
@@ -39,10 +37,8 @@ export const ContainersList: FC<PropsType> = () => {
 
 
    useEffect(() => {
-      if ((!containerData || !buyContainerData)) {
-         dispatch(getContainers())
-      }
-   }, [containerData, buyContainerData])
+      dispatch(getContainers())
+   }, [])
 
    if (!containerData) containerData = containerCache
    if (!buyContainerData) buyContainerData = buyContainerCache

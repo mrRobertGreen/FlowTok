@@ -23,7 +23,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data})=> {
                 {isInformed ? <p className={styles.text__little_2}>Цена: 75 000.00  ₽ за шт.</p> : <div></div>}
             </div>
             <div className={styles.container}>
-                <img src={container} className={styles.image} alt=" "/>
+                <img src={image} className={styles.image} alt=" "/>
                 <img src={VerticalLine} alt=""/>
                 <div className={styles.text}>
                     <div className={styles.text__little}>Количество</div>

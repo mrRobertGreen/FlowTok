@@ -6,6 +6,8 @@ import container from "../../media/images_new/container.svg";
 import VerticalLine from "../../media/images_new/VerticalLine.svg";
 import Button from "../Button/Button";
 import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {closeGift, getGift} from "../../redux/user/user-reducer";
 
 type PropsType = {
     title: string,
@@ -13,13 +15,23 @@ type PropsType = {
 }
 
 export const Gift: FC<PropsType> = ({title, text}) => {
+
+    const dispatch = useDispatch()
+
+    const onGetGift = () => {
+        dispatch(getGift())
+    }
+    const onCloseGift = () => {
+        dispatch(closeGift())
+    }
+
     return (
         <div className={styles.wrapper}>
             <div>
                 <div className={styles.header}>
                     <div className={styles.header__container}>
                         <p className={styles.header__title}>{title}</p>
-                        <button style={{backgroundColor: "white"}}>
+                        <button style={{backgroundColor: "white"}} onClick={onCloseGift}>
                             <img src={cross} alt=""/>
                         </button>
                     </div>
@@ -32,7 +44,7 @@ export const Gift: FC<PropsType> = ({title, text}) => {
                     </div>
                 </div>
                 <NavLink to={"/"}>
-                    <Button mod={"green"}>
+                    <Button mod={"green"} onClick={onGetGift}>
                         Получить
                     </Button>
                 </NavLink>

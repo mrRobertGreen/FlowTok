@@ -13,6 +13,7 @@ import {Profile} from "./pages/Profile/Profile";
 import {SignIn} from "./pages/SignIn/SignIn";
 import {Registration} from "./pages/Registration/Registration";
 import Settings from "./pages/Settings/Settings";
+import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -67,7 +68,7 @@ const App: FC = () => {
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}
-            {/*<Route path="/ref/:refId" component={RefRedirect}/>*/}
+            <Route path="/ref/:refId" component={RefRedirect}/>
             {/*<Route path="/settings" component={Settings}/>*/}
             {/*<Route exact path="/withdraw" component={WithdrawTypes_m}/>*/}
             {/*<Route path="/withdraw/:type" component={Withdraw_m}/>*/}

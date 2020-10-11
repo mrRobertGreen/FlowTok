@@ -20,3 +20,11 @@ export const getEverySecMoney = (restDayMoney: number) => {
 export const getAllTimeMoney = (restDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
    return round(allTimeMoneyOld + (realTimeProfit - restDayMoney), 2)
 }
+
+export  function getPaid() {
+   let offSet = (new Date).getTimezoneOffset()
+   let startTime = (1602374400000 + offSet * 60000)
+   let days = Math.round((Date.now()-startTime)/(1000*60*60*24))
+
+   return 356893 + (days * 21453)
+}

@@ -26,6 +26,7 @@ export type AuthMeReqPayloadType = {
    inn?: string
    ogrn?: string
    name?: string
+   ref?: string
 }
 export type SendMoreInfoReqPayloadT = {
    inn: string

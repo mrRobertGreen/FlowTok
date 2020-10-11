@@ -37,7 +37,7 @@ export const OffShore: FC<PropsType> = () => {
                     Ваш баланс
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{bank}</p>
+                    <p className={styles.money}>{bank}₽</p>
                 </div>
                 <Button mod={isLoading ? "loading" : "gradient"} onClick={omTransfer}>
                     В кошелек

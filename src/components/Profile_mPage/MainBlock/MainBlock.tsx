@@ -1,8 +1,8 @@
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "./styles.module.scss";
 import Balance from "./Balance/Balance";
 import {RootStateType} from "../../../redux/store";
-import {userActions} from "../../../redux/user/user-reducer";
+import {getContainers, getUserData, userActions} from "../../../redux/user/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import {useCache} from "../../../hooks/useCache";
 import {useDispatch, useSelector} from "react-redux";
@@ -19,9 +19,6 @@ const MainBlock: FC<PropsType> = () => {
    let userData = useSelector((state: RootStateType) => state.user.userData)
    const userDataCache = useCache("userData")
    const dispatch = useDispatch()
-
-
-
 
    if (userDataCache && !userData) {
       userData = userDataCache

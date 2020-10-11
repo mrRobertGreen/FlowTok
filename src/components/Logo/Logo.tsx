@@ -13,9 +13,9 @@ export const Logo: FC = () => {
 
    return (
       <div className={styles.wrapper}>
-         <img src={logoIcon} alt="" className={styles.image}/>
+         {/*<img src={logoIcon} alt="" className={styles.image}/>*/}
 			<div className={styles.name}>
-				FlowTok
+				Containers
 			</div>
       </div>
 

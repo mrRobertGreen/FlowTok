@@ -20,6 +20,15 @@ export const userApi = {
    getUsersCount() {
       return instance.get<BaseResponseType<{quantity: number}>>(`/users/user/quantity`).then(res => res.data)
    },
+   getHistory() {
+      return instance.get<BaseResponseType<Array<HistoryItemT>>>(`/users/user/history`).then(res => res.data)
+   },
+   getGift() {
+      return instance.post<BaseResponseType<GetGiftResT>>(`/users/user/gift/get`).then(res => res.data)
+   },
+   closeGift() {
+      return instance.post<BaseResponseType<{gift: false}>>(`/users/user/gift/close`).then(res => res.data)
+   },
 };
 
 // types
@@ -37,6 +46,10 @@ export type UserDataType = {
    notification?: NotificationT
    gift: boolean
    history?: Array<HistoryItemT>
+}
+export type GetGiftResT = {
+   wallet: number
+   notification?: NotificationT
 }
 export type BuyContainerReqBodyT = {
    type: "small" | "large" | "refrigerator"
