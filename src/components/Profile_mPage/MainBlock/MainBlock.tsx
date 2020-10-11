@@ -24,6 +24,10 @@ const MainBlock: FC<PropsType> = () => {
       userData = userDataCache
    }
 
+   useEffect(() => {
+      dispatch(getUserData())
+   }, [])
+
    if (!userData) {
       return <Preloader/>
    }

@@ -10,15 +10,18 @@ export const round = function(number: number, digits: number) {
 }
 
 export const getRealTimeProfit = (everySecMoney: number) => {
+   // кол-во денег за прошедший день в данную секунду
    return round((everySecMoney * getSecondsToday()), 3)
 }
 
-export const getEverySecMoney = (restDayMoney: number) => {
-   return round((restDayMoney / (DAY_SECONDS - getSecondsToday())), 3)
+export const getEverySecMoney = (stillDayMoney: number) => {
+   // количество денег в секунду
+   return round((stillDayMoney / (DAY_SECONDS - getSecondsToday())), 3)
 }
 
-export const getAllTimeMoney = (restDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
-   return round(allTimeMoneyOld + (realTimeProfit - restDayMoney), 2)
+export const getAllTimeMoney = (nowDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
+   // кол-во денег за все время
+   return round(allTimeMoneyOld + (realTimeProfit - nowDayMoney), 2)
 }
 
 export  function getPaid() {

@@ -98,9 +98,11 @@ export default function userReducer(state = initialState, action: ActionsType): 
       case "user/CLEAR":
          return {
             ...state,
-            isAdvTaskCreated: false,
             refData: null,
             stats: null,
+            containers: null,
+            bank: 0,
+            userData: null,
          }
       default:
          return state

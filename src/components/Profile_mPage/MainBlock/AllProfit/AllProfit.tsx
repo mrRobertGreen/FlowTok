@@ -1,13 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss"
 import {UserMoneyT} from "../../../../api/user-api";
-import {
-   DAY_SECONDS, getAllTimeMoney,
-   getEverySecMoney,
-   getRealTimeProfit,
-   getSecondsToday,
-   round
-} from "../../../../utils/realTimeData";
+import {getEverySecMoney, getSecondsToday, round} from "../../../../utils/realTimeData";
 import {getUserData, userActions} from "../../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
@@ -33,7 +27,7 @@ export const AllProfit: FC<PropsType> = ({allTimeMoney, allDayMoney}) => {
    const dispatch = useDispatch()
    const bank = useSelector((state: RootStateType) => state.user.bank)
 
-   const restDayMoneyAll = allDayMoney.still.large + allDayMoney.still.small + allDayMoney.still.refrigerator
+   // const nowDayMoneyAll = allDayMoney.now.large + allDayMoney.now.small + allDayMoney.now.refrigerator
 
    // получает каждую секунду
    const everySecMoneySmall = getEverySecMoney(allDayMoney.still.small)
@@ -41,40 +35,51 @@ export const AllProfit: FC<PropsType> = ({allTimeMoney, allDayMoney}) => {
    const everySecMoneyRefrigerator = getEverySecMoney(allDayMoney.still.refrigerator)
    const everySecMoneyAll = getEverySecMoney(allDayMoney.still.refrigerator + allDayMoney.still.small + allDayMoney.still.large)
 
-   // уже получил за сегодня
-   const [realTimeProfitSmall, setRealTimeProfitSmall] = useState(round(allDayMoney.now.small, 3))
-   const [realTimeProfitLarge, setRealTimeProfitLarge] = useState(round(allDayMoney.now.large, 3))
-   const [realTimeProfitRefrigerator, setRealTimeProfitRefrigerator] = useState(round(allDayMoney.now.refrigerator, 3))
-   const [realTimeProfitAll, setRealTimeProfitAll] = useState(round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3))
+   // получил за сегодня
+   const [realProfitSmall, setRealProfitSmall] = useState(round(allDayMoney.now.small, 3))
+   const [realProfitLarge, setRealProfitLarge] = useState(round(allDayMoney.now.large, 3))
+   const [realProfitRefrigerator, setRealProfitRefrigerator] = useState(round(allDayMoney.now.refrigerator, 3))
+   const [realProfitAll, setRealProfitAll] = useState(round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3))
+
+   // получил за все время
+   const [realAllTimeSmall, setRealAllTimeSmall] = useState(round(allTimeMoney.small, 3))
+   const [realAllTimeLarge, setRealAllTimeLarge] = useState(round(allTimeMoney.large, 3))
+   const [realAllTimeRefrigerator, setRealAllTimeRefrigerator] = useState(round(allTimeMoney.refrigerator, 3))
+   const [realAllTimeAll, setRealAllTimeAll] = useState(round(allTimeMoney.all, 3))
 
    // увеличение каждую секунду
    useEffect(() => {
       const interval = setInterval(() => {
          console.log("everySecMoneySmall: " + everySecMoneySmall)
-         console.log("realTimeProfitSmall: " + realTimeProfitSmall)
+         console.log("realProfitSmall: " + realProfitSmall)
 
          console.log("everySecMoneyLarge: " + everySecMoneyLarge)
-         console.log("realTimeProfitLarge: " + realTimeProfitLarge)
+         console.log("realProfitLarge: " + realProfitLarge)
 
          console.log("everySecMoneyRefrigerator: " + everySecMoneyRefrigerator)
-         console.log("realTimeProfitRefrigerator: " + realTimeProfitRefrigerator)
+         console.log("realProfitRefrigerator: " + realProfitRefrigerator)
 
          console.log("everySecMoneyAll: " + everySecMoneyAll)
-         console.log("realTimeProfitAll: " + realTimeProfitAll)
+         console.log("realProfitAll: " + realProfitAll)
 
          console.log("bank: " + bank)
          console.log("\n")
 
-         setRealTimeProfitSmall(getRealTimeProfit(+everySecMoneySmall))
-         setRealTimeProfitLarge(getRealTimeProfit(+everySecMoneyLarge))
-         setRealTimeProfitRefrigerator(getRealTimeProfit(+everySecMoneyRefrigerator))
-         setRealTimeProfitAll(getRealTimeProfit(+everySecMoneyAll))
+         setRealProfitSmall(round(realProfitSmall + everySecMoneySmall, 3))
+         setRealProfitLarge(round(realProfitLarge + everySecMoneyLarge, 3))
+         setRealProfitRefrigerator(round(realProfitRefrigerator + everySecMoneyRefrigerator, 3))
+         setRealProfitAll(round(realProfitAll + everySecMoneyAll, 3))
+
+         setRealAllTimeSmall(round(realAllTimeSmall + everySecMoneySmall, 2))
+         setRealAllTimeLarge(round(realAllTimeLarge + everySecMoneyLarge, 2))
+         setRealAllTimeRefrigerator(round(realAllTimeRefrigerator + everySecMoneyRefrigerator, 2))
+         setRealAllTimeAll(round(realAllTimeAll + everySecMoneyAll, 2))
 
          // увеличиваю оффшор
-         dispatch(userActions.setBank(round(bank + everySecMoneyAll, 3)))
+         dispatch(userActions.setBank(round(bank + everySecMoneyAll, 2)))
       }, 1000);
       return () => clearInterval(interval);
-   }, [realTimeProfitSmall, realTimeProfitRefrigerator, realTimeProfitLarge, realTimeProfitAll, bank]);
+   }, [realProfitSmall, realProfitRefrigerator, realProfitLarge, realProfitAll, bank]);
 
    // обновление в 00:00
    useEffect(() => {
@@ -91,26 +96,26 @@ export const AllProfit: FC<PropsType> = ({allTimeMoney, allDayMoney}) => {
             Получено за все время
          </div>
          <div className={styles.money}>
-            {getAllTimeMoney(restDayMoneyAll, realTimeProfitAll, allTimeMoney.all)}₽
-            <p className={styles.profit}>+{realTimeProfitAll}₽</p>
+            {realAllTimeAll}₽
+            <p className={styles.profit}>+{realProfitAll}₽</p>
          </div>
          <div className={styles.footer}>
             <div className={styles.column}>
                <p className={styles.size}>Small</p>
-               <p className={styles.money_2}>{getAllTimeMoney(allDayMoney.still.small, realTimeProfitSmall, allTimeMoney.small)}₽</p>
-               <p className={styles.profit}>+{realTimeProfitSmall}₽</p>
+               <p className={styles.money_2}>{realAllTimeSmall}₽</p>
+               <p className={styles.profit}>+{realProfitSmall}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Large</p>
-               <p className={styles.money_2}>{getAllTimeMoney(allDayMoney.still.large, realTimeProfitLarge, allTimeMoney.large)}₽</p>
-               <p className={styles.profit}>+{realTimeProfitLarge}₽</p>
+               <p className={styles.money_2}>{realAllTimeLarge}₽</p>
+               <p className={styles.profit}>+{realProfitLarge}₽</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Холодильник</p>
                <p className={styles.money_2}>
-                  {getAllTimeMoney(allDayMoney.still.refrigerator, realTimeProfitRefrigerator, allTimeMoney.refrigerator)}₽
+                  {realAllTimeRefrigerator}₽
                </p>
-               <p className={styles.profit}>+{realTimeProfitRefrigerator}₽</p>
+               <p className={styles.profit}>+{realProfitRefrigerator}₽</p>
             </div>
          </div>
       </div>
