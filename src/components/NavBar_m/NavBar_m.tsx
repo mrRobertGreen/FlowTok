@@ -6,6 +6,7 @@ import {NavLink} from "react-router-dom";
 import {PageNamesType} from "../../pages/Profile/Profile";
 import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
    pageName?: PageNamesType
@@ -14,6 +15,7 @@ type PropsType = {
 
 const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
    const dispatch = useDispatch()
+   const {t} = useTranslation()
 
    return (
       <nav className={styles.wrapper}>
@@ -34,7 +36,7 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   className={styles.label}
                   style={{color: `${pageName === "Profile" ? "#000" : "#979797"}`}}
                >
-                  Главная
+                  {t("profile-label")}
                </div>
             </NavLink>
             <NavLink to={"/containers/small"} className={styles.item}>
@@ -57,7 +59,7 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   className={styles.label}
                   style={{color: `${pageName === "Work" ? "#000" : "#979797"}`}}
                >
-                  Контейнеры
+                  {t("container-title")}
                </div>
             </NavLink>
             <NavLink to={"/settings"} className={styles.item}>
@@ -80,7 +82,7 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   className={styles.label}
                   style={{color: `${pageName === "Settings" ? "#000" : "#979797"}`}}
                >
-                  Настройки
+                  {t("settings-title")}
                </div>
             </NavLink>
          </div>

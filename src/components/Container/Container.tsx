@@ -39,7 +39,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
             <div className={styles.title}>
                 {t("container-title")} {type}
                 <InformedButton isInformed={isInformed} onClick={onOpenTooltip}/>
-                {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
+                {buyData ? <p className={styles.text__little_2}>{t("price-text")}: {buyData.cost} ₽ {t("per-piece-text")}</p> : <div/>}
             </div>
             <div className={styles.container}>
                 <div className={styles.container__image}>

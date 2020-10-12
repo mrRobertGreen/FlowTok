@@ -23,6 +23,7 @@ import {buyContainer, ContainerT} from "../../redux/user/user-reducer";
 import plus from "../../media/images_new/PlusButton.svg"
 import {setIn} from "formik";
 import {CyT, LangT} from "../../redux/app/app-reducer";
+import {useTranslation} from "react-i18next";
 
 type PropsT = {
    data: BuyContainerT
@@ -55,6 +56,8 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
          }
       }
    }
+
+   const {t} = useTranslation()
 
    useEffect(() => {
       if (inputValue) setInputError("")
@@ -115,10 +118,10 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
    return (
       <div className={styles.wrapper}>
          <div className={styles.header}>
-            <button className={styles.purchase}>Покупка</button>
+            <button className={styles.purchase}>{t("purchase-title")}</button>
             <div>
                <p className={styles.numbers}>
-                  Ваш баланс: {wallet}₽
+                  {t("balance-text")}: {wallet}₽
                </p>
                <button className={styles.plusButton}><img src={plus} style={{width: "17px"}} alt=""/></button>
             </div>
@@ -141,7 +144,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                errorMessage={inputError}
                isError={!!inputError}
                mod={"white"}
-               placeholder={"Сумма"}
+               placeholder={t("balance")}
                onChange={onChangeInput}
                value={inputValue}
                inputMode={"tel"}
@@ -155,23 +158,23 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
 
             <div className={styles.container__right}>
                <div className={styles.text}>
-                  <div className={styles.text__little}>Количество</div>
+                  <div className={styles.text__little}>{t("container-quantity")}</div>
                   <div
                      className={styles.text__large}>{`${realTimeData.whole} шт. + ${realTimeData.percent}%`}</div>
                   <div
-                     className={styles.text__little}>{`До ${realTimeData.whole + 1} шт. осталось ${100 - +realTimeData.percent}%`}</div>
+                     className={styles.text__little}>{`${t("up-to-text")} ${realTimeData.whole + 1} ${t("pc-text")} ${t("remained-text")} ${100 - +realTimeData.percent}%`}</div>
                </div>
             </div>
          </div>
          <div className={styles.profitability}>
             <div className={styles.profitability__container}>
-               <p className={styles.text__little}>Доходность</p>
-               <p className={styles.text__large}><span className={styles.greenPercent}>{percent}%</span> в день
+               <p className={styles.text__little}>{t("profitability-text")}</p>
+               <p className={styles.text__large}><span className={styles.greenPercent}>{percent}%</span> {t("in-day-text")}
                </p>
             </div>
             <div className={styles.profitability__Btn}>
                <Button mod={isLoading ? "loading" : "gradient"}
-                       children={"Купить"}
+                       children={t("buy-btn")}
                        type={"submit"}
                        onClick={onSubmit}
                /></div>

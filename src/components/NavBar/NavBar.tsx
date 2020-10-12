@@ -12,6 +12,7 @@ import {useDispatch} from "react-redux";
 import {getUserData} from "../../redux/user/user-reducer";
 import {Logo} from "../Logo/Logo";
 import {Separator} from "../Separator/Separator";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
    pageName?: PageNamesType
@@ -28,6 +29,8 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
       WebkitTextFillColor: "transparent",
       textShadow: "0px 0px 10px rgba(255, 251, 118, 0.4)",
    }
+
+   const {t} = useTranslation()
 
    return (
       <nav className={styles.wrapper}>
@@ -52,7 +55,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                         gradientText
                         : {color: "#979797"}}
                   >
-                     Главная
+                     {t("profile-label")}
                   </div>
                </div>
             </NavLink>
@@ -78,7 +81,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                      gradientText
                      : {color: "#979797"}}
                >
-                  Контейнеры
+                  {t("container-title")}
                </div>
             </NavLink>
             <NavLink to={"/settings"} className={styles.item}>
@@ -102,7 +105,7 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                      gradientText
                      : {color: "#979797"}}
                >
-                  Настройки
+                  {t("settings-title")}
                </div>
             </NavLink>
          </div>

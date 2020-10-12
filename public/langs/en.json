@@ -22,7 +22,18 @@
       "settings-lang": "Language",
       "settings-cy": "Currency",
       "settings-exit": "Exit",
-      "settings-title": "Settings"
+      "settings-title": "Settings",
+      "price-text": "Price",
+      "purchase-title": "Purchase",
+      "per-piece-text": "per piece",
+      "balance-text": "Your balance",
+      "pc-text": "pc.",
+      "up-to-text": "Up to",
+      "remained-text": "remained",
+      "profitability-text": "profitability",
+      "in-day-text": "in a day",
+      "buy-btn": "Buy"
+
     }
   }
 }

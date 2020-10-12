@@ -22,7 +22,17 @@
       "settings-lang": "Язык",
       "settings-cy": "Валюта",
       "settings-exit": "Выйти",
-      "settings-title": "Настройки"
+      "settings-title": "Настройки",
+      "price-text": "Цена",
+      "per-piece-text": "за шт.",
+      "purchase-title": "Покупка",
+      "balance-text": "Ваш баланс",
+      "pc-text": "шт.",
+      "up-to-text": "До",
+      "remained-text": "осталось",
+      "profitability-text": "Доходность",
+      "in-day-text": "в день",
+      "buy-btn": "Купить"
     }
   }
 }
