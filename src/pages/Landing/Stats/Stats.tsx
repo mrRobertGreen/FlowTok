@@ -5,9 +5,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
 import {getUsersCount} from "../../../redux/user/user-reducer";
 import {getAverage, getPaid} from "../../../utils/realTimeData";
+import {useTranslation} from "react-i18next";
 
 
 export const Stats: FC = () => {
+
+   const {t} = useTranslation();
 
    const dispatch = useDispatch()
    const userStats = useSelector((state: RootStateType) => state.user.userStats)
@@ -46,7 +49,7 @@ export const Stats: FC = () => {
                {userStats.quantity}
             </p>
             <p className={styles.little}>
-               Пользователей в Container
+               {t("container-users-text")}
             </p>
          </div>
          <div className={styles.container}>
@@ -54,7 +57,7 @@ export const Stats: FC = () => {
                {paid} $
             </p>
             <p className={styles.little}>
-               Всего выплачено
+               {t("paid-text")}
             </p>
          </div>
          <div className={styles.container}>
@@ -62,7 +65,7 @@ export const Stats: FC = () => {
                {average} $
             </p>
             <p className={styles.little}>
-               Средний доход в день
+               {t("average-text")}
             </p>
          </div>
       </div>

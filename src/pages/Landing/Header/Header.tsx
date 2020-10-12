@@ -25,13 +25,12 @@ export const Header: FC = () => {
          <div className={styles.logo}>
             <Logo/>
          </div>
-         <div className={styles.toggler}>
-            <ChooseLang changeLang={changeLang} checked={langFromState === "ru"}/>
-         </div>
+
 
          <div className={styles.buttons}>
-            <a href="#" className={styles.buttons__telegram}>Telegram</a>
-            <a href="#" className={styles.buttons__mail}>Почта</a>
+             <div className={styles.toggler}>
+                 <ChooseLang changeLang={changeLang} checked={langFromState === "ru"}/>
+             </div>
             <NavLink to={"/login"}>
                <div className={styles.buttons__createAcc}>
                   Создать аккаунт

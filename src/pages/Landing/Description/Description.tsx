@@ -7,7 +7,7 @@ export const Description: FC = ({}) => {
 
     return (
         <div className={styles.wrapper}>
-            <p className={styles.description} style={{marginBottom: "38px"}}>{t("description-first-text")}
+            <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-first-text")}
             </p>
             <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-second-text")}
             </p>
