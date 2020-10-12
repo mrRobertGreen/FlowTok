@@ -4,9 +4,6 @@ import styles from "./styles.module.scss"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 
-/*
-* Компонент логотипа. Сам знаешь, как сделать. Шрифт и картинка уже подключены.
-* */
 
 export const Logo: FC = () => {
    const isDesktop = useSelector(((state: RootStateType) => state.app.isDesktop))

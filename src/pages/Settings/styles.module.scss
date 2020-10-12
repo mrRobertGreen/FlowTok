@@ -49,18 +49,15 @@
 @media (min-width: 760px) {
   .wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  .enter {
     width: 80%;
+    margin: 0 auto;
   }
 }
 @media (min-width: 1024px) {
   .wrapper {
-    justify-content: flex-start;
-  }
-  .enter {
     width: 70%;
   }
 }
