@@ -8,6 +8,8 @@ const initialState = {
    notification: null as null | NotificationT,
    error: null as null | string,
    isDesktop: false,
+   lang: "en" as LangT,
+   cy: "USD" as CyT,
 }
 export type InitialStateType = typeof initialState
 
@@ -22,6 +24,11 @@ export default function appReducer(state = initialState, action: ActionsType): I
          return {
             ...state,
             error: action.error
+         }
+      case "app/SET_LANG":
+         return {
+            ...state,
+            lang: action.lang
          }
       case "app/TOGGLE_IS_FETCHING":
          return {
@@ -55,6 +62,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
 export const appActions = {
    setNotification: (notification: NotificationT | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
    setError: (error: string | null) => ({type: "app/SET_ERROR", error} as const),
+   setLang: (lang: LangT) => ({type: "app/SET_LANG", lang} as const),
    toggleIsFetching: (isFetching: boolean) => ({type: "app/TOGGLE_IS_FETCHING", isFetching} as const),
    toggleIsInit: (isInit: boolean) => ({type: "app/TOGGLE_IS_INTI", isInit} as const),
    setIsDesktop: (isDesktop: boolean) => ({type: "app/SET_IS_DESKTOP", isDesktop} as const),
@@ -74,3 +82,5 @@ export const initialize = (): ThunkType => { // initialization of app
 
 type ActionsType = InferActionsType<typeof appActions>
 type ThunkType = BaseThunkType
+export type LangT = "en" | "ru"
+export type CyT = "USD" | "RUB"

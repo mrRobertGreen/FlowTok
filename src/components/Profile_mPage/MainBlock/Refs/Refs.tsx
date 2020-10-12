@@ -13,6 +13,7 @@ import {Separator} from "../../../Separator/Separator";
 import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../../Page/Page";
 import separatorY from "../../../../media/icons/separator_y.svg"
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
    refData: ReferralT
@@ -22,6 +23,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
    const [isCopied, setIsCopied] = useState(false)
 
    const queries = useMedia({queries: GLOBAL_MEDIA_QUERIES})
+   const {t} = useTranslation()
 
    const onCopy = async (text: string) => {
       await navigator.clipboard.writeText(text)
@@ -38,7 +40,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
       <div className={styles.wrapper}>
          <div>
             <div className={styles.title}>
-               Реферальная программа
+               {t("refs-title")}
             </div>
             <div className={styles.row}>
                <div className={styles.input}>
@@ -51,7 +53,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
                      disabled={isCopied}
                      style={{background: isCopied ? "#00BA32" : ""}}
                   >
-                     {queries.largeTablet && "Копировать"}
+                     {queries.largeTablet && t("refs-btn")}
                   </Button>
                </div>
             </div>
@@ -60,7 +62,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
          <div className={styles.statsBlock}>
             <div className={styles.item}>
                <div className={styles.label}>
-                  Кол-во рефералов
+                  {t("refs-count")}
                </div>
                <div className={styles.numbers}>
                   {(Object.keys(referrals)as Array<keyof typeof referrals>).map((key, idx) => (
@@ -73,7 +75,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
             {queries.largeTablet && <Separator m={"20px 0"}/>}
             <div className={styles.item}>
                <div className={styles.label}>
-                  Заработано всего
+                  {t("refs-earned")}
                </div>
                <div className={styles.numbers}>
                   {money}₽

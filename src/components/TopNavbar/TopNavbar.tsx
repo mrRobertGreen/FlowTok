@@ -12,6 +12,7 @@ type PropsType = {
    logo?: boolean
    avatarUrl?: string
    br?: string
+   name?: string
 }
 
 const TopNavbar: FC<PropsType & RouteComponentProps> = ({
@@ -19,7 +20,8 @@ const TopNavbar: FC<PropsType & RouteComponentProps> = ({
                                                            logo,
                                                            avatarUrl,
                                                            br,
-                                                           history
+                                                           history,
+                                                           name
                                                         }) => {
    const goBack = () => {
       history.goBack()
@@ -40,7 +42,11 @@ const TopNavbar: FC<PropsType & RouteComponentProps> = ({
          {!logo && <img src={backArrow} alt="" onClick={goBack} className={styles.backIcon}/>}
          <div className={styles.label}>
             {label}
+            {name && <div className={styles.name}>
+               {name}
+	         </div>}
          </div>
+
          {avatarUrl && <img src={avatarUrl} alt="" className={styles.avatar}/>}
       </div>
 

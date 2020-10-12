@@ -7,6 +7,7 @@ import clock from "../../../../media/images_new/clock.svg";
 import Modal from "../../../common/Modal/Modal";
 import {History} from "../History/History";
 import {HistoryItemT} from "../../../../api/user-api";
+import {useTranslation} from "react-i18next";
 
 
 export type PropsType = {
@@ -17,6 +18,8 @@ export type PropsType = {
 const Balance: FC<PropsType> = ({value, history}) => {
     // const [isHistory, setIsHistory] = useState(false)
 
+    const {t} = useTranslation()
+
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
             {/*<Modal isOpen={isHistory}>*/}
@@ -24,13 +27,13 @@ const Balance: FC<PropsType> = ({value, history}) => {
             {/*</Modal>*/}
             <div>
                 <div className={styles.title}>
-                    Кошелек
+                    {t("balance-title")}
                     {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
                     {/*    <img src={clock} alt=""/>*/}
                     {/*</button>}*/}
                 </div>
                 <div className={styles.label}>
-                    Ваш баланс
+                    {t("balance")}
                 </div>
                 <div className={styles.money}>
                     {value}₽
@@ -40,12 +43,12 @@ const Balance: FC<PropsType> = ({value, history}) => {
             <div className={styles.btn} data-test={"btn"}>
                 <div className={styles.btn__first}>
                     <NavLink to={"/withdraw"}>
-                        <Button data-test={"btn"} mod={"green"}>Пополнить</Button>
+                        <Button data-test={"btn"} mod={"green"}>{t("balance-payin")}</Button>
                     </NavLink>
                 </div>
                 <div className={styles.btn__second}>
                     <NavLink to={"/withdraw"}>
-                        <Button data-test={"button"} mod={"gradient"}>Выплатить</Button>
+                        <Button data-test={"button"} mod={"gradient"}>{t("balance-payoff")}</Button>
                     </NavLink>
                 </div>
             </div>

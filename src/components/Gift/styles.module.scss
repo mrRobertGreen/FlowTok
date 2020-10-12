@@ -8,13 +8,12 @@
 }
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding-bottom: 11px;
+  position: relative;
 
   &__container {
-    display: flex;
-    justify-content: space-between;
-    width: 65%;
+    width: 100%;
   }
   &__title {
     font-size: 17px;
@@ -24,6 +23,11 @@
     letter-spacing: -0.41px;
 
     color: #000000;
+  }
+  .cross {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 .container {

@@ -5,6 +5,7 @@ import {RootStateType} from "../../redux/store";
 import {Page} from "../../components/Page/Page";
 import TopNavbar from "../../components/TopNavbar/TopNavbar";
 import {useRedirect} from "../../hooks/useRedirect";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {}
 
@@ -15,11 +16,13 @@ export const Profile: FC<PropsType> = () => {
    const userName = useSelector((state: RootStateType) => state.user.userData?.userName)
 
    useRedirect(!isAuth, "/login")
+   const { t } = useTranslation();
 
    return (
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
          <TopNavbar logo={true}
-                    label={userName ? userName : "Профиль"}
+                    label={t('profile-label')}
+                    name={userName}
                     br={" 0px 0px 11px 11px"}
          />
          <MainBlock/>

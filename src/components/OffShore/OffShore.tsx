@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
 import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeData";
 import {transfer} from "../../redux/user/user-reducer";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
 
@@ -18,9 +19,10 @@ export const OffShore: FC<PropsType> = () => {
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
 
-    const omTransfer = () => {
+    const onTransfer = () => {
         dispatch(transfer(setIsLoading))
     }
+    const {t} = useTranslation()
 
     if (!bank) return <></>
 
@@ -28,19 +30,19 @@ export const OffShore: FC<PropsType> = () => {
         <div className={styles.wrapper}>
             <div>
                 <div className={styles.title}>
-                    <p>Оффшорный счет</p>
+                    <p>{t("offShore-title")}</p>
                     <button style={{backgroundColor:"white"}}>
                         <img src={info} className={styles.title__info} alt=""/>
                     </button>
                 </div>
                 <div className={styles.label}>
-                    Ваш баланс
+                    {t("balance")}
                 </div>
                 <div className={styles.sum}>
                     <p className={styles.money}>{bank}₽</p>
                 </div>
-                <Button mod={isLoading ? "loading" : "gradient"} onClick={omTransfer}>
-                    В кошелек
+                <Button mod={isLoading ? "loading" : "gradient"} onClick={onTransfer}>
+                    {t("offShore-inWallet")}
                 </Button>
             </div>
         </div>

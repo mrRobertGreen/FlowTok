@@ -72,6 +72,7 @@ export type HistoryItemT = {
    sign: number
    value: number
    date: string
+   type: string
 }
 export type UserMoneyT = {
    small: number

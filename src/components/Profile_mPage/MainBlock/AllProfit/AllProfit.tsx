@@ -6,6 +6,7 @@ import {getUserData, RealMoneyDataT, userActions} from "../../../../redux/user/u
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
 import Preloader from "../../../common/Preloader/Preloader";
+import {useTranslation} from "react-i18next";
 
 export type PropsType = {
    allTimeMoney: UserMoneyT
@@ -29,10 +30,12 @@ export const AllProfit: FC<PropsType> = ({}) => {
    const bank = useSelector((state: RootStateType) => state.user.bank)
    const data = useSelector((state: RootStateType) => state.user.realMoneyData)
 
+   const {t} = useTranslation()
+
    // увеличение каждую секунду
    useEffect(() => {
       const interval = setInterval(() => {
-         if (data) {
+         if (data && bank) {
             console.log("bank: " + bank)
             console.log("\n")
 
@@ -94,7 +97,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
          <div className={styles.label}>
-            Получено за все время
+            {t("allProfit-label")}
          </div>
          <div className={styles.money}>
             {realAllTimeMoney.all}₽

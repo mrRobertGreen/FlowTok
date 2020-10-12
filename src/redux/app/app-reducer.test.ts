@@ -7,7 +7,9 @@ beforeEach(() => {
       isFetching: false,
       isInit: false,
       error: null,
-      isDesktop: false
+      isDesktop: false,
+      cy: "RUB",
+      lang: "en"
    }
 })
 describe("app-reducer", () => {

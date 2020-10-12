@@ -1,9 +1,10 @@
-import React, {FC, HTMLProps} from 'react';
+import React, {FC, HTMLProps, useRef} from 'react';
 import styles from "./styles.module.scss"
 import classNames from "classnames";
 import {FormikErrors} from "formik";
 import MaskedInput, {MaskedInputProps} from "react-text-mask";
 import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
+import {LangT} from "../../redux/app/app-reducer";
 
 
 type PropsType = {
@@ -41,7 +42,8 @@ export const  Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
 }
 
 type SwitchPropsT = {
-   isLabel: boolean
+   isLabel?: boolean
+   changeLang?: (lang: LangT) => void
 }
 
 export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
@@ -62,6 +64,41 @@ export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isL
          {isLabel && <div className={styles.switchLabel}>
 	         +1.00 ₽
          </div>}
+      </div>
+   )
+}
+export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ changeLang, ...rest}) => {
+
+   const toggler = useRef<HTMLInputElement>(null)
+
+   const onChangeLang = () => {
+      if (toggler.current && changeLang) {
+         if (toggler.current.checked) changeLang("ru")
+         else changeLang("en")
+      }
+   }
+
+   return (
+      <div className={styles.switchWrapLang} onChange={onChangeLang}>
+         <div className={styles.lang}>
+            EN
+         </div>
+         <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="switch"
+            ref={toggler}
+            {...rest}
+         />
+         <label
+            className={styles.label}
+            htmlFor="switch"
+         >
+            <span className={styles.switchBtn} />
+         </label>
+         <div className={styles.lang}>
+            RU
+         </div>
       </div>
    )
 }

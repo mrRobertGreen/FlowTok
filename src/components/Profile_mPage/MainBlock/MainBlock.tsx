@@ -11,6 +11,7 @@ import {Refs} from "./Refs/Refs";
 import {Container} from "../../Container/Container";
 import {Gift} from "../../Gift/Gift";
 import {OffShore} from "../../OffShore/OffShore";
+import {useTranslation} from "react-i18next";
 
 
 type PropsType = {}
@@ -24,6 +25,8 @@ const MainBlock: FC<PropsType> = () => {
       userData = userDataCache
    }
 
+   const {t} = useTranslation()
+
    useEffect(() => {
       dispatch(getUserData())
    }, [])
@@ -36,19 +39,16 @@ const MainBlock: FC<PropsType> = () => {
       allTimeMoney,
       allDayMoney,
       containers,
-      bank,
       referral,
       wallet,
       history,
       gift
    } = userData
 
-   if (bank) dispatch(userActions.setBank(bank))
-
    return (
       <div className={styles.wrapper}>
          <div className={styles.grid}>
-            {gift && <Gift title={"Подарок!"} text={"Контейнер Small на сумму 100₽"}/>}
+            {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}
             <div className={styles.balance}>
                <Balance value={wallet} history={history}/>
             </div>

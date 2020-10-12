@@ -1,0 +1,27 @@
+{
+  "ru": {
+    "translation": {
+      "profile-label": "Профиль",
+      "gift-get": "Получить",
+      "gift-title": "Подарок!",
+      "gift-text": "Контейнер Small на сумму",
+      "offShore-title": "Оффшорный счет",
+      "offShore-inWallet": "В кошелек",
+      "balance": "Ваш баланс",
+      "balance-title": "Кошелек",
+      "balance-payoff" : "Выплатить",
+      "balance-payin" : "Пополнить",
+      "allProfit-label": "Получено за все время",
+      "container-title": "Контейнер",
+      "container-quantity": "Количество",
+      "refs-title": "Реферальная программа",
+      "refs-count": "Количество рефералов",
+      "refs-earned": "Получено за все время",
+      "refs-btn": "Копировать",
+      "history-title": "История",
+      "settings-lang": "Язык",
+      "settings-exit": "Выйти",
+      "settings-title": "Настройки"
+    }
+  }
+}

@@ -14,18 +14,23 @@ import {SignIn} from "./pages/SignIn/SignIn";
 import {Registration} from "./pages/Registration/Registration";
 import Settings from "./pages/Settings/Settings";
 import RefRedirect from "./components/common/RefRedirect/RefRedirect";
-import {getUserData} from "./redux/user/user-reducer";
 import {useDataRefresher} from "./hooks/useDataRefresher";
+import {setLanguage} from "./utils/setLanguage";
 
 const App: FC = () => {
    const dispatch = useDispatch()
    const isInit = useSelector((state: RootStateType) => state.app.isInit)
    const notification = useSelector((state: RootStateType) => state.app.notification)
    const error = useSelector((state: RootStateType) => state.app.error)
+   const lang = useSelector((state: RootStateType) => state.app.lang)
 
    useEffect(() => {
       dispatch(initialize())
    }, [dispatch])
+
+   useEffect(() => {
+      setLanguage(lang)
+   }, [lang])
 
    useDataRefresher()
 

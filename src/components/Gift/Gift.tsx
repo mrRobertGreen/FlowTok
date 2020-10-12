@@ -8,6 +8,7 @@ import Button from "../Button/Button";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {closeGift, getGift} from "../../redux/user/user-reducer";
+import {useTranslation} from "react-i18next";
 
 type PropsType = {
     title: string,
@@ -25,13 +26,15 @@ export const Gift: FC<PropsType> = ({title, text}) => {
         dispatch(closeGift())
     }
 
+    const {t} = useTranslation()
+
     return (
         <div className={styles.wrapper}>
             <div>
                 <div className={styles.header}>
                     <div className={styles.header__container}>
                         <p className={styles.header__title}>{title}</p>
-                        <button style={{backgroundColor: "white"}} onClick={onCloseGift}>
+                        <button style={{backgroundColor: "white"}} onClick={onCloseGift} className={styles.cross}>
                             <img src={cross} alt=""/>
                         </button>
                     </div>
@@ -45,7 +48,7 @@ export const Gift: FC<PropsType> = ({title, text}) => {
                 </div>
                 <NavLink to={"/"}>
                     <Button mod={"green"} onClick={onGetGift}>
-                        Получить
+                        {t("gift-get")}
                     </Button>
                 </NavLink>
             </div>

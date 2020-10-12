@@ -5,6 +5,7 @@ import cross from "../../../../media/images_new/Cross.svg";
 import {HistoryItemT} from "../../../../api/user-api";
 import {useDispatch} from "react-redux";
 import {getHistory} from "../../../../redux/user/user-reducer";
+import {useTranslation} from "react-i18next";
 
 export type PropsType = {
    history?: Array<HistoryItemT>
@@ -13,6 +14,9 @@ export type PropsType = {
 export const History: FC<PropsType> = ({
                                           history = []
                                        }) => {
+
+   const {t} = useTranslation()
+
    if (!history || history.length === 0) return <></>
 
    return (
@@ -23,14 +27,19 @@ export const History: FC<PropsType> = ({
          {/*   </button>*/}
          {/*</div>*/}
          <div className={styles.title}>
-            История
+            {t("history-title")}
          </div>
          <div className={styles.history}>
             {history.map(h => (
                <div>
                   <div className={styles.historyItem}>
-                     <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>
-                        {h.sign === 1 && "+"}{h.sign * h.value}₽
+                     <div className={styles.row}>
+                        <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>
+                           {h.sign === 1 && "+"}{h.sign * h.value}₽
+                        </div>
+                        <div className={styles.type}>
+                           {h.type}
+                        </div>
                      </div>
                      <div className={styles.date}>
                         {h.date}

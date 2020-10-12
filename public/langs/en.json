@@ -1,0 +1,27 @@
+{
+  "en": {
+    "translation": {
+      "profile-label": "Profile",
+      "gift-get": "Get",
+      "gift-title": "Gift!",
+      "gift-text": "Container Small in the amount of",
+      "offShore-title": "Offshore Account",
+      "offShore-inWallet": "In wallet",
+      "balance": "Your balance",
+      "balance-title": "Wallet",
+      "balance-payoff" : "Pay off",
+      "balance-payin" : "Pay in",
+      "allProfit-label": "Received all time",
+      "container-title": "Container",
+      "container-quantity": "Quantity",
+      "refs-title": "Referral program",
+      "refs-count": "Number of referrals",
+      "refs-earned": "Earned total",
+      "refs-btn": "Copy",
+      "history-title": "History",
+      "settings-lang": "Language",
+      "settings-exit": "Exit",
+      "settings-title": "Settings"
+    }
+  }
+}

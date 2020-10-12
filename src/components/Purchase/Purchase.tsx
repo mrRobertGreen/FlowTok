@@ -80,10 +80,12 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
 
    }
 
-   const getPercentIcon = (percent: number) => {
+   const getPercentIcon = (percent: number, whole: number) => {
       switch (true) {
-         case percent === 0:
+         case percent === 0 && whole === 0:
             return battery_0
+         case percent === 0 && whole !== 0:
+            return battery_10
          case percent < 15:
             return battery_1
          case percent < 25:
@@ -144,7 +146,8 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
          </div>
          <div className={styles.container}>
 
-            <img src={getPercentIcon(+realTimeData.percent)} className={styles.image} alt=" "/>
+            <img src={getPercentIcon(+realTimeData.percent, +realTimeData.whole)}
+                 className={styles.image} alt=" "/>
             <img src={VerticalLine} alt="" className={styles.separator}/>
 
             <div className={styles.container__right}>

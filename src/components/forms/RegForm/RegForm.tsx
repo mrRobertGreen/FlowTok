@@ -108,7 +108,9 @@ export const RegForm: FC<PropsType> = () => {
                               <Input
                                  mod={!errors.email && touched.email ? "active" : undefined}
                                  type={"text"}
+                                 name={"name"}
                                  placeholder={"Имя"}
+                                 autoComplete={"on"}
                                  isError={!!(errors.email && touched.email)}
                                  errorMessage={errors.email}
                                  {...field}
@@ -123,6 +125,8 @@ export const RegForm: FC<PropsType> = () => {
                               <Input
                                  mod={!errors.email && touched.email ? "active" : undefined}
                                  type={"text"}
+                                 name={"fname"}
+                                 autoComplete={"on"}
                                  placeholder={"Фамилия"}
                                  isError={!!(errors.email && touched.email)}
                                  errorMessage={errors.email}
@@ -138,6 +142,8 @@ export const RegForm: FC<PropsType> = () => {
                               <Input
                                  mod={!errors.email && touched.email ? "active" : undefined}
                                  type={"email"}
+                                 name={"email"}
+                                 autoComplete={"on"}
                                  placeholder={"Email"}
                                  isError={!!(errors.email && touched.email)}
                                  errorMessage={errors.email}
@@ -154,6 +160,7 @@ export const RegForm: FC<PropsType> = () => {
                               <Input
                                  mod={!errors.password && touched.password ? "active" : undefined}
                                  type={"password"}
+                                 autoComplete={"on"}
                                  placeholder={"Пароль"}
                                  isError={!!(errors.password && touched.password)}
                                  errorMessage={errors.password}
@@ -172,6 +179,7 @@ export const RegForm: FC<PropsType> = () => {
                                      <Input
                                         mod={!errors.ogrn && touched.ogrn ? "active" : undefined}
                                         type={"number"}
+                                        autoComplete={"on"}
                                         placeholder={"ОГРН"}
                                         isError={!!(errors.ogrn && touched.ogrn)}
                                         errorMessage={errors.ogrn}
@@ -187,6 +195,7 @@ export const RegForm: FC<PropsType> = () => {
                                      <Input
                                         mod={!errors.inn && touched.inn ? "active" : undefined}
                                         type={"number"}
+                                        autoComplete={"on"}
                                         placeholder={"ИНН"}
                                         isError={!!(errors.inn && touched.inn)}
                                         errorMessage={errors.inn}
@@ -202,6 +211,7 @@ export const RegForm: FC<PropsType> = () => {
                                      <Input
                                         mod={!errors.name && touched.name ? "active" : undefined}
                                         type={"text"}
+                                        autoComplete={"on"}
                                         placeholder={"Название компании"}
                                         isError={!!(errors.name && touched.name)}
                                         errorMessage={errors.name}

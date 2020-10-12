@@ -19,7 +19,7 @@ const initialState = {
    userData: null as UserDataType | null,
    containers: null as GetContainersResDataT | null,
    containerType: "small" as ContainerT,
-   bank: 0,
+   bank: 0 as number | undefined,
    refData: null as RefDataType | null,
    isAdvTaskCreated: false,
    stats: null as null | StatsType,
@@ -120,7 +120,7 @@ export const userActions = {
    setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
    setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
    setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
-   setBank: (bank: number) => ({type: "user/SET_BANK", bank} as const),
+   setBank: (bank: number | undefined) => ({type: "user/SET_BANK", bank} as const),
    setGift: (gift: boolean) => ({type: "user/SET_GIFT", gift} as const),
    setWallet: (wallet: number) => ({type: "user/SET_WALLET", wallet} as const),
    setHistory: (history: Array<HistoryItemT>) => ({type: "user/SET_HISTORY", history} as const),
@@ -137,6 +137,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          if (data.success) { // if token is true
             dispatch(userActions.setUserData(data.data))
             await localStorage.setItem("userData", JSON.stringify(data.data))
+            dispatch(userActions.setBank(data.data.bank))
 
             const {allDayMoney, allTimeMoney} = data.data
 
@@ -199,8 +200,7 @@ export const getGift = (): ThunkType => {
          const res = await userApi.getGift()
          if (res.success) {
             dispatch(userActions.setGift(false))
-            dispatch(userActions.setWallet(res.data.wallet))
-            await dispatch(getHistory())
+            await dispatch(getUserData())
          }
          checkMessageNotification(res, dispatch)
       }, dispatch)

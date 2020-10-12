@@ -8,6 +8,7 @@ import Modal from "../common/Modal/Modal";
 import {ToolTip} from "../ToolTip/ToolTip";
 
 import {BuyContainerT, ContainerObjT} from "../../api/user-api";
+import {useTranslation} from "react-i18next";
 
 
 type PropsT = {
@@ -21,7 +22,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
     const {image, need, quantity, type} = data
     const [isTooltip, setIsTooltip] = useState(false)
 
-
+    const {t} = useTranslation()
     const onOpenTooltip = () => {
         setIsTooltip(true)
     }
@@ -36,7 +37,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
                 <ToolTip onClose={onCloseTooltip}/>
             </Modal>
             <div className={styles.title}>
-                Контейнер {type}
+                {t("container-title")} {type}
                 <InformedButton isInformed={isInformed} onClick={onOpenTooltip}/>
                 {buyData ? <p className={styles.text__little_2}>Цена: {buyData.cost} ₽ за шт.</p> : <div/>}
             </div>
@@ -46,7 +47,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
                     <img src={VerticalLine} alt=""/>
                 </div>
                 <div className={styles.text}>
-                    <div className={styles.text__little}>Количество</div>
+                    <div className={styles.text__little}>{t("container-quantity")}</div>
                     <div className={styles.text__large}>{quantity}</div>
                     <div className={styles.text__little}>{need}</div>
                 </div>

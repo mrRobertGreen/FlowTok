@@ -39,6 +39,18 @@
       font-size: 14px;
       color: #8E8E93;
     }
+    .row {
+      display: flex;
+      align-items: flex-end;
+    }
+    .type {
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: -0.313529px;
+      color: #8E8E93;
+      margin-left: 5px;
+    }
+
   }
 }
 
