@@ -15,10 +15,11 @@
 .mainText {
   //width: 592px;
   //padding-top: 294px;
+  padding-bottom: 120px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 
   &__earn {
@@ -53,13 +54,21 @@
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    align-self: center;
+
     justify-content: center;
     letter-spacing: -0.313529px;
 
     padding-top: 5px;
 
+
     color: #8E8E93;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 57px;
   }
 }
 

@@ -60,7 +60,16 @@ export const ToolTip: FC<PropsT> = ({onClose}) => {
          )
       default:
          return (
-            <></>
+             <div className={styles.wrapper}>
+                 <div className={styles.headerContainer}>
+                     <p className={styles.header}>Оффшорный счет</p>
+                     <button className={styles.crossBtn} onClick={onClose}><img src={cross} alt=""/></button>
+                 </div>
+                 <p className={styles.text}>Ваш личный счёт для возможности выполнения операций по счёту.
+                     Так как деньги поступают от компаний расположенных в разных странах мира,
+                     Вам был создан счёт в партнерском банке для приёма платежей.
+                     Для вывода средств переведите на Ваш личный баланс и выберете удобный способ выплаты.</p>
+             </div>
          )
    }
 }

@@ -8,6 +8,8 @@ import {RootStateType} from "../../redux/store";
 import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeData";
 import {transfer} from "../../redux/user/user-reducer";
 import {useTranslation} from "react-i18next";
+import Modal from "../common/Modal/Modal";
+import {ToolTip} from "../ToolTip/ToolTip";
 
 type PropsType = {
 
@@ -19,6 +21,7 @@ export const OffShore: FC<PropsType> = () => {
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
 
+
     const onTransfer = () => {
         dispatch(transfer(setIsLoading))
     }
@@ -26,12 +29,17 @@ export const OffShore: FC<PropsType> = () => {
 
     if (!bank) return <></>
 
+    let isOpen = false;
+
     return (
         <div className={styles.wrapper}>
+            <Modal isOpen={isOpen}>
+                <ToolTip onClose={() => isOpen = false} />
+            </Modal>
             <div>
                 <div className={styles.title}>
                     <p>{t("offShore-title")}</p>
-                    <button style={{backgroundColor:"white"}}>
+                    <button style={{backgroundColor:"white"}} onClick={() => isOpen = true}>
                         <img src={info} className={styles.title__info} alt=""/>
                     </button>
                 </div>
