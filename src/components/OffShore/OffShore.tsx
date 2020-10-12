@@ -18,6 +18,7 @@ type PropsType = {
 export const OffShore: FC<PropsType> = () => {
 
     const bank = useSelector((state: RootStateType) => state.user.bank)
+    const cy = useSelector((state: RootStateType) => state.app.cy)
     const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
 
@@ -47,7 +48,7 @@ export const OffShore: FC<PropsType> = () => {
                     {t("balance")}
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{bank}₽</p>
+                    <p className={styles.money}>{round(bank, 2)}{cy === "RUB" ? "₽" : "$"}</p>
                 </div>
                 <Button mod={isLoading ? "loading" : "gradient"} onClick={onTransfer}>
                     {t("offShore-inWallet")}

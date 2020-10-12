@@ -3,9 +3,11 @@ import styles from "./styles.module.scss";
 import {Separator} from "../../../Separator/Separator";
 import cross from "../../../../media/images_new/Cross.svg";
 import {HistoryItemT} from "../../../../api/user-api";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getHistory} from "../../../../redux/user/user-reducer";
 import {useTranslation} from "react-i18next";
+import {round} from "../../../../utils/realTimeData";
+import {RootStateType} from "../../../../redux/store";
 
 export type PropsType = {
    history?: Array<HistoryItemT>
@@ -16,6 +18,7 @@ export const History: FC<PropsType> = ({
                                        }) => {
 
    const {t} = useTranslation()
+   const cy = useSelector((state: RootStateType) => state.app.cy)
 
    if (!history || history.length === 0) return <></>
 
@@ -35,7 +38,7 @@ export const History: FC<PropsType> = ({
                   <div className={styles.historyItem}>
                      <div className={styles.row}>
                         <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>
-                           {h.sign === 1 && "+"}{h.sign * h.value}₽
+                           {h.sign === 1 && "+"}{round(h.sign * h.value, 2)}{cy === "RUB" ? "₽" : "$"}
                         </div>
                         <div className={styles.type}>
                            {h.type}

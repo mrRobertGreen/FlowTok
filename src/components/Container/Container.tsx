@@ -9,6 +9,8 @@ import {ToolTip} from "../ToolTip/ToolTip";
 
 import {BuyContainerT, ContainerObjT} from "../../api/user-api";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
 
 type PropsT = {
@@ -21,6 +23,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
 
     const {image, need, quantity, type} = data
     const [isTooltip, setIsTooltip] = useState(false)
+    const cy = useSelector((state: RootStateType) => state.app.cy)
 
     const {t} = useTranslation()
     const onOpenTooltip = () => {
@@ -39,7 +42,7 @@ export const Container: FC<PropsT> = ({isInformed = false, data, buyData}) => {
             <div className={styles.title}>
                 {t("container-title")} {type}
                 <InformedButton isInformed={isInformed} onClick={onOpenTooltip}/>
-                {buyData ? <p className={styles.text__little_2}>{t("price-text")}: {buyData.cost} ₽ {t("per-piece-text")}</p> : <div/>}
+                {buyData ? <p className={styles.text__little_2}>{t("price-text")}: {buyData.cost} {cy === "RUB" ? "₽" : "$"} {t("per-piece-text")}</p> : <div/>}
             </div>
             <div className={styles.container}>
                 <div className={styles.container__image}>

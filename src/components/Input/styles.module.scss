@@ -85,6 +85,7 @@
 
 .switchWrapLang {
   @extend .switchWrap;
+  margin-right: 10px;
   .lang {
     font-size: 19px;
     letter-spacing: -0.458235px;
@@ -135,6 +136,10 @@
   .label:active .switchBtn {
     width: 30px;
   }
+}
+.switchWrapCy {
+  @extend .switchWrapLang;
+  margin-right: 0;
 }
 
 .select {

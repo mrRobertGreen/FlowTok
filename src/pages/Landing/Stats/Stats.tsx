@@ -51,7 +51,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {paid} ₽
+               {paid} $
             </p>
             <p className={styles.little}>
                Всего выплачено
@@ -59,7 +59,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {average} ₽
+               {average} $
             </p>
             <p className={styles.little}>
                Средний доход в день
