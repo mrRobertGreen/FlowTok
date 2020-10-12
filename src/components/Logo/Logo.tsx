@@ -15,7 +15,7 @@ export const Logo: FC = () => {
       <div className={styles.wrapper}>
          {/*<img src={logoIcon} alt="" className={styles.image}/>*/}
 			<div className={styles.name}>
-				Containers
+				Take Containers
 			</div>
       </div>
 
