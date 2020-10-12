@@ -10,22 +10,28 @@
   line-height: 20px;
   font-weight: 600;
   margin-bottom: 25px;
+  display: flex;
+  align-items: center;
 }
+
 .row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+
   .input {
     flex: 1 1 100%;
   }
+
   .btn {
-    margin-left: 9px;
+    padding-top: 6px;
   }
 }
+
 .statsBlock {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+
   .item {
     background-color: #fff;
     display: flex;
@@ -33,6 +39,7 @@
     justify-content: center;
     width: 50%;
     border-radius: 10px;
+
     .numbers {
       font-size: 19px;
       line-height: 22px;
@@ -40,7 +47,15 @@
       display: flex;
       flex-direction: column;
       gap: 9px;
+
+      .men {
+        //width: 9px;
+        //height: 9px;
+        padding-left: 4px;
+        padding-top: 5.5px;
+      }
     }
+
     .label {
       font-size: 13px;
       line-height: 15px;
@@ -48,6 +63,7 @@
       margin-bottom: 9px;
     }
   }
+
   .item:nth-child(1) {
     margin: 0 10% 0 0;
   }
@@ -57,12 +73,49 @@
   background: #00BA32;
 }
 
+.refPeople {
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &__level {
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.313529px;
+
+    color: #8E8E93;
+  }
+  .numbers_container {
+    display: flex;
+    align-items: center;
+  }
+  &__numbers {
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.313529px;
+    margin-right: 2px;
+  }
+}
+.separator {
+  background: linear-gradient(270deg, #FFFFFF 0%, #b1b1b1 50%, #FFFFFF 100%);
+  margin: 0 10px;
+}
+
 @media (min-width: 1024px) {
   .wrapper {
     padding: 40px 35px;
     border-radius: 30px;
     display: flex;
-    max-height: 267px;
+    flex-direction: column;
+
   }
   .title {
     font-size: 26px;
@@ -72,25 +125,31 @@
   .row {
     flex-direction: column;
     align-items: flex-start;
+
     .input {
       width: 100%;
     }
+
     .btn {
-      width: 70%;
+      width: 100%;
       margin-top: 18px;
+      margin-bottom: 10px;
     }
   }
   .statsBlock {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
+
     .item {
       width: 50%;
       border-radius: 10px;
+
       .numbers {
         font-size: 27px;
         line-height: 22px;
       }
+
       .label {
         font-size: 13px;
         line-height: 15px;
@@ -115,6 +174,7 @@
     .input {
       width: 100%;
     }
+
     .btn {
       width: 70%;
       margin-top: 18px;
@@ -122,13 +182,16 @@
   }
   .statsBlock {
     margin-left: 25px;
+
     .item {
       width: 50%;
       border-radius: 10px;
+
       .numbers {
         font-size: 34px;
         line-height: 40px;
       }
+
       .label {
         font-size: 17px;
         line-height: 20px;
