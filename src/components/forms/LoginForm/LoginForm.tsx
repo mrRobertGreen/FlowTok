@@ -9,6 +9,7 @@ import {RootStateType} from "../../../redux/store";
 import {authMe} from "../../../redux/auth/auth-reducer";
 import {useRedirect} from "../../../hooks/useRedirect";
 import {AuthMeReqPayloadType} from "../../../api/auth-api";
+import {CyT, LangT} from "../../../redux/app/app-reducer";
 
 export type LoginFormValuesType = {
    email: string
@@ -32,7 +33,9 @@ export const LoginForm: FC<PropsType> = () => {
          auth: values.email,
          password: values.password,
          type: "f",
-         timeOffset: new Date().getTimezoneOffset()
+         timeOffset: new Date().getTimezoneOffset(),
+         cy: localStorage.getItem("cy") as CyT,
+         lang: localStorage.getItem("lang") as LangT,
       }
       dispatch(authMe(payload, resetForm, setIsLoading))
    }

@@ -11,6 +11,7 @@ import {AuthMeReqPayloadType} from "../../api/auth-api";
 import Button from "../Button/Button";
 import {Input} from "../Input/Input";
 import {NavLink} from "react-router-dom";
+import {CyT, LangT} from "../../redux/app/app-reducer";
 
 export type LoginFormValuesType = {
     email: string
@@ -35,6 +36,8 @@ export const Entrance: FC<PropsType> = () => {
             password: values.password,
             type: values.type,
             timeOffset: new Date().getTimezoneOffset(),
+            cy: localStorage.getItem("cy") as CyT,
+            lang: localStorage.getItem("lang") as LangT,
         }
         dispatch(authMe(payload, resetForm, setIsLoading))
     }

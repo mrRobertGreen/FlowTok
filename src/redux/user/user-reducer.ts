@@ -12,6 +12,7 @@ import {checkMessageNotification} from "../../utils/checkMessageNotification";
 import {appActions} from "../app/app-reducer";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
 import {getEverySecMoney, round} from "../../utils/realTimeData";
+import {getBody} from "../../utils/getBody";
 
 // userReducer is responsible for main user's information
 
@@ -133,7 +134,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
    return async (dispatch) => {
       await commonThunkHandler(async () => {
          // this thunk is called only if there is a token
-         const data = await userApi.getUserData()
+         const data = await userApi.getUserData(getBody())
          if (data.success) { // if token is true
             dispatch(userActions.setUserData(data.data))
             await localStorage.setItem("userData", JSON.stringify(data.data))
@@ -177,7 +178,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
 export const getUsersCount = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
-         const res = await userApi.getUsersCount()
+         const res = await userApi.getUsersCount(getBody())
          if (res.success) {
             dispatch(userActions.setUserStats(res.data))
          }
@@ -187,7 +188,7 @@ export const getUsersCount = (): ThunkType => {
 export const getHistory = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
-         const res = await userApi.getHistory()
+         const res = await userApi.getHistory(getBody())
          if (res.success) {
             dispatch(userActions.setHistory(res.data))
          }
@@ -197,7 +198,7 @@ export const getHistory = (): ThunkType => {
 export const getGift = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
-         const res = await userApi.getGift()
+         const res = await userApi.getGift(getBody())
          if (res.success) {
             dispatch(userActions.setGift(false))
             await dispatch(getUserData())
@@ -209,7 +210,7 @@ export const getGift = (): ThunkType => {
 export const closeGift = (): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
-         const res = await userApi.closeGift()
+         const res = await userApi.closeGift(getBody())
          if (res.success) {
             dispatch(userActions.setGift(false))
          }
@@ -222,7 +223,7 @@ export const getContainers = (): ThunkType => {
       // get ref data for blogger
       await commonThunkHandler(async () => {
 
-         const data = await userApi.getContainers()
+         const data = await userApi.getContainers(getBody())
          if (data.success) {
             localStorage.setItem("containers", JSON.stringify(data.data))
             dispatch(userActions.setContainers(data.data))
@@ -252,7 +253,7 @@ export const transfer = (setIsLoading: (flag: boolean) => void): ThunkType => {
       // get ref data for blogger
       await commonThunkHandler(async () => {
          setIsLoading(true)
-         const res = await userApi.transfer()
+         const res = await userApi.transfer(getBody())
 
          if (res.success) {
             dispatch(userActions.setUserData(res.data))

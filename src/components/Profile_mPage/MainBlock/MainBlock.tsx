@@ -2,7 +2,7 @@ import React, {FC, useEffect} from "react";
 import styles from "./styles.module.scss";
 import Balance from "./Balance/Balance";
 import {RootStateType} from "../../../redux/store";
-import {getContainers, getUserData, userActions} from "../../../redux/user/user-reducer";
+import {getUserData} from "../../../redux/user/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import {useCache} from "../../../hooks/useCache";
 import {useDispatch, useSelector} from "react-redux";

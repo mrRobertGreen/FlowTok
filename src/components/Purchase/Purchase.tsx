@@ -22,6 +22,7 @@ import {buyContainer, ContainerT} from "../../redux/user/user-reducer";
 //import plus from "../../media/images_new/PlusButton.svg";
 import plus from "../../media/images_new/PlusButton.svg"
 import {setIn} from "formik";
+import {CyT, LangT} from "../../redux/app/app-reducer";
 
 type PropsT = {
    data: BuyContainerT
@@ -74,6 +75,8 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
          amount: +inputValue,
          date: new Date().getTime(),
          type: type,
+         cy: localStorage.getItem("cy") as CyT,
+         lang: localStorage.getItem("lang") as LangT,
       }
       dispatch(buyContainer(body, setIsLoading))
       setInputValue("")

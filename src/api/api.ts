@@ -1,4 +1,5 @@
 import axios, {AxiosRequestConfig} from "axios";
+import {CyT} from "../redux/app/app-reducer";
 
 export const instance = axios.create({
    baseURL: "https://api.take-container.com/api/v1",

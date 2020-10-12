@@ -10,6 +10,7 @@ import {authMe} from "../../../redux/auth/auth-reducer";
 import {AuthMeReqPayloadType} from "../../../api/auth-api";
 import {useRedirect} from "../../../hooks/useRedirect";
 import {NavLink} from "react-router-dom";
+import {CyT, LangT} from "../../../redux/app/app-reducer";
 
 export type RegFormValuesType = {
    ogrn: string
@@ -42,6 +43,8 @@ export const RegForm: FC<PropsType> = () => {
             timeOffset: new Date().getTimezoneOffset(),
             userName: values.userName,
             surname: values.surname,
+            cy: localStorage.getItem("cy") as CyT,
+            lang: localStorage.getItem("lang") as LangT,
          }
       } else {
          payload = {
@@ -54,6 +57,8 @@ export const RegForm: FC<PropsType> = () => {
             timeOffset: new Date().getTimezoneOffset(),
             userName: values.userName,
             surname: values.surname,
+            cy: localStorage.getItem("cy") as CyT,
+            lang: localStorage.getItem("lang") as LangT,
          }
       }
 

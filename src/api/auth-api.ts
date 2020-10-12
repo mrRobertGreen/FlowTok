@@ -1,4 +1,5 @@
 import {BaseResponseType, instance, NotificationT} from "./api";
+import {BaseBodyT} from "./user-api";
 
 
 export const authApi = {
@@ -30,10 +31,10 @@ export type AuthMeReqPayloadType = {
    timeOffset: number
    userName?: string
    surname?: string
-}
+} & BaseBodyT
 export type SendMoreInfoReqPayloadT = {
    inn: string
    ogrn: string
    name: string
-}
+} & BaseBodyT
 

@@ -1,37 +1,42 @@
 import {BaseDataType, BaseResponseType, instance, NotificationT} from "./api";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
+import {CyT, LangT} from "../redux/app/app-reducer";
 
 export const userApi = {
-   getUserData() {
-      return instance.get<BaseResponseType<UserDataType>>("/users/user/profile").then(res => res.data)
+   getUserData(body: BaseBodyT) {
+      return instance.post<BaseResponseType<UserDataType>>("/users/user/profile", body).then(res => res.data)
    },
-   getContainers() {
-      return instance.get<BaseResponseType<GetContainersResDataT>>(`/containers`).then(res => res.data)
+   getContainers(body: BaseBodyT) {
+      return instance.post<BaseResponseType<GetContainersResDataT>>(`/containers`, body).then(res => res.data)
    },
    buyContainer(body: BuyContainerReqBodyT) {
       return instance.post<BaseResponseType<GetContainersResDataT>>(`/containers/buy`, body).then(res => res.data)
    },
-   transfer() {
-      return instance.get<BaseResponseType<UserDataType>>(`/users/user/transfer`).then(res => res.data)
+   transfer(body: BaseBodyT) {
+      return instance.post<BaseResponseType<UserDataType>>(`/users/user/transfer`, body).then(res => res.data)
    },
-   getStats() {
-      return instance.get<BaseResponseType<StatsType>>(`/users/stat`).then(res => res.data)
+   getStats(body: BaseBodyT) {
+      return instance.post<BaseResponseType<StatsType>>(`/users/stat`, body).then(res => res.data)
    },
-   getUsersCount() {
-      return instance.get<BaseResponseType<{ quantity: number }>>(`/users/user/quantity`).then(res => res.data)
+   getUsersCount(body: BaseBodyT) {
+      return instance.post<BaseResponseType<{ quantity: number }>>(`/users/user/quantity`, body).then(res => res.data)
    },
-   getHistory() {
-      return instance.get<BaseResponseType<Array<HistoryItemT>>>(`/users/user/history`).then(res => res.data)
+   getHistory(body: BaseBodyT) {
+      return instance.post<BaseResponseType<Array<HistoryItemT>>>(`/users/user/history`, body).then(res => res.data)
    },
-   getGift() {
-      return instance.post<BaseResponseType<GetGiftResT>>(`/users/user/gift/get`).then(res => res.data)
+   getGift(body: BaseBodyT) {
+      return instance.post<BaseResponseType<GetGiftResT>>(`/users/user/gift/get`, body).then(res => res.data)
    },
-   closeGift() {
-      return instance.post<BaseResponseType<{ gift: false }>>(`/users/user/gift/close`).then(res => res.data)
+   closeGift(body: BaseBodyT) {
+      return instance.post<BaseResponseType<{ gift: false }>>(`/users/user/gift/close`, body).then(res => res.data)
    },
 };
 
 // types
+export type BaseBodyT = {
+   cy: CyT
+   lang: LangT
+}
 export type UserDataType = {
    userName: string
    wallet: number
@@ -59,11 +64,11 @@ export type GetGiftResT = {
    wallet: number
    notification?: NotificationT
 }
-export type BuyContainerReqBodyT = {
+export type BuyContainerReqBodyT= {
    type: "small" | "large" | "refrigerator"
    amount: number
    date: number
-}
+} & BaseBodyT
 export type BuyContainerResDataT = {
    data: GetContainersResDataT
    notification?: NotificationT

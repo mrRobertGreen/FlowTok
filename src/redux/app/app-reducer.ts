@@ -30,6 +30,11 @@ export default function appReducer(state = initialState, action: ActionsType): I
             ...state,
             lang: action.lang
          }
+      case "app/SET_CY":
+         return {
+            ...state,
+            cy: action.cy
+         }
       case "app/TOGGLE_IS_FETCHING":
          return {
             ...state,
@@ -63,6 +68,7 @@ export const appActions = {
    setNotification: (notification: NotificationT | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
    setError: (error: string | null) => ({type: "app/SET_ERROR", error} as const),
    setLang: (lang: LangT) => ({type: "app/SET_LANG", lang} as const),
+   setCy: (cy: CyT) => ({type: "app/SET_CY", cy} as const),
    toggleIsFetching: (isFetching: boolean) => ({type: "app/TOGGLE_IS_FETCHING", isFetching} as const),
    toggleIsInit: (isInit: boolean) => ({type: "app/TOGGLE_IS_INTI", isInit} as const),
    setIsDesktop: (isDesktop: boolean) => ({type: "app/SET_IS_DESKTOP", isDesktop} as const),

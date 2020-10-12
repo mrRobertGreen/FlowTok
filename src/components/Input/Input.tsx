@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {FormikErrors} from "formik";
 import MaskedInput, {MaskedInputProps} from "react-text-mask";
 import {WithdrawTypes, withdrawTypes} from "../../pages/Withdraw_m/Withdraw_m";
-import {LangT} from "../../redux/app/app-reducer";
+import {CyT, LangT} from "../../redux/app/app-reducer";
 
 
 type PropsType = {
@@ -44,36 +44,17 @@ export const  Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
 type SwitchPropsT = {
    isLabel?: boolean
    changeLang?: (lang: LangT) => void
+   changeCy?: (cy: CyT) => void
 }
 
-export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
-   return (
-      <div className={styles.switchWrap}>
-         <input
-            className={styles.checkbox}
-            type="checkbox"
-            id="switch"
-            {...rest}
-         />
-         <label
-            className={styles.label}
-            htmlFor="switch"
-         >
-            <span className={styles.switchBtn} />
-         </label>
-         {isLabel && <div className={styles.switchLabel}>
-	         +1.00 ₽
-         </div>}
-      </div>
-   )
-}
+
 export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ changeLang, ...rest}) => {
 
-   const toggler = useRef<HTMLInputElement>(null)
+   const togglerLang = useRef<HTMLInputElement>(null)
 
    const onChangeLang = () => {
-      if (toggler.current && changeLang) {
-         if (toggler.current.checked) changeLang("ru")
+      if (togglerLang.current && changeLang) {
+         if (togglerLang.current.checked) changeLang("ru")
          else changeLang("en")
       }
    }
@@ -86,18 +67,54 @@ export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ chan
          <input
             className={styles.checkbox}
             type="checkbox"
-            id="switch"
-            ref={toggler}
+            id="switch-lang"
+            ref={togglerLang}
             {...rest}
          />
          <label
             className={styles.label}
-            htmlFor="switch"
+            htmlFor="switch-lang"
          >
             <span className={styles.switchBtn} />
          </label>
          <div className={styles.lang}>
             RU
+         </div>
+      </div>
+   )
+}
+
+export const ChooseCy:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ changeCy, ...rest}) => {
+
+   const togglerCy = useRef<HTMLInputElement>(null)
+
+   const onChangeCy = () => {
+      if (togglerCy.current && changeCy) {
+         if (togglerCy.current.checked) changeCy("RUB")
+         else changeCy("USD")
+      }
+   }
+
+   return (
+      <div className={styles.switchWrapLang} onChange={onChangeCy}>
+         <div className={styles.lang}>
+            USD
+         </div>
+         <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="switch-cy"
+            ref={togglerCy}
+            {...rest}
+         />
+         <label
+            className={styles.label}
+            htmlFor="switch-cy"
+         >
+            <span className={styles.switchBtn} />
+         </label>
+         <div className={styles.lang}>
+            RUB
          </div>
       </div>
    )
@@ -156,6 +173,28 @@ export const InputWithMask: FC<InputWithMaskPropsType & MaskedInputProps> = ({
          >
             {errorMessage ? errorMessage : "hidden"}
          </div>
+      </div>
+   )
+}
+
+export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
+   return (
+      <div className={styles.switchWrap}>
+         <input
+            className={styles.checkbox}
+            type="checkbox"
+            id="switch"
+            {...rest}
+         />
+         <label
+            className={styles.label}
+            htmlFor="switch"
+         >
+            <span className={styles.switchBtn} />
+         </label>
+         {isLabel && <div className={styles.switchLabel}>
+				+1.00 ₽
+			</div>}
       </div>
    )
 }
