@@ -96,7 +96,7 @@ export const ChooseCy:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ change
    }
 
    return (
-      <div className={styles.switchWrapLang} onChange={onChangeCy}>
+      <div className={styles.switchWrapCy} onChange={onChangeCy}>
          <div className={styles.lang}>
             USD
          </div>

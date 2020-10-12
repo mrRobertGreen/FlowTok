@@ -29,6 +29,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
    const dispatch = useDispatch()
    const bank = useSelector((state: RootStateType) => state.user.bank)
    const data = useSelector((state: RootStateType) => state.user.realMoneyData)
+   const cy = useSelector((state: RootStateType) => state.app.cy)
 
    const {t} = useTranslation()
 
@@ -100,26 +101,26 @@ export const AllProfit: FC<PropsType> = ({}) => {
             {t("allProfit-label")}
          </div>
          <div className={styles.money}>
-            {realAllTimeMoney.all}₽
-            <p className={styles.profit}>+{realDayMoney.all}₽</p>
+            {realAllTimeMoney.all}{cy === "RUB" ? "₽" : "$"}
+            <p className={styles.profit}>+{realDayMoney.all}{cy === "RUB" ? "₽" : "$"}</p>
          </div>
          <div className={styles.footer}>
             <div className={styles.column}>
                <p className={styles.size}>Small</p>
-               <p className={styles.money_2}>{realAllTimeMoney.small}₽</p>
-               <p className={styles.profit}>+{realDayMoney.small}₽</p>
+               <p className={styles.money_2}>{realAllTimeMoney.small}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.profit}>+{realDayMoney.small}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Large</p>
-               <p className={styles.money_2}>{realAllTimeMoney.large}₽</p>
-               <p className={styles.profit}>+{realDayMoney.large}₽</p>
+               <p className={styles.money_2}>{realAllTimeMoney.large}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.profit}>+{realDayMoney.large}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Refrigerator</p>
                <p className={styles.money_2}>
-                  {realAllTimeMoney.refrigerator}₽
+                  {realAllTimeMoney.refrigerator}{cy === "RUB" ? "₽" : "$"}
                </p>
-               <p className={styles.profit}>+{realDayMoney.refrigerator}₽</p>
+               <p className={styles.profit}>+{realDayMoney.refrigerator}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
          </div>
       </div>

@@ -8,8 +8,8 @@ const initialState = {
    notification: null as null | NotificationT,
    error: null as null | string,
    isDesktop: false,
-   lang: "en" as LangT,
-   cy: "USD" as CyT,
+   lang: localStorage.getItem("lang") as LangT,
+   cy: localStorage.getItem("cy") as CyT,
 }
 export type InitialStateType = typeof initialState
 

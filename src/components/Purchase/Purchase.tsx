@@ -2,7 +2,6 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import {Input} from "../Input/Input";
 import VerticalLine from "../../media/images_new/VerticalLine.svg";
-import percentIcon from "../../media/images_new/conture.svg"
 import Button from "../Button/Button";
 import {BuyContainerReqBodyT, BuyContainerT} from "../../api/user-api";
 import {calculateContainerData,} from "../../utils/calculateContainerData";
@@ -17,13 +16,16 @@ import battery_7 from "../../media/batteryIcons/70.svg"
 import battery_8 from "../../media/batteryIcons/80.svg"
 import battery_9 from "../../media/batteryIcons/90.svg"
 import battery_10 from "../../media/batteryIcons/100.svg"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {buyContainer, ContainerT} from "../../redux/user/user-reducer";
 //import plus from "../../media/images_new/PlusButton.svg";
 import plus from "../../media/images_new/PlusButton.svg"
-import {setIn} from "formik";
 import {CyT, LangT} from "../../redux/app/app-reducer";
+
 import {useTranslation} from "react-i18next";
+
+import {RootStateType} from "../../redux/store";
+
 
 type PropsT = {
    data: BuyContainerT
@@ -41,6 +43,8 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
       whole: 0,
       percent: ["0"],
    })
+
+   const cy = useSelector((state: RootStateType) => state.app.cy)
 
    const {cost, percent, wallet} = data
 
@@ -118,7 +122,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
    return (
       <div className={styles.wrapper}>
          <div className={styles.header}>
-            <button className={styles.purchase}>{t("purchase-title")}</button>
+            <div className={styles.purchase}>{t("purchase-title")}</div>
             <div>
                <p className={styles.numbers}>
                   {t("balance-text")}: {wallet}₽

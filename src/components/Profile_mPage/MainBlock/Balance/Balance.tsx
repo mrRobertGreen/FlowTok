@@ -8,6 +8,8 @@ import Modal from "../../../common/Modal/Modal";
 import {History} from "../History/History";
 import {HistoryItemT} from "../../../../api/user-api";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../../../redux/store";
 
 
 export type PropsType = {
@@ -17,6 +19,8 @@ export type PropsType = {
 
 const Balance: FC<PropsType> = ({value, history}) => {
     // const [isHistory, setIsHistory] = useState(false)
+
+    const cy = useSelector((state: RootStateType) => state.app.cy)
 
     const {t} = useTranslation()
 
@@ -36,7 +40,7 @@ const Balance: FC<PropsType> = ({value, history}) => {
                     {t("balance")}
                 </div>
                 <div className={styles.money}>
-                    {value}₽
+                    {value}{cy === "RUB" ? "₽" : "$"}
                 </div>
             </div>
 

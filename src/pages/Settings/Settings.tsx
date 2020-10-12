@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {exit} from "../../redux/auth/auth-reducer";
 import {RootStateType} from "../../redux/store";
 import {useRedirect} from "../../hooks/useRedirect";
-import {ChooseCy, ChooseLang, ChooseSex} from "../../components/Input/Input";
+import {ChooseCy, ChooseLang} from "../../components/Input/Input";
 import {useTranslation} from "react-i18next";
 import {appActions, CyT, LangT} from "../../redux/app/app-reducer";
 

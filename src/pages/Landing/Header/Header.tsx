@@ -1,35 +1,44 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import {Logo} from "../../../components/Logo/Logo";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {ChooseLang} from "../../../components/Input/Input";
+import {appActions, LangT} from "../../../redux/app/app-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStateType} from "../../../redux/store";
 
-/*
-* Это шапка сайта. Делай так: объедини все кнопки в один блок и разнеси его и логотип по разным
-* сторонам с помощью justify-content: space-between.
-*
-* Компонент логотипа надо доделать.
-*
-* Кнопку "Создать аккаунт" сделай в виде ссылки (<NavLink to="/"></NavLink>)
-*
-* Телеграм и почта - тоже ссылки, но уже просто <a><a/>
-* */
 
 export const Header: FC = () => {
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.logo}>
-                <Logo/>
-            </div>
 
-            <div className={styles.buttons}>
-                <a href="#" className={styles.buttons__telegram}>Telegram</a>
-                <a href="#" className={styles.buttons__mail}>Почта</a>
-                <NavLink to={"/login"}>
-                    <div className={ styles.buttons__createAcc}>
-                        Создать аккаунт
-                    </div>
-                </NavLink>
-            </div>
-        </div>
-    )
+   const dispatch = useDispatch()
+   const langFromState = useSelector((state: RootStateType) => state.app.lang)
+
+   const changeLang = (lang: LangT) => {
+      if (langFromState !== lang) {
+         dispatch(appActions.setLang(lang))
+         localStorage.setItem("lang", lang)
+      }
+   }
+
+   return (
+      <div className={styles.wrapper}>
+         <div className={styles.logo}>
+            <Logo/>
+         </div>
+         <div className={styles.toggler}>
+            <ChooseLang changeLang={changeLang} checked={langFromState === "ru"}/>
+         </div>
+
+         <div className={styles.buttons}>
+            <a href="#" className={styles.buttons__telegram}>Telegram</a>
+            <a href="#" className={styles.buttons__mail}>Почта</a>
+            <NavLink to={"/login"}>
+               <div className={styles.buttons__createAcc}>
+                  Создать аккаунт
+               </div>
+            </NavLink>
+         </div>
+
+      </div>
+   )
 }
