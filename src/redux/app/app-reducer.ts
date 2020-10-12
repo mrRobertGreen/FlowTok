@@ -1,6 +1,7 @@
 import {BaseThunkType, InferActionsType} from "../store";
 import {getContainers, getUserData} from "../user/user-reducer";
 import {NotificationT} from "../../api/api";
+import {setLanguage} from "../../utils/setLanguage";
 
 const initialState = {
    isFetching: false,
@@ -76,11 +77,28 @@ export const appActions = {
 }
 
 export const initialize = (): ThunkType => { // initialization of app
-   return async (dispatch) => {
+   return async (dispatch, getState) => {
       if (localStorage.getItem("token")) {
          // try to get user profile data with cached token
+         const lang = getState().app.lang
+         const cy = getState().app.cy
+         if (lang) {
+            setLanguage(lang)
+         }
+         else {
+            localStorage.setItem("lang", "ru")
+            dispatch(appActions.setLang("ru"))
+            setLanguage("ru")
+         }
+         if (!cy) {
+            localStorage.setItem("cy", "USD")
+            dispatch(appActions.setCy("USD"))
+         }
+
          await dispatch(getUserData())
          await dispatch(getContainers())
+
+
       }
       dispatch(appActions.toggleIsInit(true)) // initialization finished
    }

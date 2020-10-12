@@ -7,6 +7,7 @@ import {tikTokUrlParser} from "../../utils/tikTokUrlParser";
 import {commonThunkHandler} from "../../utils/commonThunkHandler";
 import {userApi, VerifyPayloadType} from "../../api/user-api";
 import {createAuthReqBody} from "../../utils/createAuthReqBody";
+import {setLanguage} from "../../utils/setLanguage";
 
 const initialState = {
    isNew: false,
@@ -103,11 +104,29 @@ export const authMe = (payload: AuthMeReqPayloadType,
             // if token received set it
             localStorage.setItem("token", data.data.token)
             handleReset() // reset form
+
+            const lang = getState().app.lang
+            const cy = getState().app.cy
+            if (lang) {
+               setLanguage(lang)
+            }
+            else {
+               localStorage.setItem("lang", "ru")
+               dispatch(appActions.setLang("ru"))
+               setLanguage("ru")
+            }
+            if (!cy) {
+               localStorage.setItem("cy", "USD")
+               dispatch(appActions.setCy("USD"))
+            }
+
             if (data.data.needMoreInfo) {
                dispatch(authActions.setNeedMoreInfo(true))
             } else {
                await dispatch(getUserData())
             }
+
+
          } else if (!data.success && data.error && data.error.name === "wrong_password") {
             dispatch(appActions.setError("Неверный пароль!"))
          } else {

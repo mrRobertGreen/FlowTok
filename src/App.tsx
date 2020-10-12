@@ -23,14 +23,16 @@ const App: FC = () => {
    const notification = useSelector((state: RootStateType) => state.app.notification)
    const error = useSelector((state: RootStateType) => state.app.error)
    const lang = useSelector((state: RootStateType) => state.app.lang)
+   const cy = useSelector((state: RootStateType) => state.app.lang)
 
    useEffect(() => {
       dispatch(initialize())
    }, [dispatch])
 
    useEffect(() => {
-      setLanguage(lang)
+      if (lang) setLanguage(lang)
    }, [lang])
+
 
    useDataRefresher()
 
