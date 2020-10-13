@@ -3,14 +3,24 @@ import {getContainers, getUserData} from "../user/user-reducer";
 import {NotificationT} from "../../api/api";
 import {setLanguage} from "../../utils/setLanguage";
 
+
+const getInitialLang= (): LangT => {
+   if (localStorage.getItem("lang")) return localStorage.getItem("lang") as LangT
+   else return "en"
+}
+const getInitialCy= (): CyT => {
+   if (localStorage.getItem("cy")) return localStorage.getItem("cy") as CyT
+   else return "USD"
+}
+
 const initialState = {
    isFetching: false,
    isInit: false,
    notification: null as null | NotificationT,
    error: null as null | string,
    isDesktop: false,
-   lang: localStorage.getItem("lang") as LangT,
-   cy: localStorage.getItem("cy") as CyT,
+   lang: getInitialLang() as LangT,
+   cy: getInitialCy() as CyT,
 }
 export type InitialStateType = typeof initialState
 
@@ -80,25 +90,8 @@ export const initialize = (): ThunkType => { // initialization of app
    return async (dispatch, getState) => {
       if (localStorage.getItem("token")) {
          // try to get user profile data with cached token
-         const lang = getState().app.lang
-         const cy = getState().app.cy
-         if (lang) {
-            setLanguage(lang)
-         }
-         else {
-            localStorage.setItem("lang", "ru")
-            dispatch(appActions.setLang("ru"))
-            setLanguage("ru")
-         }
-         if (!cy) {
-            localStorage.setItem("cy", "USD")
-            dispatch(appActions.setCy("USD"))
-         }
-
          await dispatch(getUserData())
          await dispatch(getContainers())
-
-
       }
       dispatch(appActions.toggleIsInit(true)) // initialization finished
    }
