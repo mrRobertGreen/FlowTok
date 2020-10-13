@@ -9,120 +9,122 @@ import Preloader from "../../../common/Preloader/Preloader";
 import {useTranslation} from "react-i18next";
 
 export type PropsType = {
-   allTimeMoney: UserMoneyT
-   allDayMoney: {
-      now: {
-         small: number
-         large: number
-         refrigerator: number
-      }
-      still: {
-         small: number
-         large: number
-         refrigerator: number
-      }
-   }
+    allTimeMoney: UserMoneyT
+    allDayMoney: {
+        now: {
+            small: number
+            large: number
+            refrigerator: number
+        }
+        still: {
+            small: number
+            large: number
+            refrigerator: number
+        }
+    }
 }
 
 export const AllProfit: FC<PropsType> = ({}) => {
 
-   const dispatch = useDispatch()
-   const bank = useSelector((state: RootStateType) => state.user.bank)
-   const data = useSelector((state: RootStateType) => state.user.realMoneyData)
-   const cy = useSelector((state: RootStateType) => state.app.cy)
+    const dispatch = useDispatch()
+    const bank = useSelector((state: RootStateType) => state.user.bank)
+    const data = useSelector((state: RootStateType) => state.user.realMoneyData)
+    const cy = useSelector((state: RootStateType) => state.app.cy)
 
-   const {t} = useTranslation()
+    const {t} = useTranslation()
 
-   // увеличение каждую секунду
-   useEffect(() => {
-      const interval = setInterval(() => {
-         if (data && bank) {
-            console.log("bank: " + bank)
-            console.log("\n")
+    // увеличение каждую секунду
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (data && bank) {
+                console.log("bank: " + bank)
+                console.log("\n")
 
-            // увеличиваю оффшор
-            dispatch(userActions.setBank(bank + data.everySecMoney.all))
-         }
-
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [bank]);
-
-
-   // увеличение каждую секунду
-   useEffect(() => {
-      const interval = setInterval(() => {
-         if (data) {
-            console.log("everySecMoneySmall: " + data.everySecMoney.small)
-            console.log("realDayMoneySmall: " + data.realDayMoney.small)
-
-            console.log("everySecMoneyLarge: " + data.everySecMoney.large)
-            console.log("realDayMoneyLarge: " + data.realDayMoney.large)
-
-            console.log("everySecMoneyRefrigerator: " + data.everySecMoney.refrigerator)
-            console.log("realDayMoneyRefrigerator: " + data.realDayMoney.refrigerator)
-
-            console.log("everySecMoneyAll: " + data.everySecMoney.all)
-            console.log("realDayMoneyAll: " + data.realDayMoney.all)
-            console.log("\n")
-
-            const realTimeData: RealMoneyDataT = {
-               everySecMoney: {...data.everySecMoney},
-               realAllTimeMoney: {
-                  all: data.realAllTimeMoney.all + data.everySecMoney.all,
-                  large: data.realAllTimeMoney.large + data.everySecMoney.large,
-                  refrigerator: data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator,
-                  small: data.realAllTimeMoney.small + data.everySecMoney.small,
-               },
-               realDayMoney: {
-                  all: data.realDayMoney.all + data.everySecMoney.all,
-                  large: data.realDayMoney.large + data.everySecMoney.large,
-                  refrigerator: data.realDayMoney.refrigerator + data.everySecMoney.refrigerator,
-                  small: data.realDayMoney.small + data.everySecMoney.small,
-               }
+                // увеличиваю оффшор
+                dispatch(userActions.setBank(bank + data.everySecMoney.all))
             }
 
-            dispatch(userActions.setRealMoneyData(realTimeData))
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [bank]);
 
-            if (getSecondsToday() === 0) dispatch(getUserData())  // обновление в 00:00
-         }
 
-      }, 1000);
-      return () => clearInterval(interval);
-   }, [data]);
+    // увеличение каждую секунду
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (data) {
+                console.log("everySecMoneySmall: " + data.everySecMoney.small)
+                console.log("realDayMoneySmall: " + data.realDayMoney.small)
 
-   if (!data) return <Preloader/>
+                console.log("everySecMoneyLarge: " + data.everySecMoney.large)
+                console.log("realDayMoneyLarge: " + data.realDayMoney.large)
 
-   const {realDayMoney, realAllTimeMoney} = data
+                console.log("everySecMoneyRefrigerator: " + data.everySecMoney.refrigerator)
+                console.log("realDayMoneyRefrigerator: " + data.realDayMoney.refrigerator)
 
-   return (
-      <div data-test={"wrapper"} className={styles.wrapper}>
-         <div className={styles.label}>
-            {t("allProfit-label")}
-         </div>
-         <div className={styles.money}>
-            {round(realAllTimeMoney.all, 2)}{cy === "RUB" ? "₽" : "$"}
-            <p className={styles.profit}>{round(realDayMoney.all, 3)}{cy === "RUB" ? "₽" : "$"}</p>
-         </div>
-         <div className={styles.footer}>
-            <div className={styles.column}>
-               <p className={styles.size}>Small</p>
-               <p className={styles.money_2}>{round(realAllTimeMoney.small, 2)}{cy === "RUB" ? "₽" : "$"}</p>
-               <p className={styles.profit}>{round(realDayMoney.small, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                console.log("everySecMoneyAll: " + data.everySecMoney.all)
+                console.log("realDayMoneyAll: " + data.realDayMoney.all)
+                console.log("\n")
+
+                const realTimeData: RealMoneyDataT = {
+                    everySecMoney: {...data.everySecMoney},
+                    realAllTimeMoney: {
+                        all: data.realAllTimeMoney.all + data.everySecMoney.all,
+                        large: data.realAllTimeMoney.large + data.everySecMoney.large,
+                        refrigerator: data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator,
+                        small: data.realAllTimeMoney.small + data.everySecMoney.small,
+                    },
+                    realDayMoney: {
+                        all: data.realDayMoney.all + data.everySecMoney.all,
+                        large: data.realDayMoney.large + data.everySecMoney.large,
+                        refrigerator: data.realDayMoney.refrigerator + data.everySecMoney.refrigerator,
+                        small: data.realDayMoney.small + data.everySecMoney.small,
+                    }
+                }
+
+                dispatch(userActions.setRealMoneyData(realTimeData))
+
+                if (getSecondsToday() === 0) dispatch(getUserData())  // обновление в 00:00
+            }
+
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [data]);
+
+    if (!data) return <Preloader/>
+
+    const {realDayMoney, realAllTimeMoney} = data
+
+    return (
+        <div data-test={"wrapper"} className={styles.wrapper}>
+            <div className={styles.main}>
+                <div className={styles.label}>
+                    {t("allProfit-label")}
+                </div>
+                <div className={styles.money}>
+                    {round(realAllTimeMoney.all, 2)}{cy === "RUB" ? "₽" : "$"}
+                    <p className={styles.profit}>{round(realDayMoney.all, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                </div>
+                <div className={styles.footer}>
+                    <div className={styles.column}>
+                        <p className={styles.size}>Small</p>
+                        <p className={styles.money_2}>{round(realAllTimeMoney.small, 2)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.profit}>{round(realDayMoney.small, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                    </div>
+                    <div className={styles.column}>
+                        <p className={styles.size}>Large</p>
+                        <p className={styles.money_2}>{round(realAllTimeMoney.large, 2)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.profit}>{round(realDayMoney.large, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                    </div>
+                    <div className={styles.column}>
+                        <p className={styles.size}>Refrigerator</p>
+                        <p className={styles.money_2}>
+                            {round(realAllTimeMoney.refrigerator, 2)}{cy === "RUB" ? "₽" : "$"}
+                        </p>
+                        <p className={styles.profit}>{round(realDayMoney.refrigerator, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                    </div>
+                </div>
             </div>
-            <div className={styles.column}>
-               <p className={styles.size}>Large</p>
-               <p className={styles.money_2}>{round(realAllTimeMoney.large, 2)}{cy === "RUB" ? "₽" : "$"}</p>
-               <p className={styles.profit}>{round(realDayMoney.large, 3)}{cy === "RUB" ? "₽" : "$"}</p>
-            </div>
-            <div className={styles.column}>
-               <p className={styles.size}>Refrigerator</p>
-               <p className={styles.money_2}>
-                  {round(realAllTimeMoney.refrigerator, 2)}{cy === "RUB" ? "₽" : "$"}
-               </p>
-               <p className={styles.profit}>{round(realDayMoney.refrigerator, 3)}{cy === "RUB" ? "₽" : "$"}</p>
-            </div>
-         </div>
-      </div>
-   )
+        </div>
+    )
 }

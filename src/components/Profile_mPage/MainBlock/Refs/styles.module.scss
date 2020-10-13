@@ -1,17 +1,30 @@
 .wrapper {
-  padding: 20px 25px;
+  padding-top: 10px;
   width: 100%;
+}
+
+.main {
   background: #FFFFFF;
   border-radius: 14px;
+  padding: 20px 25px;
 }
 
 .title {
   font-size: 17px;
   line-height: 20px;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
+}
+
+.referralDescription {
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.313529px;
+  margin-bottom: 9px;
+
+  color: #8E8E93;
 }
 
 .row {
@@ -29,30 +42,29 @@
 
 .statsBlock {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  //justify-content: space-around;
+  //align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
 
   .item {
-    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    border-radius: 10px;
+    //background-color: blue;
 
     .numbers {
       font-size: 19px;
       line-height: 22px;
       font-weight: 700;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
+      text-align: left;
 
       .men {
         //width: 9px;
         //height: 9px;
         padding-left: 4px;
-        padding-top: 5.5px;
+        padding-top: 5.9px;
       }
     }
 
@@ -64,8 +76,9 @@
     }
   }
 
-  .item:nth-child(1) {
-    margin: 0 10% 0 0;
+  .money_item {
+    @extend .item;
+    align-items: center;
   }
 }
 
@@ -86,6 +99,7 @@
       align-items: center;
     }
   }
+
   &__level {
     font-size: 13px;
     line-height: 15px;
@@ -93,10 +107,12 @@
 
     color: #8E8E93;
   }
+
   .numbers_container {
     display: flex;
     align-items: center;
   }
+
   &__numbers {
     font-size: 13px;
     line-height: 15px;
@@ -104,10 +120,15 @@
     margin-right: 2px;
   }
 }
+
 .separator {
-  background: linear-gradient(270deg, #FFFFFF 0%, #b1b1b1 50%, #FFFFFF 100%);
-  margin: 0 10px;
+  display: block;
+  height: 40px;
+  padding: 0 7.5px;
+  //height: 100%;
+  //background-color: #1D1D1D;
 }
+
 
 @media (min-width: 1024px) {
   .wrapper {
@@ -119,7 +140,7 @@
   }
   .title {
     font-size: 26px;
-    margin-bottom: 18px;
+    //margin-bottom: 18px;
     line-height: 32px;
   }
   .row {
@@ -138,7 +159,7 @@
   }
   .statsBlock {
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
     margin-left: 15px;
 
     .item {
@@ -168,7 +189,7 @@
   .title {
     font-size: 32px;
     line-height: 37px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   .row {
     .input {

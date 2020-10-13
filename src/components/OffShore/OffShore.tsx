@@ -35,7 +35,7 @@ export const OffShore: FC<PropsType> = () => {
             <Modal isOpen={isOpen}>
                 <ToolTip onClose={() => setIsOpen(false)} />
             </Modal>
-            <div>
+            <div className={styles.main}>
                 <div className={styles.title}>
                     <p>{t("offShore-title")}</p>
                     <button style={{backgroundColor:"white"}} onClick={() => setIsOpen(true)}>

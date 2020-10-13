@@ -26,38 +26,40 @@ const Balance: FC<PropsType> = ({value, history}) => {
 
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
-            {/*<Modal isOpen={isHistory}>*/}
-            {/*    <History history={history}/>*/}
-            {/*</Modal>*/}
-            <div>
-                <div className={styles.title}>
-                    {t("balance-title")}
-                    {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
-                    {/*    <img src={clock} alt=""/>*/}
-                    {/*</button>}*/}
+            <div className={styles.main}>
+                {/*<Modal isOpen={isHistory}>*/}
+                {/*    <History history={history}/>*/}
+                {/*</Modal>*/}
+                <div>
+                    <div className={styles.title}>
+                        {t("balance-title")}
+                        {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
+                        {/*    <img src={clock} alt=""/>*/}
+                        {/*</button>}*/}
+                    </div>
+                    <div className={styles.label}>
+                        {t("balance")}
+                    </div>
+                    <div className={styles.money}>
+                        {value}{cy === "RUB" ? "₽" : "$"}
+                    </div>
                 </div>
-                <div className={styles.label}>
-                    {t("balance")}
-                </div>
-                <div className={styles.money}>
-                    {value}{cy === "RUB" ? "₽" : "$"}
-                </div>
-            </div>
 
-            <div className={styles.btn} data-test={"btn"}>
-                <div className={styles.btn__first}>
-                    <NavLink to={"/withdraw"}>
-                        <Button data-test={"btn"} mod={"green"}>{t("balance-payin")}</Button>
-                    </NavLink>
+                <div className={styles.btn} data-test={"btn"}>
+                    <div className={styles.btn__first}>
+                        <NavLink to={"/withdraw"}>
+                            <Button data-test={"btn"} mod={"green"}>{t("balance-payin")}</Button>
+                        </NavLink>
+                    </div>
+                    <div className={styles.btn__second}>
+                        <NavLink to={"/withdraw"}>
+                            <Button data-test={"button"} mod={"gradient"}>{t("balance-payoff")}</Button>
+                        </NavLink>
+                    </div>
                 </div>
-                <div className={styles.btn__second}>
-                    <NavLink to={"/withdraw"}>
-                        <Button data-test={"button"} mod={"gradient"}>{t("balance-payoff")}</Button>
-                    </NavLink>
-                </div>
-            </div>
 
-            <History history={history}/>
+                <History history={history}/>
+            </div>
         </div>
     )
 }
