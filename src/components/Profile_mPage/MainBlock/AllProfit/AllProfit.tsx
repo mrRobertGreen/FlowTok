@@ -41,7 +41,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
             console.log("\n")
 
             // увеличиваю оффшор
-            dispatch(userActions.setBank(round(bank + data.everySecMoney.all, 2)))
+            dispatch(userActions.setBank(bank + data.everySecMoney.all))
          }
 
       }, 1000);
@@ -69,16 +69,16 @@ export const AllProfit: FC<PropsType> = ({}) => {
             const realTimeData: RealMoneyDataT = {
                everySecMoney: {...data.everySecMoney},
                realAllTimeMoney: {
-                  all: round(data.realAllTimeMoney.all + data.everySecMoney.all, 2),
-                  large: round(data.realAllTimeMoney.large + data.everySecMoney.large, 2),
-                  refrigerator: round(data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator, 2),
-                  small: round(data.realAllTimeMoney.small + data.everySecMoney.small, 2),
+                  all: data.realAllTimeMoney.all + data.everySecMoney.all,
+                  large: data.realAllTimeMoney.large + data.everySecMoney.large,
+                  refrigerator: data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator,
+                  small: data.realAllTimeMoney.small + data.everySecMoney.small,
                },
                realDayMoney: {
-                  all: round(data.realDayMoney.all + data.everySecMoney.all, 3),
-                  large: round(data.realDayMoney.large + data.everySecMoney.large, 3),
-                  refrigerator: round(data.realDayMoney.refrigerator + data.everySecMoney.refrigerator, 3),
-                  small: round(data.realDayMoney.small + data.everySecMoney.small, 3),
+                  all: data.realDayMoney.all + data.everySecMoney.all,
+                  large: data.realDayMoney.large + data.everySecMoney.large,
+                  refrigerator: data.realDayMoney.refrigerator + data.everySecMoney.refrigerator,
+                  small: data.realDayMoney.small + data.everySecMoney.small,
                }
             }
 
@@ -101,26 +101,26 @@ export const AllProfit: FC<PropsType> = ({}) => {
             {t("allProfit-label")}
          </div>
          <div className={styles.money}>
-            {realAllTimeMoney.all}{cy === "RUB" ? "₽" : "$"}
-            <p className={styles.profit}>+{realDayMoney.all}{cy === "RUB" ? "₽" : "$"}</p>
+            {round(realAllTimeMoney.all, 2)}{cy === "RUB" ? "₽" : "$"}
+            <p className={styles.profit}>{round(realDayMoney.all, 3)}{cy === "RUB" ? "₽" : "$"}</p>
          </div>
          <div className={styles.footer}>
             <div className={styles.column}>
                <p className={styles.size}>Small</p>
-               <p className={styles.money_2}>{realAllTimeMoney.small}{cy === "RUB" ? "₽" : "$"}</p>
-               <p className={styles.profit}>+{realDayMoney.small}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.money_2}>{round(realAllTimeMoney.small, 2)}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.profit}>{round(realDayMoney.small, 3)}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Large</p>
-               <p className={styles.money_2}>{realAllTimeMoney.large}{cy === "RUB" ? "₽" : "$"}</p>
-               <p className={styles.profit}>+{realDayMoney.large}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.money_2}>{round(realAllTimeMoney.large, 2)}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.profit}>{round(realDayMoney.large, 3)}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
             <div className={styles.column}>
                <p className={styles.size}>Refrigerator</p>
                <p className={styles.money_2}>
-                  {realAllTimeMoney.refrigerator}{cy === "RUB" ? "₽" : "$"}
+                  {round(realAllTimeMoney.refrigerator, 2)}{cy === "RUB" ? "₽" : "$"}
                </p>
-               <p className={styles.profit}>+{realDayMoney.refrigerator}{cy === "RUB" ? "₽" : "$"}</p>
+               <p className={styles.profit}>{round(realDayMoney.refrigerator, 3)}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
          </div>
       </div>

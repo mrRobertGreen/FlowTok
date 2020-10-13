@@ -51,7 +51,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
     return (
         <div className={styles.wrapper}>
             <Modal isOpen={isTooltip}>
-                <ToolTip onClose={onCloseTooltip} ref={"ref"}/>
+                <ToolTip onClose={onCloseTooltip} isRef={true}/>
             </Modal>
             <div>
                 <div className={styles.title}>

@@ -6,16 +6,16 @@ import {useParams} from "react-router";
 
 type PropsT = {
     onClose: () => void,
-    ref?: string
+    isRef?: boolean
 }
 
 
-export const ToolTip: FC<PropsT> = ({onClose, ref}) => {
+export const ToolTip: FC<PropsT> = ({onClose, isRef}) => {
 
     // @ts-ignore
     const {type} = useParams() as ContainerT;
 
-    if (ref !== undefined) {
+    if (isRef) {
         return (
             <div className={styles.wrapper}>
                 <div className={styles.headerContainer}>

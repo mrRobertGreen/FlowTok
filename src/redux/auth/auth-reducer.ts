@@ -105,21 +105,6 @@ export const authMe = (payload: AuthMeReqPayloadType,
             localStorage.setItem("token", data.data.token)
             handleReset() // reset form
 
-            const lang = getState().app.lang
-            const cy = getState().app.cy
-            if (lang) {
-               setLanguage(lang)
-            }
-            else {
-               localStorage.setItem("lang", "ru")
-               dispatch(appActions.setLang("ru"))
-               setLanguage("ru")
-            }
-            if (!cy) {
-               localStorage.setItem("cy", "USD")
-               dispatch(appActions.setCy("USD"))
-            }
-
             if (data.data.needMoreInfo) {
                dispatch(authActions.setNeedMoreInfo(true))
             } else {

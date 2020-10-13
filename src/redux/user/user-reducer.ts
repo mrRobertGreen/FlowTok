@@ -150,24 +150,21 @@ export const getUserData = (): ThunkType => { // getting and setting user data
                   small: getEverySecMoney(allDayMoney.still.small),
                },
                realAllTimeMoney: {
-                  all: round(allTimeMoney.all, 2),
-                  large:  round(allTimeMoney.large, 2),
-                  refrigerator:  round(allTimeMoney.refrigerator, 2),
-                  small:  round(allTimeMoney.small, 2)
+                  all: allTimeMoney.all,
+                  large:  allTimeMoney.large,
+                  refrigerator:  allTimeMoney.refrigerator,
+                  small:  allTimeMoney.small,
                },
                realDayMoney: {
-                  all:  round(allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator, 3),
-                  large:  round(allDayMoney.now.large, 3),
-                  refrigerator:  round(allDayMoney.now.refrigerator, 3),
-                  small:  round(allDayMoney.now.small, 3)
+                  all:  allDayMoney.now.small + allDayMoney.now.large + allDayMoney.now.refrigerator,
+                  large:  allDayMoney.now.large,
+                  refrigerator:  allDayMoney.now.refrigerator,
+                  small:  allDayMoney.now.small,
                }
             }
             dispatch(userActions.setRealMoneyData(realMoneyData))
             // after this i can say, that user is authenticated
             dispatch(authActions.setIsAuth(true))
-         } else if (data.error && data.error.name === "no_user") {
-            // exit app
-            dispatch(appActions.setError("Для начала авторизируйтесь!"))
          } else {
             await dispatch(exit())
          }

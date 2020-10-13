@@ -16,7 +16,7 @@ export const getRealTimeProfit = (everySecMoney: number) => {
 
 export const getEverySecMoney = (stillDayMoney: number) => {
    // количество денег в секунду
-   return round((stillDayMoney / (DAY_SECONDS - getSecondsToday())), 3)
+   return stillDayMoney / (DAY_SECONDS - getSecondsToday())
 }
 
 export const getAllTimeMoney = (nowDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
@@ -46,7 +46,6 @@ export function getAverage() {
    let dt = new Date();
    let secFromStart = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
    let moneyNow = Math.round(secFromStart / secInDay * 256)
-
    let random = (moneyNow - 100) + Math.floor(((moneyNow + 100) - (moneyNow - 100)) * Math.random());
-   return random
+   return nowStart + random
 }
