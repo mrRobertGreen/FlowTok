@@ -62,9 +62,7 @@ const MainBlock: FC<PropsType> = () => {
                 </div>
                 <div className={styles.containers}>
                     {containers.map((item, idx) => (
-
                             <Container isInformed={false} data={item} key={idx}/>
-
                     ))}
                 </div>
                 <div className={styles.refs}>

@@ -1,3 +1,11 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 10px;
+  grid-gap: 10px;
+}
+
+
 .info {
   background-color: #fff;
   margin: 80px 10px;

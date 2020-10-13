@@ -1,0 +1,62 @@
+.wrapper {
+  background-color: #FFFFFF;
+  width: 100%;
+  border-radius: 14px;
+}
+
+.appeal {
+  padding: 20px 25px;
+
+  &__title {
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: bold;
+    letter-spacing: -0.41px;
+  }
+}
+
+.columns {
+  padding: 0 25px;
+
+  .title_container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 13px;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.337647px;
+
+    color: #8E8E93;
+  }
+}
+
+.ticket_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .theme {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+  }
+  .message_count {
+    @extend .theme;
+    text-align: center;
+  }
+  .status {
+    text-align: right;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.337647px;
+
+    color: #8E8E93;
+  }
+}
+
+.button {
+  padding: 20px 25px;
+}
