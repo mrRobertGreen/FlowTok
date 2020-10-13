@@ -20,8 +20,8 @@ export const OffShore: FC<PropsType> = () => {
     const bank = useSelector((state: RootStateType) => state.user.bank)
     const cy = useSelector((state: RootStateType) => state.app.cy)
     const [isLoading, setIsLoading] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
-
 
     const onTransfer = () => {
         dispatch(transfer(setIsLoading))
@@ -30,17 +30,16 @@ export const OffShore: FC<PropsType> = () => {
 
     if (!bank) return <></>
 
-    let isOpen = false;
 
     return (
         <div className={styles.wrapper}>
             <Modal isOpen={isOpen}>
-                <ToolTip onClose={() => isOpen = false} />
+                <ToolTip onClose={() => setIsOpen(false)} />
             </Modal>
             <div>
                 <div className={styles.title}>
                     <p>{t("offShore-title")}</p>
-                    <button style={{backgroundColor:"white"}} onClick={() => isOpen = true}>
+                    <button style={{backgroundColor:"white"}} onClick={() => setIsOpen(true)}>
                         <img src={info} className={styles.title__info} alt=""/>
                     </button>
                 </div>

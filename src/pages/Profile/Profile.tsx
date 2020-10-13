@@ -22,7 +22,7 @@ export const Profile: FC<PropsType> = () => {
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Profile"}>
          <TopNavbar logo={true}
                     label={t('profile-label')}
-                    name={userName}
+                    subLabel={userName}
                     br={" 0px 0px 11px 11px"}
          />
          <MainBlock/>

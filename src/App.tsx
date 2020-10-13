@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom'
-import {Containers} from "./pages/Work/Containers";
+import {Containers} from "./pages/Containers/Containers";
 import {useDispatch, useSelector} from "react-redux";
 import {appActions, initialize} from "./redux/app/app-reducer";
 import Modal from "./components/common/Modal/Modal";
@@ -75,25 +75,9 @@ const App: FC = () => {
             <Route path="/profile" component={Profile}/>
             <Route path="/containers/:type" component={Containers}/>
             <Route path="/settings" component={Settings}/>
-            {/*<Route path="/ad/panel" component={Panel}/>*/}
-            {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
-            {/*<Route path="/task_form" component={TaskForm_m}/>*/}
-            {/*<Route path="/refs" component={Refs_m}/>*/}
             <Route path="/ref/:refId" component={RefRedirect}/>
-            {/*<Route path="/settings" component={Settings}/>*/}
-            {/*<Route exact path="/withdraw" component={WithdrawTypes_m}/>*/}
-            {/*<Route path="/withdraw/:type" component={Withdraw_m}/>*/}
-            {/*<Route path="/user_terms" component={UserTerms}/>*/}
-            {/*<Route path="/support" component={Support}/>*/}
-            {/*<Route path="/topup" component={Topup}/>*/}
-            {/*<Route path="/task" component={Task_m}/>*/}
-            {/*<Route exact path="/verification" component={Verification}/>*/}
-            {/*<Route exact path="/verification/form" component={VerificationForm}/>*/}
-            {/*<Route path="/admin" component={AdminPanel}/>*/}
-            {/*<Route path="/ad" component={AdvRedirect}/>*/}
-            {/*<Route path="/push_balance/:id" component={PushBalance}/>*/}
+            <Route path="/support" component={Support}/>
             <Route path="/" component={Landing}/>
-            {/*<Route path="/" component={() => <Redirect to={"/login"}/>}/>*/}
          </Switch>
       </div>
    );
