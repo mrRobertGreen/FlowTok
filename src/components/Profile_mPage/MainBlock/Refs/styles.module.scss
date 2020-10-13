@@ -124,7 +124,7 @@
 .separator {
   display: block;
   height: 40px;
-  padding: 0 7.5px;
+  padding: 0 12px;
   //height: 100%;
   //background-color: #1D1D1D;
 }
@@ -225,7 +225,7 @@
 }
 
 @media (max-width: 300px) {
-  .wrapper {
-    padding: 12px 17px;
-  }
+  //.wrapper {
+  //  padding: 12px 17px;
+  //}
 }
