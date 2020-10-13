@@ -16,6 +16,7 @@ import Settings from "./pages/Settings/Settings";
 import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import {useDataRefresher} from "./hooks/useDataRefresher";
 import {setLanguage} from "./utils/setLanguage";
+import {Support} from "./pages/Support/Support";
 
 const App: FC = () => {
    const dispatch = useDispatch()

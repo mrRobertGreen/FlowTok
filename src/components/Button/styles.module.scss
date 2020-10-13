@@ -12,6 +12,7 @@
 .btn_gradient {
   @extend .btn;
   background: $gradient;
+  height: 100%;
   color: #ffffff;
   border-radius: 11px;
 }

@@ -35,18 +35,18 @@
     line-height: 33px;
 
     width: 428px;
-    height: 66px;
+    //height: 66px;
 
     align-self: flex-start;
 
     color: #8E8E93;
 
-    padding-top: 25px;
+    //padding-top: 25px;
   }
 
   &__createBtn {
     width: 252px;
-    //height: 72px;
+    height: 52px;
     //margin: 50px auto 0;
   }
   .In {
@@ -68,18 +68,25 @@
     flex-direction: column;
     align-items: center;
 
-    padding-top: 57px;
+    padding-top: 30px;
   }
 }
 
 .mainPic {
   height: 100%;
   width: 40%;
+  padding-top: 20px;
 }
 
 @media (min-width: 1024px) {
   .mainText {
     padding-bottom: 150px;
+  }
+  .mainPic {
+    padding-top: 0;
+  }
+  .buttons {
+    padding-top: 57px ;
   }
 }
 
@@ -101,6 +108,9 @@
       font-size: 84px;
     }
   }
+  .mainPic {
+    padding-top: 20px;
+  }
 }
 
 // Medium devices (tablets, less than 992px)
@@ -121,7 +131,7 @@
 
   .mainText {
     width: 266px;
-    height: 210px;
+    //height: 210px;
     padding-top: 0;
     display: flex;
     flex-direction: column;
@@ -150,7 +160,7 @@
     }
 
     &__createBtn {
-      margin-top: 30px;
+      //margin-top: 30px;
       justify-self: center;
     }
   }
@@ -190,7 +200,7 @@
       justify-self: center;
       align-self: center;
 
-      height: 82px;
+      //height: 82px;
     }
 
     &__content {
@@ -205,7 +215,7 @@
     }
 
     &__createBtn {
-      margin-top: 30px;
+      //margin-top: 30px;
       justify-self: center;
     }
   }

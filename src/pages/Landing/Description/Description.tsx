@@ -13,11 +13,21 @@ export const Description: FC = ({}) => {
             </p>
             <p className={styles.description} style={{marginBottom: "76px"}}>{t("description-third-text")}
             </p>
-
-            <div>
+            <div className={styles.paysystem}>
+                <a href="//freekassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/17.png"
+                                               title="Приём оплаты на сайте картами"/></a>
+                <a href="https://www.fkwallet.ru"><img
+                    src="https://www.fkwallet.ru/assets/2017/images/btns/iconsmall_wallet9.png"
+                    title="Обмен криптовалют"/></a>
+            </div>
+            <div style={{marginBottom: "10px"}}>
                 <p className={styles.firm}>LLC TAKE CONTAINER</p>
                 <p className={styles.firm}>Bonistraat 9</p>
-                <p className={styles.firm} style={{marginBottom:"10px"}}>1094 SH Amsterdam Holland</p>
+                <div className={styles.info}>
+                    <p className={styles.firm}>1094 SH Amsterdam Holland</p>
+                    <p className={styles.support}><a
+                        href="mailto:support@take-container.com">support@take-container.com</a></p>
+                </div>
             </div>
         </div>
     )

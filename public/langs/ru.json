@@ -42,7 +42,8 @@
       "sign-in-btn": "Войти",
       "container-users-text": "Пользователей в Take Container",
       "paid-text": "Всего выплачено",
-      "average-text": "Средний доход в день"
+      "average-text": "Средний доход в день",
+      "support-title": "Поддержка"
     }
   }
 }
