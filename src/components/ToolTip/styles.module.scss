@@ -1,7 +1,6 @@
 .wrapper {
-  //background-color: #FFFFFF;
+  background-color: #FFFFFF;
   width: 100%;
-  background-color: red;
   padding: 30px;
   border-radius: 14px;
 }
@@ -24,6 +23,15 @@
     width: 12px;
     height: 12px;
   }
+}
+
+.percent_header {
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: bold;
+  letter-spacing: -0.41px;
+  padding-top: 10px;
+  margin-bottom: 5px;
 }
 
 .text {
