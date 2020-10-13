@@ -17,6 +17,7 @@ import RefRedirect from "./components/common/RefRedirect/RefRedirect";
 import {useDataRefresher} from "./hooks/useDataRefresher";
 import {setLanguage} from "./utils/setLanguage";
 import {Support} from "./pages/Support/Support";
+import {Ticket} from "./pages/Ticket/Ticket";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -77,6 +78,7 @@ const App: FC = () => {
             <Route path="/settings" component={Settings}/>
             <Route path="/ref/:refId" component={RefRedirect}/>
             <Route path="/support" component={Support}/>
+            <Route path="/ticket" component={Ticket}/>
             <Route path="/" component={Landing}/>
          </Switch>
       </div>
