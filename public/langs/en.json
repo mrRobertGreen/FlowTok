@@ -9,8 +9,8 @@
       "offShore-inWallet": "In wallet",
       "balance": "Your balance",
       "balance-title": "Wallet",
-      "balance-payoff" : "Pay off",
-      "balance-payin" : "Pay in",
+      "balance-payoff": "Pay off",
+      "balance-payin": "Pay in",
       "allProfit-label": "Received all time",
       "container-title": "Container",
       "container-quantity": "Quantity",
@@ -71,7 +71,12 @@
       "refrigerator-title": "Container Refrigerator Carrier",
       "compressor-text": "Compressor: steel-free semi-hermetic 6-cylinder",
       "offshore-account-title": "Offshore account",
-      "your-bill-text": "Your personal account for the ability to perform operations on the account. Since the money comes from companies located in different countries of the world, you have created an account in a partner Bank to accept payments. To withdraw funds, transfer them to Your personal balance and choose a convenient payment method."
+      "your-bill-text": "Your personal account for the ability to perform operations on the account. Since the money comes from companies located in different countries of the world, you have created an account in a partner Bank to accept payments. To withdraw funds, transfer them to Your personal balance and choose a convenient payment method.",
+      "support-form-title": "New appeal",
+      "support-form-subject": "Subject",
+      "support-form-message": "Message",
+      "support-form-create": "Create new ticket"
+
     }
   }
 }

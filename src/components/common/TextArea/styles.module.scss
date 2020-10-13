@@ -1,0 +1,42 @@
+@import "../../../styles/vars";
+
+.textarea {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  width: 100%;
+  border: 1px solid #E5E5EA;
+  border-radius: 11px;
+  font-size: 15px;
+  padding: 12px 16px;
+  color: black;
+  &::-webkit-input-placeholder {
+    color: #1D1D1D;
+    opacity: 0.4;
+  }
+}
+.error {
+  border: 1px solid #FF3B30;
+}
+.active {
+  border: 1px solid $violet-blue;
+}
+
+.errorMsg {
+  margin-top: 8px;
+  text-align: center;
+  line-height: 15px;
+  font-size: 13px;
+  color: #FF3B30;
+}
+
+
+@media (min-width: 1680px) {
+  .textarea {
+    font-size: 17px;
+    padding: 11px 25px;
+    border-radius: 30px;
+  }
+}
