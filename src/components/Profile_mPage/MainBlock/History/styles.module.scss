@@ -25,6 +25,7 @@
   .historyItem {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding-bottom: 10px;
     padding-right: 10px;
     .operation_green {
@@ -38,6 +39,7 @@
     .date {
       font-size: 14px;
       color: #8E8E93;
+      margin-bottom: 1px;
     }
     .row {
       display: flex;
