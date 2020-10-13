@@ -9,8 +9,8 @@
       "offShore-inWallet": "In wallet",
       "balance": "Your balance",
       "balance-title": "Wallet",
-      "balance-payoff" : "Pay off",
-      "balance-payin" : "Pay in",
+      "balance-payoff": "Pay off",
+      "balance-payin": "Pay in",
       "allProfit-label": "Received all time",
       "container-title": "Container",
       "container-quantity": "Quantity",
@@ -77,6 +77,10 @@
       "theme-text": "Theme",
       "message-text": "Messages",
       "status-text": "Status"
+      "support-form-title": "New appeal",
+      "support-form-subject": "Subject",
+      "support-form-message": "Message",
+      "support-form-create": "Create new ticket"
     }
   }
 }

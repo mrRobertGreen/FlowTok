@@ -1,0 +1,51 @@
+.wrapper {
+  text-align: center;
+  margin: auto;
+  min-width: 335px;
+  background-color: white;
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.cross {
+  position: absolute;
+  right: 25px;
+  top: 34px;
+  width: 12px;
+  height: 12px;
+}
+.form, .formik {
+  width: 100%;
+}
+.title {
+  font-size: 17px;
+  line-height: 20px;
+  margin-bottom: 13px;
+  letter-spacing: -0.41px;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 100%;
+}
+
+@media (max-width: 350px) {
+  .wrapper {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    min-width: 450px;
+  }
+}

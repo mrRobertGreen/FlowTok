@@ -11,12 +11,14 @@ type PropsType = {
    isError?: boolean
    mod?: "active" | "blue" | "grey" | "white"
    errorMessage?: string | Array<string> | FormikErrors<any> | Array<FormikErrors<any>>
+   br?: string
 }
 
-export const  Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
+export const Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                                                                       isError,
                                                                       mod,
                                                                       errorMessage,
+                                                                      br,
                                                                       ...rest
                                                                    }) => {
    return (
@@ -30,6 +32,7 @@ export const  Input: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
                [styles.grey]: mod === "grey",
                [styles.white]: mod === "white",
             })}
+            style={{borderRadius: br}}
          />
          <div className={styles.errorMsg}
               style={{display: `${isError ? "block" : "none"}` as "block" | "none"}}
@@ -48,7 +51,7 @@ type SwitchPropsT = {
 }
 
 
-export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ changeLang, ...rest}) => {
+export const ChooseLang: FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({changeLang, ...rest}) => {
 
    const togglerLang = useRef<HTMLInputElement>(null)
 
@@ -75,7 +78,7 @@ export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ chan
             className={styles.label}
             htmlFor="switch-lang"
          >
-            <span className={styles.switchBtn} />
+            <span className={styles.switchBtn}/>
          </label>
          <div className={styles.lang}>
             RU
@@ -84,7 +87,7 @@ export const ChooseLang:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ chan
    )
 }
 
-export const ChooseCy:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ changeCy, ...rest}) => {
+export const ChooseCy: FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({changeCy, ...rest}) => {
 
    const togglerCy = useRef<HTMLInputElement>(null)
 
@@ -111,7 +114,7 @@ export const ChooseCy:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ change
             className={styles.label}
             htmlFor="switch-cy"
          >
-            <span className={styles.switchBtn} />
+            <span className={styles.switchBtn}/>
          </label>
          <div className={styles.lang}>
             RUB
@@ -121,10 +124,10 @@ export const ChooseCy:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({ change
 }
 
 export const ChooseSex: FC<PropsType & HTMLProps<HTMLInputElement>> = ({
-                                                                           isError,
-                                                                           mod,
-                                                                           ...rest
-                                                                        }) => {
+                                                                          isError,
+                                                                          mod,
+                                                                          ...rest
+                                                                       }) => {
    return (
       <div className={styles.wrapper}>
          <label htmlFor="">
@@ -177,7 +180,7 @@ export const InputWithMask: FC<InputWithMaskPropsType & MaskedInputProps> = ({
    )
 }
 
-export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
+export const ToggleSwitch: FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isLabel, ...rest}) => {
    return (
       <div className={styles.switchWrap}>
          <input
@@ -190,7 +193,7 @@ export const ToggleSwitch:FC<SwitchPropsT & HTMLProps<HTMLInputElement>> = ({isL
             className={styles.label}
             htmlFor="switch"
          >
-            <span className={styles.switchBtn} />
+            <span className={styles.switchBtn}/>
          </label>
          {isLabel && <div className={styles.switchLabel}>
 				+1.00 ₽
