@@ -25,6 +25,7 @@ import {CyT, LangT} from "../../redux/app/app-reducer";
 import {useTranslation} from "react-i18next";
 
 import {RootStateType} from "../../redux/store";
+import {smartRound} from "../../utils/realTimeData";
 
 
 type PropsT = {
@@ -53,7 +54,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
       else {
          setInputValue(e.target.value)
          if (+e.target.value > wallet) {
-            setInputValue("" + wallet)
+            setInputValue("" + smartRound(wallet))
             setIsAllSum(true)
          } else {
             setIsAllSum(false)
@@ -125,7 +126,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
             <div className={styles.purchase}>{t("purchase-title")}</div>
             <div>
                <p className={styles.numbers}>
-                  {t("balance-text")}: {wallet}₽
+                  {t("balance-text")}: {smartRound(wallet)}{cy === "RUB" ? "₽" : "$"}
                </p>
                <button className={styles.plusButton}><img src={plus} style={{width: "17px"}} alt=""/></button>
             </div>

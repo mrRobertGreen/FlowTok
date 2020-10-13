@@ -111,13 +111,13 @@ export const RegForm: FC<PropsType> = () => {
                         {({field, form: {touched, errors}}: FieldProps) => (
                            <div className={styles.input}>
                               <Input
-                                 mod={!errors.email && touched.email ? "active" : undefined}
+                                 mod={!errors.userName && touched.userName ? "active" : undefined}
                                  type={"text"}
                                  name={"name"}
                                  placeholder={"Имя"}
                                  autoComplete={"on"}
-                                 isError={!!(errors.email && touched.email)}
-                                 errorMessage={errors.email}
+                                 isError={!!(errors.userName && touched.userName)}
+                                 errorMessage={errors.userName}
                                  {...field}
                               />
                            </div>
@@ -128,13 +128,13 @@ export const RegForm: FC<PropsType> = () => {
                         {({field, form: {touched, errors}}: FieldProps) => (
                            <div className={styles.input}>
                               <Input
-                                 mod={!errors.email && touched.email ? "active" : undefined}
+                                 mod={!errors.surname && touched.surname ? "active" : undefined}
                                  type={"text"}
                                  name={"fname"}
                                  autoComplete={"on"}
                                  placeholder={"Фамилия"}
-                                 isError={!!(errors.email && touched.email)}
-                                 errorMessage={errors.email}
+                                 isError={!!(errors.surname && touched.surname)}
+                                 errorMessage={errors.surname}
                                  {...field}
                               />
                            </div>

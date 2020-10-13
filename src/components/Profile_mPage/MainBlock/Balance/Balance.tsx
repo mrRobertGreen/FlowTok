@@ -13,16 +13,41 @@ import {RootStateType} from "../../../../redux/store";
 
 
 export type PropsType = {
-    value: number
-    history?: Array<HistoryItemT>
+   value: number
+   history?: Array<HistoryItemT>
 }
 
 const Balance: FC<PropsType> = ({value, history}) => {
-    // const [isHistory, setIsHistory] = useState(false)
+   // const [isHistory, setIsHistory] = useState(false)
 
-    const cy = useSelector((state: RootStateType) => state.app.cy)
+   const cy = useSelector((state: RootStateType) => state.app.cy)
 
-    const {t} = useTranslation()
+   const {t} = useTranslation()
+
+   return (
+      <div data-test={"wrapper"} className={styles.wrapper}>
+         {/*<Modal isOpen={isHistory}>*/}
+         {/*    <History history={history}/>*/}
+         {/*</Modal>*/}
+         <div>
+            <div className={styles.title}>
+               {t("balance-title")}
+               {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
+               {/*    <img src={clock} alt=""/>*/}
+               {/*</button>}*/}
+            </div>
+            <div className={styles.label}>
+               {t("balance")}
+            </div>
+            <div className={styles.money}>
+               {value}{cy === "RUB" ? "₽" : "$"}
+            </div>
+         </div>
+
+         <div className={styles.btn} data-test={"btn"}>
+            <div className={styles.btn__first}>
+               <Button data-test={"btn"} mod={"green"}>{t("balance-payin")}</Button>
+
 
     return (
         <div data-test={"wrapper"} className={styles.wrapper}>
@@ -62,6 +87,7 @@ const Balance: FC<PropsType> = ({value, history}) => {
             </div>
         </div>
     )
+
 }
 
 export default Balance

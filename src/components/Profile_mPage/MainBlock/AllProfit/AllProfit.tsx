@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss"
 import {UserMoneyT} from "../../../../api/user-api";
-import {getEverySecMoney, getSecondsToday, round} from "../../../../utils/realTimeData";
+import {getEverySecMoney, getSecondsToday, round, smartRound} from "../../../../utils/realTimeData";
 import {getUserData, RealMoneyDataT, userActions} from "../../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
@@ -43,6 +43,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
                 // увеличиваю оффшор
                 dispatch(userActions.setBank(bank + data.everySecMoney.all))
             }
+
 
         }, 1000);
         return () => clearInterval(interval);
@@ -124,6 +125,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
                         <p className={styles.profit}>{round(realDayMoney.refrigerator, 3)}{cy === "RUB" ? "₽" : "$"}</p>
                     </div>
                 </div>
+
             </div>
         </div>
     )

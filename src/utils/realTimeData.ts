@@ -8,10 +8,25 @@ export function getSecondsToday() {
 export const round = function(number: number, digits: number) {
    return +number.toFixed(digits);
 }
+export const smartRound = function(number: number) {
+   // если число больше 6 знаков, то обрезаем его
+   // number = Math.abs(number)
+   if (String(Math.abs(number)).length > 6) {
+      switch (true) {
+         case Math.abs(number) >= 10000: return round(number, 1)
+         case Math.abs(number) >= 1000: return round(number, 2)
+         case Math.abs(number) >= 100: return round(number, 3)
+         case Math.abs(number) >= 10: return round(number, 4)
+         default: return round(number, 5)
+      }
+   }
+   else return number
+
+}
 
 export const getRealTimeProfit = (everySecMoney: number) => {
    // кол-во денег за прошедший день в данную секунду
-   return round((everySecMoney * getSecondsToday()), 3)
+   return everySecMoney * getSecondsToday()
 }
 
 export const getEverySecMoney = (stillDayMoney: number) => {
@@ -21,7 +36,7 @@ export const getEverySecMoney = (stillDayMoney: number) => {
 
 export const getAllTimeMoney = (nowDayMoney: number, realTimeProfit: number, allTimeMoneyOld: number) => {
    // кол-во денег за все время
-   return round(allTimeMoneyOld + (realTimeProfit - nowDayMoney), 2)
+   return allTimeMoneyOld + (realTimeProfit - nowDayMoney)
 }
 
 export  function getPaid() {

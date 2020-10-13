@@ -31,6 +31,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
     const {t} = useTranslation()
     const [isTooltip, setIsTooltip] = useState(false)
 
+
     const onOpenTooltip = () => {
         setIsTooltip(true)
     }
@@ -153,6 +154,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
             </div>
         </div>
     )
+
 }
 
 type InfoProps = {
