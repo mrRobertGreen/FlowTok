@@ -18,6 +18,7 @@
       "refs-count": "Number of referrals",
       "refs-earned": "Earned total",
       "refs-btn": "Copy",
+      "refs-btnIsCopied": "Copied",
       "history-title": "History",
       "settings-lang": "Language",
       "settings-cy": "Currency",
