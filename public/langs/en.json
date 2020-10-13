@@ -72,15 +72,19 @@
       "compressor-text": "Compressor: steel-free semi-hermetic 6-cylinder",
       "offshore-account-title": "Offshore account",
       "your-bill-text": "Your personal account for the ability to perform operations on the account. Since the money comes from companies located in different countries of the world, you have created an account in a partner Bank to accept payments. To withdraw funds, transfer them to Your personal balance and choose a convenient payment method.",
+      "support-subTitle": "The answer may take some time",
       "your-appeal-title": "Your appeal",
       "create-ticket-btn": "CREATE NEW TICKET",
       "theme-text": "Theme",
       "message-text": "Messages",
-      "status-text": "Status"
+      "status-text": "Status",
       "support-form-title": "New appeal",
       "support-form-subject": "Subject",
       "support-form-message": "Message",
-      "support-form-create": "Create new ticket"
+      "support-form-create": "Create new ticket",
+      "you-author-text": "You",
+      "support-author-text": "Assistant",
+      "send-btn": "Send"
     }
   }
 }

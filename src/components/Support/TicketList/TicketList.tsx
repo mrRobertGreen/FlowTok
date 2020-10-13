@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import styles from "./styles.module.scss"
 import Button from "../../Button/Button";
 import {Separator} from "../../Separator/Separator";
+import {NavLink} from "react-router-dom";
 
 export const TicketList: FC = () => {
     const {t} = useTranslation();
@@ -20,12 +21,14 @@ export const TicketList: FC = () => {
                 </div>
                 <div className={styles.main}>
                     {/*Это код для map*/}
-                    <div className={styles.ticket_container}>
-                        <p className={styles.theme}>Не выводят...</p>
-                        <p className={styles.message_count}>4</p>
-                        <p className={styles.status}>Закрыт</p>
-                    </div>
-                    <Separator m={"10px"}/>
+                    <NavLink to={"/ticket"}>
+                        <div className={styles.ticket_container}>
+                            <p className={styles.theme}>Не выводят...</p>
+                            <p className={styles.message_count}>4</p>
+                            <p className={styles.status}>Закрыт</p>
+                        </div>
+                        <Separator m={"10px"}/>
+                    </NavLink>
                     {/*//*/}
                 </div>
             </div>

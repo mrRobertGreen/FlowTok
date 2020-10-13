@@ -14,7 +14,6 @@ export const Support: FC = () => {
     return (
         <Page bg={"#E5E5EA"}>
             <TopNavbar label={t("support-title")} subLabel={t("support-subTitle")}/>
-            
             <div className={styles.wrapper}>
                 <TicketList />
             </div>
