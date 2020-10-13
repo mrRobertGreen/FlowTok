@@ -55,17 +55,7 @@ export const Gift: FC<PropsType> = ({title, text}) => {
                 </div>
 
             </div>
-            <div className={styles.container}>
-               <img src={container} className={styles.image} alt=" "/>
-               <img src={VerticalLine} alt=""/>
-               <div className={styles.text}>
-                  {text}
-               </div>
-            </div>
-            <Button mod={"green"} onClick={onGetGift}>
-               {t("gift-get")}
-            </Button>
          </div>
-      </div>
+
    )
 }
