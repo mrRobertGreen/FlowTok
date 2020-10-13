@@ -29,6 +29,8 @@ export const Refs: FC<PropsType> = ({refData}) => {
    const queries = useMedia({queries: GLOBAL_MEDIA_QUERIES})
    const {t} = useTranslation()
    const [isTooltip, setIsTooltip] = useState(false)
+   const cy = useSelector((state: RootStateType) => state.app.cy)
+
 
    const onOpenTooltip = () => {
       setIsTooltip(true)
@@ -97,7 +99,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
                   {t("refs-earned")}
                </div>
                <div className={styles.numbers}>
-                  {money}₽
+                  {money}{cy === "RUB" ? "₽" : "$"}
                </div>
             </div>
          </div>

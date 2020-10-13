@@ -46,7 +46,7 @@ export const OffShore: FC<PropsType> = () => {
                     {t("balance")}
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{round(bank, 5)}{cy === "RUB" ? "₽" : "$"}</p>
+                    <p className={styles.money}>{round(bank, 10)}{cy === "RUB" ? "₽" : "$"}</p>
                 </div>
                 <Button mod={isLoading ? "loading" : "gradient"} onClick={onTransfer}>
                     {t("offShore-inWallet")}

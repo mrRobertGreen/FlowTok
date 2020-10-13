@@ -197,10 +197,11 @@ export const getGift = (): ThunkType => {
       await commonThunkHandler(async () => {
          const res = await userApi.getGift(getBody())
          if (res.success) {
+            checkMessageNotification(res, dispatch)
             dispatch(userActions.setGift(false))
             await dispatch(getUserData())
          }
-         checkMessageNotification(res, dispatch)
+
       }, dispatch)
    }
 }

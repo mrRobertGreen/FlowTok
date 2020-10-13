@@ -11,47 +11,45 @@ import {closeGift, getGift} from "../../redux/user/user-reducer";
 import {useTranslation} from "react-i18next";
 
 type PropsType = {
-    title: string,
-    text: string
+   title: string,
+   text: string
 }
 
 export const Gift: FC<PropsType> = ({title, text}) => {
 
-    const dispatch = useDispatch()
+   const dispatch = useDispatch()
 
-    const onGetGift = () => {
-        dispatch(getGift())
-    }
-    const onCloseGift = () => {
-        dispatch(closeGift())
-    }
+   const onGetGift = () => {
+      dispatch(getGift())
+   }
+   const onCloseGift = () => {
+      dispatch(closeGift())
+   }
 
-    const {t} = useTranslation()
+   const {t} = useTranslation()
 
-    return (
-        <div className={styles.wrapper}>
-            <div>
-                <div className={styles.header}>
-                    <div className={styles.header__container}>
-                        <p className={styles.header__title}>{title}</p>
-                        <button style={{backgroundColor: "white"}} onClick={onCloseGift} className={styles.cross}>
-                            <img src={cross} alt=""/>
-                        </button>
-                    </div>
-                </div>
-                <div className={styles.container}>
-                    <img src={container} className={styles.image} alt=" "/>
-                    <img src={VerticalLine} alt=""/>
-                    <div className={styles.text}>
-                        {text}
-                    </div>
-                </div>
-                <NavLink to={"/"}>
-                    <Button mod={"green"} onClick={onGetGift}>
-                        {t("gift-get")}
-                    </Button>
-                </NavLink>
+   return (
+      <div className={styles.wrapper}>
+         <div>
+            <div className={styles.header}>
+               <div className={styles.header__container}>
+                  <p className={styles.header__title}>{title}</p>
+                  <button style={{backgroundColor: "white"}} onClick={onCloseGift} className={styles.cross}>
+                     <img src={cross} alt=""/>
+                  </button>
+               </div>
             </div>
-        </div>
-    )
+            <div className={styles.container}>
+               <img src={container} className={styles.image} alt=" "/>
+               <img src={VerticalLine} alt=""/>
+               <div className={styles.text}>
+                  {text}
+               </div>
+            </div>
+            <Button mod={"green"} onClick={onGetGift}>
+               {t("gift-get")}
+            </Button>
+         </div>
+      </div>
+   )
 }
