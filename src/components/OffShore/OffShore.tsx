@@ -30,7 +30,6 @@ export const OffShore: FC<PropsType> = () => {
 
     if (!bank) return <></>
 
-
     return (
         <div className={styles.wrapper}>
             <Modal isOpen={isOpen}>
