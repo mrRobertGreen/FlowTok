@@ -1,18 +1,11 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
-import {RouteComponentProps, withRouter} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {compose} from "redux";
-import {RootStateType} from "../../../../redux/store";
-import {useCache} from "../../../../hooks/useCache";
-import {getContainers} from "../../../../redux/user/user-reducer";
 import Button from "../../../Button/Button";
 import {Input} from "../../../Input/Input";
-import {RefDataType, ReferralT} from "../../../../api/user-api";
+import {ReferralT} from "../../../../api/user-api";
 import {Separator} from "../../../Separator/Separator";
 import {useMedia} from "react-media";
 import {GLOBAL_MEDIA_QUERIES} from "../../../Page/Page";
-import separatorY from "../../../../media/icons/separator_y.svg"
 import {useTranslation} from "react-i18next";
 import info from "../../../../media/images_new/Info.svg";
 import Modal from "../../../common/Modal/Modal";
@@ -79,7 +72,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
                         </div>
                     </div>
                 </div>
-                {!queries.largeTablet && <Separator m={"15px 7px"}/>}
+                {!queries.largeTablet && <Separator m={"10px 7px 6px"}/>}
                 <div className={styles.statsBlock}>
                     <div className={styles.item}>
                         <div className={styles.label}>
@@ -107,7 +100,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
                         </div>
                     </div>
                 </div>
-                {!queries.largeTablet && <Separator m={"15px 7px"}/>}
+                {!queries.largeTablet && <Separator m={"6px 7px"}/>}
                 <div className={styles.refPeople}>
                     <div className={styles.refPeople__container}>
                         <div className={styles.box}>

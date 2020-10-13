@@ -56,6 +56,5 @@ export const Gift: FC<PropsType> = ({title, text}) => {
 
             </div>
          </div>
-
    )
 }

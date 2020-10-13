@@ -42,6 +42,7 @@ const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
          <NavLink to={"/task_form"}>
             {/*<Button onButtonClick={() => {}}>Создать кампанию</Button>*/}
          </NavLink>
+         
       </div>
    )
 }
