@@ -2,7 +2,6 @@ import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
 import {NavLink} from "react-router-dom";
-
 import clock from "../../../../media/images_new/clock.svg";
 import Modal from "../../../common/Modal/Modal";
 import {History} from "../History/History";
@@ -11,6 +10,7 @@ import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
 import {smartRound} from "../../../../utils/realTimeData";
+import {WithdrawalModal} from "../../../WithdrawalModal/WithdrawalModal";
 
 
 export type PropsType = {
@@ -27,6 +27,9 @@ const Balance: FC<PropsType> = ({value, history}) => {
 
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
+         {/*<Modal isOpen={true}>*/}
+         {/*   <WithdrawalModal balance={15236}/>*/}
+         {/*</Modal>*/}
          <div className={styles.main}>
             {/*<Modal isOpen={isHistory}>*/}
             {/*    <History history={history}/>*/}

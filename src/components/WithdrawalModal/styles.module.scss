@@ -1,0 +1,55 @@
+.wrapper {
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .title {
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: bold;
+    letter-spacing: -0.458235px;
+
+    color: #1D1D1D;
+  }
+  .cross {
+    padding-right: 5px;
+    height: 12px;
+    width: 12px;
+  }
+}
+.add {
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: -0.41px;
+  margin-bottom: 15px;
+  padding-left: 5px;
+
+  color: #1D1D1D;
+}
+.balance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__text {
+    @extend .add;
+    padding-left: 4px;
+    margin-bottom: 17px;
+  }
+  &__numbers {
+    font-size: 19px;
+    line-height: 22px;
+    letter-spacing: -0.458235px;
+
+    color: #24C054;
+  }
+}
+
+

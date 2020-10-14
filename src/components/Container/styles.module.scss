@@ -22,13 +22,14 @@
 .image {
   width: 77px;
   height: 51px;
-  margin-right: 21px;
+  margin-right: 22px;
 }
 .text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-top: -6px;
+  padding-left: 22px;
 
   &__large {
     font-size: 19px;
