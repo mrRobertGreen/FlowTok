@@ -7,23 +7,34 @@ import {validateRequiredField} from "../../../utils/validators";
 import {Input} from "../../Input/Input";
 import Button from "../../Button/Button";
 import {TextArea} from "../../common/TextArea/TextArea";
+import {useDispatch} from "react-redux";
+import {CreateTicketReqBodyT} from "../../../api/user-api";
+import {createTicket} from "../../../redux/user/user-reducer";
 
 type TicketFormValuesType = {
    subject: string
    message: string
 }
+type PropsT = {
+   onClose: () => void
+}
 
-export const TicketForm: FC = () => {
+export const TicketForm: FC<PropsT> = ({onClose}) => {
 
+   const dispatch = useDispatch()
    const onSubmit = (values: TicketFormValuesType, {resetForm}: FormikValues) => {
-      resetForm()
+      const payload: CreateTicketReqBodyT = {
+         text: values.message,
+         topic: values.subject
+      }
+      dispatch(createTicket(payload, resetForm, onClose))
    }
 
    const {t} = useTranslation();
 
    return (
       <div className={styles.wrapper}>
-         <img src={cross} alt="" className={styles.cross}/>
+         <img src={cross} alt="" className={styles.cross} onClick={onClose}/>
          <div className={styles.title}>
             {t("support-form-title")}
          </div>

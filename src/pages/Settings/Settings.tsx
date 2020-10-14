@@ -9,6 +9,7 @@ import {useRedirect} from "../../hooks/useRedirect";
 import {ChooseCy, ChooseLang} from "../../components/Input/Input";
 import {useTranslation} from "react-i18next";
 import {appActions, CyT, LangT} from "../../redux/app/app-reducer";
+import {NavLink} from "react-router-dom";
 
 const Settings = () => {
 
@@ -42,18 +43,24 @@ const Settings = () => {
       <Page bg={"#E5E5EA"} isNavbar={true} pageName={"Settings"}>
          <TopNavbar label={t("settings-title")} logo={true} br={" 0px 0px 11px 11px"}/>
          <div className={styles.wrapper}>
-            <div className={styles.lang}>
+            <div className={styles.choiceItem}>
                <div className={styles.label}>
                   {t("settings-lang")}
                </div>
                <ChooseLang changeLang={changeLang} checked={langFromState === "ru"}/>
             </div>
-            <div className={styles.lang}>
+            <div className={styles.choiceItem}>
                <div className={styles.label}>
                   {t("settings-cy")}
                </div>
                <ChooseCy changeCy={changeCy} checked={cyFromState === "RUB"}/>
             </div>
+            <NavLink to={"/support"}>
+               <div className={styles.container + " " + styles.support}>
+                  {t("support-title")}
+               </div>
+            </NavLink>
+
             <div className={styles.container}>
                <button className={styles.container__btn} onClick={onExit}>{t("settings-exit")}</button>
             </div>

@@ -31,8 +31,11 @@
     color: #FF3B30;
   }
 }
+.support {
+  color: #2B44F2;
+}
 
-.lang {
+.choiceItem {
   @extend .container;
   justify-content: space-between;
   .label {

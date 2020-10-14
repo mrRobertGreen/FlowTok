@@ -18,6 +18,18 @@ export const userApi = {
    getStats(body: BaseBodyT) {
       return instance.post<BaseResponseType<StatsType>>(`/users/stat`, body).then(res => res.data)
    },
+   getTickets(body: BaseBodyT) {
+      return instance.post<BaseResponseType<Array<TicketT>>>(`/ticket/all`, body).then(res => res.data)
+   },
+   createTicket(body: CreateTicketReqBodyT) {
+      return instance.post<BaseResponseType<Array<TicketT>>>(`/ticket/new`, body).then(res => res.data)
+   },
+   getTicketMessages(body: {ticketId: string}) {
+      return instance.post<BaseResponseType<Array<MessageT>>>(`/ticket/messages/all`, body).then(res => res.data)
+   },
+   sendTicketMessage(body: SendTicketMessageReqBodyT) {
+      return instance.post<BaseResponseType<Array<MessageT>>>(`/ticket/messages/new`, body).then(res => res.data)
+   },
    getUsersCount(body: BaseBodyT) {
       return instance.post<BaseResponseType<{ quantity: number }>>(`/users/user/quantity`, body).then(res => res.data)
    },
@@ -33,6 +45,24 @@ export const userApi = {
 };
 
 // types
+export type CreateTicketReqBodyT = {
+   topic: string
+   text: string
+}
+export type SendTicketMessageReqBodyT = {
+   ticketId: string
+   text: string
+}
+export type TicketT = {
+   id: string
+   title: string
+   status: string
+   messages: number
+}
+export type MessageT =  {
+   text: string
+   who: "you" | "operator"
+}
 export type BaseBodyT = {
    cy: CyT
    lang: LangT

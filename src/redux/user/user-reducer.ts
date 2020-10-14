@@ -1,9 +1,9 @@
 import {BaseThunkType, InferActionsType} from "../store";
 import {
-   BuyContainerReqBodyT,
-   GetContainersResDataT, HistoryItemT,
-   RefDataType,
-   StatsType,
+   BuyContainerReqBodyT, CreateTicketReqBodyT,
+   GetContainersResDataT, HistoryItemT, MessageT,
+   RefDataType, SendTicketMessageReqBodyT,
+   StatsType, TicketT,
    userApi,
    UserDataType
 } from "../../api/user-api";
@@ -26,7 +26,9 @@ const initialState = {
    stats: null as null | StatsType,
    isVerify: false,
    userStats: {quantity: 0},
-   realMoneyData: null as null | RealMoneyDataT
+   realMoneyData: null as null | RealMoneyDataT,
+   tickets: null as null | Array<TicketT>,
+   ticketMessages: null as null | Array<MessageT>,
 }
 
 export default function userReducer(state = initialState, action: ActionsType): InitialStateType {
@@ -98,6 +100,16 @@ export default function userReducer(state = initialState, action: ActionsType): 
             ...state,
             userStats: action.data
          }
+      case "user/SET_TICKETS":
+         return {
+            ...state,
+            tickets: action.payload
+         }
+      case "user/SET_TICKET_MESSAGES":
+         return {
+            ...state,
+            ticketMessages: action.payload
+         }
       case "user/SET_REAL_MONEY_DATA":
          return {
             ...state,
@@ -120,6 +132,8 @@ export default function userReducer(state = initialState, action: ActionsType): 
 export const userActions = {
    setUserData: (payload: UserDataType) => ({type: "user/SET_USER_DATA", payload} as const),
    setContainers: (payload: GetContainersResDataT) => ({type: "user/SET_CONTAINERS", payload} as const),
+   setTickets: (payload: Array<TicketT>) => ({type: "user/SET_TICKETS", payload} as const),
+   setTicketMessages: (payload: Array<MessageT>) => ({type: "user/SET_TICKET_MESSAGES", payload} as const),
    setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
    setBank: (bank: number | undefined) => ({type: "user/SET_BANK", bank} as const),
    setGift: (gift: boolean) => ({type: "user/SET_GIFT", gift} as const),
@@ -216,10 +230,8 @@ export const closeGift = (): ThunkType => {
       }, dispatch)
    }
 }
-
 export const getContainers = (): ThunkType => {
    return async (dispatch, getState) => {
-      // get ref data for blogger
       await commonThunkHandler(async () => {
 
          const data = await userApi.getContainers(getBody())
@@ -231,10 +243,55 @@ export const getContainers = (): ThunkType => {
       }, dispatch)
    }
 }
+export const getTickets = (): ThunkType => {
+   return async (dispatch, getState) => {
+      await commonThunkHandler(async () => {
+         const data = await userApi.getTickets(getBody())
+         if (data.success) {
+            localStorage.setItem("tickets", JSON.stringify(data.data))
+            dispatch(userActions.setTickets(data.data))
+         }
+      }, dispatch)
+   }
+}
+export const createTicket = (payload: CreateTicketReqBodyT,
+                             resetForm: () => void,
+                             closeForm: () => void): ThunkType => {
+   return async (dispatch, getState) => {
+      await commonThunkHandler(async () => {
+         const data = await userApi.createTicket(payload)
+         if (data.success) {
+            localStorage.setItem("tickets", JSON.stringify(data.data))
+            dispatch(userActions.setTickets(data.data))
+            resetForm()
+            closeForm()
+         }
+      }, dispatch)
+   }
+}
+export const getTicketMessages = (ticketId: string): ThunkType => {
+   return async (dispatch, getState) => {
+      await commonThunkHandler(async () => {
+         const data = await userApi.getTicketMessages({ticketId})
+         if (data.success) {
+            dispatch(userActions.setTicketMessages(data.data))
+         }
+      }, dispatch)
+   }
+}
+export const sendTicketMessage = (payload: SendTicketMessageReqBodyT): ThunkType => {
+   return async (dispatch, getState) => {
+      await commonThunkHandler(async () => {
+         const data = await userApi.sendTicketMessage(payload)
+         if (data.success) {
+            dispatch(userActions.setTicketMessages(data.data))
+         }
+      }, dispatch)
+   }
+}
 export const buyContainer = (body: BuyContainerReqBodyT,
                              setIsLoading: (flag: boolean) => void): ThunkType => {
    return async (dispatch, getState) => {
-      // get ref data for blogger
       await commonThunkHandler(async () => {
          setIsLoading(true)
          const res = await userApi.buyContainer(body)
@@ -249,7 +306,6 @@ export const buyContainer = (body: BuyContainerReqBodyT,
 }
 export const transfer = (setIsLoading: (flag: boolean) => void): ThunkType => {
    return async (dispatch, getState) => {
-      // get ref data for blogger
       await commonThunkHandler(async () => {
          setIsLoading(true)
          const res = await userApi.transfer(getBody())

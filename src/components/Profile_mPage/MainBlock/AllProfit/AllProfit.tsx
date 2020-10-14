@@ -35,7 +35,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
 
     // увеличение каждую секунду
     useEffect(() => {
-        
+
         const interval = setInterval(() => {
             if (data && bank && data.everySecMoney.all > 0) {
                 console.log("bank: " + bank)

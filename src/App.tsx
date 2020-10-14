@@ -78,7 +78,7 @@ const App: FC = () => {
             <Route path="/settings" component={Settings}/>
             <Route path="/ref/:refId" component={RefRedirect}/>
             <Route path="/support" component={Support}/>
-            <Route path="/ticket" component={Ticket}/>
+            <Route path="/ticket/:id" component={Ticket}/>
             <Route path="/" component={Landing}/>
          </Switch>
       </div>
