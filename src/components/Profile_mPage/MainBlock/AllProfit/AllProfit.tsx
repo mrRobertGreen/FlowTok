@@ -103,26 +103,26 @@ export const AllProfit: FC<PropsType> = ({}) => {
                     {t("allProfit-label")}
                 </div>
                 <div className={styles.money}>
-                    {round(realAllTimeMoney.all, 2)}{cy === "RUB" ? "₽" : "$"}
-                    <p className={styles.profit}>{round(realDayMoney.all, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                    {round(realAllTimeMoney.all, 10)}{cy === "RUB" ? "₽" : "$"}
+                    <p className={styles.profit}>+{round(realDayMoney.all, 10)}{cy === "RUB" ? "₽" : "$"}</p>
                 </div>
                 <div className={styles.footer}>
                     <div className={styles.column}>
                         <p className={styles.size}>Small</p>
-                        <p className={styles.money_2}>{round(realAllTimeMoney.small, 2)}{cy === "RUB" ? "₽" : "$"}</p>
-                        <p className={styles.profit}>{round(realDayMoney.small, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.money_2}>{smartRound(realAllTimeMoney.small)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.profit}>+{smartRound(realDayMoney.small)}{cy === "RUB" ? "₽" : "$"}</p>
                     </div>
                     <div className={styles.column}>
                         <p className={styles.size}>Large</p>
-                        <p className={styles.money_2}>{round(realAllTimeMoney.large, 2)}{cy === "RUB" ? "₽" : "$"}</p>
-                        <p className={styles.profit}>{round(realDayMoney.large, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.money_2}>{smartRound(realAllTimeMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.profit}>+{smartRound(realDayMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
                     </div>
                     <div className={styles.column}>
                         <p className={styles.size}>Refrigerator</p>
                         <p className={styles.money_2}>
-                            {round(realAllTimeMoney.refrigerator, 2)}{cy === "RUB" ? "₽" : "$"}
+                            {smartRound(realAllTimeMoney.refrigerator)}{cy === "RUB" ? "₽" : "$"}
                         </p>
-                        <p className={styles.profit}>{round(realDayMoney.refrigerator, 3)}{cy === "RUB" ? "₽" : "$"}</p>
+                        <p className={styles.profit}>+{smartRound(realDayMoney.refrigerator)}{cy === "RUB" ? "₽" : "$"}</p>
                     </div>
                 </div>
 

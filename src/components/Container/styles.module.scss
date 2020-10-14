@@ -22,7 +22,6 @@
 .image {
   width: 77px;
   height: 51px;
-
   margin-right: 21px;
 }
 .text {
@@ -30,7 +29,6 @@
   flex-direction: column;
   align-items: flex-start;
   padding-top: -6px;
-  padding-left: 22px;
 
   &__large {
     font-size: 19px;
@@ -57,6 +55,12 @@
     padding-top: 3px;
 
     color: #8E8E93;
+  }
+}
+
+@media (max-width: 350px) {
+  .wrapper {
+    padding: 15px 20px;
   }
 }
 

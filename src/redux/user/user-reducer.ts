@@ -188,6 +188,7 @@ export const getHistory = (): ThunkType => {
          const res = await userApi.getHistory(getBody())
          if (res.success) {
             dispatch(userActions.setHistory(res.data))
+
          }
       }, dispatch)
    }
@@ -255,6 +256,8 @@ export const transfer = (setIsLoading: (flag: boolean) => void): ThunkType => {
 
          if (res.success) {
             dispatch(userActions.setUserData(res.data))
+            await localStorage.setItem("userData", JSON.stringify(res.data))
+            dispatch(userActions.setBank(res.data.bank))
          }
          setIsLoading(false)
          checkMessageNotification(res, dispatch)

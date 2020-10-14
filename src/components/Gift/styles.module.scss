@@ -59,6 +59,13 @@
   color: #000000;
 }
 
+
+@media (max-width: 350px) {
+  .main {
+    padding: 15px 20px;
+  }
+}
+
 @media (max-width: 300px) {
   //.wrapper {
   //  padding: 12px 17px;
