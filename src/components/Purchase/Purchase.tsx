@@ -25,7 +25,7 @@ import {CyT, LangT} from "../../redux/app/app-reducer";
 import {useTranslation} from "react-i18next";
 
 import {RootStateType} from "../../redux/store";
-import {smartRound} from "../../utils/realTimeData";
+import {round, smartRound} from "../../utils/realTimeData";
 
 
 type PropsT = {
@@ -75,7 +75,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
    const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
       if (+inputValue < data.min) {
-         setInputError(`Сумма не может быть меньше ${data.min}`)
+         setInputError(`Сумма не может быть меньше ${round(data.min, 2)}${cy === "RUB" ? "₽" : "$"}`)
          return
       }
 

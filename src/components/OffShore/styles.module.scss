@@ -1,8 +1,7 @@
 .wrapper {
-  //width: 100%;
+  width: 100%;
   height: 100%;
   padding-top: 10px;
-  max-width: 100%;
   overflow: hidden;
 }
 
@@ -10,6 +9,7 @@
   padding: 20px 25px;
   background-color: #fff;
   border-radius: 14px;
+  overflow: hidden;
 }
 
 .title {
@@ -38,9 +38,12 @@
 
 .sum {
   padding-bottom: 21px;
+  overflow: hidden;
 
   .money {
     display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: bold;
     font-size: 24px;
     line-height: 33px;
