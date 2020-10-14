@@ -18,16 +18,22 @@
   margin-bottom: 15px;
 }
 .money {
+  width: 100%;
   font-weight: bold;
   font-size: 19px;
   line-height: 22px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .profit {
   font-weight: 500;
   font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 16px;
+  max-width: 100%;
   letter-spacing: -0.313529px;
   color: #45C500;
   &:first-child {
@@ -36,6 +42,7 @@
 
 }
 .footer {
+ width: 100%;
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -45,7 +52,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     flex: 0 0 33.33%;
-    max-width: 33.33%;
+    width: 33.33%;
     margin-right: 3px;
     *:last-child {
       margin-right: 0;
@@ -61,6 +68,9 @@
     color: #8E8E93;
   }
   .money_2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
     @extend .money;
     font-size: 20px;
     line-height: 29px;

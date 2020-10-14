@@ -10,6 +10,7 @@ import {HistoryItemT} from "../../../../api/user-api";
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
+import {smartRound} from "../../../../utils/realTimeData";
 
 
 export type PropsType = {
@@ -41,7 +42,7 @@ const Balance: FC<PropsType> = ({value, history}) => {
                   {t("balance")}
                </div>
                <div className={styles.money}>
-                  {value}{cy === "RUB" ? "₽" : "$"}
+                  {smartRound(value)}{cy === "RUB" ? "₽" : "$"}
                </div>
             </div>
 

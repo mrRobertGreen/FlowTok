@@ -3,6 +3,8 @@ import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import {NavLink} from "react-router-dom";
 import menuBtn from "../../../media/icons/menu_btn.svg";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../../redux/store";
 
 type PropsType = {
    value: number
@@ -11,6 +13,8 @@ type PropsType = {
 }
 
 const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
+
+   const cy = useSelector((state: RootStateType) => state.app.cy)
 
    const onMenuClick = () => {
       setMenuVisible(!isMenuVisible)
@@ -28,7 +32,7 @@ const Balance: FC<PropsType> = ({value, setMenuVisible, isMenuVisible}) => {
          </div>
          <div className={styles.payInBlock}>
             <div className={styles.balance}>
-               {value}₽
+               {value}{cy === "RUB" ? "₽" : "$"}
             </div>
             <div className={styles.btn}>
                <NavLink to={"/topup"}>

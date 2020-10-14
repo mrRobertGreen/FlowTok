@@ -35,25 +35,24 @@ export const AllProfit: FC<PropsType> = ({}) => {
 
     // увеличение каждую секунду
     useEffect(() => {
+        
         const interval = setInterval(() => {
-            if (data && bank) {
+            if (data && bank && data.everySecMoney.all > 0) {
                 console.log("bank: " + bank)
                 console.log("\n")
-
                 // увеличиваю оффшор
                 dispatch(userActions.setBank(bank + data.everySecMoney.all))
             }
 
-
         }, 1000);
         return () => clearInterval(interval);
-    }, [bank]);
+    }, [bank, data]);
 
 
     // увеличение каждую секунду
     useEffect(() => {
         const interval = setInterval(() => {
-            if (data) {
+            if (data && data.everySecMoney.all > 0) {
                 console.log("everySecMoneySmall: " + data.everySecMoney.small)
                 console.log("realDayMoneySmall: " + data.realDayMoney.small)
 
