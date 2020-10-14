@@ -36,7 +36,7 @@ export const Ticket: FC<PropsT> = ({theme}) => {
          messagesEndRef.current.scrollIntoView({behavior: "smooth"})
       }
    }
-   
+
    useEffect(() => {
       dispatch(getTicketMessages(id))
    }, [])

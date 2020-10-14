@@ -10,7 +10,9 @@
   justify-content: center;
   align-items: center;
   padding: 30px 20px 10px;
+  overflow-y: scroll;
   &__item {
+    overflow-y: scroll;
     width: 100%;
   }
   .column {

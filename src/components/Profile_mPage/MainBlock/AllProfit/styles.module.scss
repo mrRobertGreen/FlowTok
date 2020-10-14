@@ -79,15 +79,38 @@
 
 @media (max-width: 350px) {
   .footer {
+    .column {
+      max-width: 84px;
+    }
     .money_2 {
       font-size: 17px;
     }
   }
-
   .main {
     padding: 15px 20px;
   }
 
+}
+@media (min-width: 351px) {
+  .footer {
+    .column {
+      max-width: 100px;
+    }
+  }
+}
+@media (min-width: 400px) {
+  .footer {
+    .column {
+      max-width: 110px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .footer {
+    .column {
+      max-width: 140px;
+    }
+  }
 }
 @media (min-width: 1024px) {
   .wrapper {
