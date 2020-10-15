@@ -1,5 +1,6 @@
 import React, {FC} from "react";
 import styles from "./styles.module.scss";
+import {useTranslation} from "react-i18next";
 
 export type MoneyWayT = "yandex" | "qiwi" | "wmr" | "wmz" | "card" | "phone"
 
@@ -9,6 +10,7 @@ type PropsT = {
 }
 
 export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
+    const {t} = useTranslation();
     return (
         <div className={styles.wrapper}>
             <div className={styles.wrapper__item}
@@ -16,7 +18,7 @@ export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
                 <button
                    type={"button"}
                    className={`${styles.wrapper__btn} ${type === "yandex" && styles.active}`}>
-                   Yandex.Деньги
+                   Yandex.{t("money-text")}
                 </button>
             </div>
             <div className={styles.wrapper__item}
@@ -24,7 +26,7 @@ export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
                 <button
                    type={"button"}
                    className={`${styles.wrapper__btn} ${type === "qiwi" && styles.active}`}>
-                   Qiwi кошелек
+                   Qiwi {t("wallet-text")}
                 </button>
             </div>
             <div className={styles.wrapper__item}
@@ -48,7 +50,7 @@ export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
                 <button
                    type={"button"}
                    className={`${styles.wrapper__btn} ${type === "card" && styles.active}`}>
-                   Банковская карта
+                    {t("bank-account-text")}
                 </button>
             </div>
             <div className={styles.wrapper__item}
@@ -56,7 +58,7 @@ export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
                 <button
                    type={"button"}
                    className={`${styles.wrapper__btn} ${type === "phone" && styles.active}`}>
-                   Номер телефона
+                    {t("phone-number-text")}
                 </button>
             </div>
         </div>

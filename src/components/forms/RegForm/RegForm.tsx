@@ -11,6 +11,7 @@ import {AuthMeReqPayloadType} from "../../../api/auth-api";
 import {useRedirect} from "../../../hooks/useRedirect";
 import {NavLink} from "react-router-dom";
 import {CyT, LangT} from "../../../redux/app/app-reducer";
+import {useTranslation} from "react-i18next";
 
 export type RegFormValuesType = {
    ogrn: string
@@ -64,7 +65,7 @@ export const RegForm: FC<PropsType> = () => {
 
       dispatch(authMe(payload, resetForm, setIsLoading))
    }
-
+   const {t} = useTranslation();
    return (
       <Formik
          initialValues={{
@@ -93,7 +94,7 @@ export const RegForm: FC<PropsType> = () => {
                               isActive={values.type === "f"}
                               onClick={() => setFieldValue("type", "f", false)}
                            >
-                              Физ. лицо
+                              {t("individual-button")}
                            </Button>
                            <Button
                               mod={"white"}
@@ -101,7 +102,7 @@ export const RegForm: FC<PropsType> = () => {
                               isActive={values.type === "u"}
                               onClick={() => setFieldValue("type", "u", false)}
                            >
-                              Юр. лицо
+                              {t("legal-person-button")}
                            </Button>
                         </div>
                      </div>
@@ -114,7 +115,7 @@ export const RegForm: FC<PropsType> = () => {
                                  mod={!errors.userName && touched.userName ? "active" : undefined}
                                  type={"text"}
                                  name={"name"}
-                                 placeholder={"Имя"}
+                                 placeholder={t("name-text")}
                                  autoComplete={"on"}
                                  isError={!!(errors.userName && touched.userName)}
                                  errorMessage={errors.userName}
@@ -132,7 +133,7 @@ export const RegForm: FC<PropsType> = () => {
                                  type={"text"}
                                  name={"fname"}
                                  autoComplete={"on"}
-                                 placeholder={"Фамилия"}
+                                 placeholder={t("fname-text")}
                                  isError={!!(errors.surname && touched.surname)}
                                  errorMessage={errors.surname}
                                  {...field}
@@ -166,7 +167,7 @@ export const RegForm: FC<PropsType> = () => {
                                  mod={!errors.password && touched.password ? "active" : undefined}
                                  type={"password"}
                                  autoComplete={"on"}
-                                 placeholder={"Пароль"}
+                                 placeholder={t("password-text")}
                                  isError={!!(errors.password && touched.password)}
                                  errorMessage={errors.password}
                                  {...field}
@@ -185,7 +186,7 @@ export const RegForm: FC<PropsType> = () => {
                                         mod={!errors.ogrn && touched.ogrn ? "active" : undefined}
                                         type={"number"}
                                         autoComplete={"on"}
-                                        placeholder={"ОГРН"}
+                                        placeholder={t("PSRN-text")}
                                         isError={!!(errors.ogrn && touched.ogrn)}
                                         errorMessage={errors.ogrn}
                                         {...field}
@@ -201,7 +202,7 @@ export const RegForm: FC<PropsType> = () => {
                                         mod={!errors.inn && touched.inn ? "active" : undefined}
                                         type={"number"}
                                         autoComplete={"on"}
-                                        placeholder={"ИНН"}
+                                        placeholder={t("INN-text")}
                                         isError={!!(errors.inn && touched.inn)}
                                         errorMessage={errors.inn}
                                         {...field}
@@ -217,7 +218,7 @@ export const RegForm: FC<PropsType> = () => {
                                         mod={!errors.name && touched.name ? "active" : undefined}
                                         type={"text"}
                                         autoComplete={"on"}
-                                        placeholder={"Название компании"}
+                                        placeholder={t("company-name-text")}
                                         isError={!!(errors.name && touched.name)}
                                         errorMessage={errors.name}
                                         {...field}
@@ -232,10 +233,10 @@ export const RegForm: FC<PropsType> = () => {
                         mod={isLoading ? "loading" : "black"}
                         type={"submit"}
                      >
-                        Создать аккаунт
+                        {t("create-acc-btn")}
                      </Button>
                      <NavLink to={"/login"}>
-                        <p className={styles.in}>Войти</p>
+                        <p className={styles.in}>{t("sign-in-btn")}</p>
                      </NavLink>
                   </div>
                </Form>}

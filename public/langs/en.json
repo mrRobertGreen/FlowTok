@@ -19,7 +19,8 @@
       "refs-earned": "Earned total",
       "refs-btn": "Copy",
       "refs-btnIsCopied": "Copied",
-      "referral-description-text": "Your unique link for inviting users:",
+      "referral-description-text": "Your unique link for inviting users: ",
+
       "history-title": "History",
       "settings-lang": "Language",
       "settings-cy": "Currency",
@@ -85,7 +86,26 @@
       "support-form-create": "Create new ticket",
       "you-author-text": "You",
       "support-author-text": "Assistant",
-      "send-btn": "Send"
+      "send-btn": "Send",
+      "withdraw-title": "Withdrawal of funds",
+      "add-text": "Add",
+      "phone-or-card-textarea": "Enter your phone or card number",
+      "sum-text": "Amount",
+      "all-sum-btn": "Full amount",
+      "pay-out-btn": "Pay out",
+      "money-text": "Money",
+      "wallet-text": "wallet",
+      "bank-account-text": "Bank account",
+      "phone-number-text": "Phone number",
+      "registration-title": "Registration",
+      "individual-button": "Individual",
+      "legal-person-button": "Legal",
+      "name-text": "Name",
+      "fname-text": "Surname",
+      "password-text": "Password",
+      "PSRN-text": "PSRN",
+      "INN-text": "INN",
+      "company-name-text": "Company name"
     }
   }
 }

@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import {Input} from "../Input/Input";
 import {NavLink} from "react-router-dom";
 import {CyT, LangT} from "../../redux/app/app-reducer";
+import {useTranslation} from "react-i18next";
 
 export type LoginFormValuesType = {
     email: string
@@ -43,7 +44,7 @@ export const Entrance: FC<PropsType> = () => {
     }
 
     const validateMinLength = createMinLengthValidator(6)
-
+    const {t} = useTranslation();
     return (
         <Formik
             initialValues={{
@@ -82,7 +83,7 @@ export const Entrance: FC<PropsType> = () => {
                                         <Input
                                             mod={!errors.password && touched.password ? "active" : undefined}
                                             type={"password"}
-                                            placeholder={"Пароль"}
+                                            placeholder={t("password-text")}
                                             isError={!!(errors.password && touched.password)}
                                             errorMessage={errors.password}
                                             {...field}
@@ -97,10 +98,10 @@ export const Entrance: FC<PropsType> = () => {
                                 mod={isLoading ? "loading" : "black"}
                                 type={"submit"}
                             >
-                                Войти
+                                {t("sign-in-btn")}
                             </Button>
                             <NavLink to={"/reg"}>
-                                <p className={styles.createAcc}>Создать аккаунт</p>
+                                <p className={styles.createAcc}>{t("create-acc-btn")}</p>
                             </NavLink>
 
                         </div>

@@ -18,12 +18,14 @@
 
     color: #1D1D1D;
   }
+
   .cross {
     padding-right: 5px;
     height: 12px;
     width: 12px;
   }
 }
+
 .add {
   font-size: 17px;
   line-height: 20px;
@@ -33,6 +35,7 @@
 
   color: #1D1D1D;
 }
+
 .balance {
   display: flex;
   align-items: center;
@@ -45,6 +48,7 @@
     letter-spacing: -0.41px;
     padding-left: 4px;
   }
+
   &__numbers {
     font-size: 19px;
     line-height: 22px;
@@ -54,4 +58,27 @@
   }
 }
 
+@media (max-height: 580px) {
+  .wrapper {
+    padding: 15px;
+  }
+  .header {
+    margin-bottom: 13px;
+  }
+  .balance {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 281px) {
+  .wrapper {
+    padding: 15px;
+  }
+  .header {
+    margin-bottom: 13px;
+  }
+  .balance {
+    margin-bottom: 10px;
+  }
+}
 

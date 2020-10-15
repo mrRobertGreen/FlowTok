@@ -30,3 +30,19 @@
     border: 1px solid $violet-blue;
   }
 }
+@media (max-height: 580px) and (max-width: 600px){
+  .wrapper {
+    &__item {
+      margin-bottom: 7px;
+      height: 30px;
+    }
+  }
+}
+@media (max-width: 281px) {
+  .wrapper {
+    &__item {
+      margin-bottom: 7px;
+      height: 30px;
+    }
+  }
+}

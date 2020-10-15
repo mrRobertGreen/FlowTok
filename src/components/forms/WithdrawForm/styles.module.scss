@@ -30,3 +30,14 @@
     color: #24C054;
   }
 }
+
+@media (max-height: 580px) {
+  .add {
+    display: none;
+  }
+}
+@media (max-width: 281px) {
+  .add {
+    display: none;
+  }
+}

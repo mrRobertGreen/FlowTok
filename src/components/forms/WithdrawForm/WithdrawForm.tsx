@@ -10,6 +10,7 @@ import {Separator} from "../../Separator/Separator";
 import {withdraw} from "../../../redux/user/user-reducer";
 import {WithdrawReqBodyT} from "../../../api/user-api";
 import {RootStateType} from "../../../redux/store";
+import {useTranslation} from "react-i18next";
 
 export type WithdrawFormValuesType = {
    account: string
@@ -38,7 +39,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
       }
       dispatch(withdraw(payload, onClose))
    }
-
+   const {t} = useTranslation();
    return (
       <Formik
          initialValues={{
@@ -64,7 +65,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                         <Input
                            mod={"white"}
                            type={"number"}
-                           placeholder={"Введите номер телефона или карты"}
+                           placeholder={t("phone-or-card-textarea")}
                            isError={!!(errors.account && touched.account)}
                            errorMessage={errors.account}
                            {...field}
@@ -73,13 +74,13 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                   </Field>
                   <Separator m={"10px 0 16px 0"}/>
                   <div className={styles.balance}>
-                     <p className={styles.balance__text}>Ваш баланс</p>
+                     <p className={styles.balance__text}>{t("balance")}</p>
                      <p className={styles.balance__numbers}>{balance}{cy === "RUB" ? "₽" : "$"}</p>
                   </div>
-                  <p className={styles.add}>Сумма</p>
+                  <p className={styles.add}>{t("sum-text")}</p>
                   <Button mod={"white"}
                           isActive={+values.money === balance}
-                          children={"Вся сумма"}
+                          children={t("all-sum-btn")}
                           onClick={() => setFieldValue("money", balance)}
                           m={"0 0 10px"}
                           type={"button"}/>
@@ -91,7 +92,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                         <Input
                            mod={"white"}
                            type={"number"}
-                           placeholder={"Ввести свою сумму"}
+                           placeholder={t("all-sum-btn")}
                            isError={!!(errors.money && touched.money)}
                            errorMessage={errors.money}
                            {...field}
@@ -99,7 +100,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                      )}
                   </Field>
                   <Button mod={values.money ? "gradient" : "grey"}
-                          children={"Выплатить"}
+                          children={t("pay-out-btn")}
                           m={"15px 0 0 0"}
                           type="submit"/>
                </Form>}

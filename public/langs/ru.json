@@ -85,7 +85,26 @@
       "support-form-create": "Создать новый тикет",
       "you-author-text": "Вы",
       "support-author-text" : "Поддержка",
-      "send-btn": "Отправить"
+      "send-btn": "Отправить",
+      "withdraw-title": "Вывод средств",
+      "add-text": "Добавить",
+      "phone-or-card-textarea": "Введите номер телефона или карты",
+      "sum-text": "Сумма",
+      "all-sum-btn": "Вся сумма",
+      "pay-out-btn": "Выплатить",
+      "money-text": "Деньги",
+      "wallet-text": "кошелек",
+      "bank-account-text": "Банковская карта",
+      "phone-number-text": "Номер телефона",
+      "registration-title": "Регистрация",
+      "individual-button": "Физ. лицо",
+      "legal-person-button": "Юр.лицо",
+      "name-text": "Имя",
+      "fname-text": "Фамилия",
+      "password-text": "Пароль",
+      "PSRN-text": "ОГРН",
+      "INN-text": "ИНН",
+      "company-name-text": "Название компании"
     }
   }
 }
