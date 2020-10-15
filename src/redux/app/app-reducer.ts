@@ -17,7 +17,7 @@ const initialState = {
    isFetching: false,
    isInit: false,
    notification: null as null | NotificationT,
-   error: null as null | string,
+   error: null as null | NotificationT,
    isDesktop: false,
    lang: getInitialLang() as LangT,
    cy: getInitialCy() as CyT,
@@ -34,7 +34,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
       case "app/SET_ERROR":
          return {
             ...state,
-            error: action.error
+            error: action.notification
          }
       case "app/SET_LANG":
          return {
@@ -77,7 +77,7 @@ export default function appReducer(state = initialState, action: ActionsType): I
 
 export const appActions = {
    setNotification: (notification: NotificationT | null) => ({type: "app/SET_NOTIFICATION", notification} as const),
-   setError: (error: string | null) => ({type: "app/SET_ERROR", error} as const),
+   setError: (notification: NotificationT | null) => ({type: "app/SET_ERROR", notification} as const),
    setLang: (lang: LangT) => ({type: "app/SET_LANG", lang} as const),
    setCy: (cy: CyT) => ({type: "app/SET_CY", cy} as const),
    toggleIsFetching: (isFetching: boolean) => ({type: "app/TOGGLE_IS_FETCHING", isFetching} as const),

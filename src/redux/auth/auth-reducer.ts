@@ -113,7 +113,10 @@ export const authMe = (payload: AuthMeReqPayloadType,
 
 
          } else if (!data.success && data.error && data.error.name === "wrong_password") {
-            dispatch(appActions.setError("Неверный пароль!"))
+            dispatch(appActions.setError({
+               title: "Ошибка",
+               message: "Неверный пароль!"
+            }))
          } else {
             await dispatch(exit())
          }

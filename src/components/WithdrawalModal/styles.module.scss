@@ -37,17 +37,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 17px;
 
   &__text {
-    @extend .add;
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
     padding-left: 4px;
-    margin-bottom: 17px;
   }
   &__numbers {
     font-size: 19px;
     line-height: 22px;
     letter-spacing: -0.458235px;
-
+    font-weight: 600;
     color: #24C054;
   }
 }

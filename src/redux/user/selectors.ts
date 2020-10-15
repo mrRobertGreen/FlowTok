@@ -6,10 +6,18 @@ import {ContainerT} from "./user-reducer";
 const getContainers = (state: RootStateType) => {
    return state.user.containers
 }
+const getTickets = (state: RootStateType) => {
+   return state.user.tickets
+}
 
 export const getContainerType = (state: RootStateType) => {
    return state.user.containerType
 }
+
+export const getTicketByIdSelector = (id: string) => createSelector([getTickets], (tickets) => {
+   if (!tickets) return null
+   return tickets.filter((t) => t.id === id)[0]
+})
 
 export const getContainerData = createSelector([getContainers, getContainerType],
    (containers, type) => {

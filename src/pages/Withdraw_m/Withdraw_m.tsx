@@ -59,7 +59,7 @@ const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
    return (
       <div className={styles.wrapper}>
          <TopNavbar label={"Вывод средств"}/>
-         <WithdrawForm type={type}/>
+         <WithdrawForm balance={123} onClose={() => {}}/>
       </div>
    )
 }

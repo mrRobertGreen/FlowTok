@@ -5,7 +5,7 @@ import {
    RefDataType, SendTicketMessageReqBodyT,
    StatsType, TicketT,
    userApi,
-   UserDataType
+   UserDataType, WithdrawReqBodyT
 } from "../../api/user-api";
 import {authActions, exit} from "../auth/auth-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
@@ -227,6 +227,15 @@ export const closeGift = (): ThunkType => {
          if (res.success) {
             dispatch(userActions.setGift(false))
          }
+      }, dispatch)
+   }
+}
+export const withdraw = (payload: WithdrawReqBodyT, closeForm?: () => void): ThunkType => {
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         const res = await userApi.withdraw(payload)
+         if (closeForm) closeForm()
+         checkMessageNotification(res, dispatch)
       }, dispatch)
    }
 }

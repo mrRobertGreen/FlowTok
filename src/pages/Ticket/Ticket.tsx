@@ -14,6 +14,7 @@ import {RootStateType} from "../../redux/store";
 import {getTicketMessages, sendTicketMessage} from "../../redux/user/user-reducer";
 import {smartRound} from "../../utils/realTimeData";
 import {SendTicketMessageReqBodyT} from "../../api/user-api";
+import {getTicketByIdSelector} from "../../redux/user/selectors";
 
 type PropsT = {
    theme?: string,
@@ -22,12 +23,13 @@ type PropsT = {
 
 export const Ticket: FC<PropsT> = ({theme}) => {
    const {t} = useTranslation();
-
+   const {id} = useParams()
    const dispatch = useDispatch()
    const messages = useSelector((state: RootStateType) => state.user.ticketMessages)
+   const ticket = useSelector(getTicketByIdSelector(id))
    const [inputValue, setInputValue] = useState("")
    const [inputError, setInputError] = useState("")
-   const {id} = useParams()
+
 
    const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -66,7 +68,7 @@ export const Ticket: FC<PropsT> = ({theme}) => {
 
    return (
       <Page bg={"#E5E5EA"}>
-         <TopNavbar label={t("support-title")} subLabel={t("support-subTitle")}/>
+         <TopNavbar label={ticket?.title} subLabel={ticket?.status}/>
          <div className={styles.messages}>
             {messages?.map((item, idx) => (
                <Message isSupport={item.who === "operator"}

@@ -1,45 +1,54 @@
 import React, {FC, useState} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../Button/Button";
-import {NavLink} from "react-router-dom";
-import clock from "../../../../media/images_new/clock.svg";
 import Modal from "../../../common/Modal/Modal";
 import {History} from "../History/History";
-import {HistoryItemT} from "../../../../api/user-api";
+import {HistoryItemT, WithdrawReqBodyT} from "../../../../api/user-api";
 import {useTranslation} from "react-i18next";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
 import {smartRound} from "../../../../utils/realTimeData";
 import {WithdrawalModal} from "../../../WithdrawalModal/WithdrawalModal";
+import {withdraw} from "../../../../redux/user/user-reducer";
 
 
 export type PropsType = {
    value: number
    history?: Array<HistoryItemT>
+   isAdmin: boolean
 }
 
-const Balance: FC<PropsType> = ({value, history}) => {
-   // const [isHistory, setIsHistory] = useState(false)
+const Balance: FC<PropsType> = ({value, history, isAdmin}) => {
 
    const cy = useSelector((state: RootStateType) => state.app.cy)
+   const lang = useSelector((state: RootStateType) => state.app.lang)
+   const [isModal, setIsModal] = useState(false)
+   const dispatch = useDispatch()
 
    const {t} = useTranslation()
 
+   const onOpenForm = () => {
+      if (isAdmin) {
+         const payload: WithdrawReqBodyT = {
+            cy: cy,
+            all: true,
+            lang: lang,
+         }
+         dispatch(withdraw(payload))
+      } else {
+         setIsModal(true)
+      }
+   }
+
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
-         {/*<Modal isOpen={true}>*/}
-         {/*   <WithdrawalModal balance={15236}/>*/}
-         {/*</Modal>*/}
+         <Modal isOpen={isModal}>
+            <WithdrawalModal balance={value} onClose={() => setIsModal(false)}/>
+         </Modal>
          <div className={styles.main}>
-            {/*<Modal isOpen={isHistory}>*/}
-            {/*    <History history={history}/>*/}
-            {/*</Modal>*/}
             <div>
                <div className={styles.title}>
                   {t("balance-title")}
-                  {/*{history && history.length > 0 && <button className={styles.clock} onClick={() => setIsHistory(!isHistory)}>*/}
-                  {/*    <img src={clock} alt=""/>*/}
-                  {/*</button>}*/}
                </div>
                <div className={styles.label}>
                   {t("balance")}
@@ -54,7 +63,10 @@ const Balance: FC<PropsType> = ({value, history}) => {
                   <Button data-test={"btn"} mod={"green"}>{t("balance-payin")}</Button>
                </div>
                <div className={styles.btn__second}>
-                  <Button data-test={"button"} mod={"gradient"}>{t("balance-payoff")}</Button>
+                  <Button data-test={"button"}
+                          mod={"gradient"}
+                          onClick={onOpenForm}
+                  >{t("balance-payoff")}</Button>
                </div>
             </div>
 

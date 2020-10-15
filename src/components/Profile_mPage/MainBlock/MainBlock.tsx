@@ -17,60 +17,61 @@ import {useTranslation} from "react-i18next";
 type PropsType = {}
 
 const MainBlock: FC<PropsType> = () => {
-    let userData = useSelector((state: RootStateType) => state.user.userData)
-    const userDataCache = useCache("userData")
-    const dispatch = useDispatch()
+   let userData = useSelector((state: RootStateType) => state.user.userData)
+   const userDataCache = useCache("userData")
+   const dispatch = useDispatch()
 
-    if (userDataCache && !userData) {
-        userData = userDataCache
-    }
+   if (userDataCache && !userData) {
+      userData = userDataCache
+   }
 
-    const {t} = useTranslation()
+   const {t} = useTranslation()
 
-    useEffect(() => {
-        dispatch(getUserData())
-    }, [])
+   useEffect(() => {
+      dispatch(getUserData())
+   }, [])
 
-    if (!userData) {
-        return <Preloader/>
-    }
+   if (!userData) {
+      return <Preloader/>
+   }
 
-    const {
-        allTimeMoney,
-        allDayMoney,
-        containers,
-        referral,
-        wallet,
-        history,
-        gift
-    } = userData
+   const {
+      allTimeMoney,
+      allDayMoney,
+      containers,
+      referral,
+      wallet,
+      history,
+      gift,
+      isAdmin
+   } = userData
 
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.grid}>
-                <div className={styles.gift}>
-                    {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}
-                </div>
-                <div className={styles.balance}>
-                    <Balance value={wallet} history={history}/>
-                </div>
-                <div className={styles.offshore}>
-                    <OffShore/>
-                </div>
-                <div className={styles.miniCard2}>
-                    <AllProfit allTimeMoney={allTimeMoney} allDayMoney={allDayMoney}/>
-                </div>
-                <div className={styles.containers}>
-                    {containers.map((item, idx) => (
-                       <Container isInformed={false} data={item} key={idx}/>
-                    ))}
-                </div>
-                <div className={styles.refs}>
-                    <Refs refData={referral}/>
-                </div>
+   return (
+      <div className={styles.wrapper}>
+         <div className={styles.grid}>
+            <div className={styles.gift}>
+               {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}
             </div>
-        </div>
-    )
+            <div className={styles.balance}>
+               <Balance value={wallet} history={history} isAdmin={isAdmin}/>
+            </div>
+            <div className={styles.offshore}>
+               <OffShore/>
+            </div>
+            <div className={styles.miniCard2}>
+               <AllProfit allTimeMoney={allTimeMoney} allDayMoney={allDayMoney}/>
+            </div>
+            <div className={styles.containers}>
+               {containers.map((item, idx) => (
+                  <Container isInformed={false} data={item} key={idx}/>
+               ))}
+            </div>
+            <div className={styles.refs}>
+               <Refs refData={referral}/>
+            </div>
+         </div>
+      </div>
+   )
 }
 
 export default MainBlock

@@ -19,9 +19,6 @@ export const LoginGoogle: FC = () => {
       <GoogleLogin
          clientId="224348627605-9d3vp1ee0pp05558495ird5njsbtindh.apps.googleusercontent.com"
          onSuccess={onGmButtonClick}
-         onFailure={() => {
-            dispatch(appActions.setError("Что-то пошло не так...\n Попробуйте снова"))
-         }}
          render={renderProps => (
             <Button onClick={renderProps.onClick}
                     disabled={renderProps.disabled}

@@ -1,106 +1,107 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {Field, FieldProps, Form, Formik, FormikValues} from "formik";
 import styles from "./styles.module.scss";
-import {createWithdrawAmountValidator, validateRequiredField} from "../../../utils/validators";
+import {validateRequiredField} from "../../../utils/validators";
 import Button from "../../Button/Button";
-import {WithdrawTypes, withdrawTypes} from "../../../pages/Withdraw_m/Withdraw_m";
-import {WithdrawPayloadType} from "../../../api/user-api";
 import {useDispatch, useSelector} from "react-redux";
-import {Input, InputWithMask} from "../../Input/Input";
-import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
+import {Input} from "../../Input/Input";
+import {MoneyWayT, TakeMoneyWay} from "../../Settings/TakeMoneyWay/TakeMoneyWay";
+import {Separator} from "../../Separator/Separator";
+import {withdraw} from "../../../redux/user/user-reducer";
+import {WithdrawReqBodyT} from "../../../api/user-api";
 import {RootStateType} from "../../../redux/store";
-import Preloader from "../../common/Preloader/Preloader";
-import {cleanPhoneNumber} from "../../../utils/parseString";
 
 export type WithdrawFormValuesType = {
-   wallet: string
-   amount: string
+   account: string
+   money: string
+   type: MoneyWayT
 }
 
-type WithdrawFormPropsType = {
-   type: WithdrawTypes
+type PropsT = {
+   balance: number
+   onClose: () => void
 }
 
-export const WithdrawForm: FC<WithdrawFormPropsType> = ({type,}) => {
+export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
    const dispatch = useDispatch()
-   const isFetching = useSelector((state: RootStateType) => state.app.isFetching)
+   const cy = useSelector((state: RootStateType) => state.app.cy)
+   const lang = useSelector((state: RootStateType) => state.app.lang)
 
-   const onSubmit = async (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
-      const payload: WithdrawPayloadType = {
-         money: +values.amount,
-         purse: type === "qiwi" ? cleanPhoneNumber(values.wallet) : values.wallet,
-         type: type,
+   const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
+      const payload: WithdrawReqBodyT = {
+         cy: cy,
+         account: values.account,
+         all: +values.money === balance,
+         lang: lang,
+         money: +values.money,
+         type: values.type,
       }
-      resetForm()
+      dispatch(withdraw(payload, onClose))
    }
-
-   type ActiveBtnType = 100 | 500 | 1000 | 0  // 0 - nobody is selected
-   const [activeBtn, setActiveBtn] = useState(0 as ActiveBtnType)
-   const amountValidator = createWithdrawAmountValidator(type)
-
-   if (isFetching) return <Preloader/>
 
    return (
       <Formik
-         validate={(values: WithdrawFormValuesType) => {
-            if (+values.amount !== activeBtn) {
-               setActiveBtn(0)
-            }
-         }}
          initialValues={{
-            wallet: "",
-            amount: "",
+            account: "",
+            money: "",
+            type: "" as MoneyWayT
          }}
          onSubmit={onSubmit}
-         className={styles.formik}
       >
          {
             ({setFieldValue, values}) =>
                <Form className={styles.wrapper}>
-                  <div className={styles.topBlock}>
-                     <div className={styles.label}>
-                        {withdrawTypes[type].label}
-                     </div>
-                     <Field name={"wallet"}
-                            validate={validateRequiredField}
-                            render={({field, form: {touched, errors}}: FieldProps) => (
-                               <div className={styles.input}>
-                                  <InputWithMask
-                                     {...field}
-                                     mod={"blue"}
-                                     withdrawType={type}
-                                     placeholder={withdrawTypes[type].placeholder as string}
-                                     isError={!!(errors.wallet && touched.wallet)}
-                                     errorMessage={errors.wallet}
-                                  />
-                               </div>
-                            )}
-                     />
-                     <ChooseAmount setFieldValue={setFieldValue} amount={values.amount} field={"amount"}/>
-                     <Field name={"amount"} validate={amountValidator}>
-                        {({
-                             field,
-                             form: {touched, errors}
-                          }: FieldProps) => (
-                           <div>
-                              <Input
-                                 mod={"blue"}
-                                 type={"number"}
-                                 placeholder={"Ввести свою сумму"}
-                                 isError={!!(errors.amount && touched.amount)}
-                                 errorMessage={errors.amount}
-                                 {...field}
-                              />
-                           </div>
-                        )}
-                     </Field>
+                  <TakeMoneyWay
+                     type={values.type}
+                     setType={(type: MoneyWayT) => setFieldValue("type", type)}/>
+                  <Field name={"account"}
+                         validate={validateRequiredField}
+                  >
+                     {({
+                          field,
+                          form: {touched, errors}
+                       }: FieldProps) => (
+                        <Input
+                           mod={"white"}
+                           type={"number"}
+                           placeholder={"Введите номер телефона или карты"}
+                           isError={!!(errors.account && touched.account)}
+                           errorMessage={errors.account}
+                           {...field}
+                        />
+                     )}
+                  </Field>
+                  <Separator m={"10px 0 16px 0"}/>
+                  <div className={styles.balance}>
+                     <p className={styles.balance__text}>Ваш баланс</p>
+                     <p className={styles.balance__numbers}>{balance}{cy === "RUB" ? "₽" : "$"}</p>
                   </div>
-                  <div className={styles.submitBtn}>
-                     <Button type="submit">
-                        Заказать выплату
-                     </Button>
-                  </div>
-
+                  <p className={styles.add}>Сумма</p>
+                  <Button mod={"white"}
+                          isActive={+values.money === balance}
+                          children={"Вся сумма"}
+                          onClick={() => setFieldValue("money", balance)}
+                          m={"0 0 10px"}
+                          type={"button"}/>
+                  <Field name={"money"}>
+                     {({
+                          field,
+                          form: {touched, errors}
+                       }: FieldProps) => (
+                        <Input
+                           mod={"white"}
+                           type={"number"}
+                           placeholder={"Ввести свою сумму"}
+                           isError={!!(errors.money && touched.money)}
+                           errorMessage={errors.money}
+                           {...field}
+                        />
+                     )}
+                  </Field>
+                  <Button mod={values.money ? "gradient" : "grey"}
+                          children={"Выплатить"}
+                          m={"15px 0 0 0"}
+                          type="submit"/>
                </Form>}
       </Formik>
    )

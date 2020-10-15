@@ -62,7 +62,7 @@ const App: FC = () => {
       <div style={isMobile ? mobileStyle : desktopStyle}>
          {error &&
 			<Modal isOpen={true}
-			       children={<Alert onClose={closeError} message={error} title={"Ошибка"}
+			       children={<Alert onClose={closeError} message={error.message} title={error.title}
                                  isError={true}/>}/>}
          {notification &&
 			<Modal isOpen={!!notification}

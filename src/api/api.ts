@@ -42,6 +42,6 @@ export type NotificationT = {
 export type ErrorType = {
    message: string
    name?: string
-   notification?: string
+   notification?: NotificationT
    telegram?: string
 }

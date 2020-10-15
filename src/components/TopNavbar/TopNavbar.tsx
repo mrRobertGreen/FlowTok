@@ -8,7 +8,7 @@ import {GLOBAL_MEDIA_QUERIES} from "../Page/Page";
 
 
 type PropsType = {
-   label: string
+   label?: string
    logo?: boolean
    avatarUrl?: string
    br?: string

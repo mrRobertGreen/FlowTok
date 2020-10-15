@@ -1,6 +1,7 @@
 import {BaseDataType, BaseResponseType, instance, NotificationT} from "./api";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 import {CyT, LangT} from "../redux/app/app-reducer";
+import {MoneyWayT} from "../components/Settings/TakeMoneyWay/TakeMoneyWay";
 
 export const userApi = {
    getUserData(body: BaseBodyT) {
@@ -42,9 +43,18 @@ export const userApi = {
    closeGift(body: BaseBodyT) {
       return instance.post<BaseResponseType<{ gift: false }>>(`/users/user/gift/close`, body).then(res => res.data)
    },
+   withdraw(body: WithdrawReqBodyT) {
+      return instance.post<BaseResponseType<BaseDataType>>(`/money/get`, body).then(res => res.data)
+   },
 };
 
 // types
+export type WithdrawReqBodyT = {
+   account?: string
+   money?: number
+   type?: MoneyWayT
+   all: boolean
+} & BaseBodyT
 export type CreateTicketReqBodyT = {
    topic: string
    text: string
@@ -89,6 +99,7 @@ export type UserDataType = {
    notification?: NotificationT
    gift: boolean
    history?: Array<HistoryItemT>
+   isAdmin: boolean
 }
 export type GetGiftResT = {
    wallet: number
