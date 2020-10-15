@@ -3,7 +3,8 @@ import styles from "./styles.module.scss";
 import menKitchen from "../../media/images/menKitchen.svg";
 import wmenFence from "../../media/images/wmenFence.svg";
 import yellowWmen from "../../media/images/yellowWmen.svg";
-import mainPic from "../../media/images/mainPicture.svg"
+// import mainPic from "../../media/images/mainPicture.svg"
+import mainPic from "../../media/images_new/Port.jpg"
 
 
 type PropsT = {
