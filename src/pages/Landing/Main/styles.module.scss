@@ -91,11 +91,14 @@
   margin-bottom: 20px;
 }
 .mainPic {
-  height: 400px;
+  //height: 420px;
+  //flex: 1 1 45%;
 
-  flex: 1 1 45%;
+  //width: 100%;
+
   padding-top: 20px;
 }
+
 
 @media (min-width: 1024px) {
   .mainText {
@@ -181,6 +184,7 @@
 
     &__createBtn {
       //margin-top: 30px;
+
       justify-self: center;
     }
   }

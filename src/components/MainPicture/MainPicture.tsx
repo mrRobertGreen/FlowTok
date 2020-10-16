@@ -15,7 +15,7 @@ export const MainPicture: FC<PropsT> = (isDesktop) => {
     if (isDesktop) {
         return (
             <div className={styles.wrapper}>
-                <img src={mainPic} alt="" width={"100%"}/>
+                <img src={mainPic} alt="" className={styles.img} width={"100%"}/>
             </div>
         )
     } else {
