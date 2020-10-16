@@ -75,4 +75,10 @@
   .wrapper {
     border-radius: 30px;
   }
+  .text {
+    display: inline;
+    text-align: left;
+    min-width: 200px;
+    padding-right: 0;
+  }
 }

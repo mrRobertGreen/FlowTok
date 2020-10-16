@@ -26,3 +26,22 @@
     margin-bottom: 10px;
   }
 }
+
+@media (min-width: 1024px) {
+  .stick {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .messages {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1680px) {
+  .stick {
+    width: 70%;
+  }
+  .messages {
+    width: 70%;
+  }
+}

@@ -14,3 +14,15 @@
     color: blue;
   }
 }
+@media (min-width: 1024px) {
+  .wrapper {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1680px) {
+  .wrapper {
+    width: 70%;
+  }
+}

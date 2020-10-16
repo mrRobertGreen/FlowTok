@@ -149,8 +149,15 @@
   background-color: #FFFFFF;
   width: 17px;
   height: 17px;
-  display: inline;
+  display: inline-block;
   align-self: center;
+  padding-top: 0.5px;
+}
+
+@media (min-width: 1024px) {
+  .wrapper{
+    border-radius: 30px;
+  }
 }
 
 @media (max-width: 350px) {

@@ -6,6 +6,7 @@ import {ChooseLang} from "../../../components/Input/Input";
 import {appActions, LangT} from "../../../redux/app/app-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
+import {useTranslation} from "react-i18next";
 
 
 export const Header: FC = () => {
@@ -19,7 +20,7 @@ export const Header: FC = () => {
          localStorage.setItem("lang", lang)
       }
    }
-
+    const {t} = useTranslation();
    return (
       <div className={styles.wrapper}>
          <div className={styles.logo}>
@@ -33,7 +34,7 @@ export const Header: FC = () => {
              </div>
             <NavLink to={"/login"}>
                <div className={styles.buttons__createAcc}>
-                  Создать аккаунт
+                   {t("create-acc-btn")}
                </div>
             </NavLink>
          </div>
