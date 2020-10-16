@@ -105,7 +105,8 @@
       "password-text": "Password",
       "PSRN-text": "PSRN",
       "INN-text": "INN",
-      "company-name-text": "Company name"
+      "company-name-text": "Company name",
+      "balance-purchase": "Enter the amount"
     }
   }
 }

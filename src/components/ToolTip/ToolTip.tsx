@@ -91,7 +91,9 @@ export const ToolTip: FC<PropsT> = ({onClose, isRef}) => {
                             <p className={styles.header}>{t("offshore-account-title")}</p>
                             <button className={styles.crossBtn} onClick={onClose}><img src={cross} alt=""/></button>
                         </div>
-                        <p className={styles.text}>{t("your-bill-text")}</p>
+                        <p className={styles.text}>{t("your-bill-text-1")}</p>
+                        <p className={styles.text}>{t("your-bill-text-2")}</p>
+                        <p className={styles.text}>{t("your-bill-text-3")}</p>
                     </div>
                 )
         }

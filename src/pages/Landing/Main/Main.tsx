@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import Button from "../../../components/Button/Button";
 import {MainPicture} from "../../../components/MainPicture/MainPicture"
 import {useTranslation} from "react-i18next";
+import mainPic from "../../../media/images_new/Port.jpg";
 
 export const Main: FC = () => {
     const {t} = useTranslation();
@@ -39,8 +40,11 @@ export const Main: FC = () => {
                 </NavLink>
             </div>
 
-            <div className={styles.mainPic}>
-                <MainPicture isDesktop={true}/>
+            {/*<div className={styles.mainPic}>*/}
+            {/*    <MainPicture isDesktop={true}/>*/}
+            {/*</div>*/}
+            <div className={styles.mainPic}><span> </span>
+                {/*<img src={mainPic} alt="" className={styles.img} width={"100%"}/>*/}
             </div>
         </div>
     )

@@ -149,7 +149,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                errorMessage={inputError}
                isError={!!inputError}
                mod={"white"}
-               placeholder={t("balance")}
+               placeholder={t("balance-purchase")}
                onChange={onChangeInput}
                value={inputValue}
                inputMode={"tel"}
@@ -174,7 +174,9 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
          <div className={styles.profitability}>
             <div className={styles.profitability__container}>
                <p className={styles.text__little}>{t("profitability-text")}</p>
-               <p className={styles.text__large}><span className={styles.greenPercent}>{percent}%</span> {t("in-day-text")}
+               <p className={styles.text__large}>
+                  <span className={styles.greenPercent}>{percent}% </span>
+                  <span style={{paddingLeft:"1px"}}>{t("in-day-text")}</span>
                </p>
             </div>
             <div className={styles.profitability__Btn}>
@@ -184,7 +186,6 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
                        onClick={onSubmit}
                /></div>
          </div>
-
       </div>
    )
 }
