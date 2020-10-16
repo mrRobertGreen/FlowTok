@@ -1,6 +1,6 @@
 {
-  "short_name": "Containers",
-  "name": "Containers",
+  "short_name": "Take Containers",
+  "name": "Take Containers",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
