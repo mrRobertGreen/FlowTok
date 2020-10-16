@@ -115,7 +115,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
                         <p className={styles.money_2}>{smartRound(realAllTimeMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
                         <p className={styles.profit}>+{smartRound(realDayMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
                     </div>
-                    <div className={styles.column}>
+                    <div className={`${styles.column} ${styles.last}`}>
                         <p className={styles.size}>Refrigerator</p>
                         <p className={styles.money_2}>
                             {smartRound(realAllTimeMoney.refrigerator)}{cy === "RUB" ? "₽" : "$"}

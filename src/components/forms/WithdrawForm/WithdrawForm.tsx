@@ -23,10 +23,34 @@ type PropsT = {
    onClose: () => void
 }
 
+
 export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
    const dispatch = useDispatch()
    const cy = useSelector((state: RootStateType) => state.app.cy)
    const lang = useSelector((state: RootStateType) => state.app.lang)
+
+   const {t} = useTranslation();
+
+   const placeholders = {
+      yandex: `Yandex ${t("money-text")}`,
+      qiwi: `Qiwi ${t("wallet-text")}`,
+      wmr: `Webmoney R`,
+      wmz: `Webmoney Z`,
+      card: `${t("bank-account-text")}`,
+      phone: `${t("phone-number-text")}`,
+   }
+
+   const getPlaceholder = (type: MoneyWayT) => {
+      switch (type) {
+         case "card": return placeholders.card
+         case "wmz": return placeholders.wmz
+         case "wmr": return placeholders.wmr
+         case "qiwi": return placeholders.qiwi
+         case "yandex": return placeholders.yandex
+         case "phone": return placeholders.phone
+      }
+      return ""
+   }
 
    const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
       const payload: WithdrawReqBodyT = {
@@ -39,7 +63,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
       }
       dispatch(withdraw(payload, onClose))
    }
-   const {t} = useTranslation();
+
    return (
       <Formik
          initialValues={{
@@ -65,7 +89,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                         <Input
                            mod={"white"}
                            type={"number"}
-                           placeholder={t("phone-or-card-textarea")}
+                           placeholder={t("phone-or-card-textarea") + getPlaceholder(values.type)}
                            isError={!!(errors.account && touched.account)}
                            errorMessage={errors.account}
                            {...field}

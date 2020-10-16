@@ -234,6 +234,9 @@ export const withdraw = (payload: WithdrawReqBodyT, closeForm?: () => void): Thu
    return async (dispatch) => {
       await commonThunkHandler(async () => {
          const res = await userApi.withdraw(payload)
+         if (res.success) {
+            await dispatch(getUserData())
+         }
          if (closeForm) closeForm()
          checkMessageNotification(res, dispatch)
       }, dispatch)
