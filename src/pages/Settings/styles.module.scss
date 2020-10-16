@@ -27,6 +27,10 @@ $backColor: #E5E5EA;
   display: flex;
   justify-content: space-between;
   margin-right: 15px;
+
+  &__doubleText {
+    padding-right: 10px;
+  }
 }
 
 .card {

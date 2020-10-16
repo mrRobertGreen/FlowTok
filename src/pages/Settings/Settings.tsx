@@ -48,7 +48,7 @@ const Settings = () => {
     type SavesPropsT = {
         isCards: boolean
     }
-    const Saves: FC<SavesPropsT> = ({isCards= false}) => {
+    const Saves: FC<SavesPropsT> = ({isCards = false}) => {
         if (isCards) {
             return (
                 <div>
@@ -87,11 +87,13 @@ const Settings = () => {
                                 Уведомления
                             </div>
                             <div className={styles.notification}>
-                                <DoubleText
-                                    FirstChildren={"Включить уведомления Telegram"}
-                                    SecondChildren={"Получайте актуальные задания самый первый!"}
-                                    pt={"0"}
-                                    pb={"0"}/>
+                                <div className={styles.notification__doubleText}>
+                                    <DoubleText
+                                        FirstChildren={"Включить уведомления Telegram"}
+                                        SecondChildren={"Получайте актуальные задания самый первый!"}
+                                        pt={"0"}
+                                        pb={"0"}/>
+                                </div>
                                 <ToggleSwitch isLabel={false}/>
                             </div>
                         </div>
@@ -124,7 +126,7 @@ const Settings = () => {
                                     pt={"0"}
                                     pb={"0"}/>
                             </div>
-                            <div className={styles.connect} style={{paddingBottom:"15px"}}>
+                            <div className={styles.connect} style={{paddingBottom: "15px"}}>
                                 <p className={styles.connect__mailType}>Почта</p>
                                 <p className={styles.connect__mail}>flowtokcom@gmail.com</p>
                             </div>

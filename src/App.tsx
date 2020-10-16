@@ -86,6 +86,7 @@ const App: FC = () => {
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
             <Route path="/settings" component={Settings}/>
             <Route path="/ad/panel" component={Panel}/>
+            {/*<Route path="/add_profile" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}
             {/*<Route path="/refs" component={Refs_m}/>*/}

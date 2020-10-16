@@ -6,49 +6,53 @@
 .tikTokAcc {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  //background-color: red;
 
   &__Container {
     display: flex;
-
   }
-}
 
-.name {
-  padding-left: 10px;
-  &__acc {
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 15px;
+  .avatar {
+    display: block;
+    width: 42px;
+    height: 42px;
+    border-radius: 50px;
+  }
+
+  .name {
+    padding-left: 10px;
+    //background-color: blue;
+
+    &__acc {
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 15px;
+      text-align: center;
+      letter-spacing: -0.41px;
+
+      color: #000000;
+    }
+
+    &__mail {
+      font-size: 13px;
+      line-height: 15px;
+      text-align: center;
+      letter-spacing: -0.313529px;
+      padding-top: 8px;
+
+      color: #8E8E93;
+    }
+  }
+  .changeAcc {
     text-align: center;
-    letter-spacing: -0.41px;
-
-    color: #000000;
+    letter-spacing: -0.385882px;
+    font-size: 17px;
+    line-height: 19px;
+    margin-left: 20px;
+    color: #2B44F2;
+    align-self: center;
   }
-
-  &__mail {
-    font-size: 13px;
-    line-height: 15px;
-    text-align: center;
-    letter-spacing: -0.313529px;
-
-    color: #8E8E93;
-  }
-}
-
-.avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50px;
-}
-
-.changeAcc {
-  text-align: center;
-  letter-spacing: -0.385882px;
-  font-size: 17px;
-  line-height: 19px;
-  margin-left: 20px;
-  color: #2B44F2;
-  align-self: center;
 }
 
 .cancel {
@@ -95,6 +99,7 @@
       line-height: 27px;
       letter-spacing: -0.554706px;
     }
+
     &__mail {
       text-align: left;
     }
