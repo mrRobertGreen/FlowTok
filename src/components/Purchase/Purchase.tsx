@@ -124,7 +124,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
       <div className={styles.wrapper}>
          <div className={styles.header}>
             <div className={styles.purchase}>{t("purchase-title")}</div>
-            <div>
+            <div className={styles.balance}>
                <p className={styles.numbers}>
                   {t("balance-text")}: {smartRound(wallet)}{cy === "RUB" ? "₽" : "$"}
                </p>
