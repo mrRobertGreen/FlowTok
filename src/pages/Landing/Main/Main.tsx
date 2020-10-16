@@ -18,20 +18,27 @@ export const Main: FC = () => {
                     <div className={styles.mainText__content}>
                         <p>{t("invest-text")}</p>
                     </div>
-                    <div className={styles.buttons}>
-                        <NavLink to={"/reg"}>
-                            <div className={styles.mainText__createBtn}>
-                                <Button mod={"gradient"} children={t("create-acc-btn")} br={"42px"}/>
-                            </div>
-                        </NavLink>
-                        <NavLink to={"/login"}>
-                            <div>
-                                <button className={styles.In}>{t("sign-in-btn")}</button>
-                            </div>
-                        </NavLink>
-                    </div>
                 </div>
             </div>
+            <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-first-text")}
+            </p>
+            <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-second-text")}
+            </p>
+            <p className={styles.description} style={{marginBottom: "35px"}}>{t("description-third-text")}
+            </p>
+            <div className={styles.buttons}>
+                <NavLink to={"/reg"}>
+                    <div className={styles.mainText__createBtn}>
+                        <Button mod={"gradient"} children={t("create-acc-btn")} br={"42px"}/>
+                    </div>
+                </NavLink>
+                <NavLink to={"/login"}>
+                    <div>
+                        <button className={styles.In}>{t("sign-in-btn")}</button>
+                    </div>
+                </NavLink>
+            </div>
+
             <div className={styles.mainPic}>
                 <MainPicture isDesktop={true}/>
             </div>

@@ -7,12 +7,6 @@ export const Description: FC = ({}) => {
 
     return (
         <div className={styles.wrapper}>
-            <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-first-text")}
-            </p>
-            <p className={styles.description} style={{marginBottom: "14px"}}>{t("description-second-text")}
-            </p>
-            <p className={styles.description} style={{marginBottom: "76px"}}>{t("description-third-text")}
-            </p>
             <div className={styles.paysystem}>
                 <a href="//freekassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/17.png"
                                                title="Приём оплаты на сайте картами"/></a>
