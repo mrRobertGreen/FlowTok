@@ -40,10 +40,10 @@ export const AllProfit: FC<PropsType> = ({}) => {
                 console.log("bank: " + bank)
                 console.log("\n")
                 // увеличиваю оффшор
-                dispatch(userActions.setBank(bank + data.everySecMoney.all))
+                dispatch(userActions.setBank(bank + data.everySecMoney.all / 10))
             }
 
-        }, 1000);
+        }, 100);
         return () => clearInterval(interval);
     }, [bank, data]);
 
@@ -68,16 +68,16 @@ export const AllProfit: FC<PropsType> = ({}) => {
                 const realTimeData: RealMoneyDataT = {
                     everySecMoney: {...data.everySecMoney},
                     realAllTimeMoney: {
-                        all: data.realAllTimeMoney.all + data.everySecMoney.all,
-                        large: data.realAllTimeMoney.large + data.everySecMoney.large,
-                        refrigerator: data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator,
-                        small: data.realAllTimeMoney.small + data.everySecMoney.small,
+                        all: data.realAllTimeMoney.all + data.everySecMoney.all / 10,
+                        large: data.realAllTimeMoney.large + data.everySecMoney.large / 10,
+                        refrigerator: data.realAllTimeMoney.refrigerator + data.everySecMoney.refrigerator / 10,
+                        small: data.realAllTimeMoney.small + data.everySecMoney.small / 10,
                     },
                     realDayMoney: {
-                        all: data.realDayMoney.all + data.everySecMoney.all,
-                        large: data.realDayMoney.large + data.everySecMoney.large,
-                        refrigerator: data.realDayMoney.refrigerator + data.everySecMoney.refrigerator,
-                        small: data.realDayMoney.small + data.everySecMoney.small,
+                        all: data.realDayMoney.all + data.everySecMoney.all / 10,
+                        large: data.realDayMoney.large + data.everySecMoney.large / 10,
+                        refrigerator: data.realDayMoney.refrigerator + data.everySecMoney.refrigerator / 10,
+                        small: data.realDayMoney.small + data.everySecMoney.small / 10,
                     }
                 }
 
@@ -86,7 +86,7 @@ export const AllProfit: FC<PropsType> = ({}) => {
                 if (getSecondsToday() === 0) dispatch(getUserData())  // обновление в 00:00
             }
 
-        }, 1000);
+        }, 100);
         return () => clearInterval(interval);
     }, [data]);
 

@@ -61,11 +61,11 @@ const MainBlock: FC<PropsType> = () => {
             <div className={styles.miniCard2}>
                <AllProfit allTimeMoney={allTimeMoney} allDayMoney={allDayMoney}/>
             </div>
-            <div className={styles.containers}>
+            {/*<div className={styles.containers}>*/}
                {containers.map((item, idx) => (
                   <Container isInformed={false} data={item} key={idx}/>
                ))}
-            </div>
+            {/*</div>*/}
             <div className={styles.refs}>
                <Refs refData={referral}/>
             </div>
