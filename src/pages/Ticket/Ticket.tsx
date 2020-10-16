@@ -11,7 +11,7 @@ import Button from "../../components/Button/Button";
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getTicketMessages, sendTicketMessage} from "../../redux/user/user-reducer";
+import {getTicketMessages, getTickets, sendTicketMessage} from "../../redux/user/user-reducer";
 import {smartRound} from "../../utils/realTimeData";
 import {SendTicketMessageReqBodyT} from "../../api/user-api";
 import {getTicketByIdSelector} from "../../redux/user/selectors";
@@ -44,6 +44,10 @@ export const Ticket: FC<PropsT> = ({theme}) => {
    }, [])
 
    useEffect(() => {
+      if (!ticket) dispatch(getTickets())
+   }, [])
+
+   useEffect(() => {
       scrollToBottom()
    }, [messages])
 
@@ -68,10 +72,12 @@ export const Ticket: FC<PropsT> = ({theme}) => {
 
    return (
       <Page bg={"#E5E5EA"}>
-         <TopNavbar label={ticket?.title} subLabel={ticket?.status}/>
+         <TopNavbar label={ticket?.title}
+                    subLabel={ticket?.status}
+                    subLabelColor={`${ticket?.status === "Open" || ticket?.status === "Открыт" ? "#24C054" : "#ED0000"}`}/>
          <div className={styles.messages}>
             {messages?.map((item, idx) => (
-               <Message isSupport={item.who === "operator"}
+               <Message isSupport={item.who === "operator"} key={idx}
                         message={item.text}/>
             ))}
             <div ref={messagesEndRef} />

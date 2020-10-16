@@ -16,7 +16,7 @@ export const getContainerType = (state: RootStateType) => {
 
 export const getTicketByIdSelector = (id: string) => createSelector([getTickets], (tickets) => {
    if (!tickets) return null
-   return tickets.filter((t) => t.id === id)[0]
+   return tickets?.filter((t) => t.id === id)[0]
 })
 
 export const getContainerData = createSelector([getContainers, getContainerType],

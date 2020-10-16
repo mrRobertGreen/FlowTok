@@ -37,11 +37,16 @@ export const TicketList: FC = () => {
             </div>
             <div className={styles.main}>
                {tickets?.map((item, idx) => (
-                  <NavLink to={`/ticket/${item.id}`}>
+                  <NavLink to={`/ticket/${item.id}`} key={idx}>
                      <div className={styles.ticket_container}>
                         <p className={styles.theme}>{item.title}</p>
                         <p className={styles.message_count}>{item.messages}</p>
-                        <p className={styles.status}>{item.status}</p>
+                        <p className={
+                           `${styles.status}
+                           ${item.status === "Open" || item.status === "Открыт" ? styles.green : styles.red}`
+                        }>
+                           {item.status}
+                        </p>
                      </div>
                      <Separator m={"10px"}/>
                   </NavLink>
