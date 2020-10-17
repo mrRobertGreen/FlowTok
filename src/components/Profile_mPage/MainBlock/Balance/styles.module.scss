@@ -1,7 +1,6 @@
 .wrapper {
   width: 100%;
   padding-top: 10px;
-
 }
 .main {
   background: #FFFFFF;
@@ -26,6 +25,20 @@
   img {
     height: 100%;
     width: 100%;
+  }
+}
+.btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__first {
+    flex: 1 1 45%;
+    margin-right: 11px;
+  }
+
+  &__second {
+    flex: 1 1 44%;
   }
 }
 
@@ -77,24 +90,11 @@
   }
 }
 
-.btn {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 
-  &__first {
-    flex: 1 1 45%;
-    margin-right: 11px;
-  }
-
-  &__second {
-    flex: 1 1 44%;
-  }
-}
 
 @media (min-width: 1680px) {
   .wrapper {
-    padding: 65px 60px;
+    //padding: 45px 50px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;

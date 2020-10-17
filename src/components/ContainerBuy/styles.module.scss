@@ -6,15 +6,19 @@
 }
 .container {
   padding: 20px;
+  .cross {
+    background-color: #FFFFFF;
+    position: relative;
+    right: 0;
+    left: 96%;
+  }
 }
 .cross_container {
   display: flex;
   justify-content: flex-end;
   height: 12px;
 
-  .cross {
-    background-color: #FFFFFF;
-  }
+
 }
 .title {
   font-size: 17px;
@@ -23,4 +27,35 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
+}
+.text {
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: -0.41px;
+
+  color: #1D1D1D;
+}
+
+@media (max-width: 350px) {
+  .wrapper {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  .wrapper {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .wrapper {
+    width: 50%;
+  }
 }

@@ -31,3 +31,21 @@
 
   color: #252525;
 }
+
+@media (max-width: 350px) {
+  .wrapper {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  .wrapper {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 50%;
+  }
+}

@@ -56,7 +56,11 @@ export const ContainerBuy: FC<PropsT> = ({onClose}) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
+                <button className={styles.cross} onClick={onClose}>
+                    <img src={cross}  alt=""/>
+                </button>
                 <p className={styles.title}>{t("buy-container-title")}</p>
+
 
                 <Formik
                     initialValues={{
@@ -72,7 +76,7 @@ export const ContainerBuy: FC<PropsT> = ({onClose}) => {
                                 <TakeMoneyWay
                                     type={values.type}
                                     setType={(type: MoneyWayT) => setFieldValue("type", type)}/>
-                                    <p>{t("sum-text") + ": 1.5$"}</p>
+                                    <p className={styles.text}>{t("sum-text") + ": 1.5$"}</p>
                                 <Button mod={values.type ? "gradient" : "grey"}
                                         children={t("buy-btn")}
                                         m={"15px 0 0 0"}

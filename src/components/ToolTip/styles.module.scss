@@ -40,6 +40,17 @@
 
 @media (min-width: 767px) {
   .wrapper {
-    width: 80%;
+    width: 60%;
+  }
+}
+@media (max-width: 350px) {
+  .wrapper {
+    min-width: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 40%;
   }
 }

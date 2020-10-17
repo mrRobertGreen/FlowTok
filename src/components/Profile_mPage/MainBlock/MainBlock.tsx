@@ -53,7 +53,7 @@ const MainBlock: FC<PropsType> = () => {
 
    return (
       <div className={styles.wrapper}>
-         <Modal isOpen={promo}>
+         <Modal isOpen={true}>
             <Notification onClose={() => dispatch(closeGift())}/>
          </Modal>
          <div className={styles.grid}>
