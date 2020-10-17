@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from "react";
+import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import Balance from "./Balance/Balance";
 import {RootStateType} from "../../../redux/store";
@@ -12,6 +12,7 @@ import {Container} from "../../Container/Container";
 import {Gift} from "../../Gift/Gift";
 import {OffShore} from "../../OffShore/OffShore";
 import {useTranslation} from "react-i18next";
+import {Notification} from "../../Notification/Notification";
 
 
 type PropsType = {}
@@ -44,10 +45,13 @@ const MainBlock: FC<PropsType> = () => {
       history,
       gift,
       isAdmin
-   } = userData
+   } = userData;
+
+
 
    return (
       <div className={styles.wrapper}>
+         {/*<Notification />*/}
          <div className={styles.grid}>
             <div className={styles.gift}>
                {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}

@@ -73,7 +73,9 @@
       "refrigerator-title": "Container Refrigerator Carrier",
       "compressor-text": "Compressor: steel-free semi-hermetic 6-cylinder",
       "offshore-account-title": "Offshore account",
-      "your-bill-text": "Your personal account for the ability to perform operations on the account. Since the money comes from companies located in different countries of the world, you have created an account in a partner Bank to accept payments. To withdraw funds, transfer them to Your personal balance and choose a convenient payment method.",
+      "your-bill-text-1": "Your personal account for the ability to perform operations on the account.",
+      "your-bill-text-2": "Since the money comes from companies located in different countries of the world, you have created an account in a partner Bank to accept payments.",
+      "your-bill-text-3": "To withdraw funds, transfer them to Your personal balance and choose a convenient payment method.",
       "support-subTitle": "The answer may take some time",
       "your-appeal-title": "Your appeal",
       "create-ticket-btn": "CREATE NEW TICKET",
@@ -106,7 +108,9 @@
       "PSRN-text": "PSRN",
       "INN-text": "INN",
       "company-name-text": "Company name",
-      "balance-purchase": "Enter the amount"
+      "balance-purchase": "Enter the amount",
+      "dear-user-text": "Dear user",
+      "we-saw-text": ""
     }
   }
 }

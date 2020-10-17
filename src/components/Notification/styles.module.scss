@@ -1,0 +1,33 @@
+.wrapper {
+  padding: 10px;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-radius: 14px;
+}
+.container {
+  padding: 20px;
+}
+.cross_container {
+  display: flex;
+  justify-content: flex-end;
+  height: 12px;
+
+  .cross {
+    background-color: #FFFFFF;
+  }
+}
+.title {
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: -0.41px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.text {
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #252525;
+}

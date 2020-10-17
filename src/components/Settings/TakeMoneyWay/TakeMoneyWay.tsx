@@ -16,7 +16,6 @@ type PropsT = {
 export const TakeMoneyWay: FC<PropsT> = ({setType, type}) => {
     const {t} = useTranslation();
     return (
-
         <div className={styles.wrapper}>
             <div className={styles.wrapper__item}
                  onClick={() => setType("yandex")}>
