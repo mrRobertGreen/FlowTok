@@ -32,8 +32,7 @@ export const Notification: FC<PropsT> = ({onClose}) => {
             <div className={styles.text}>
                {t("we-saw-text")}
             </div>
-            <Button mod={"green"} m={"17px 0 0 0"} onClick={() => {setIsModal(true)
-                                                                     onClose()}}>
+            <Button mod={"green"} m={"17px 0 0 0"} onClick={() => {setIsModal(true)}}>
                {t("buy-btn")}
             </Button>
          </div>
