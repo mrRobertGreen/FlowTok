@@ -41,7 +41,7 @@ export const userApi = {
       return instance.post<BaseResponseType<GetGiftResT>>(`/users/user/gift/get`, body).then(res => res.data)
    },
    closeGift(body: BaseBodyT) {
-      return instance.post<BaseResponseType<{ gift: false }>>(`/users/user/gift/close`, body).then(res => res.data)
+      return instance.post<BaseResponseType<{ gift: boolean, promo: boolean }>>(`/users/user/gift/close`, body).then(res => res.data)
    },
    withdraw(body: WithdrawReqBodyT) {
       return instance.post<BaseResponseType<BaseDataType>>(`/money/get`, body).then(res => res.data)
@@ -100,6 +100,7 @@ export type UserDataType = {
    gift: boolean
    history?: Array<HistoryItemT>
    isAdmin: boolean
+   promo: boolean
 }
 export type GetGiftResT = {
    wallet: number

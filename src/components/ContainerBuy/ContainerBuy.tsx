@@ -16,10 +16,9 @@ import {WithdrawFormValuesType} from "../forms/WithdrawForm/WithdrawForm";
 
 type PropsT = {
     onClose: () => void
-    amount: number
 }
 
-export const ContainerBuy: FC<PropsT> = ({onClose, amount}) => {
+export const ContainerBuy: FC<PropsT> = ({onClose}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const cy = useSelector((state: RootStateType) => state.app.cy);
@@ -50,15 +49,7 @@ export const ContainerBuy: FC<PropsT> = ({onClose, amount}) => {
         return ""
     };
     const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
-        const payload: WithdrawReqBodyT = {
-            cy: cy,
-            account: values.account,
-            all: +values.money === amount,
-            lang: lang,
-            money: +values.money,
-            type: values.type,
-        }
-        dispatch(withdraw(payload, onClose))
+
     };
 
 
@@ -81,8 +72,8 @@ export const ContainerBuy: FC<PropsT> = ({onClose, amount}) => {
                                 <TakeMoneyWay
                                     type={values.type}
                                     setType={(type: MoneyWayT) => setFieldValue("type", type)}/>
-                                    <p>{t("sum-text") + ": " + amount}</p>
-                                <Button mod={values.money ? "gradient" : "grey"}
+                                    <p>{t("sum-text") + ": 1.5$"}</p>
+                                <Button mod={values.type ? "gradient" : "grey"}
                                         children={t("buy-btn")}
                                         m={"15px 0 0 0"}
                                         type="submit"/>

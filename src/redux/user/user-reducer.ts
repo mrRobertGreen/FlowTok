@@ -81,6 +81,20 @@ export default function userReducer(state = initialState, action: ActionsType): 
                ...state,
             }
          }
+      case "user/SET_PROMO":
+         if (state.userData) {
+            return {
+               ...state,
+               userData: {
+                  ...state.userData,
+                  promo: action.promo
+               }
+            }
+         } else {
+            return {
+               ...state,
+            }
+         }
       case "user/SET_WALLET":
          if (state.userData) {
             return {
@@ -137,6 +151,7 @@ export const userActions = {
    setContainerType: (payload: ContainerT) => ({type: "user/SET_CONTAINER_TYPE", payload} as const),
    setBank: (bank: number | undefined) => ({type: "user/SET_BANK", bank} as const),
    setGift: (gift: boolean) => ({type: "user/SET_GIFT", gift} as const),
+   setPromo: (promo: boolean) => ({type: "user/SET_PROMO", promo} as const),
    setWallet: (wallet: number) => ({type: "user/SET_WALLET", wallet} as const),
    setHistory: (history: Array<HistoryItemT>) => ({type: "user/SET_HISTORY", history} as const),
    clear: () => ({type: "user/CLEAR"} as const),
@@ -225,7 +240,8 @@ export const closeGift = (): ThunkType => {
       await commonThunkHandler(async () => {
          const res = await userApi.closeGift(getBody())
          if (res.success) {
-            dispatch(userActions.setGift(false))
+            dispatch(userActions.setGift(res.data.gift))
+            dispatch(userActions.setPromo(res.data.promo))
          }
       }, dispatch)
    }

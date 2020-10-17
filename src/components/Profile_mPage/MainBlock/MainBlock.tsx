@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss";
 import Balance from "./Balance/Balance";
 import {RootStateType} from "../../../redux/store";
-import {getUserData} from "../../../redux/user/user-reducer";
+import {closeGift, getUserData} from "../../../redux/user/user-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import {useCache} from "../../../hooks/useCache";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,6 +13,7 @@ import {Gift} from "../../Gift/Gift";
 import {OffShore} from "../../OffShore/OffShore";
 import {useTranslation} from "react-i18next";
 import {Notification} from "../../Notification/Notification";
+import Modal from "../../common/Modal/Modal";
 
 
 type PropsType = {}
@@ -44,14 +45,17 @@ const MainBlock: FC<PropsType> = () => {
       wallet,
       history,
       gift,
-      isAdmin
+      isAdmin,
+      promo
    } = userData;
 
 
 
    return (
       <div className={styles.wrapper}>
-         {/*<Notification onClose={() => {}}/>*/}
+         <Modal isOpen={promo}>
+            <Notification onClose={() => dispatch(closeGift())}/>
+         </Modal>
          <div className={styles.grid}>
             <div className={styles.gift}>
                {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}

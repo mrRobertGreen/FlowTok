@@ -126,9 +126,9 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
 
    return (
       <div className={styles.wrapper}>
-         <Modal isOpen={true}>
-            <ContainerBuy onClose={() => setIsModal(false)} amount={100} />
-         </Modal>
+         {/*<Modal isOpen={true}>*/}
+         {/*   <ContainerBuy onClose={() => setIsModal(false)} amount={100} />*/}
+         {/*</Modal>*/}
          <div className={styles.header}>
             <div className={styles.purchase}>{t("purchase-title")}</div>
             <div className={styles.balance}>
