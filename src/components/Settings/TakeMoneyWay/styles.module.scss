@@ -24,7 +24,18 @@
     width: 100%;
     background-color: white;
 
+    display: flex;
+    align-items: center;
+
     padding: 5px 10px;
+  }
+  .text {
+    padding-right: 6px;
+  }
+  .icon {
+    width: 14px;
+    height: 15px;
+    //padding-right: 5px;
   }
   .active {
     border: 1px solid $violet-blue;

@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+    import React, {FC} from "react";
 import styles from "./styles.module.scss"
 import Button from "../../../components/Button/Button";
 import {NavLink} from "react-router-dom";
