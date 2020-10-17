@@ -51,7 +51,7 @@ const MainBlock: FC<PropsType> = () => {
 
    return (
       <div className={styles.wrapper}>
-         <Notification onClose={() => {}}/>
+         {/*<Notification onClose={() => {}}/>*/}
          <div className={styles.grid}>
             <div className={styles.gift}>
                {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}

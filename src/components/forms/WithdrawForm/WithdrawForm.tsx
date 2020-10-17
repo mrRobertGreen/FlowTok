@@ -34,20 +34,26 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
    const placeholders = {
       yandex: `Yandex ${t("money-text")}`,
       qiwi: `Qiwi ${t("wallet-text")}`,
-      wmr: `Webmoney R`,
-      wmz: `Webmoney Z`,
+      wm: `Webmoney`,
       card: `${t("bank-account-text")}`,
       phone: `${t("phone-number-text")}`,
+      crypto: `${t("cryptocurrency-text")}`,
+      perfect: "Perfect Money",
+      payer: "Payeer",
+      free: "Free-Kassa"
    }
+
 
    const getPlaceholder = (type: MoneyWayT) => {
       switch (type) {
          case "card": return placeholders.card
-         case "wmz": return placeholders.wmz
-         case "wmr": return placeholders.wmr
+         case "wm": return placeholders.wm
          case "qiwi": return placeholders.qiwi
          case "yandex": return placeholders.yandex
-         case "phone": return placeholders.phone
+         case "crypto": return placeholders.crypto
+         case "perfect": return placeholders.perfect
+         case "payer": return placeholders.payer
+         case "free": return placeholders.free
       }
       return ""
    }

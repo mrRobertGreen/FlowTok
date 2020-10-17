@@ -26,6 +26,8 @@ import {useTranslation} from "react-i18next";
 
 import {RootStateType} from "../../redux/store";
 import {round, smartRound} from "../../utils/realTimeData";
+import Modal from "../common/Modal/Modal";
+import {ContainerBuy} from "../ContainerBuy/ContainerBuy";
 
 
 type PropsT = {
@@ -63,6 +65,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
    }
 
    const {t} = useTranslation()
+
 
    useEffect(() => {
       if (inputValue) setInputError("")
@@ -119,9 +122,13 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
             return battery_10
       }
    }
+   const [isModal, setIsModal] = useState(false)
 
    return (
       <div className={styles.wrapper}>
+         <Modal isOpen={true}>
+            <ContainerBuy onClose={() => setIsModal(false)} amount={100} />
+         </Modal>
          <div className={styles.header}>
             <div className={styles.purchase}>{t("purchase-title")}</div>
             <div className={styles.balance}>
