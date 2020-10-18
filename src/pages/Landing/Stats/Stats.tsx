@@ -46,7 +46,7 @@ export const Stats: FC = () => {
       <div className={styles.wrapper}>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {userStats.quantity}
+               {new Intl.NumberFormat('ru-RU' ).format(userStats.quantity)}
             </p>
             <p className={styles.little}>
                {t("container-users-text")}
@@ -54,7 +54,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {paid} $
+               {new Intl.NumberFormat('ru-RU' ).format(paid)} $
             </p>
             <p className={styles.little}>
                {t("paid-text")}
@@ -62,7 +62,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {average} $
+               {new Intl.NumberFormat('ru-RU' ).format(average)} $
             </p>
             <p className={styles.little}>
                {t("average-text")}
