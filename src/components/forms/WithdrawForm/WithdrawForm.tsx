@@ -59,6 +59,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
          case "free": return placeholders.free
          case "wmr": return placeholders.wmr
          case "wmz": return placeholders.wmz
+         case "phone": return placeholders.phone
       }
       return ""
    }
@@ -136,7 +137,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                      )}
                   </Field>
                   <Button mod={values.money ? "gradient" : "grey"}
-                          children={t("pay-out-btn")}
+                          children={isAdd ? t("balance-payin") : t("balance-payoff")}
                           m={"15px 0 0 0"}
                           type="submit"/>
                </Form>}
