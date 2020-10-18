@@ -38,14 +38,19 @@
   padding-top: 15px;
 }
 
+
+
 @media (min-width: 767px) {
   .wrapper {
     width: 60%;
   }
 }
-@media (max-width: 350px) {
+@media (max-width: 330px) {
   .wrapper {
     min-width: 300px;
+  }
+  .text {
+    padding-top: 10px;
   }
 }
 
