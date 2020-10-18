@@ -28,8 +28,8 @@ export const History: FC<PropsType> = ({
             {t("history-title")}
          </div>
          <div className={styles.history}>
-            {history.map(h => (
-               <div>
+            {history.map((h, idx) => (
+               <div key={idx}>
                   <div className={styles.historyItem}>
                      <div className={styles.row}>
                         <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>

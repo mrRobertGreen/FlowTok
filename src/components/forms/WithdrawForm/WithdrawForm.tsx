@@ -7,8 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Input} from "../../Input/Input";
 import {MoneyWayT, TakeMoneyWay} from "../../Settings/TakeMoneyWay/TakeMoneyWay";
 import {Separator} from "../../Separator/Separator";
-import {withdraw} from "../../../redux/user/user-reducer";
-import {WithdrawReqBodyT} from "../../../api/user-api";
+import {payIn, payOut} from "../../../redux/user/user-reducer";
+import {PayInReqBodyT, PayOutReqBodyT} from "../../../api/user-api";
 import {RootStateType} from "../../../redux/store";
 import {useTranslation} from "react-i18next";
 
@@ -36,7 +36,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
       yandex: `Yandex ${t("money-text")}`,
       qiwi: `Qiwi ${t("wallet-text")}`,
       wm: `Webmoney`,
-      wmz:"Webmoney Z",
+      wmz: "Webmoney Z",
       wmr: "Webmoney R",
       card: `${t("bank-account-text")}`,
       phone: `${t("phone-number-text")}`,
@@ -45,35 +45,77 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
       payer: "Payeer",
       free: "Free-Kassa"
    }
+   const ids = {
+      yandex: 45,
+      qiwi: 63,
+      wm: 2,
+      card: 160,
+      perfect: 64,
+   }
 
 
    const getPlaceholder = (type: MoneyWayT) => {
       switch (type) {
-         case "card": return placeholders.card
-         case "wm": return placeholders.wm
-         case "qiwi": return placeholders.qiwi
-         case "yandex": return placeholders.yandex
-         case "crypto": return placeholders.crypto
-         case "perfect": return placeholders.perfect
-         case "payer": return placeholders.payer
-         case "free": return placeholders.free
-         case "wmr": return placeholders.wmr
-         case "wmz": return placeholders.wmz
-         case "phone": return placeholders.phone
+         case "card":
+            return placeholders.card
+         case "wm":
+            return placeholders.wm
+         case "qiwi":
+            return placeholders.qiwi
+         case "yandex":
+            return placeholders.yandex
+         case "crypto":
+            return placeholders.crypto
+         case "perfect":
+            return placeholders.perfect
+         case "payer":
+            return placeholders.payer
+         case "free":
+            return placeholders.free
+         case "wmr":
+            return placeholders.wmr
+         case "wmz":
+            return placeholders.wmz
+         case "phone":
+            return placeholders.phone
       }
       return ""
    }
 
-   const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
-      const payload: WithdrawReqBodyT = {
-         cy: cy,
-         account: values.account,
-         all: +values.money === balance,
-         lang: lang,
-         money: +values.money,
-         type: values.type,
+   const getId = (type: MoneyWayT) => {
+      switch (type) {
+         case "card":
+            return ids.card
+         case "wm":
+            return ids.wm
+         case "qiwi":
+            return ids.qiwi
+         case "yandex":
+            return ids.yandex
+         case "perfect":
+            return ids.perfect
       }
-      dispatch(withdraw(payload, onClose))
+      return null
+   }
+
+   const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {
+      if (!isAdd) {
+         const payload: PayOutReqBodyT = {
+            cy: cy,
+            account: values.account,
+            all: +values.money === balance,
+            lang: lang,
+            money: +values.money,
+            type: values.type,
+         }
+         dispatch(payOut(payload, onClose))
+      } else {
+         const payload: PayInReqBodyT = {
+            money: +values.money,
+            id: getId(values.type),
+         }
+         dispatch(payIn(payload, onClose))
+      }
    }
 
    return (
@@ -92,13 +134,13 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                      type={values.type}
                      setType={(type: MoneyWayT) => setFieldValue("type", type)} isAdd={isAdd}/>
                   <Field name={"account"}
-                         validate={validateRequiredField}
+                         validate={isAdd ? undefined : validateRequiredField}
                   >
                      {({
                           field,
                           form: {touched, errors}
                        }: FieldProps) => (
-                         isAdd ?  <span /> : <Input
+                        isAdd ? <span/> : <Input
                            mod={"white"}
                            type={"number"}
                            placeholder={t("phone-or-card-textarea") + getPlaceholder(values.type)}
@@ -114,13 +156,13 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                      <p className={styles.balance__numbers}>{balance}{cy === "RUB" ? "₽" : "$"}</p>
                   </div>
                   <p className={styles.add}>{t("sum-text")}</p>
-                  { isAdd ? <span /> :
-                  <Button mod={"white"}
-                          isActive={+values.money === balance}
-                          children={t("all-sum-btn")}
-                          onClick={() => setFieldValue("money", balance)}
-                          m={"0 0 10px"}
-                          type={"button"}/> }
+                  {isAdd ? <span/> :
+                     <Button mod={"white"}
+                             isActive={+values.money === balance}
+                             children={t("all-sum-btn")}
+                             onClick={() => setFieldValue("money", balance)}
+                             m={"0 0 10px"}
+                             type={"button"}/>}
                   <Field name={"money"}>
                      {({
                           field,
@@ -137,7 +179,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                      )}
                   </Field>
                   <Button mod={values.money ? "gradient" : "grey"}
-                          children={isAdd ? t("refill-btn"):t("pay-out-btn")}
+                          children={isAdd ? t("refill-btn") : t("pay-out-btn")}
                           m={"15px 0 0 0"}
                           type="submit"/>
                </Form>}

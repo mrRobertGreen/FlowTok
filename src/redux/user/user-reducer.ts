@@ -5,7 +5,7 @@ import {
    RefDataType, SendTicketMessageReqBodyT,
    StatsType, TicketT,
    userApi,
-   UserDataType, WithdrawReqBodyT
+   UserDataType, PayOutReqBodyT, PayInReqBodyT
 } from "../../api/user-api";
 import {authActions, exit} from "../auth/auth-reducer";
 import {checkMessageNotification} from "../../utils/checkMessageNotification";
@@ -246,15 +246,23 @@ export const closeGift = (): ThunkType => {
       }, dispatch)
    }
 }
-export const withdraw = (payload: WithdrawReqBodyT, closeForm?: () => void): ThunkType => {
+export const payOut = (payload: PayOutReqBodyT, closeForm?: () => void): ThunkType => {
    return async (dispatch) => {
       await commonThunkHandler(async () => {
-         const res = await userApi.withdraw(payload)
+         const res = await userApi.payOut(payload)
          if (res.success) {
             await dispatch(getUserData())
          }
          if (closeForm) closeForm()
          checkMessageNotification(res, dispatch)
+      }, dispatch)
+   }
+}
+export const payIn = (payload: PayInReqBodyT, closeForm?: () => void): ThunkType => {
+   return async (dispatch) => {
+      await commonThunkHandler(async () => {
+         const link = await userApi.payIn(payload)
+         window.location.href = link
       }, dispatch)
    }
 }

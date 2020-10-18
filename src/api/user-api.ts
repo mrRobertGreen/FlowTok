@@ -2,6 +2,7 @@ import {BaseDataType, BaseResponseType, instance, NotificationT} from "./api";
 import {WithdrawTypes} from "../pages/Withdraw_m/Withdraw_m";
 import {CyT, LangT} from "../redux/app/app-reducer";
 import {MoneyWayT} from "../components/Settings/TakeMoneyWay/TakeMoneyWay";
+import axios from "axios";
 
 export const userApi = {
    getUserData(body: BaseBodyT) {
@@ -43,18 +44,27 @@ export const userApi = {
    closeGift(body: BaseBodyT) {
       return instance.post<BaseResponseType<{ gift: boolean, promo: boolean }>>(`/users/user/gift/close`, body).then(res => res.data)
    },
-   withdraw(body: WithdrawReqBodyT) {
+   payOut(body: PayOutReqBodyT) {
       return instance.post<BaseResponseType<BaseDataType>>(`/money/get`, body).then(res => res.data)
    },
+   payIn({id, money, promo}: PayInReqBodyT) {
+      return axios.get<string>(`https://take-container.com/pay_link_free.php?oa=${money}&token=${localStorage.getItem("token")}${id ? "&i=" + id : ""}${promo ? "&promo=true" : ""}`).then(res => res.data)
+   },
+
 };
 
 // types
-export type WithdrawReqBodyT = {
+export type PayOutReqBodyT = {
    account?: string
    money?: number
    type?: MoneyWayT
    all: boolean
 } & BaseBodyT
+export type PayInReqBodyT = {
+   money: number
+   id: number | null
+   promo?: boolean
+}
 export type CreateTicketReqBodyT = {
    topic: string
    text: string

@@ -61,7 +61,7 @@ const MainBlock: FC<PropsType> = () => {
                {gift && <Gift title={t("gift-title")} text={t("gift-text")}/>}
             </div>
             <div className={styles.balance}>
-               <Balance value={wallet} history={history} isAdmin={isAdmin}/>
+               <Balance value={wallet} history={history} isAdmin={isAdmin} isPromo={promo}/>
             </div>
             <div className={styles.offshore}>
                <OffShore/>

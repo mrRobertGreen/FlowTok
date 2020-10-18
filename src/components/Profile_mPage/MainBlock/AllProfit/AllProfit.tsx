@@ -37,8 +37,8 @@ export const AllProfit: FC<PropsType> = ({}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (data && bank && data.everySecMoney.all > 0) {
-                console.log("bank: " + bank)
-                console.log("\n")
+                // console.log("bank: " + bank)
+                // console.log("\n")
                 // увеличиваю оффшор
                 dispatch(userActions.setBank(bank + data.everySecMoney.all / 10))
             }
@@ -52,18 +52,18 @@ export const AllProfit: FC<PropsType> = ({}) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (data && data.everySecMoney.all > 0) {
-                console.log("everySecMoneySmall: " + data.everySecMoney.small)
-                console.log("realDayMoneySmall: " + data.realDayMoney.small)
-
-                console.log("everySecMoneyLarge: " + data.everySecMoney.large)
-                console.log("realDayMoneyLarge: " + data.realDayMoney.large)
-
-                console.log("everySecMoneyRefrigerator: " + data.everySecMoney.refrigerator)
-                console.log("realDayMoneyRefrigerator: " + data.realDayMoney.refrigerator)
-
-                console.log("everySecMoneyAll: " + data.everySecMoney.all)
-                console.log("realDayMoneyAll: " + data.realDayMoney.all)
-                console.log("\n")
+                // console.log("everySecMoneySmall: " + data.everySecMoney.small)
+                // console.log("realDayMoneySmall: " + data.realDayMoney.small)
+                //
+                // console.log("everySecMoneyLarge: " + data.everySecMoney.large)
+                // console.log("realDayMoneyLarge: " + data.realDayMoney.large)
+                //
+                // console.log("everySecMoneyRefrigerator: " + data.everySecMoney.refrigerator)
+                // console.log("realDayMoneyRefrigerator: " + data.realDayMoney.refrigerator)
+                //
+                // console.log("everySecMoneyAll: " + data.everySecMoney.all)
+                // console.log("realDayMoneyAll: " + data.realDayMoney.all)
+                // console.log("\n")
 
                 const realTimeData: RealMoneyDataT = {
                     everySecMoney: {...data.everySecMoney},
