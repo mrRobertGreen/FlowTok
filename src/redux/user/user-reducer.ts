@@ -167,6 +167,7 @@ export const getUserData = (): ThunkType => { // getting and setting user data
          if (data.success) { // if token is true
             dispatch(userActions.setUserData(data.data))
             await localStorage.setItem("userData", JSON.stringify(data.data))
+
             dispatch(userActions.setBank(data.data.bank))
 
             const {allDayMoney, allTimeMoney} = data.data

@@ -6,7 +6,7 @@ import {HistoryItemT} from "../../../../api/user-api";
 import {useDispatch, useSelector} from "react-redux";
 import {getHistory} from "../../../../redux/user/user-reducer";
 import {useTranslation} from "react-i18next";
-import {round, smartRound} from "../../../../utils/realTimeData";
+import {format, round, smartRound} from "../../../../utils/realTimeData";
 import {RootStateType} from "../../../../redux/store";
 
 export type PropsType = {
@@ -33,7 +33,7 @@ export const History: FC<PropsType> = ({
                   <div className={styles.historyItem}>
                      <div className={styles.row}>
                         <div className={h.sign === 1 ? styles.operation_green : styles.operation_red}>
-                           {h.sign === 1 && "+"}{smartRound(h.sign * h.value)}{cy === "RUB" ? "₽" : "$"}
+                           {h.sign === 1 && "+"}{format(smartRound(h.sign * h.value))}{cy === "RUB" ? "₽" : "$"}
                         </div>
                         <div className={styles.type}>
                            {h.type}

@@ -14,6 +14,7 @@ import men from "../../../../media/images_new/user copy@2x.svg";
 import separator from "../../../../media/images_new/VerticalLine.svg"
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
+import {format, round} from "../../../../utils/realTimeData";
 
 type PropsType = {
     refData: ReferralT
@@ -98,7 +99,7 @@ export const Refs: FC<PropsType> = ({refData}) => {
                                 {t("refs-earned")}
                             </div>
                             <div className={styles.numbers}>
-                                {money}{cy === "RUB" ? "₽" : "$"}
+                                {format(money)}{cy === "RUB" ? "₽" : "$"}
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ export function getSecondsToday() {
 }
 
 export const round = function(number: number, digits: number) {
-   return new Intl.NumberFormat('ru-RU' ).format(+number.toFixed(digits));
+   return +number.toFixed(digits)
 }
 export const smartRound = function(number: number) {
    // если число больше 6 знаков, то обрезаем его
@@ -20,8 +20,12 @@ export const smartRound = function(number: number) {
          default: return round(number, 5)
       }
    }
-   else return new Intl.NumberFormat('ru-RU' ).format(number)
+   else return number
 
+}
+
+export const format = (number: number) => {
+   return new Intl.NumberFormat('ru-RU' ).format(number)
 }
 
 export const getRealTimeProfit = (everySecMoney: number) => {

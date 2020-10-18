@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from "react";
 import styles from "./styles.module.scss"
 import {UserMoneyT} from "../../../../api/user-api";
-import {getEverySecMoney, getSecondsToday, round, smartRound} from "../../../../utils/realTimeData";
+import {format, getEverySecMoney, getSecondsToday, round, smartRound} from "../../../../utils/realTimeData";
 import {getUserData, RealMoneyDataT, userActions} from "../../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
@@ -100,26 +100,26 @@ export const AllProfit: FC<PropsType> = ({maxBank}) => {
                {t("allProfit-label")}
             </div>
             <div className={styles.money}>
-               {round(realAllTimeMoney.all, 10)}{cy === "RUB" ? "₽" : "$"}
-               <p className={styles.profit}>+{round(realDayMoney.all, 10)}{cy === "RUB" ? "₽" : "$"}</p>
+               {format(round(realAllTimeMoney.all, 10))}{cy === "RUB" ? "₽" : "$"}
+               <p className={styles.profit}>+{format(round(realDayMoney.all, 10))}{cy === "RUB" ? "₽" : "$"}</p>
             </div>
             <div className={styles.footer}>
                <div className={styles.column}>
                   <p className={styles.size}>Small</p>
-                  <p className={styles.money_2}>{smartRound(realAllTimeMoney.small)}{cy === "RUB" ? "₽" : "$"}</p>
-                  <p className={styles.profit}>+{smartRound(realDayMoney.small)}{cy === "RUB" ? "₽" : "$"}</p>
+                  <p className={styles.money_2}>{format(smartRound(realAllTimeMoney.small))}{cy === "RUB" ? "₽" : "$"}</p>
+                  <p className={styles.profit}>+{format(smartRound(realDayMoney.small))}{cy === "RUB" ? "₽" : "$"}</p>
                </div>
                <div className={styles.column}>
                   <p className={styles.size}>Large</p>
-                  <p className={styles.money_2}>{smartRound(realAllTimeMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
-                  <p className={styles.profit}>+{smartRound(realDayMoney.large)}{cy === "RUB" ? "₽" : "$"}</p>
+                  <p className={styles.money_2}>{format(smartRound(realAllTimeMoney.large))}{cy === "RUB" ? "₽" : "$"}</p>
+                  <p className={styles.profit}>+{format(smartRound(realDayMoney.large))}{cy === "RUB" ? "₽" : "$"}</p>
                </div>
                <div className={`${styles.column} ${styles.last}`}>
                   <p className={styles.size}>Refrigerator</p>
                   <p className={styles.money_2}>
-                     {smartRound(realAllTimeMoney.refrigerator)}{cy === "RUB" ? "₽" : "$"}
+                     {format(smartRound(realAllTimeMoney.refrigerator))}{cy === "RUB" ? "₽" : "$"}
                   </p>
-                  <p className={styles.profit}>+{smartRound(realDayMoney.refrigerator)}{cy === "RUB" ? "₽" : "$"}</p>
+                  <p className={styles.profit}>+{format(smartRound(realDayMoney.refrigerator))}{cy === "RUB" ? "₽" : "$"}</p>
                </div>
             </div>
 

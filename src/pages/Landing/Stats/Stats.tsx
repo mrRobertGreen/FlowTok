@@ -4,7 +4,7 @@ import {userApi} from "../../../api/user-api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
 import {getUsersCount} from "../../../redux/user/user-reducer";
-import {getAverage, getPaid} from "../../../utils/realTimeData";
+import {format, getAverage, getPaid, round} from "../../../utils/realTimeData";
 import {useTranslation} from "react-i18next";
 
 
@@ -46,7 +46,7 @@ export const Stats: FC = () => {
       <div className={styles.wrapper}>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {new Intl.NumberFormat('ru-RU' ).format(userStats.quantity)}
+               {format(userStats.quantity)}
             </p>
             <p className={styles.little}>
                {t("container-users-text")}
@@ -54,7 +54,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {new Intl.NumberFormat('ru-RU' ).format(paid)} $
+               {format(paid)} $
             </p>
             <p className={styles.little}>
                {t("paid-text")}
@@ -62,7 +62,7 @@ export const Stats: FC = () => {
          </div>
          <div className={styles.container}>
             <p className={styles.bold}>
-               {new Intl.NumberFormat('ru-RU' ).format(average)} $
+               {format(average)} $
             </p>
             <p className={styles.little}>
                {t("average-text")}

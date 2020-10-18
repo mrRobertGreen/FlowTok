@@ -19,6 +19,7 @@ import {setLanguage} from "./utils/setLanguage";
 import {Support} from "./pages/Support/Support";
 import {Ticket} from "./pages/Ticket/Ticket";
 
+
 const App: FC = () => {
    const dispatch = useDispatch()
    const isInit = useSelector((state: RootStateType) => state.app.isInit)
@@ -51,8 +52,6 @@ const App: FC = () => {
    }
 
    const desktopStyle = {
-      // width: `${document.body.clientHeight * 0.47229219}px`,
-      // margin: "0 auto",
       height: "100%",
    }
    const mobileStyle = {

@@ -7,7 +7,7 @@ import {HistoryItemT, PayOutReqBodyT} from "../../../../api/user-api";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
-import {smartRound} from "../../../../utils/realTimeData";
+import {format, smartRound} from "../../../../utils/realTimeData";
 import {WithdrawalModal} from "../../../WithdrawalModal/WithdrawalModal";
 import {payOut} from "../../../../redux/user/user-reducer";
 
@@ -59,7 +59,7 @@ const Balance: FC<PropsType> = ({value, history, isAdmin, isPromo}) => {
                   {t("balance")}
                </div>
                <div className={styles.money}>
-                  {smartRound(value)}{cy === "RUB" ? "₽" : "$"}
+                  {format(smartRound(value))}{cy === "RUB" ? "₽" : "$"}
                </div>
             </div>
 

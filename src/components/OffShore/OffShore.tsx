@@ -5,7 +5,14 @@ import {Card} from "../Card/Card";
 import Button from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../redux/store";
-import {getAllTimeMoney, getEverySecMoney, getRealTimeProfit, getSecondsToday, round} from "../../utils/realTimeData";
+import {
+    format,
+    getAllTimeMoney,
+    getEverySecMoney,
+    getRealTimeProfit,
+    getSecondsToday,
+    round
+} from "../../utils/realTimeData";
 import {transfer} from "../../redux/user/user-reducer";
 import {useTranslation} from "react-i18next";
 import Modal from "../common/Modal/Modal";
@@ -46,10 +53,10 @@ export const OffShore: FC<PropsType> = ({maxBank}) => {
                     {t("balance")}
                 </div>
                 <div className={styles.sum}>
-                    <p className={styles.money}>{round(bank, 10)}{cy === "RUB" ? "₽" : "$"}</p>
+                    <p className={styles.money}>{format(round(bank, 10))}{cy === "RUB" ? "₽" : "$"}</p>
                 </div>
                 <div className={styles.subLabel}>
-                    {t("from") + " " + maxBank}{cy === "RUB" ? "₽" : "$"}
+                    {t("from") + " " + format(round(maxBank, 10))}{cy === "RUB" ? "₽" : "$"}
                 </div>
                 <Button mod={isLoading ? "loading" : "gradient"} onClick={onTransfer}>
                     {t("offShore-inWallet")}

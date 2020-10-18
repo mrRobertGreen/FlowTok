@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "./styles.module.scss";
 import Balance from "./Balance/Balance";
 import {RootStateType} from "../../../redux/store";
@@ -15,7 +15,6 @@ import {useTranslation} from "react-i18next";
 import {Notification} from "../../Notification/Notification";
 import Modal from "../../common/Modal/Modal";
 
-
 type PropsType = {}
 
 const MainBlock: FC<PropsType> = () => {
@@ -29,17 +28,16 @@ const MainBlock: FC<PropsType> = () => {
 
    const {t} = useTranslation()
 
-   useEffect(() => {
-      dispatch(getUserData())
-   }, [])
+   // useEffect(() => {
+   //    debugger
+   //    dispatch(getUserData())
+   // }, [])
 
    if (!userData) {
       return <Preloader/>
    }
 
    const {
-      allTimeMoney,
-      allDayMoney,
       containers,
       referral,
       wallet,
@@ -49,8 +47,6 @@ const MainBlock: FC<PropsType> = () => {
       promo,
       maxBank
    } = userData;
-
-
 
    return (
       <div className={styles.wrapper}>

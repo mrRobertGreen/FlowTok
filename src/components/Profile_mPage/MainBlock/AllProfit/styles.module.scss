@@ -113,11 +113,32 @@
     }
   }
 }
-
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .footer {
     .column {
       max-width: 140px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .footer {
+    .column {
+      max-width: 170px;
+    }
+  }
+}
+@media (min-width: 700px) {
+  .footer {
+    .column {
+      max-width: 195px;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .footer {
+    .column {
+      max-width: 170px;
     }
   }
 }

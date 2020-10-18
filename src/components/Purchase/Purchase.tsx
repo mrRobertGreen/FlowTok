@@ -25,7 +25,7 @@ import {CyT, LangT} from "../../redux/app/app-reducer";
 import {useTranslation} from "react-i18next";
 
 import {RootStateType} from "../../redux/store";
-import {round, smartRound} from "../../utils/realTimeData";
+import {format, round, smartRound} from "../../utils/realTimeData";
 import Modal from "../common/Modal/Modal";
 import {ContainerBuy} from "../ContainerBuy/ContainerBuy";
 
@@ -66,19 +66,20 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
 
    const {t} = useTranslation()
 
-
    useEffect(() => {
+      console.log(+inputValue)
       if (inputValue) setInputError("")
    }, [inputValue])
 
    useEffect(() => {
+
       setRealTimeData(calculateContainerData(cost, +inputValue))
    }, [inputValue, cost])
 
    const onSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
       if (+inputValue < data.min) {
-         setInputError(`Сумма не может быть меньше ${round(data.min, 2)}${cy === "RUB" ? "₽" : "$"}`)
+         setInputError(`Сумма не может быть меньше ${format(round(data.min, 2))}${cy === "RUB" ? "₽" : "$"}`)
          return
       }
 
@@ -133,7 +134,7 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
             <div className={styles.purchase}>{t("purchase-title")}</div>
             <div className={styles.balance}>
                <p className={styles.numbers}>
-                  {t("balance-text")}: {smartRound(wallet)}{cy === "RUB" ? "₽" : "$"}
+                  {t("balance-text")}: {format(smartRound(wallet))}{cy === "RUB" ? "₽" : "$"}
                </p>
                <button className={styles.plusButton}><img src={plus} style={{width: "17px"}} alt=""/></button>
             </div>
