@@ -46,7 +46,8 @@ const MainBlock: FC<PropsType> = () => {
       history,
       gift,
       isAdmin,
-      promo
+      promo,
+      maxBank
    } = userData;
 
 
@@ -64,10 +65,10 @@ const MainBlock: FC<PropsType> = () => {
                <Balance value={wallet} history={history} isAdmin={isAdmin} isPromo={promo}/>
             </div>
             <div className={styles.offshore}>
-               <OffShore/>
+               <OffShore maxBank={maxBank}/>
             </div>
             <div className={styles.miniCard2}>
-               <AllProfit allTimeMoney={allTimeMoney} allDayMoney={allDayMoney}/>
+               <AllProfit maxBank={maxBank}/>
             </div>
             {/*<div className={styles.containers}>*/}
                {containers.map((item, idx) => (

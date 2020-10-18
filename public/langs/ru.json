@@ -97,6 +97,8 @@
       "money-text": "Деньги",
       "wallet-text": "кошелек",
       "bank-account-text": "Банковская карта",
+      "bank-account-ru-text": "Банковская карта (Россия)",
+      "bank-account-ua-text": "Банковская карта (Украина)",
       "phone-number-text": "Моб. телефон",
       "registration-title": "Регистрация",
       "individual-button": "Физ. лицо",
@@ -113,7 +115,8 @@
       "buy-container-title": "Покупка контейнера",
       "cryptocurrency-text": "Криптовалюта",
       "refill-title": "Пополнение",
-      "refill-btn" : "Пополнить"
+      "refill-btn" : "Пополнить",
+      "from": "из"
     }
   }
 }

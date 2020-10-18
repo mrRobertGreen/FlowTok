@@ -12,10 +12,10 @@ import Modal from "../common/Modal/Modal";
 import {ToolTip} from "../ToolTip/ToolTip";
 
 type PropsType = {
-
+    maxBank: number
 }
 
-export const OffShore: FC<PropsType> = () => {
+export const OffShore: FC<PropsType> = ({maxBank}) => {
 
     const bank = useSelector((state: RootStateType) => state.user.bank)
     const cy = useSelector((state: RootStateType) => state.app.cy)
@@ -47,6 +47,9 @@ export const OffShore: FC<PropsType> = () => {
                 </div>
                 <div className={styles.sum}>
                     <p className={styles.money}>{round(bank, 10)}{cy === "RUB" ? "₽" : "$"}</p>
+                </div>
+                <div className={styles.subLabel}>
+                    {t("from") + " " + maxBank}{cy === "RUB" ? "₽" : "$"}
                 </div>
                 <Button mod={isLoading ? "loading" : "gradient"} onClick={onTransfer}>
                     {t("offShore-inWallet")}

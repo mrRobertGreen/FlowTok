@@ -112,6 +112,7 @@ export type UserDataType = {
    history?: Array<HistoryItemT>
    isAdmin: boolean
    promo: boolean
+   maxBank: number
 }
 export type GetGiftResT = {
    wallet: number

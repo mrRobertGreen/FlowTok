@@ -20,7 +20,6 @@ export const WithdrawalModal: FC<PropsT> = ({balance, onClose, isAdd,}) => {
                <img src={cross} alt=""/>
             </button>
          </div>
-         <p className={styles.add}>{t("add-text")}</p>
          <WithdrawForm balance={balance} onClose={onClose} isAdd={isAdd}/>
       </div>
    )

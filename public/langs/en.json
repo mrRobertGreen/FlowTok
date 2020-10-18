@@ -98,6 +98,8 @@
       "money-text": "Money",
       "wallet-text": "wallet",
       "bank-account-text": "Bank account",
+      "bank-account-ru-text": "Bank account RUS",
+      "bank-account-ua-text": "Bank account UA",
       "phone-number-text": "Phone number",
       "registration-title": "Registration",
       "individual-button": "Individual",
@@ -114,7 +116,8 @@
       "buy-container-title": "Buying a container",
       "cryptocurrency-text" : "Cryptocurrency",
       "refill-title": "Refill",
-      "refill-btn": "Refill"
+      "refill-btn": "Refill",
+      "from": "from"
     }
   }
 }

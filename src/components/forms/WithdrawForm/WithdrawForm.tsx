@@ -43,7 +43,14 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
       crypto: `${t("cryptocurrency-text")}`,
       perfect: "Perfect Money",
       payer: "Payeer",
-      free: "Free-Kassa"
+      free: "Free-Kassa",
+      advcash: "Advcash",
+      megaphone: "Мегафон",
+      mts: "МТС",
+      beeline: "Билайн",
+      tele2: "Теле2",
+      card_ru: `${t("bank-account-ru-text")}`,
+      card_ua: `${t("bank-account-ua-text")}`,
    }
 
    const getPlaceholder = (type: MoneyWayT) => {
@@ -70,6 +77,20 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
             return placeholders.wmz
          case "phone":
             return placeholders.phone
+         case "tele2":
+            return placeholders.tele2
+         case "beeline":
+            return placeholders.beeline
+         case "mts":
+            return placeholders.mts
+         case "megaphone":
+            return placeholders.megaphone
+         case "advcash":
+            return placeholders.advcash
+         case "card_ru":
+            return placeholders.card_ru
+         case "card_ua":
+            return placeholders.card_ua
       }
       return ""
    }
