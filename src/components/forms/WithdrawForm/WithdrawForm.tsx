@@ -97,9 +97,9 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
          case "perfect":
             return ids.perfect
          case "crypto":
-            return ids.perfect
+            return ids.crypto
          case "free":
-            return ids.perfect
+            return ids.free
       }
       return "another"
    }
@@ -177,7 +177,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                         <Input
                            mod={"white"}
                            type={"number"}
-                           placeholder={t("all-sum-btn")}
+                           placeholder={t("sum-text")}
                            isError={!!(errors.money && touched.money)}
                            errorMessage={errors.money}
                            {...field}

@@ -50,12 +50,13 @@ export const ContainerBuy: FC<PropsT> = ({onClose, isAdd}) => {
          case "perfect":
             return ids.perfect
          case "crypto":
-            return ids.perfect
+            return ids.crypto
          case "free":
-            return ids.perfect
+            return ids.free
       }
       return "another"
    }
+
 
    const onSubmit = (values: ContainerBuyValuesT, {resetForm}: FormikValues) => {
       const payload: PayInReqBodyT = {
