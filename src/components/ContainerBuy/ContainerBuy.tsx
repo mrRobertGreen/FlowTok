@@ -11,9 +11,10 @@ import {WithdrawFormValuesType} from "../forms/WithdrawForm/WithdrawForm";
 
 type PropsT = {
     onClose: () => void
+    isAdd: boolean
 }
 
-export const ContainerBuy: FC<PropsT> = ({onClose}) => {
+export const ContainerBuy: FC<PropsT> = ({onClose, isAdd}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const cy = useSelector((state: RootStateType) => state.app.cy);
@@ -47,7 +48,7 @@ export const ContainerBuy: FC<PropsT> = ({onClose}) => {
                             <Form >
                                 <TakeMoneyWay
                                     type={values.type}
-                                    setType={(type: MoneyWayT) => setFieldValue("type", type)}/>
+                                    setType={(type: MoneyWayT) => setFieldValue("type", type)} isAdd={isAdd}/>
                                     <p className={styles.text}>{t("sum-text") + ": 1.5$"}</p>
                                 <Button mod={values.type ? "gradient" : "grey"}
                                         children={t("buy-btn")}

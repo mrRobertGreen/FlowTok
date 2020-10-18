@@ -51,6 +51,8 @@ export type WithdrawTypes =
    | "yandex"
    | "qiwi"
 
+
+
 const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)
    //@ts-ignore
@@ -59,7 +61,7 @@ const Withdraw_m: FC<PropsType & RouteComponentProps> = ({match}) => {
    return (
       <div className={styles.wrapper}>
          <TopNavbar label={"Вывод средств"}/>
-         <WithdrawForm balance={123} onClose={() => {}}/>
+         <WithdrawForm balance={123} onClose={() => {}} isAdd={false}/>
       </div>
    )
 }

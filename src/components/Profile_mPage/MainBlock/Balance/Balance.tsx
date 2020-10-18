@@ -43,7 +43,10 @@ const Balance: FC<PropsType> = ({value, history, isAdmin}) => {
    return (
       <div data-test={"wrapper"} className={styles.wrapper}>
          <Modal isOpen={isModal}>
-            <WithdrawalModal balance={value} onClose={() => setIsModal(false)}/>
+            <WithdrawalModal balance={value} onClose={() => setIsModal(false)} isAdd={false}/>
+         </Modal>
+         <Modal isOpen={true}>
+            <WithdrawalModal balance={value} onClose={() => setIsModal(false)} isAdd={true} />
          </Modal>
          <div className={styles.main}>
             <div>

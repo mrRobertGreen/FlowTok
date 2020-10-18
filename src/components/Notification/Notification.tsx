@@ -18,7 +18,7 @@ export const Notification: FC<PropsT> = ({onClose}) => {
    return (
       <div className={styles.wrapper}>
          <Modal isOpen={isModal}>
-            <ContainerBuy onClose={() => setIsModal(false)}/>
+            <ContainerBuy onClose={() => setIsModal(false)} isAdd={true}/>
          </Modal>
          <div className={styles.container}>
             <div className={styles.cross_container}>

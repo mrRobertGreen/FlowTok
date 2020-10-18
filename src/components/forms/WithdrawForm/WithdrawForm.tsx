@@ -21,10 +21,11 @@ export type WithdrawFormValuesType = {
 type PropsT = {
    balance: number
    onClose: () => void
+   isAdd: boolean
 }
 
 
-export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
+export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
    const dispatch = useDispatch()
    const cy = useSelector((state: RootStateType) => state.app.cy)
    const lang = useSelector((state: RootStateType) => state.app.lang)
@@ -35,6 +36,8 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
       yandex: `Yandex ${t("money-text")}`,
       qiwi: `Qiwi ${t("wallet-text")}`,
       wm: `Webmoney`,
+      wmz:"Webmoney Z",
+      wmr: "Webmoney R",
       card: `${t("bank-account-text")}`,
       phone: `${t("phone-number-text")}`,
       crypto: `${t("cryptocurrency-text")}`,
@@ -54,6 +57,8 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
          case "perfect": return placeholders.perfect
          case "payer": return placeholders.payer
          case "free": return placeholders.free
+         case "wmr": return placeholders.wmr
+         case "wmz": return placeholders.wmz
       }
       return ""
    }
@@ -84,7 +89,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                <Form className={styles.wrapper}>
                   <TakeMoneyWay
                      type={values.type}
-                     setType={(type: MoneyWayT) => setFieldValue("type", type)}/>
+                     setType={(type: MoneyWayT) => setFieldValue("type", type)} isAdd={isAdd}/>
                   <Field name={"account"}
                          validate={validateRequiredField}
                   >
@@ -92,7 +97,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                           field,
                           form: {touched, errors}
                        }: FieldProps) => (
-                        <Input
+                         isAdd ?  <span /> : <Input
                            mod={"white"}
                            type={"number"}
                            placeholder={t("phone-or-card-textarea") + getPlaceholder(values.type)}
@@ -108,12 +113,13 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose}) => {
                      <p className={styles.balance__numbers}>{balance}{cy === "RUB" ? "₽" : "$"}</p>
                   </div>
                   <p className={styles.add}>{t("sum-text")}</p>
+                  { isAdd ? <span /> :
                   <Button mod={"white"}
                           isActive={+values.money === balance}
                           children={t("all-sum-btn")}
                           onClick={() => setFieldValue("money", balance)}
                           m={"0 0 10px"}
-                          type={"button"}/>
+                          type={"button"}/> }
                   <Field name={"money"}>
                      {({
                           field,
