@@ -137,7 +137,7 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
                      )}
                   </Field>
                   <Button mod={values.money ? "gradient" : "grey"}
-                          children={isAdd ? t("balance-payin") : t("balance-payoff")}
+                          children={isAdd ? t("refill-btn"):t("pay-out-btn")}
                           m={"15px 0 0 0"}
                           type="submit"/>
                </Form>}
