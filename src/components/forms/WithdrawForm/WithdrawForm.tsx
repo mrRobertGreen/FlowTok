@@ -45,14 +45,6 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
       payer: "Payeer",
       free: "Free-Kassa"
    }
-   const ids = {
-      yandex: 45,
-      qiwi: 63,
-      wm: 2,
-      card: 160,
-      perfect: 64,
-   }
-
 
    const getPlaceholder = (type: MoneyWayT) => {
       switch (type) {
@@ -82,6 +74,16 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
       return ""
    }
 
+   const ids = {
+      yandex: 45,
+      qiwi: 63,
+      wm: 2,
+      card: 160,
+      perfect: 64,
+      crypto: null,
+      free: null,
+   }
+
    const getId = (type: MoneyWayT) => {
       switch (type) {
          case "card":
@@ -94,8 +96,12 @@ export const WithdrawForm: FC<PropsT> = ({balance, onClose, isAdd}) => {
             return ids.yandex
          case "perfect":
             return ids.perfect
+         case "crypto":
+            return ids.perfect
+         case "free":
+            return ids.perfect
       }
-      return null
+      return "another"
    }
 
    const onSubmit = (values: WithdrawFormValuesType, {resetForm}: FormikValues) => {

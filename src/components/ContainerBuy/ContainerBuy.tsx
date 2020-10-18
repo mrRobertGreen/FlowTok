@@ -33,6 +33,8 @@ export const ContainerBuy: FC<PropsT> = ({onClose, isAdd}) => {
       wm: 2,
       card: 160,
       perfect: 64,
+      crypto: null,
+      free: null,
    }
 
    const getId = (type: MoneyWayT) => {
@@ -47,8 +49,12 @@ export const ContainerBuy: FC<PropsT> = ({onClose, isAdd}) => {
             return ids.yandex
          case "perfect":
             return ids.perfect
+         case "crypto":
+            return ids.perfect
+         case "free":
+            return ids.perfect
       }
-      return null
+      return "another"
    }
 
    const onSubmit = (values: ContainerBuyValuesT, {resetForm}: FormikValues) => {
@@ -57,7 +63,6 @@ export const ContainerBuy: FC<PropsT> = ({onClose, isAdd}) => {
          id: getId(values.type),
          promo: true,
       }
-      debugger
       dispatch(payIn(payload, onClose))
    };
 

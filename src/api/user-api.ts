@@ -48,7 +48,8 @@ export const userApi = {
       return instance.post<BaseResponseType<BaseDataType>>(`/money/get`, body).then(res => res.data)
    },
    payIn({id, money, promo}: PayInReqBodyT) {
-      return axios.get<string>(`https://take-container.com/pay_link_free.php?oa=${money}&token=${localStorage.getItem("token")}${id ? "&i=" + id : ""}${promo ? "&promo=true" : ""}`).then(res => res.data)
+      if (id === "another") return axios.get<string>(`https://take-container.com/pay_link_payeer.php?value=${money}&token=${localStorage.getItem("token")}${promo ? "&promo=true" : ""}`).then(res => res.data)
+      else return axios.get<string>(`https://take-container.com/pay_link_free.php?oa=${money}&token=${localStorage.getItem("token")}${id ? "&i=" + id : ""}${promo ? "&promo=true" : ""}`).then(res => res.data)
    },
 
 };
@@ -62,7 +63,7 @@ export type PayOutReqBodyT = {
 } & BaseBodyT
 export type PayInReqBodyT = {
    money: number
-   id: number | null
+   id: number | null | "another"
    promo?: boolean
 }
 export type CreateTicketReqBodyT = {
