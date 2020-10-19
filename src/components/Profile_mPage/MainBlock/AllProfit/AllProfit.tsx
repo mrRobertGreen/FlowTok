@@ -1,7 +1,6 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect} from "react";
 import styles from "./styles.module.scss"
-import {UserMoneyT} from "../../../../api/user-api";
-import {format, getEverySecMoney, getSecondsToday, round, smartRound} from "../../../../utils/realTimeData";
+import {format, getSecondsToday, round, smartRound} from "../../../../utils/realTimeData";
 import {getUserData, RealMoneyDataT, userActions} from "../../../../redux/user/user-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../redux/store";
@@ -13,6 +12,7 @@ export type PropsType = {
 }
 
 export const AllProfit: FC<PropsType> = ({maxBank}) => {
+
    const dispatch = useDispatch()
    const bank = useSelector((state: RootStateType) => state.user.bank)
    const data = useSelector((state: RootStateType) => state.user.realMoneyData)
@@ -87,7 +87,7 @@ export const AllProfit: FC<PropsType> = ({maxBank}) => {
 
       }, 100);
       return () => clearInterval(interval);
-   }, [data]);
+   }, [data, bank]);
 
    if (!data) return <Preloader/>
 

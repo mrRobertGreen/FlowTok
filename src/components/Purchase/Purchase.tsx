@@ -28,6 +28,7 @@ import {RootStateType} from "../../redux/store";
 import {format, round, smartRound} from "../../utils/realTimeData";
 import Modal from "../common/Modal/Modal";
 import {ContainerBuy} from "../ContainerBuy/ContainerBuy";
+import {WithdrawalModal} from "../WithdrawalModal/WithdrawalModal";
 
 
 type PropsT = {
@@ -127,16 +128,18 @@ export const Purchase: FC<PropsT> = ({data, type}) => {
 
    return (
       <div className={styles.wrapper}>
-         {/*<Modal isOpen={true}>*/}
-         {/*   <ContainerBuy onClose={() => setIsModal(false)} amount={100} />*/}
-         {/*</Modal>*/}
+         <Modal isOpen={isModal}>
+            <WithdrawalModal onClose={() => setIsModal(false)} isAdd={true} balance={data.wallet}/>
+         </Modal>
          <div className={styles.header}>
             <div className={styles.purchase}>{t("purchase-title")}</div>
             <div className={styles.balance}>
                <p className={styles.numbers}>
                   {t("balance-text")}: {format(smartRound(wallet))}{cy === "RUB" ? "₽" : "$"}
                </p>
-               <button className={styles.plusButton}><img src={plus} style={{width: "17px"}} alt=""/></button>
+               <button className={styles.plusButton} onClick={() => setIsModal(true)}>
+                  <img src={plus} style={{width: "17px"}} alt=""/>
+               </button>
             </div>
 
          </div>
