@@ -9,12 +9,14 @@
   line-height: 18px;
   position: relative;
 }
+
 .btn_gradient {
   @extend .btn;
   background: $gradient;
   color: #ffffff;
   border-radius: 11px;
 }
+
 .btn_copy {
   @extend .btn;
   background: $gradient;
@@ -25,9 +27,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .icon_copy {
     display: block;
   }
+}
+
+.btn_pinkGradient {
+  @extend .btn;
+  background: linear-gradient(225deg, #2246F3 0%, #7832F0 100%);
+  color: #ffffff;
+  border-radius: 11px;
 }
 
 .btn_white {
@@ -35,31 +45,44 @@
   background-color: #fff;
   border: 1.5px solid #E5E5EA;
 }
+
+.btn_blue {
+  @extend .btn;
+  background: #626EF0;
+  border-radius: 11px;
+  color: #FFFFFF;
+}
+
 .btn_black {
   @extend .btn;
   background: black;
   color: white;
 }
+
 .btn_grey {
   @extend .btn;
   background: #E5E5E9;
   color: #838383;
 }
+
 .btn_red {
   @extend .btn;
   background: $red_bg;
   color: white;
 }
+
 .btn_vk {
   @extend .btn;
   background-color: #fff;
   border: 1.5px solid #E5E5EA;
 }
+
 .btn_sex {
   @extend .btn;
   background-color: #fff;
   border: 1px solid #E5E5EA;
   color: #A4A4A4;
+
   .icon_woman {
     left: 7%;
     width: 22px;
@@ -67,11 +90,13 @@
     position: absolute;
     top: calc(50% - 11px);
   }
+
   .icon_man {
     @extend .icon_woman;
     top: calc(50% - 13px);
   }
 }
+
 .icon {
   width: 26px;
   height: 26px;
@@ -79,9 +104,11 @@
   position: absolute;
   top: calc(50% - 13px);
 }
+
 .btn_google {
   @extend .btn_vk;
 }
+
 .btn_active {
   padding: 11px 5px;
   border: 1.5px solid $violet-blue;

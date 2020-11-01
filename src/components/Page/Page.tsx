@@ -59,7 +59,7 @@ export const Page: FC<PropsType> = ({
       >
          {!!isNavbar && <Media queries={queries}>
 				<>
-               {!queries.largeTablet && <NavBar_m pageName={pageName} newTasksNumber={3}/>}
+               {!queries.largeTablet && <NavBar_m pageName={pageName} newTasksNumber={3} isAdProfile={true}/>}
                {queries.largeTablet && <NavBar pageName={pageName} newTasksNumber={3}/>}
 				</>
 			</Media>}

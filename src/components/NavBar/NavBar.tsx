@@ -17,6 +17,7 @@ import {Separator} from "../Separator/Separator";
 import vkIcon from "../../media/icons/vk_link.svg"
 import tgIcon from "../../media/icons/tg_link.svg"
 import instIcon from "../../media/icons/inst_link.svg"
+import {Balance} from "../Panel/Balance/Balance";
 
 type PropsType = {
    pageName?: PageNamesType
@@ -80,6 +81,8 @@ const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
                   </div>
                </div>
             </div>
+            <Separator m={"0"}/>
+            <Balance isCard={true}/>
             <Separator m={"0"}/>
             <NavLink to={"/profile"} onClick={() => dispatch(getUserData())}>
                <div className={styles.item}>
