@@ -20,128 +20,136 @@ import instIcon from "../../media/icons/inst_link.svg"
 import {Balance} from "../Panel/Balance/Balance";
 
 type PropsType = {
-   pageName?: PageNamesType
-   newTasksNumber: number | null
+    pageName?: PageNamesType
+    newTasksNumber: number | null
 }
 
 const NavBar: FC<PropsType> = ({pageName, newTasksNumber}) => {
-   newTasksNumber = 3
-   const dispatch = useDispatch()
-   let profileData = useSelector((state: RootStateType) => state.user.blogProfile)
-   const blogProfileCache = useCache("blogProfile")
+    newTasksNumber = 3
+    const dispatch = useDispatch()
+    let profileData = useSelector((state: RootStateType) => state.user.blogProfile)
+    const blogProfileCache = useCache("blogProfile")
 
-   if (blogProfileCache && !profileData) {
-      profileData = blogProfileCache
-   }
-   if (!profileData) {
-      profileData = {
-         usersForMoney: 123,
-         needVerification: false,
-         type: "blog",
-         image: "",
-         login: "@sdfg",
-         medianViews: "123",
-         name: "Dima",
-         rate: 123,
-         rating: 123,
-         heart: "123",
-         fans: "12M",
-         valueDown: 12,
-         valueUp: 213,
-         holdUp: 12,
-         holdDown: 12,
-         admin: false,
-         newTask: 3,
-         isOffer: false
-      } as BlogProfileDataType
-   }
+    if (blogProfileCache && !profileData) {
+        profileData = blogProfileCache
+    }
+    if (!profileData) {
+        profileData = {
+            usersForMoney: 123,
+            needVerification: false,
+            type: "blog",
+            image: "",
+            login: "@sdfg",
+            medianViews: "123",
+            name: "Dima",
+            rate: 123,
+            rating: 123,
+            heart: "123",
+            fans: "12M",
+            valueDown: 12,
+            valueUp: 213,
+            holdUp: 12,
+            holdDown: 12,
+            admin: false,
+            newTask: 3,
+            isOffer: false
+        } as BlogProfileDataType
+    }
 
-   const {name, login, image} = profileData
+    const {name, login, image} = profileData
 
+    const isAdv = true;
 
-   const gradientText = {
-      background: "linear-gradient(143.49deg, #030F6B -41.61%, #7633F0 98.25%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      textShadow: "0px 0px 10px rgba(255, 251, 118, 0.4)",
-   }
+    const gradientText = {
+        background: "linear-gradient(143.49deg, #030F6B -41.61%, #7633F0 98.25%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        textShadow: "0px 0px 10px rgba(255, 251, 118, 0.4)",
+    }
 
-   return (
-      <nav className={styles.wrapper}>
-         <Logo/>
-         <div className={styles.navbar}>
-            <div className={styles.profile}>
-               <img src={image} alt="" className={styles.avatar}/>
-               <div className={styles.info}>
-                  <div className={styles.name}>
-                     {name}
-                  </div>
-                  <div className={styles.surname}>
-                     {login}
-                  </div>
-               </div>
+    return (
+        <nav className={styles.wrapper}>
+            <Logo/>
+            <div className={styles.navbar}>
+                <div className={styles.profile}>
+                    <img src={image} alt="" className={styles.avatar}/>
+                    <div className={styles.info}>
+                        <div className={styles.name}>
+                            {name}
+                        </div>
+                        <div className={styles.surname}>
+                            {login}
+                        </div>
+                    </div>
+                </div>
+                {isAdv ?
+                    <div>
+                        <Separator m={"0"}/>
+                        <Balance isCard={true}/>
+                    </div> :
+                    <span/>}
+                <Separator m={"0"}/>
+                <NavLink to={"/profile"} onClick={() => dispatch(getUserData())}>
+                    <div className={styles.item}>
+                        <img src={pageName === "Profile" ? homeIconActive : homeIcon} alt="" className={styles.icon}/>
+                        <div
+                            className={styles.label}
+                            style={pageName === "Profile" ?
+                                gradientText
+                                : {color: "#979797"}}
+                        >
+                            {isAdv ? "Панель" : "Главная"}
+                        </div>
+                    </div>
+                </NavLink>
+                <NavLink to={"/work"} className={styles.item}>
+                    <div className={styles.iconWrap}>
+                        <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
+                        {pageName === "Profile" && newTasksNumber &&
+                        <div className={styles.notification}>
+                            {newTasksNumber}
+                        </div>}
+                    </div>
+                    <div
+                        className={styles.label}
+                        style={pageName === "Work" ?
+                            gradientText
+                            : {color: "#979797"}}
+                    >
+                        {isAdv ? "Архив" : " Задание"}
+                    </div>
+                </NavLink>
+                <NavLink to={"/settings"} className={styles.item}>
+                    <img src={pageName === "Settings" ? settingsIconActive : settingsIcon} alt=""
+                         className={styles.icon}/>
+                    <div
+                        className={styles.label}
+                        style={pageName === "Settings" ?
+                            gradientText
+                            : {color: "#979797"}}
+                    >
+                        Настройки
+                    </div>
+                </NavLink>
+                {isAdv ? <span/> :
+                    <div className={styles.socialItems}>
+                        <a href="https://vk.com" target="_blank" rel="noopener noreferrer">
+                            <img src={vkIcon} alt="" className={styles.socialItem}/>
+                        </a>
+                        <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
+                            <img src={tgIcon} alt="" className={styles.socialItem}/>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                            <img src={instIcon} alt="" className={styles.socialItem}/>
+                        </a>
+                    </div>
+                    }
             </div>
-            <Separator m={"0"}/>
-            <Balance isCard={true}/>
-            <Separator m={"0"}/>
-            <NavLink to={"/profile"} onClick={() => dispatch(getUserData())}>
-               <div className={styles.item}>
-                  <img src={pageName === "Profile" ? homeIconActive : homeIcon} alt="" className={styles.icon}/>
-                  <div
-                     className={styles.label}
-                     style={pageName === "Profile" ?
-                        gradientText
-                        : {color: "#979797"}}
-                  >
-                     Главная
-                  </div>
-               </div>
-            </NavLink>
-            <NavLink to={"/work"} className={styles.item}>
-               <div className={styles.iconWrap}>
-                  <img src={pageName === "Work" ? workIconActive : workIcon} alt="" className={styles.icon}/>
-                  {pageName === "Profile" && newTasksNumber &&
-						<div className={styles.notification}>
-                     {newTasksNumber}
-						</div>}
-               </div>
-               <div
-                  className={styles.label}
-                  style={pageName === "Work" ?
-                     gradientText
-                     : {color: "#979797"}}
-               >
-                  Задания
-               </div>
-            </NavLink>
-            <NavLink to={"/settings"} className={styles.item}>
-               <img src={pageName === "Settings" ? settingsIconActive : settingsIcon} alt="" className={styles.icon}/>
-               <div
-                  className={styles.label}
-                  style={pageName === "Settings" ?
-                     gradientText
-                     : {color: "#979797"}}
-               >
-                  Настройки
-               </div>
-            </NavLink>
-            <div className={styles.socialItems}>
-               <a href="https://vk.com" target="_blank" rel="noopener noreferrer">
-                  <img src={vkIcon} alt="" className={styles.socialItem}/>
-               </a>
-               <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
-                  <img src={tgIcon} alt="" className={styles.socialItem}/>
-               </a>
-               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                  <img src={instIcon} alt="" className={styles.socialItem}/>
-               </a>
+            <div className={styles.rights}>
+                © FlowTok. All Rights Reserved.
             </div>
-         </div>
-         <div className={styles.rights}>
-            © FlowTok. All Rights Reserved.
-         </div>
-      </nav>
-   )
+        </nav>
+    )
 }
 
 export default NavBar;
