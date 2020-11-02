@@ -7,10 +7,11 @@ import {RootStateType} from "../../redux/store";
 import {FirstCompany} from "../../components/Panel/FirstCompany/FirstCompany";
 import {Balance} from "../../components/Panel/Balance/Balance";
 import {Separator} from "../../components/Separator/Separator";
+import {Blogers} from "../../components/Panel/Blogers/Blogers";
 
 export const Panel = () => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
-    let isFirst = true; // если еще нет компаний, то true
+    let isFirst = false; // если еще нет компаний, то true
 
     return (
         <Page bg={"#EFEFF4"} isNavbar={true}>
@@ -22,7 +23,9 @@ export const Panel = () => {
             {!isDesktop && <NavBar_m newTasksNumber={3} pageName={"Profile"}/>}
             {isFirst ?
                 <FirstCompany/> :
-                <div></div>}
+                <div>
+                    <Blogers />
+                </div>}
         </Page>
     )
 }

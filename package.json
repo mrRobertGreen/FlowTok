@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@datepicker-react/styled": "^2.7.0",
+    "@reactchartjs/react-chart.js": "^1.0.0-rc.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -25,6 +26,7 @@
     "@types/scroll-lock": "^2.1.0",
     "@types/yup": "^0.29.6",
     "axios": "^0.19.2",
+    "chart.js": "^2.9.4",
     "classnames": "^2.2.6",
     "formik": "^2.1.5",
     "jest-localstorage-mock": "^2.4.3",
@@ -32,6 +34,7 @@
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap-range-slider": "^1.1.2",
+    "react-chartjs-2": "^2.10.0",
     "react-data-table-component": "^6.11.0",
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
