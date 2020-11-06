@@ -5,6 +5,7 @@ import {RootStateType} from "../../../redux/store";
 import arrowLeft from "../../../media/icons/ad_arrow_left.svg";
 import arrowRight from "../../../media/icons/ad_arrow_right.svg";
 import {DoughnutGraphic} from "./DoughnutGraphic/Graphic/Doughnut";
+import {DoughnutStats} from "./DoughnutGraphic/DoughnutStats/DoughnutStats";
 
 export const Blogers = () => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
@@ -47,6 +48,7 @@ export const Blogers = () => {
                 </div>
                 <div className={styles.graphic}>
                     <DoughnutGraphic />
+                    <DoughnutStats />
                 </div>
             </div>
         </div>

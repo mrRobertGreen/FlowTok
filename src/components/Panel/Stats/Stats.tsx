@@ -3,8 +3,10 @@ import styles from "./styles.module.scss"
 
 export const Stats = () => {
    return (
-      <div>
-
+      <div className={styles.wrapper}>
+         <div className={styles.container}>
+            
+         </div>
       </div>
    )
 }

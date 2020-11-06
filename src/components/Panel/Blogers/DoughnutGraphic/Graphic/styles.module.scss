@@ -1,0 +1,25 @@
+.wrapper {
+
+}
+
+.stat {
+  position: absolute;
+  top: 343px;
+  left:92px;
+
+  &__sum {
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 31px;
+    text-align: center;
+    letter-spacing: -0.627059px;
+  }
+  &__all {
+    font-size: 13px;
+    line-height: 11px;
+    text-align: center;
+    letter-spacing: -0.313529px;
+
+    color: #8E8E93;
+  }
+}

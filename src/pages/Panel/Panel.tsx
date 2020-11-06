@@ -8,6 +8,8 @@ import {FirstCompany} from "../../components/Panel/FirstCompany/FirstCompany";
 import {Balance} from "../../components/Panel/Balance/Balance";
 import {Separator} from "../../components/Separator/Separator";
 import {Blogers} from "../../components/Panel/Blogers/Blogers";
+import {Budget} from "../../components/Panel/Budget/Budget";
+import {Message} from "../../components/Message/Message";
 
 export const Panel = () => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
@@ -20,11 +22,13 @@ export const Panel = () => {
                 <Separator m={"0"}/>
                 <Balance/>
             </div>}
+            <Message/>
             {!isDesktop && <NavBar_m newTasksNumber={3} pageName={"Profile"}/>}
             {isFirst ?
                 <FirstCompany/> :
                 <div>
-                    <Blogers />
+                    <Blogers/>
+                    <Budget/>
                 </div>}
         </Page>
     )
