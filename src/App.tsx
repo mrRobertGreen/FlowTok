@@ -66,15 +66,15 @@ const App: FC = () => {
    }
    return (
       <div style={isMobile ? mobileStyle : desktopStyle}>
-         {error &&
-			<Modal isOpen={true}
-			       children={<Alert onClose={closeError} message={error} title={"Ошибка"} btnText={"text"}
-                                 isError={true}/>}/>}
-         {notification &&
-			<Modal isOpen={!!notification}
-			       children={<Alert onClose={closeNotification} message={notification} title={"Успех"}
-                                 isError={false}/>}/>
-         }
+         {/*{error &&*/}
+			{/*<Modal isOpen={true}*/}
+			{/*       children={<Alert onClose={closeError} message={error} title={"Ошибка"} btnText={"text"}*/}
+         {/*                        isError={true}/>}/>}*/}
+         {/*{notification &&*/}
+			{/*<Modal isOpen={!!notification}*/}
+			{/*       children={<Alert onClose={closeNotification} message={notification} title={"Успех"}*/}
+         {/*                        isError={false}/>}/>*/}
+         {/*}*/}
          <Switch>
             {/*<Route exact path="/login/1" component={FirstStep}/>*/}
             {/*<Route exact path="/login/2" component={SecondStep}/>*/}
