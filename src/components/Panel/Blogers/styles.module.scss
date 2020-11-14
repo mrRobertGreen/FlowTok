@@ -51,6 +51,47 @@
     height: 12px;
   }
 }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.554706px;
+
+    padding-left: 5px;
+  }
+
+  &__date {
+
+    .period {
+      line-height: 18px;
+      letter-spacing: -0.361765px;
+      padding-right: 9px;
+    }
+
+    .time_text {
+      font-size: 15px;
+      line-height: 18px;
+      letter-spacing: -0.361765px;
+
+      color: #8E8E93;
+
+      &::after {
+        content: url("../../../media/icons/arrow_down.svg");
+        padding-left: 2.5px;
+      }
+
+    }
+
+  }
+}
+.time_button {
+  background-color: #FFFFFF;
+}
 .graphic {
   display: flex;
   justify-content: space-between;

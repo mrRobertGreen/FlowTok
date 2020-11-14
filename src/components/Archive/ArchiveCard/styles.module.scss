@@ -1,0 +1,78 @@
+.wrapper {
+  padding: 10px;
+
+  .container {
+    background-color: #FFFFFF;
+    border-radius: 14px;
+    padding: 25px;
+  }
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.313529px;
+    text-transform: uppercase;
+
+    color: #8E8E93;
+
+    margin-right: 20px;
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.41px;
+  }
+}
+
+.deleteButton {
+  background-color: #FFFFFF;
+  height: 12px;
+  width: 12px;
+}
+
+.budget {
+  display: flex;
+  align-items: center;
+
+  &__title {
+    @extend .name__title;
+    margin-right: 30px;
+    align-self: flex-start;
+  }
+
+  &__numbers {
+    padding-right: 27.5px;
+
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+  }
+}
+.spent {
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.313529px;
+
+  color: #8E8E93;
+}
+.period {
+  @extend .budget;
+  padding-top: 15px;
+  &__title {
+    @extend .budget__title;
+  }
+  &__numbers {
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.361765px;
+  }
+}

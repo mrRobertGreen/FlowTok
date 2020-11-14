@@ -13,7 +13,7 @@ import TopNavbar from "../../components/TopNavbar/TopNavbar";
 
 type PropsType = {}
 
-export type PageNamesType = "Profile" | "Work" | "Settings"
+export type PageNamesType = "Profile" | "Work" | "Settings" | "Panel" | "Archive";
 
 const Profile: FC<PropsType & PropsFromRedux> = ({blogProfile, exit}) => {
    const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop)

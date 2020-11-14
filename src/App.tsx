@@ -32,6 +32,7 @@ import {Login} from "./pages/Login/Login";
 import {Landing} from "./pages/Landing/Landing";
 import {Registration} from "./pages/Registration/Registration";
 import {Panel} from "./pages/Panel/Panel";
+import {Archive} from "./pages/Archive/Archive";
 
 const App: FC = () => {
    const dispatch = useDispatch()
@@ -86,7 +87,7 @@ const App: FC = () => {
             <Route path="/work" component={() => <Redirect to={"/work/new"}/>}/>
             <Route path="/settings" component={Settings}/>
             <Route path="/ad/panel" component={Panel}/>
-            <Route path="/ad/archive" component={Panel}/>
+            <Route path="/ad/archive" component={Archive}/>
             {/*<Route path="/add_profile" component={Panel}/>*/}
             {/*<Route path="/cabinet" component={Cabinet_m}/>*/}
             {/*<Route path="/task_form" component={TaskForm_m}/>*/}

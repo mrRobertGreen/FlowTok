@@ -1,0 +1,21 @@
+.wrapper {
+  background-color: #FFFFFF;
+  border-radius: 11px;
+  padding-top: 5px;
+  position: absolute;
+  right: 20px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: block;
+  padding: 10px 20px;
+  width: 89px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  text-align: center;
+
+  &:hover {
+    background: linear-gradient(180deg, #3242F2 0%, #6935EF 100%);
+  }
+}

@@ -30,7 +30,7 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber, isAdProfile}) => {
             <nav className={styles.wrapper}>
                 <div className={styles.navbar}>
                     <NavLink to={"/ad/panel"} className={styles.item} onClick={() => dispatch(getUserData())}>
-                        <img src={pageName === "Profile" ? panelIcon : panelIconActive} alt="" className={styles.icon}/>
+                        <img src={pageName === "Panel" ? panelIcon : panelIconActive} alt="" className={styles.icon}/>
                         <div
                             className={styles.label}
                             style={{color: `${pageName === "Profile" ? "#000" : "#979797"}`}}
@@ -38,9 +38,9 @@ const NavBar_m: FC<PropsType> = ({pageName, newTasksNumber, isAdProfile}) => {
                             Панель
                         </div>
                     </NavLink>
-                    <NavLink to={"/work"} className={styles.item}>
+                    <NavLink to={"/ad/archive"} className={styles.item}>
                         <div className={styles.iconWrap}>
-                            <img src={pageName === "Work" ? archiveIcon : archiveIconActive} alt="" className={styles.icon}/>
+                            <img src={pageName === "Archive" ? archiveIcon : archiveIconActive} alt="" className={styles.icon}/>
                             {pageName === "Profile" && newTasksNumber &&
                             <div className={styles.notification}>
                                 {newTasksNumber}
