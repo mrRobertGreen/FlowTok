@@ -6,9 +6,20 @@ import redMan from "../../../../../media/icons/redMan.svg";
 
 // статистика рядом с графиком-пончиком
 
-export const DoughnutStats: FC = () => {
+type PropsT = {
+    mod?: "vertical" | "horizontal"
+}
+
+export const DoughnutStats: FC<PropsT> = ({mod}) => {
+    let StylesWrapper = {};
+    let StylesContainer = {};
+    if (mod == "horizontal") {
+        StylesWrapper = {display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gridTemplateRows:"1fr"};
+        StylesContainer = {paddingTop:"0"}
+    }
+
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={StylesWrapper}>
             <div className={styles.container_main}>
                 <img src={greenMan} className={styles.img} alt=""/>
                 <div className={styles.status}>
@@ -17,7 +28,7 @@ export const DoughnutStats: FC = () => {
                 </div>
             </div>
 
-            <div className={styles.container}>
+            <div className={styles.container} style={StylesContainer}>
                 <img src={yellowMan} className={styles.img} alt=""/>
                 <div className={styles.status}>
                     <p className={styles.status__text}>В процессе</p>
@@ -25,7 +36,7 @@ export const DoughnutStats: FC = () => {
                 </div>
             </div>
 
-            <div className={styles.container}>
+            <div className={styles.container} style={StylesContainer}>
                 <img src={redMan} className={styles.img} alt=""/>
                 <div className={styles.status}>
                     <p className={styles.status__text}>Отменили</p>

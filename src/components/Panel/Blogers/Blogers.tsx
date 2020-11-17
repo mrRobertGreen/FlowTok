@@ -67,7 +67,7 @@ export const Blogers = () => {
 
                 <div className={styles.graphic}>
                     <DoughnutGraphic/>
-                    <DoughnutStats/>
+                    <DoughnutStats mod={"vertical"}/>
                 </div>
             </div>
         </div>

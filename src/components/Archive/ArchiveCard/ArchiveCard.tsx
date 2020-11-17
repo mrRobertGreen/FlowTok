@@ -4,6 +4,8 @@ import {Separator} from "../../Separator/Separator";
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../redux/store";
 import cross from "../../../media/icons/close_icon.svg"
+import {DoughnutStats} from "../../Panel/Blogers/DoughnutGraphic/DoughnutStats/DoughnutStats";
+import {StatisticFooter} from "../../Panel/Stats/StatisticFooter/StatisticFooter";
 
 type PropsT = {
     name: string
@@ -64,12 +66,37 @@ export const ArchiveCard: FC<PropsT> = ({
                         <p className={styles.spent}>{daysPeriod} дней</p>
                     </div>
                 </div>
-                <Separator m={"13px 0 0 15px"}/>
-                <div>
+                <Separator m={"13px 0 15px 0"}/>
+                <div className={styles.stat}>
+                    <p className={styles.stat__title}>Статистика</p>
+                    <div className={styles.stat__container}>
+                        <div className={styles.stat__numbers} >
+                            <div className={styles.point1}></div>
+                            <div className={styles.text}>
+                                <p className={styles.text__numbers}>12359</p>
+                                <p className={styles.text__category}>Просмотры</p>
+                            </div>
+                        </div>
+                        <div className={styles.stat__numbers}>
+                            <div className={styles.point2}></div>
+                            <div className={styles.text}>
+                                <p className={styles.text__numbers}>12359</p>
+                                <p className={styles.text__category}>Лайки</p>
+                            </div>
+                        </div>
+                        <div className={styles.stat__numbers}>
+                            <div className={styles.point3}></div>
+                            <div className={styles.text}>
+                                <p className={styles.text__numbers}>12359</p>
+                                <p className={styles.text__category}>Репосты</p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                <div>
-
+                <div className={styles.bloggers}>
+                    <p className={styles.bloggers__title}>Блогеры</p>
+                    <DoughnutStats mod={"horizontal"}/>
                 </div>
             </div>
         </div>
