@@ -6,6 +6,13 @@ import {RootStateType} from "../../../redux/store";
 import cross from "../../../media/icons/close_icon.svg"
 import {DoughnutStats} from "../../Panel/Blogers/DoughnutGraphic/DoughnutStats/DoughnutStats";
 import {StatisticFooter} from "../../Panel/Stats/StatisticFooter/StatisticFooter";
+import blackMen from "../../../media/icons/black_man.svg";
+import redMen from "../../../media/icons/redMan.svg";
+import greenMen from "../../../media/icons/greenMan.svg";
+import {ArchiveBudget} from "../ArchiveBudget/ArchiveBudget";
+import {ArchivePeriod} from "../ArchivePeriod/AchivePeriod";
+import {ArchiveStatic} from "../ArchiveStatic/AchivePeriod";
+import {ArchiveBloggers} from "../ArchiveBloggers/AchivePeriod";
 
 type PropsT = {
     name: string
@@ -20,85 +27,100 @@ type PropsT = {
     bloggerCancel: number
 }
 
-export const ArchiveCard: FC<PropsT> = ({
-                                            name,
-                                            spent,
-                                            price,
-                                            period,
-                                            daysPeriod,
-                                            views,
-                                            likes,
-                                            repost,
-                                            bloggerCancel,
-                                            bloggerDone
-                                        }) => {
+export const ArchiveCard: FC = ({}) => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
-
-    return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}>
-                <div className={styles.name}>
-                    <div>
-                        <span className={styles.name__title}>Название</span>
-                        <span className={styles.name__text}>{name}</span>
-                    </div>
-                    <button className={styles.deleteButton}><img src={cross} alt="" width={"100%"} height={"100%"}/>
-                    </button>
-                </div>
-                <Separator m={"15px 0"}/>
-                <div className={styles.budget}>
-                    <p className={styles.budget__title}>Бюджет</p>
-
-                    <div className={styles.budget__numbers}>
-                        <p>{spent}₽</p>
-                        <p className={styles.spent}>Потрачено</p>
-                    </div>
-                    <div className={styles.budget__numbers}>
-                        <p>{price}₽</p>
-                        <p className={styles.spent}>Цена за задание</p>
-                    </div>
-                </div>
-                <div className={styles.period}>
-                    <p className={styles.period__title}>Период</p>
-
-                    <div className={styles.period__numbers}>
-                        <p>{period}</p>
-                        <p className={styles.spent}>{daysPeriod} дней</p>
-                    </div>
-                </div>
-                <Separator m={"13px 0 15px 0"}/>
-                <div className={styles.stat}>
-                    <p className={styles.stat__title}>Статистика</p>
-                    <div className={styles.stat__container}>
-                        <div className={styles.stat__numbers} >
-                            <div className={styles.point1}></div>
-                            <div className={styles.text}>
-                                <p className={styles.text__numbers}>12359</p>
-                                <p className={styles.text__category}>Просмотры</p>
+    if (isDesktop) {
+        return (
+            <div className={styles.wrapper}>
+                <table className={styles.container}>
+                    <tr className={styles.table}>
+                        {/*Заголовки*/}
+                        <td className={styles.firstRow}>
+                            <span className={styles.name__title}>
+                                Название
+                            </span>
+                        </td>
+                        <td className={styles.firstRow}>
+                            <p className={styles.budget__title}>
+                                Бюджет
+                            </p>
+                        </td>
+                        <td className={styles.firstRow}>
+                            <p className={styles.period__title}>
+                                Период
+                            </p>
+                        </td>
+                        <td className={styles.firstRow}>
+                            <p className={styles.stat__title}>
+                                Статистика
+                            </p>
+                        </td>
+                        <td className={styles.firstRow}>
+                            <p className={styles.bloggers__title}>
+                                Блогеры
+                            </p>
+                        </td>
+                        <td className={`${styles.firstRow} ${styles.last}`}>
+                            <p className={styles.name__title}>
+                                Управление
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className={styles.secondRow}>
+                            <span className={styles.name__text}>
+                                FlowTok
+                            </span>
+                        </td>
+                        <td className={styles.secondRow}>
+                            <div className={styles.secondRow__container}>
+                                <ArchiveBudget/>
                             </div>
-                        </div>
-                        <div className={styles.stat__numbers}>
-                            <div className={styles.point2}></div>
-                            <div className={styles.text}>
-                                <p className={styles.text__numbers}>12359</p>
-                                <p className={styles.text__category}>Лайки</p>
+                        </td>
+                        <td className={styles.secondRow}>
+                            <div className={styles.secondRow__container}>
+                                <ArchivePeriod/>
                             </div>
-                        </div>
-                        <div className={styles.stat__numbers}>
-                            <div className={styles.point3}></div>
-                            <div className={styles.text}>
-                                <p className={styles.text__numbers}>12359</p>
-                                <p className={styles.text__category}>Репосты</p>
+                        </td>
+                        <td className={styles.secondRow}>
+                            <div className={styles.secondRow__container}>
+                                <ArchiveStatic/>
                             </div>
+                        </td>
+                        <td className={styles.secondRow}>
+                            <div className={styles.secondRow__container}>
+                                <ArchiveBloggers/>
+                            </div>
+                        </td>
+                        <td className={`${styles.secondRow} ${styles.last}`}>
+                            <p className={styles.delete}>
+                                Удалить
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        )
+    } else {
+        return (
+            <div className={styles.wrapper}>
+                <div className={styles.container}>
+                    <div className={styles.name}>
+                        <div>
+                            <span className={styles.name__title}>Название</span>
+                            <span className={styles.name__text}>FlowTok</span>
                         </div>
+                        <button className={styles.deleteButton}><img src={cross} alt="" width={"100%"} height={"100%"}/>
+                        </button>
                     </div>
-
-                </div>
-                <div className={styles.bloggers}>
-                    <p className={styles.bloggers__title}>Блогеры</p>
-                    <DoughnutStats mod={"horizontal"}/>
+                    <Separator m={"15px 0"}/>
+                    <ArchiveBudget/>
+                    <ArchivePeriod/>
+                    <Separator m={"13px 0 15px 0"}/>
+                    <ArchiveStatic/>
+                    <ArchiveBloggers/>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 }

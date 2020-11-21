@@ -12,6 +12,7 @@ import {Budget} from "../../components/Panel/Budget/Budget";
 import {Message} from "../../components/Message/Message";
 import {Stats} from "../../components/Panel/Stats/Stats";
 import {Period} from "../../components/Panel/Period/Period";
+import {Campaigns} from "../../components/Panel/Campaigns/Campaigns";
 
 export const Panel = () => {
     const isDesktop = useSelector((state: RootStateType) => state.app.isDesktop);
@@ -31,6 +32,7 @@ export const Panel = () => {
                 <div>
                     <Blogers/>
                     <Budget/>
+                    <Campaigns />
                     <Stats/>
                     <Period/>
                 </div>}

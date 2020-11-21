@@ -1,0 +1,40 @@
+.budget {
+  display: flex;
+  align-items: center;
+
+  &__title {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.313529px;
+    text-transform: uppercase;
+
+    color: #8E8E93;
+    margin-right: 30px;
+    align-self: flex-start;
+  }
+
+  &__numbers {
+    padding-right: 27.5px;
+
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+  }
+}
+
+.spent {
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.313529px;
+
+  color: #8E8E93;
+}
+
+@media (min-width: 1024px) {
+  .budget {
+    &__title {
+      display: none;
+    }
+  }
+}

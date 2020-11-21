@@ -1,0 +1,75 @@
+.stat {
+  &__title {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.313529px;
+    text-transform: uppercase;
+
+    color: #8E8E93;
+  }
+
+  &__container {
+    padding-top: 15px;
+    display: grid;
+    grid-template-columns: 0.65fr 0.65fr 1fr;
+  }
+
+  &__numbers {
+    display: flex;
+  }
+}
+
+// stats
+.text {
+  &__category {
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: -0.265294px;
+
+    color: #8E8E93;
+    padding-top: 5px;
+  }
+
+  &__numbers {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    letter-spacing: -0.41px;
+  }
+}
+
+.point {
+  height: 10px;
+  width: 10px;
+  align-self: flex-start;
+  border-radius: 5px;
+  margin-top: 5.5px;
+  margin-right: 5px;
+}
+
+.point1 {
+  @extend .point;
+  background: #7832F0;
+}
+
+.point2 {
+  @extend .point;
+  background: #37D5FA;
+}
+
+.point3 {
+  @extend .point;
+  background: #1934F2;
+}
+
+@media (min-width: 1024px) {
+  .stat {
+    &__title {
+      display: none;
+    }
+    &__container {
+      padding-top: 0;
+    }
+  }
+}

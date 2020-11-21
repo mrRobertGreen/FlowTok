@@ -1,0 +1,31 @@
+.period {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.313529px;
+    text-transform: uppercase;
+
+    color: #8E8E93;
+    margin-right: 36px;
+  }
+
+  &__numbers {
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.361765px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .period {
+    padding-top: 0;
+    &__title {
+      display: none;
+    }
+  }
+}

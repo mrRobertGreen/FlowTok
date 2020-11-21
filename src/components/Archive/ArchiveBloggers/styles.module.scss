@@ -1,0 +1,51 @@
+.bloggers {
+  &__title {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.313529px;
+    text-transform: uppercase;
+
+    color: #8E8E93;
+    padding-top: 22px;
+    margin-bottom: 15px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 0.48fr 0.5fr 1fr;
+  }
+
+  &__container {
+    display: flex;
+  }
+
+  .mens {
+    align-self: flex-start;
+    height: 10px;
+    padding-right: 5.5px;
+    margin-top: 3.7px;
+  }
+
+  &__num {
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+  }
+
+  &__text {
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: -0.313529px;
+
+    color: #8E8E93;
+  }
+}
+@media (min-width: 1024px) {
+  .bloggers {
+    &__title {
+      display: none;
+    }
+  }
+}

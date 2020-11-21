@@ -21,7 +21,6 @@
     text-transform: uppercase;
 
     color: #8E8E93;
-
     margin-right: 20px;
   }
 
@@ -33,121 +32,95 @@
   }
 }
 
-.deleteButton {
-  background-color: #FFFFFF;
-  height: 12px;
-  width: 12px;
-}
-
 .budget {
-  display: flex;
-  align-items: center;
-
   &__title {
     @extend .name__title;
-    margin-right: 30px;
-    align-self: flex-start;
   }
-
-  &__numbers {
-    padding-right: 27.5px;
-
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: -0.361765px;
-  }
-}
-
-.spent {
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: -0.313529px;
-
-  color: #8E8E93;
 }
 
 .period {
-  @extend .budget;
-  padding-top: 15px;
-
   &__title {
     @extend .budget__title;
+    margin-right: 36px;
   }
 
-  &__numbers {
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: -0.361765px;
-  }
 }
 
 .stat {
   &__title {
     @extend .period__title;
   }
-
-  &__container {
-    //display: flex;
-    //align-items: center;
-    padding-top: 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  &__numbers {
-    display: flex;
-    //margin-right: 15px;
-  }
-}
-
-// stats
-.text {
-  &__category {
-    font-size: 11px;
-    line-height: 13px;
-    letter-spacing: -0.265294px;
-
-    color: #8E8E93;
-    padding-top: 5px;
-  }
-
-  &__numbers {
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 20px;
-    letter-spacing: -0.41px;
-  }
-}
-
-.point {
-  height: 10px;
-  width: 10px;
-  align-self: flex-start;
-  border-radius: 5px;
-  margin-top: 5.5px;
-  margin-right: 5px;
-}
-
-.point1 {
-  @extend .point;
-  background: #7832F0;
-}
-
-.point2 {
-  @extend .point;
-  background: #37D5FA;
-}
-
-.point3 {
-  @extend .point;
-  background: #1934F2;
 }
 
 .bloggers {
   &__title {
     @extend .period__title;
-    padding-top: 22px;
-    margin-bottom: 15px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    .container {
+      padding: 0;
+    }
+  }
+  .name {
+    align-items: flex-start;
+    vertical-align: top;
+  }
+  .bloggers {
+    &__title {
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  .table {
+    border-bottom: 1.5px solid #ECECEC;
+  }
+  .firstRow {
+    border-collapse: initial;
+    border-right: 2px solid #ECECEC;
+    height: 15px;
+    border-bottom: 1.5px solid #ECECEC;
+    vertical-align: top;
+    padding: 18px 14px 15px 15px;
+  }
+  .secondRow {
+    border-right: 2px solid #ECECEC;
+    height: 15px;
+
+    &__container {
+      margin: 16px 15px;
+    }
+  }
+  .last {
+    border-right: none;
+  }
+
+  .delete {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.361765px;
+    text-align: center;
+    color: #FF3B30;
+  }
+  .name__text {
+    padding-left: 15px;
+
+  }
+}
+
+@media (min-width: 1680px) {
+  .wrapper {
+
+  }
+  .name {
+
+  }
+  .firstRow {
+
   }
 
 }

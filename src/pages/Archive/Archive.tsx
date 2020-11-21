@@ -13,13 +13,9 @@ export const Archive = () => {
     return (
         <Page bg={"#EFEFF4"} isNavbar={true}>
             <TopNavbar label={"Архив"} logo={true} br={"0px 0px 11px 11px"}/>
-            <ArchiveCard
-                name={"FlowTok"}
-                bloggerCancel={8}
-                bloggerDone={1090}
-                daysPeriod={12}
-                likes={6293} price={25} repost={2492}
-                spent={12500} views={12359} period={"11.09.2020 - 27.09.2020"} />
+            <ArchiveCard/>
+            <ArchiveCard/>
+            <ArchiveCard/>
             {!isDesktop && <NavBar_m newTasksNumber={3} pageName={"Profile"}/>}
             <Message/>
         </Page>
