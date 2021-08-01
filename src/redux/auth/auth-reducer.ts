@@ -95,11 +95,6 @@ export const goToSecondLoginStep = (auth: string = "", vkCode: string = "",): Th
          reqBody.vkCode = vkCode
       }
 
-      const advKey = "Helldlllooo"
-      const blogKey = "1"
-      const fakeReqBody = {
-         auth: blogKey,
-      }
       dispatch(appActions.toggleIsFetching(true))
 
       // if we have auth key we send this else we send vkCode

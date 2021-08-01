@@ -12,9 +12,6 @@ import {ChooseAmount} from "../common/ChooseAmount/ChooseAmount";
 import {RootStateType} from "../../../redux/store";
 import Preloader from "../../common/Preloader/Preloader";
 import {cleanPhoneNumber} from "../../../utils/parseString";
-import Modal from "../../common/Modal/Modal";
-import Alert from "../../common/Alert/Alert";
-import {appActions} from "../../../redux/app/app-reducer";
 
 export type WithdrawFormValuesType = {
    wallet: string
